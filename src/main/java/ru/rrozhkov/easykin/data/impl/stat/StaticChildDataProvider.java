@@ -1,0 +1,14 @@
+package ru.rrozhkov.easykin.data.impl.stat;
+
+import java.util.Collection;
+
+import ru.rrozhkov.easykin.family.IKinPerson;
+import ru.rrozhkov.easykin.family.KinType;
+import ru.rrozhkov.easykin.family.impl.filter.KinTypeFilter;
+import ru.rrozhkov.easykin.util.FilterUtil;
+
+public class StaticChildDataProvider extends StaticPersonDataProvider{	
+	public Collection<IKinPerson> getData() {		
+		return FilterUtil.filter(super.getData(), new KinTypeFilter(new KinType[]{KinType.SUN, KinType.DAUGHTER}));
+	}
+}
