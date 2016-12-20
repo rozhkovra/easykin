@@ -1,5 +1,7 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
+import java.util.Collection;
+
 import javax.swing.JTable;
 
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
@@ -22,8 +24,6 @@ public class ServiceTableStyle extends TableStyle {
 	    table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 	}
 
-	public void setCellRenderer() {
-		// TODO Auto-generated method stub
-		
+	public void setCellRenderer(JTable table, Collection data) {
 	}
 }

@@ -1,9 +1,11 @@
 package ru.rrozhkov.easykin.gui.style;
 
+import java.util.Collection;
+
 import javax.swing.JTable;
 
-public interface ITableStyle{
+public interface ITableStyle<T>{
 	void setColumnStyles(JTable table);
 	String[] getColumnNames();
-	void setCellRenderer();
+	void setCellRenderer(JTable table, Collection<T> data);
 }

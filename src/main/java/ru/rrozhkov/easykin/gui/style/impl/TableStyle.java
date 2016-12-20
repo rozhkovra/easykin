@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import ru.rrozhkov.easykin.gui.style.ITableStyle;
 
-public abstract class TableStyle implements ITableStyle{
+public abstract class TableStyle<T> implements ITableStyle<T>{
     protected static DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
     protected static DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
     protected static DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();

@@ -27,6 +27,7 @@ public class Table extends JTable implements MouseListener{
 	public void doLayout() {
 		super.doLayout();
 		style.tableStyle().setColumnStyles(this);
+		style.tableStyle().setCellRenderer(this, data);
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -1,10 +1,15 @@
 package ru.rrozhkov.easykin.fin.util;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class FormatUtil {
 	private static DecimalFormat kopeckFormatter = new DecimalFormat("00");
-	private static DecimalFormat rublesFormatter = new DecimalFormat("###");
+	private static DecimalFormat rublesFormatter = new DecimalFormat("### ###");
+	static {
+		DecimalFormatSymbols symbols = rublesFormatter.getDecimalFormatSymbols();
+	    symbols.setGroupingSeparator(' ');
+	}
 	
 	public static String formatKopeck(int kopeck){
 		return kopeckFormatter.format(kopeck);
