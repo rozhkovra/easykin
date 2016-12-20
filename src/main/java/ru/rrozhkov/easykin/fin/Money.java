@@ -39,4 +39,13 @@ public class Money {
 		this.value-=money.value;
 		return this;
 	}
+
+	public Money multiply(Money money){
+		this.value*=money.value;
+		return this;
+	}
+
+	public double getValue() {
+		return this.value;
+	}
 }

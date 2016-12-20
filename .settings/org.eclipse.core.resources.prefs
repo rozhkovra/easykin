@@ -20,5 +20,8 @@ encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/PaymentTableSt
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/ServiceTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/TaskTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/person/Sex.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/service/calc/impl/electricity/ElectricityCalculator.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/service/calc/impl/water/WaterResult.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/service/calc/impl/water/hot/HotWaterResult.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/task/Priority.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/util/FilterUtil.java=UTF-8
