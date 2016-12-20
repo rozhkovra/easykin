@@ -21,8 +21,7 @@ public abstract class TableStyle<T> implements ITableStyle<T>{
 		        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		        setHorizontalAlignment(getColumnAlignment()[column]);
 		        return c;
-		    }
-		    
+		    }		    
 		});
 	}
 }

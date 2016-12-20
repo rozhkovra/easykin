@@ -15,6 +15,6 @@ public class TablePanel extends JPanel {
 		super();
 		JTable table = new Table(data, style);
 		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table);
+		add(table, BorderLayout.SOUTH);
 	}
 }

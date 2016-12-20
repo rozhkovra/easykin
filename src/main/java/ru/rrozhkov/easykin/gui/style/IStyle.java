@@ -1,6 +1,6 @@
 package ru.rrozhkov.easykin.gui.style;
 
 public interface IStyle<T> {
-	ITableStyle tableStyle();
+	ITableStyle<T> tableStyle();
 	IDataConverter<T> dataConverter();
 }
