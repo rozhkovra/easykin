@@ -7,7 +7,7 @@ import ru.rrozhkov.easykin.gui.style.ITableStyle;
 
 public class FamilyStyle implements IStyle<IKinPerson> {
 
-	public ITableStyle tableStyle() {
+	public ITableStyle<IKinPerson> tableStyle() {
 		return new FamilyTableStyle();
 	}
 

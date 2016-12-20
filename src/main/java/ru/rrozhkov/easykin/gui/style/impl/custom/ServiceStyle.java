@@ -7,7 +7,7 @@ import ru.rrozhkov.easykin.gui.style.ITableStyle;
 
 public class ServiceStyle implements IStyle<IService> {
 
-	public ITableStyle tableStyle() {
+	public ITableStyle<IService> tableStyle() {
 		return new ServiceTableStyle();
 	}
 

@@ -7,7 +7,7 @@ import ru.rrozhkov.easykin.gui.style.ITableStyle;
 
 public class PaymentStyle implements IStyle<IPayment> {
 
-	public ITableStyle tableStyle() {
+	public ITableStyle<IPayment> tableStyle() {
 		return new PaymentTableStyle();
 	}
 

@@ -16,8 +16,8 @@ import ru.rrozhkov.easykin.task.Priority;
 import ru.rrozhkov.easykin.task.Status;
 
 public class TaskTableStyle extends TableStyle<ITask>  {
-	static {
-		
+	public int[] getColumnAlignment() {
+		return new int[]{JLabel.CENTER,JLabel.LEFT,JLabel.CENTER,JLabel.CENTER,JLabel.CENTER,JLabel.CENTER};
 	}
 	
 	public String[] getColumnNames() {
@@ -25,7 +25,7 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 	}
 	
 	public void setColumnStyles(JTable table){
-	    table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	    super.setColumnStyles(table);
 	    table.getColumnModel().getColumn(0).setPreferredWidth(50);
 	    table.getColumnModel().getColumn(1).setMinWidth(300);
 	    table.getColumnModel().getColumn(1).setMaxWidth(400);
@@ -39,6 +39,7 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 	    table.getColumnModel().getColumn(5).setMaxWidth(200);
 	}
 
+	@Override
 	public void setCellRenderer(JTable table, final Collection<ITask> data) {
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
 		{
@@ -47,24 +48,21 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		    {
 		        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		        ITask task = (ITask) ((List)data).get(row);		        		
-		        if(task.getStatus().equals(Status.CLOSE))
+		        if(Status.CLOSE.equals(task.getStatus()))
 		        	c.setBackground(Color.GREEN);		        
 		        else{
 	        		c.setBackground(Color.WHITE);
-		        	if(task.getPriority().equals(Priority.IMPOTANT_FAST)
-		        			|| task.getPriority().equals(Priority.IMPOTANT_NOFAST))
+		        	if(Priority.IMPOTANT_FAST.equals(task.getPriority())
+		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority()))
 		        		c.setBackground(Color.YELLOW);
 		        }
-		        if (task.getPriority().equals(Priority.IMPOTANT_FAST)){
+		        if (Priority.IMPOTANT_FAST.equals(task.getPriority())){
 		           c.setFont(c.getFont().deriveFont(Font.BOLD,15));
 		           
 		        } else {  
 	        	   c.setFont(c.getFont().deriveFont(Font.PLAIN,12));
 		        }
-		        if(column==0 || column==2 || column==3 || column==4 || column==5)
-		        	setHorizontalAlignment(JLabel.CENTER);
-		        else
-		        	setHorizontalAlignment(JLabel.LEFT);
+		        setHorizontalAlignment(getColumnAlignment()[column]);
 		        return c;
 		    }
 		    

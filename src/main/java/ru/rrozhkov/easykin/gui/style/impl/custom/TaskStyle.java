@@ -7,7 +7,7 @@ import ru.rrozhkov.easykin.task.ITask;
 
 public class TaskStyle implements IStyle<ITask> {
 
-	public ITableStyle tableStyle() {
+	public ITableStyle<ITask> tableStyle() {
 		return new TaskTableStyle();
 	}
 
