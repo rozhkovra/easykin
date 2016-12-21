@@ -25,7 +25,7 @@ public class CarPanel extends JPanel {
 	public CarPanel(ICar car) {
 		this.car = car;
 		
-		setLayout(new GridLayout(6,2)); 		
+		setLayout(new GridLayout(5,2)); 		
  
 		add(getBrendLabel()); 
 		add(getBredField()); 
