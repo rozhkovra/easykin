@@ -10,10 +10,10 @@ import ru.rrozhkov.easykin.service.calc.impl.ServiceCalcBean;
 public class ServicePanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
-	public ServicePanel(ServiceCalcBean calcBean) {
-		super(calcBean);
+	public ServicePanel(ServiceCalcBean serviceCalcBean) {
+		super(serviceCalcBean);
         setLayout(new GridLayout(5,4));
-        for(CalcBean bean : calcBean.getBeans()){
+        for(CalcBean bean : serviceCalcBean.getBeans()){
         	Panel panel = PanelFactory.getPanel(bean);
         	add(panel);
         }

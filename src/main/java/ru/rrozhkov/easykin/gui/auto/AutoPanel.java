@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.gui.auto;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createCarPanel;
-import static ru.rrozhkov.easykin.gui.PanelFactory.createServicePanel;
+import static ru.rrozhkov.easykin.gui.PanelFactory.createAutoServicePanel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -12,6 +12,6 @@ public class AutoPanel extends JPanel{
 	public AutoPanel() {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		add(createCarPanel());
-		add(createServicePanel());
+		add(createAutoServicePanel());
 	}	
 }

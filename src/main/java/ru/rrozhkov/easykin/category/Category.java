@@ -9,7 +9,8 @@ public enum Category {
 	PAYMENT("Платежи"), 
 	DOC("Документы"), 
 	WORK("Работа"),
-	TASK("Задачи");
+	TASK("Задачи"),
+	SERVICE("Коммунальные услуги");
 	
     private final String name;       
 
