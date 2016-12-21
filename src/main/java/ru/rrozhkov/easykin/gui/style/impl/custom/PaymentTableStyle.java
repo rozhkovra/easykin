@@ -16,14 +16,13 @@ public class PaymentTableStyle extends TableStyle<IPayment> {
 	
 	public void setColumnStyles(JTable table){
 	    super.setColumnStyles(table);
-	    table.getColumnModel().getColumn(0).setPreferredWidth(50);
-	    table.getColumnModel().getColumn(1).setMaxWidth(150);
-	    table.getColumnModel().getColumn(1).setMinWidth(100);
-	    table.getColumnModel().getColumn(2).setMaxWidth(400);
-	    table.getColumnModel().getColumn(2).setMinWidth(200);
-	    table.getColumnModel().getColumn(3).setMaxWidth(150);
+	    table.getColumnModel().getColumn(0).setMinWidth(50);
+	    table.getColumnModel().getColumn(0).setMaxWidth(50);
+	    table.getColumnModel().getColumn(1).setMinWidth(150);
+	    table.getColumnModel().getColumn(1).setMaxWidth(200);
 	    table.getColumnModel().getColumn(3).setMinWidth(100);
-	    table.getColumnModel().getColumn(4).setMaxWidth(150);
+	    table.getColumnModel().getColumn(3).setMaxWidth(100);
 	    table.getColumnModel().getColumn(4).setMinWidth(100);
+	    table.getColumnModel().getColumn(4).setMaxWidth(100);
 	}
 }

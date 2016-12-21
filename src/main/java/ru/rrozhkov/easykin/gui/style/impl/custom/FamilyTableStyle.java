@@ -17,13 +17,9 @@ public class FamilyTableStyle extends TableStyle<IKinPerson> {
 	
 	public void setColumnStyles(JTable table){
 	    super.setColumnStyles(table);
-	    table.getColumnModel().getColumn(0).setPreferredWidth(50);
-	    table.getColumnModel().getColumn(1).setMaxWidth(300);
-	    table.getColumnModel().getColumn(1).setMinWidth(150);
-	    table.getColumnModel().getColumn(2).setMaxWidth(300);
-	    table.getColumnModel().getColumn(2).setMinWidth(150);
-	    table.getColumnModel().getColumn(3).setMaxWidth(300);
-	    table.getColumnModel().getColumn(3).setMinWidth(150);
+	    table.getColumnModel().getColumn(0).setMaxWidth(50);
+	    table.getColumnModel().getColumn(0).setMinWidth(50);
 	    table.getColumnModel().getColumn(4).setMaxWidth(150);
+	    table.getColumnModel().getColumn(4).setMinWidth(150);
 	}
 }

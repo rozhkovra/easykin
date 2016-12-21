@@ -1,8 +1,8 @@
 package ru.rrozhkov.easykin.gui;
 
-import java.awt.BorderLayout;
 import java.util.Collection;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
@@ -13,8 +13,9 @@ public class TablePanel extends JPanel {
 	
 	public TablePanel(Collection data, IStyle style) {
 		super();
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JTable table = new Table(data, style);
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.SOUTH);
+		add(table.getTableHeader());
+		add(table);
 	}
 }
