@@ -2,7 +2,7 @@ package ru.rrozhkov.easykin.service.calc.impl.gaz;
 
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.Result;
+import ru.rrozhkov.easykin.service.calc.impl.Result;
 
 public class GazResult extends Result {
 	private double delta;
@@ -20,7 +20,7 @@ public class GazResult extends Result {
 	public String toString() {
 		return "GAZ"
 //				+ "\nDelta = "+formatCurrency(getDelta())
-				+ "\nSum = "+FormatUtil.formatMoney(getSum())
+				+ "\nSum = "+FormatUtil.formatMoney(getResult())
 				+ "\n\n";
 	}
 }

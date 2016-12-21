@@ -2,7 +2,7 @@ package ru.rrozhkov.easykin.service.calc.impl.water;
 
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.Result;
+import ru.rrozhkov.easykin.service.calc.impl.Result;
 
 public class WaterResult extends Result {
 	private double coldDelta;
@@ -41,7 +41,7 @@ public class WaterResult extends Result {
 				+ "\nColdSum = "+FormatUtil.formatMoney(getColdSum())
 //				+ "\nHotDelta = "+FormatUtil.formatInt(getHotDelta())
 				+ "\nHotSum = "+FormatUtil.formatMoney(getHotSum())
-				+ "\nSum = "+FormatUtil.formatMoney(getSum())
+				+ "\nSum = "+FormatUtil.formatMoney(getResult())
 				+ "\n\n";
 	}
 }

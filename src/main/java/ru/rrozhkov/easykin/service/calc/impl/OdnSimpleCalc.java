@@ -2,10 +2,10 @@ package ru.rrozhkov.easykin.service.calc.impl;
 
 import ru.rrozhkov.easykin.fin.Money;
 
-public abstract class OdnSimpleCalcBean extends SimpleCalcBean {
+public abstract class OdnSimpleCalc extends SimpleCalc {
 	protected Money odn;
 	
-	public OdnSimpleCalcBean(double prevMesure, double currentMesure, Money rate,
+	public OdnSimpleCalc(double prevMesure, double currentMesure, Money rate,
 			Money odn) {
 		super(prevMesure, currentMesure, rate);
 		this.odn = odn;

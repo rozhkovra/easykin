@@ -1,15 +1,15 @@
 package ru.rrozhkov.easykin.service.calc.impl.water;
 
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.Calculator;
+import ru.rrozhkov.easykin.service.calc.impl.Calculator;
 
 public class WaterCalculator extends Calculator {
-	public WaterCalculator(WaterCalcBean calcBean) {
+	public WaterCalculator(WaterCalc calcBean) {
 		super(calcBean);
 	}
 
 	public WaterResult calculate() {
-		WaterCalcBean calcBean = (WaterCalcBean)getCalcBean();
+		WaterCalc calcBean = (WaterCalc)getCalc();
 		double coldDelta = calcBean.getColdCurrentMesure()-calcBean.getColdPrevMesure();
 		Money coldSum = new Money(coldDelta*(calcBean.getInRate().add(calcBean.getOutRate()).getValue()));
 		double hotDelta = calcBean.getHotCurrentMesure()-calcBean.getHotPrevMesure();

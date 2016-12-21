@@ -1,15 +1,16 @@
 package ru.rrozhkov.easykin.service.calc.impl.water;
 
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.impl.OdnSimpleCalcBean;
+import ru.rrozhkov.easykin.service.calc.CalculationType;
+import ru.rrozhkov.easykin.service.calc.impl.OdnSimpleCalc;
 
-public class WaterCalcBean extends OdnSimpleCalcBean {
+public class WaterCalc extends OdnSimpleCalc {
 	private double hotPrevMesure;
 	private double hotCurrentMesure;
 	private Money inRate;
 	private Money outRate;
 	
-	public WaterCalcBean(double coldPrevMesure, double coldCurrentMesure,
+	public WaterCalc(double coldPrevMesure, double coldCurrentMesure,
 			double hotPrevMesure, double hotCurrentMesure, Money inRate,
 			Money outRate, Money odn) {
 		super(coldPrevMesure, coldCurrentMesure, new Money(), odn);
@@ -55,8 +56,8 @@ public class WaterCalcBean extends OdnSimpleCalcBean {
 	public void setOutRate(Money outRate) {
 		this.outRate = outRate;
 	}
-	@Override
+
 	public String getName() {
-		return "Water";
+		return CalculationType.WATER.toString();
 	}
 }

@@ -5,16 +5,17 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.service.calc.impl.DefaultCalcBean;
+import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.service.calc.impl.def.DefaultCalc;
 
 public class DefaultPanel extends Panel {
 	public static String HEADER_LABEL_TEXT = ""; 
-	public static String SUM_LABEL_TEXT = "Sum";
+	public static String SUM_LABEL_TEXT = "Сумма";
 	private static final long serialVersionUID = 1L;
 	private JTextField sumField = null;
 	private JLabel sumLabel = null;
 	
-	public DefaultPanel(DefaultCalcBean calcBean) {		
+	public DefaultPanel(DefaultCalc calcBean) {		
 		super(calcBean);
 		setLayout(new GridLayout(4,2));		
  
@@ -29,7 +30,7 @@ public class DefaultPanel extends Panel {
 	public JTextField getSumField(){
 		if(sumField == null){
 			sumField = new JTextField(10);
-			String sum = String.valueOf(((DefaultCalcBean)calcBean).getSum());
+			String sum = String.valueOf(((DefaultCalc)calc).getSum());
 			sumField.setText(sum);
 		}
 		return sumField;
@@ -42,7 +43,7 @@ public class DefaultPanel extends Panel {
 	@Override
 	public void updateBean() {
 		super.updateBean();
-		DefaultCalcBean bean = (DefaultCalcBean)getCalcBean();
+		DefaultCalc bean = (DefaultCalc)getCalc();
 		bean.setSum(CalcUtil.moneyNUllOrEmpty(getSumField().getText()));
 	}
 }

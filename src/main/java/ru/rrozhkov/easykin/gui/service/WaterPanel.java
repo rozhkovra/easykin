@@ -6,7 +6,8 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalcBean;
+import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalc;
 
 public class WaterPanel extends Panel{
 	public static String HEADER_LABEL_TEXT = "WATER"; 
@@ -33,7 +34,7 @@ public class WaterPanel extends Panel{
 	private JLabel rateOutLabel = null;
 	private JLabel odnLabel = null;
 	
-	public WaterPanel(WaterCalcBean calcBean) {
+	public WaterPanel(WaterCalc calcBean) {
 		super(calcBean);
 		setLayout(new GridLayout(10,2)); 
  
@@ -61,7 +62,7 @@ public class WaterPanel extends Panel{
 	public JTextField getRateOutField() {
 		if(rateOutField == null){
 			rateOutField = new JTextField(6);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getOutRate());
+			String text = String.valueOf(((WaterCalc)calc).getOutRate());
 			rateOutField.setText(text);			
 		}
 		return rateOutField;
@@ -76,7 +77,7 @@ public class WaterPanel extends Panel{
 	public JTextField getRateInField() {
 		if(rateInField == null){
 			rateInField = new JTextField(6);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getInRate());
+			String text = String.valueOf(((WaterCalc)calc).getInRate());
 			rateInField.setText(text);			
 		}
 		return rateInField;
@@ -90,7 +91,7 @@ public class WaterPanel extends Panel{
 	public JTextField getHotCurrentMesureField() {
 		if(hotCurrentMesureField == null){
 			hotCurrentMesureField = new JTextField(5);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getHotCurrentMesure());
+			String text = String.valueOf(((WaterCalc)calc).getHotCurrentMesure());
 			hotCurrentMesureField.setText(text);			
 		}
 		return hotCurrentMesureField;
@@ -105,7 +106,7 @@ public class WaterPanel extends Panel{
 	public JTextField getHotPrevMesureField() {
 		if(hotPrevMesureField == null){
 			hotPrevMesureField = new JTextField(5);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getHotPrevMesure());
+			String text = String.valueOf(((WaterCalc)calc).getHotPrevMesure());
 			hotPrevMesureField.setText(text);						
 		}
 		return hotPrevMesureField;
@@ -120,7 +121,7 @@ public class WaterPanel extends Panel{
 	public JTextField getColdPrevMesureField(){
 		if(coldPrevMesureField == null){
 			coldPrevMesureField = new JTextField(5);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getColdPrevMesure());
+			String text = String.valueOf(((WaterCalc)calc).getColdPrevMesure());
 			coldPrevMesureField.setText(text);						
 		}
 		return coldPrevMesureField;
@@ -129,7 +130,7 @@ public class WaterPanel extends Panel{
 	public JTextField getColdCurrentMesureField(){
 		if(coldCurrentMesureField == null){
 			coldCurrentMesureField = new JTextField(5);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getColdCurrentMesure());
+			String text = String.valueOf(((WaterCalc)calc).getColdCurrentMesure());
 			coldCurrentMesureField.setText(text);						
 		}
 		return coldCurrentMesureField;
@@ -138,7 +139,7 @@ public class WaterPanel extends Panel{
 	public JTextField getOdnField(){
 		if(odnField == null){
 			odnField = new JTextField(6);
-			String text = String.valueOf(((WaterCalcBean)calcBean).getOdn());
+			String text = String.valueOf(((WaterCalc)calc).getOdn());
 			odnField.setText(text);									
 		}
 		return odnField;
@@ -165,7 +166,7 @@ public class WaterPanel extends Panel{
 	@Override
 	public void updateBean() {
 		super.updateBean();
-		WaterCalcBean bean = (WaterCalcBean)getCalcBean();
+		WaterCalc bean = (WaterCalc)getCalc();
 		bean.setColdPrevMesure(CalcUtil.doubleNUllOrEmpty(getColdPrevMesureField().getText()));
 		bean.setColdCurrentMesure(CalcUtil.doubleNUllOrEmpty(getColdCurrentMesureField().getText()));
 		bean.setHotPrevMesure(CalcUtil.doubleNUllOrEmpty(getHotPrevMesureField().getText()));

@@ -5,13 +5,14 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.service.calc.impl.gaz.GazCalcBean;
+import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.service.calc.impl.gaz.GazCalc;
 
 public class GazPanel extends Panel{
-	public static String HEADER_LABEL_TEXT = "GAZ"; 
-	public static String PREV_MESURE_LABEL_TEXT = "Previous mesure";
-	public static String CURRENT_MESURE_LABEL_TEXT = "Current mesure";
-	public static String RATE_LABEL_TEXT = "Rate";
+	public static String HEADER_LABEL_TEXT = "Газ"; 
+	public static String PREV_MESURE_LABEL_TEXT = "Предыдущие показания";
+	public static String CURRENT_MESURE_LABEL_TEXT = "Текущие показания";
+	public static String RATE_LABEL_TEXT = "Тариф";
 	private static final long serialVersionUID = 1L;
 	private JTextField prevMesureField = null;
 	private JTextField currentMesureField = null;
@@ -20,7 +21,7 @@ public class GazPanel extends Panel{
 	private JLabel currentMesureLabel = null;
 	private JLabel rateLabel = null;
 	
-	public GazPanel(GazCalcBean calcBean) {
+	public GazPanel(GazCalc calcBean) {
 		super(calcBean);
 		setLayout(new GridLayout(6,2)); 
  
@@ -40,7 +41,7 @@ public class GazPanel extends Panel{
 	public JTextField getPrevMesureField(){
 		if(prevMesureField == null){
 			prevMesureField = new JTextField(5);
-			String text = String.valueOf(((GazCalcBean)calcBean).getPrevMesure());
+			String text = String.valueOf(((GazCalc)calc).getPrevMesure());
 			prevMesureField.setText(text);			
 		}
 		return prevMesureField;
@@ -49,7 +50,7 @@ public class GazPanel extends Panel{
 	public JTextField getCurrentMesureField(){
 		if(currentMesureField == null){
 			currentMesureField = new JTextField(5);
-			String text = String.valueOf(((GazCalcBean)calcBean).getCurrentMesure());
+			String text = String.valueOf(((GazCalc)calc).getCurrentMesure());
 			currentMesureField.setText(text);			
 		}
 		return currentMesureField;
@@ -58,7 +59,7 @@ public class GazPanel extends Panel{
 	public JTextField getRateField(){
 		if(rateField == null){
 			rateField = new JTextField(5);
-			String text = String.valueOf(((GazCalcBean)calcBean).getRate());
+			String text = String.valueOf(((GazCalc)calc).getRate());
 			rateField.setText(text);			
 		}
 		return rateField;
@@ -85,7 +86,7 @@ public class GazPanel extends Panel{
 	@Override
 	public void updateBean() {
 		super.updateBean();
-		GazCalcBean bean = (GazCalcBean)getCalcBean();
+		GazCalc bean = (GazCalc)getCalc();
 		bean.setPrevMesure(CalcUtil.doubleNUllOrEmpty(getPrevMesureField().getText()));
 		bean.setCurrentMesure(CalcUtil.doubleNUllOrEmpty(getCurrentMesureField().getText()));
 		bean.setRate(CalcUtil.moneyNUllOrEmpty(getRateField().getText()));

@@ -1,8 +1,8 @@
-package ru.rrozhkov.easykin.service.calc.impl;
+package ru.rrozhkov.easykin.service.calc.impl.def;
 
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.Result;
+import ru.rrozhkov.easykin.service.calc.impl.Result;
 
 public class DefaultResult extends Result {
 	private String name;
@@ -14,6 +14,6 @@ public class DefaultResult extends Result {
 
 	@Override
 	public String toString() {
-		return name+"\nsum = " + FormatUtil.formatMoney(getSum()) + "\n\n";
+		return name+"\nsum = " + FormatUtil.formatMoney(getResult()) + "\n\n";
 	}
 }

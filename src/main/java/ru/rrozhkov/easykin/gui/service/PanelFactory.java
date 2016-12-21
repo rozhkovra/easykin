@@ -1,27 +1,27 @@
 package ru.rrozhkov.easykin.gui.service;
 
-import ru.rrozhkov.easykin.service.calc.CalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.DefaultCalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.gaz.GazCalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.water.hot.HotWaterCalcBean;
+import ru.rrozhkov.easykin.service.calc.ICalculation;
+import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.service.calc.impl.def.DefaultCalc;
+import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalc;
+import ru.rrozhkov.easykin.service.calc.impl.gaz.GazCalc;
+import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalc;
+import ru.rrozhkov.easykin.service.calc.impl.water.hot.HotWaterCalc;
 
 public class PanelFactory {
-	public static Panel getPanel(CalcBean bean){
-		if(bean instanceof GazCalcBean)
-			return new GazPanel((GazCalcBean) bean);
-		else if (bean instanceof WaterCalcBean)
-			return new WaterPanel((WaterCalcBean) bean);
-		else if (bean instanceof ElectricityCalcBean)
-			return new ElectricityPanel((ElectricityCalcBean) bean);
-		else if (bean instanceof HotWaterCalcBean)
-			return new HotWaterPanel((HotWaterCalcBean) bean);
-		else if (bean instanceof DefaultCalcBean)
-			return new DefaultPanel((DefaultCalcBean) bean);
-		else if (bean instanceof ServiceCalcBean)
-			return new ServicePanel((ServiceCalcBean) bean);
+	public static Panel getPanel(ICalculation bean){
+		if(bean instanceof GazCalc)
+			return new GazPanel((GazCalc) bean);
+		else if (bean instanceof WaterCalc)
+			return new WaterPanel((WaterCalc) bean);
+		else if (bean instanceof ElectricityCalc)
+			return new ElectricityPanel((ElectricityCalc) bean);
+		else if (bean instanceof HotWaterCalc)
+			return new HotWaterPanel((HotWaterCalc) bean);
+		else if (bean instanceof DefaultCalc)
+			return new DefaultPanel((DefaultCalc) bean);
+		else if (bean instanceof ServiceCalc)
+			return new ServicePanel((ServiceCalc) bean);
 		return null;
 	}
 }

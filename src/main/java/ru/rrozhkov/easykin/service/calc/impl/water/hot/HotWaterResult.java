@@ -2,10 +2,10 @@ package ru.rrozhkov.easykin.service.calc.impl.water.hot;
 
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.Result;
+import ru.rrozhkov.easykin.service.calc.impl.Result;
 
 public class HotWaterResult extends Result {
-	private double hotDelta = 0;
+	private double hotDelta;
 	private Money hotSum;
 	
 	public HotWaterResult(double hotDelta,
@@ -24,7 +24,7 @@ public class HotWaterResult extends Result {
 		return "HOTWATER"
 //				+ "\nHotDelta = "+formatInt(getHotDelta())
 				+ "\nHotSum = "+FormatUtil.formatMoney(getHotSum())
-				+ "\nSum = "+FormatUtil.formatMoney(getSum())
+				+ "\nSum = "+FormatUtil.formatMoney(getResult())
 				+ "\n\n";
 	}
 }

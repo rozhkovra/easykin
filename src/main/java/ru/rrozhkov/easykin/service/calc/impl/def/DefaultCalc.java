@@ -1,13 +1,13 @@
-package ru.rrozhkov.easykin.service.calc.impl;
+package ru.rrozhkov.easykin.service.calc.impl.def;
 
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.CalcBean;
+import ru.rrozhkov.easykin.service.calc.impl.Calculation;
 
-public class DefaultCalcBean extends CalcBean {
+public class DefaultCalc extends Calculation {
 	private Money sum;
 	private String name;
 
-	public DefaultCalcBean(String name, Money sum) {
+	public DefaultCalc(String name, Money sum) {
 		this.sum = sum;
 		this.name = name;
 	}

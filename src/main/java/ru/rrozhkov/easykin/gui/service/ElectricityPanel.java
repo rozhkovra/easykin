@@ -5,14 +5,15 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalcBean;
+import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalc;
 
 public class ElectricityPanel extends Panel{
-	public static String HEADER_LABEL_TEXT = "ELECTRICITY"; 
-	public static String PREV_MESURE_LABEL_TEXT = "Previous mesure";
-	public static String CURRENT_MESURE_LABEL_TEXT = "Current mesure";
-	public static String RATE_LABEL_TEXT = "Rate";
-	public static String ODN_LABEL_TEXT = "Odn";
+	public static String HEADER_LABEL_TEXT = "Электричество"; 
+	public static String PREV_MESURE_LABEL_TEXT = "Предыдущие показания";
+	public static String CURRENT_MESURE_LABEL_TEXT = "Текущиу показания";
+	public static String RATE_LABEL_TEXT = "Тариф";
+	public static String ODN_LABEL_TEXT = "ОДН";
 	private static final long serialVersionUID = 1L;
 	private JTextField prevMesureField = null;
 	private JTextField currentMesureField = null;
@@ -23,7 +24,7 @@ public class ElectricityPanel extends Panel{
 	private JLabel rateLabel = null;
 	private JLabel odnLabel = null;
 	
-	public ElectricityPanel(ElectricityCalcBean bean) {
+	public ElectricityPanel(ElectricityCalc bean) {
 		super(bean);
 		setLayout(new GridLayout(7,2)); 
  
@@ -45,7 +46,7 @@ public class ElectricityPanel extends Panel{
 	public JTextField getPrevMesureField(){
 		if(prevMesureField == null){
 			prevMesureField = new JTextField(5);
-			String text = String.valueOf(((ElectricityCalcBean)calcBean).getPrevMesure());
+			String text = String.valueOf(((ElectricityCalc)calc).getPrevMesure());
 			prevMesureField.setText(text);
 		}
 		return prevMesureField;
@@ -54,7 +55,7 @@ public class ElectricityPanel extends Panel{
 	public JTextField getCurrentMesureField(){
 		if(currentMesureField == null){
 			currentMesureField = new JTextField(5);
-			String text = String.valueOf(((ElectricityCalcBean)calcBean).getCurrentMesure());
+			String text = String.valueOf(((ElectricityCalc)calc).getCurrentMesure());
 			currentMesureField.setText(text);
 		}
 		return currentMesureField;
@@ -63,7 +64,7 @@ public class ElectricityPanel extends Panel{
 	public JTextField getRateField(){
 		if(rateField == null){
 			rateField = new JTextField(5);
-			String text = String.valueOf(((ElectricityCalcBean)calcBean).getRate());
+			String text = String.valueOf(((ElectricityCalc)calc).getRate());
 			rateField.setText(text);
 		}
 		return rateField;
@@ -72,7 +73,7 @@ public class ElectricityPanel extends Panel{
 	public JTextField getOdnField(){
 		if(odnField == null){
 			odnField = new JTextField(6);
-			String text = String.valueOf(((ElectricityCalcBean)calcBean).getOdn());
+			String text = String.valueOf(((ElectricityCalc)calc).getOdn());
 			odnField.setText(text);
 		}
 		return odnField;
@@ -105,7 +106,7 @@ public class ElectricityPanel extends Panel{
 	@Override
 	public void updateBean() {
 		super.updateBean();
-		ElectricityCalcBean bean = (ElectricityCalcBean)getCalcBean();
+		ElectricityCalc bean = (ElectricityCalc)getCalc();
 		bean.setPrevMesure(CalcUtil.doubleNUllOrEmpty(getPrevMesureField().getText()));
 		bean.setCurrentMesure(CalcUtil.doubleNUllOrEmpty(getCurrentMesureField().getText()));
 		bean.setRate(CalcUtil.moneyNUllOrEmpty(getRateField().getText()));

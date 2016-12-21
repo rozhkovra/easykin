@@ -1,18 +1,18 @@
 package ru.rrozhkov.easykin.service.calc.impl.water.hot;
 
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.Calculator;
+import ru.rrozhkov.easykin.service.calc.impl.Calculator;
 
 public class HotWaterCalculator extends Calculator {
-	public HotWaterCalculator(HotWaterCalcBean calcBean) {
-		super(calcBean);
+	public HotWaterCalculator(HotWaterCalc calc) {
+		super(calc);
 	}
 
 	public HotWaterResult calculate() {
-		HotWaterCalcBean calcBean = (HotWaterCalcBean)getCalcBean();
-		double hotDelta = calcBean.getCurrentMesure()-calcBean.getPrevMesure();
-		Money hotSum = new Money(hotDelta*calcBean.getRate().getValue());
-		Money sum = hotSum.add(calcBean.getOdn());
+		HotWaterCalc calc = (HotWaterCalc)getCalc();
+		double hotDelta = calc.getCurrentMesure()-calc.getPrevMesure();
+		Money hotSum = new Money(hotDelta*calc.getRate().getValue());
+		Money sum = hotSum.add(calc.getOdn());
 		return new HotWaterResult(hotDelta, hotSum, sum);
 	}
 }

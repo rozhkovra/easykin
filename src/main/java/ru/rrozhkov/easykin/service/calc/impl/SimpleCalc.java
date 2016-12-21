@@ -1,14 +1,13 @@
 package ru.rrozhkov.easykin.service.calc.impl;
 
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.CalcBean;
 
-public abstract class SimpleCalcBean extends CalcBean{
+public abstract class SimpleCalc extends Calculation {
 	protected double prevMesure;
 	protected double currentMesure; 
 	protected Money rate;
 	
-	public SimpleCalcBean(double prevMesure, double currentMesure, Money rate) {
+	public SimpleCalc(double prevMesure, double currentMesure, Money rate) {
 		this.prevMesure = prevMesure;
 		this.currentMesure = currentMesure;
 		this.rate = rate;

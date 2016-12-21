@@ -2,7 +2,7 @@ package ru.rrozhkov.easykin.service.calc.impl.electricity;
 
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.Result;
+import ru.rrozhkov.easykin.service.calc.impl.Result;
 
 public class ElectricityResult extends Result {
 	private double delta;
@@ -27,7 +27,7 @@ public class ElectricityResult extends Result {
 		return "ELECTRICITY"
 //				+ "\nDelta = "+FormatUtil.formatMoney(getDelta())
 				+ "\ndeltaSum = "+FormatUtil.formatMoney(getDeltaSum())
-				+ "\nsum = "+FormatUtil.formatMoney(getSum())
+				+ "\nsum = "+FormatUtil.formatMoney(getResult())
 				+ "\n\n";
 	}
 }

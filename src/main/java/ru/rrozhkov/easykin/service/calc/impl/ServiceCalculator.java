@@ -1,22 +1,22 @@
 package ru.rrozhkov.easykin.service.calc.impl;
 
-import static ru.rrozhkov.easykin.service.calc.CalculatorFactory.getCalculator;
+import static ru.rrozhkov.easykin.service.calc.impl.CalculatorFactory.getCalculator;
 import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.CalcBean;
-import ru.rrozhkov.easykin.service.calc.Calculator;
+import ru.rrozhkov.easykin.service.calc.ICalculation;
 
 public class ServiceCalculator extends Calculator {
-	public ServiceCalculator(ServiceCalcBean calcBean) {
+	public ServiceCalculator(ServiceCalc calcBean) {
 		super(calcBean);
 	}
 
 	public ServiceResult calculate() {
-		ServiceCalcBean calcBean = (ServiceCalcBean)getCalcBean();
+		ServiceCalc calcBean = (ServiceCalc)getCalc();
 		Money itogo = new Money();
-		for(CalcBean bean : calcBean.getBeans()){
-			if(bean.isCalc()){
+		for(ICalculation calc : calcBean.getBeans()){
+			Calculation bean = (Calculation)calc;
+			if(bean.needCalc()){
 				System.out.println(getCalculator(bean).calculate());
-				itogo.add(getCalculator(bean).calculate().getSum());
+				itogo.add(getCalculator(bean).calculate().getResult());
 			}
 		}
 		System.out.println("\n\nItogo = "+itogo);

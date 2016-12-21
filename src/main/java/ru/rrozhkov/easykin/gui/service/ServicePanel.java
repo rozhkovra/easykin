@@ -4,16 +4,16 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
-import ru.rrozhkov.easykin.service.calc.CalcBean;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalcBean;
+import ru.rrozhkov.easykin.service.calc.ICalculation;
+import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
 
 public class ServicePanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
-	public ServicePanel(ServiceCalcBean serviceCalcBean) {
+	public ServicePanel(ServiceCalc serviceCalcBean) {
 		super(serviceCalcBean);
         setLayout(new GridLayout(5,4));
-        for(CalcBean bean : serviceCalcBean.getBeans()){
+        for(ICalculation bean : serviceCalcBean.getBeans()){
         	Panel panel = PanelFactory.getPanel(bean);
         	add(panel);
         }

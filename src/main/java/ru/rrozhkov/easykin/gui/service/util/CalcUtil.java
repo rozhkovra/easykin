@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.gui.service;
+package ru.rrozhkov.easykin.gui.service.util;
 
 import ru.rrozhkov.easykin.fin.Money;
 

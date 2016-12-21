@@ -9,24 +9,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.CalcBean;
-import ru.rrozhkov.easykin.service.calc.Calculator;
-import ru.rrozhkov.easykin.service.calc.CalculatorFactory;
+import ru.rrozhkov.easykin.service.calc.ICalculator;
+import ru.rrozhkov.easykin.service.calc.impl.Calculation;
+import ru.rrozhkov.easykin.service.calc.impl.CalculatorFactory;
 
 public abstract class Panel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	public static String CALC_LABEL_TEXT = "Calc";
+	public static String CALC_LABEL_TEXT = "Пуск";
 	private JLabel itogoLabel = null;
 	private JButton calcButton = null;
 	private JCheckBox calcBox = null;
-	private Calculator calculator;
-	protected CalcBean calcBean; 
+	private ICalculator calculator;
+	protected Calculation calc; 
 	
-	public Panel(CalcBean calcBean) {
+	public Panel(Calculation calc) {
 		super();
-		this.calcBean = calcBean;
-		this.calculator = CalculatorFactory.getCalculator(calcBean);
+		this.calc = calc;
+		this.calculator = CalculatorFactory.getCalculator(calc);
 	}
 	public void actionPerformed(ActionEvent e) {
 		if(isCalc()) {
@@ -38,7 +38,7 @@ public abstract class Panel extends JPanel implements ActionListener{
 	public void updateUI() {
 		super.updateUI();
 		if(calculator!=null)
-			getItogoLabel().setText(FormatUtil.formatMoney(calculator.calculate().getSum()));
+			getItogoLabel().setText(FormatUtil.formatMoney(calculator.calculate().getResult()));
 	}
 	public JLabel getItogoLabel(){
 		if(itogoLabel == null)
@@ -62,10 +62,10 @@ public abstract class Panel extends JPanel implements ActionListener{
 	private boolean isCalc(){
 		return getCalcBox().isSelected();
 	}
-	public CalcBean getCalcBean(){
-		return calcBean;
+	public Calculation getCalc(){
+		return calc;
 	}
 	public void updateBean(){
-		calcBean.setCalc(isCalc());
+		calc.setCalc(isCalc());
 	}
 }
