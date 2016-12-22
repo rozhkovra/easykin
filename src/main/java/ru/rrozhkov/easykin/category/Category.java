@@ -1,24 +1,23 @@
 package ru.rrozhkov.easykin.category;
 
-public enum Category {
-	HOME("Дом"), 
-	CHILD("Дети"), 
-	FAMILY("Семья"), 
-	AUTO("Машина"), 
-	FIN("Финансы"), 
-	PAYMENT("Платежи"), 
-	DOC("Документы"), 
-	WORK("Работа"),
-	TASK("Задачи"),
-	SERVICE("Коммунальные услуги");
-	
-    private final String name;       
+public class Category implements ICategory{
+	private int id;
+	private String name;       
 
-    private Category (String s) {
-        name = s;
+    public Category (int id, String name) {
+        this.id = id;
+    	this.name = name;
     }
     
-    public String toString() {
+    public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String toString() {
         return this.name;
     }
 }

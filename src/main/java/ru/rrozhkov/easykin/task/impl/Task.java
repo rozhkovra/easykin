@@ -13,18 +13,18 @@ public class Task implements ITask, Comparable<ITask>{
 	protected Date createDate;
 	protected Date planDate;
 	protected Priority priority;
-	protected Category category;
+	protected int categoryId;
 	protected Date closeDate;
 	protected Status status;
 	
 	public Task(String name, Date createDate, Date plannedDate,
-			Priority priority, Category category, Date closeDate, Status status) {
+			Priority priority, int categoryId, Date closeDate, Status status) {
 		super();
 		this.name = name;
 		this.createDate = createDate;
 		this.planDate = plannedDate;
 		this.priority = priority;
-		this.category = category;
+		this.categoryId = categoryId;
 		this.closeDate = closeDate;
 		this.status = status;
 	}
@@ -46,8 +46,8 @@ public class Task implements ITask, Comparable<ITask>{
 		return priority;
 	}
 
-	public Category getCategory() {
-		return category;
+	public int getCategory() {
+		return categoryId;
 	}
 
 	public Date getCloseDate() {
