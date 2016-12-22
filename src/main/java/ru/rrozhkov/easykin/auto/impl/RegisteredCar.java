@@ -22,12 +22,13 @@ public class RegisteredCar extends Car implements IRegisteredCar {
 	}
 
 	public IDoc getTechPassport() {
-		return this.techPassport;
+		return techPassport;
 	}
 
 	@Override
 	public String toString() {
 		return getBrend()+ ", " + getModel() + ", " + getBody()
-				+ ", " + getYear() + ", " + getVolume() + ", " + owner ;
+				+ ", " + getYear() + ", " + getVolume() + ", " 
+				+ owner + ", " + techPassport;
 	}
 }

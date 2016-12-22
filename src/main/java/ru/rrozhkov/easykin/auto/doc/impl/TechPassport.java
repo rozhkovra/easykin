@@ -11,9 +11,8 @@ public class TechPassport extends Passport {
 	private String regNumber;
 	private String specComment;
 
-	public TechPassport(IPerson person, String number, String series,
-			String org, Date issueDate, File scan, String regNumber, 
-			String specComment) {
+	public TechPassport(IPerson person, String number, String series, String org, 
+			Date issueDate, File scan, String regNumber, String specComment) {
 		super(person, number, series, org, issueDate, scan);
 		this.regNumber = regNumber;
 		this.specComment = specComment;

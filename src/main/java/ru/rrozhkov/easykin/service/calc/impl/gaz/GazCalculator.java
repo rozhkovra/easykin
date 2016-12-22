@@ -11,6 +11,6 @@ public class GazCalculator extends Calculator {
 	public GazResult calculate() {
 		GazCalc calcBean = (GazCalc)getCalc(); 
 		double delta = calcBean.getCurrentMesure()-calcBean.getPrevMesure();
-		return  new GazResult(delta, new Money(delta*calcBean.getRate().getValue()));
+		return  new GazResult(delta, new Money(calcBean.getRate()).multiply(delta));
 	}
 }

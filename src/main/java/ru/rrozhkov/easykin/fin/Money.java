@@ -12,22 +12,14 @@ public class Money {
 	public Money(double value) {
 		this.value = value;
 	}
-
-	public Money(int rubles, int kopeck) {
-		this.value = (double)rubles + ((double)kopeck)/100;
-	}
-
-	public int getRubles() {
-		return (int)value;
-	}
-
-	public int getKopeck() {
-		return (int)((value - getRubles())*100);
+	
+	public Money(Money money) {
+		this.value = money.value;
 	}
 
 	@Override
 	public String toString() {
-		return FormatUtil.formatRubles(getRubles()) + "." + FormatUtil.formatKopeck(getKopeck());
+		return FormatUtil.formatMoney(this);
 	}
 	
 	public Money add(Money money){
@@ -41,11 +33,20 @@ public class Money {
 	}
 
 	public Money multiply(Money money){
-		this.value*=money.value;
+		this.value=this.value*money.value;
+		return this;
+	}
+	
+	public Money multiply(double money){		
+		this.value=this.value*money;
 		return this;
 	}
 
 	public double getValue() {
 		return this.value;
+	}
+	
+	public boolean free(){
+		return value==0.0;
 	}
 }

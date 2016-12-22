@@ -5,7 +5,6 @@ import ru.rrozhkov.easykin.report.impl.Filter;
 
 public class NoFreeFilter extends Filter {
 	public boolean filter() {
-		return ((IService)obj).getPrice().getRubles()>0
-				|| ((IService)obj).getPrice().getKopeck()>0;
+		return ((IService)obj).getPrice().free();
 	}
 }

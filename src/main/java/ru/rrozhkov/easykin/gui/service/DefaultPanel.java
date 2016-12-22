@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ru.rrozhkov.easykin.fin.util.FormatUtil;
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
 import ru.rrozhkov.easykin.service.calc.impl.def.DefaultCalc;
 
@@ -30,7 +31,7 @@ public class DefaultPanel extends Panel {
 	public JTextField getSumField(){
 		if(sumField == null){
 			sumField = new JTextField(10);
-			String sum = String.valueOf(((DefaultCalc)calc).getSum());
+			String sum = FormatUtil.formatEditMoney(((DefaultCalc)calc).getSum());
 			sumField.setText(sum);
 		}
 		return sumField;
