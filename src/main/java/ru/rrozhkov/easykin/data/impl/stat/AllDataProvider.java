@@ -12,9 +12,6 @@ public class AllDataProvider {
         put(4, new StaticServiceHistoryDataProvider());
         put(2, new StaticChildDataProvider());
         put(6, new PaymentDataProvider(new StaticAutoServiceDataProvider()));	
-        put(9, new StaticTaskDataProvider());
-        put(1, new StaticHomeTaskDataProvider());
-        put(8, new StaticWorkTaskDataProvider());
         put(10, new StaticServiceDataProvider());
 	}};
 	

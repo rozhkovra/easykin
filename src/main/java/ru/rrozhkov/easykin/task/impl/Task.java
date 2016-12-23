@@ -2,24 +2,23 @@ package ru.rrozhkov.easykin.task.impl;
 
 import java.util.Date;
 
-import ru.rrozhkov.easykin.category.Category;
 import ru.rrozhkov.easykin.task.ITask;
-import ru.rrozhkov.easykin.task.Priority;
-import ru.rrozhkov.easykin.task.Status;
 
 public class Task implements ITask, Comparable<ITask>{
 	
 	protected String name;
 	protected Date createDate;
 	protected Date planDate;
-	protected Priority priority;
+	protected int priority;
 	protected int categoryId;
 	protected Date closeDate;
-	protected Status status;
+	protected int status;
+	private int id;
 	
-	public Task(String name, Date createDate, Date plannedDate,
-			Priority priority, int categoryId, Date closeDate, Status status) {
+	public Task(int id, String name, Date createDate, Date plannedDate,
+			int priority, int categoryId, Date closeDate, int status) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.createDate = createDate;
 		this.planDate = plannedDate;
@@ -42,7 +41,7 @@ public class Task implements ITask, Comparable<ITask>{
 		return planDate;
 	}
 
-	public Priority getPriority() {
+	public int getPriority() {
 		return priority;
 	}
 
@@ -54,18 +53,18 @@ public class Task implements ITask, Comparable<ITask>{
 		return closeDate;
 	}
 
-	public Status getStatus() {
+	public int getStatus() {
 		return status;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public int compareTo(ITask o) {
 		int val = 0;
 		if(val==0)
-			val = getStatus().compareTo(o.getStatus());
-		if(val==0)
 			val = (int) (getPlanDate().getTime()-o.getPlanDate().getTime());
-		if(val==0)
-			val = getPriority().compareTo(o.getPriority());
 		if(val==0)
 			val = getName().compareTo(o.getName());
 		return val;

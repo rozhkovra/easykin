@@ -1,8 +1,8 @@
 package ru.rrozhkov.easykin.task;
 
 public enum Status {
-	OPEN("Открыта"), 
-	CLOSE("Закрыта");
+	OPEN("Открыта1"), 
+	CLOSE("Закрыта0");
 	
     private final String name;       
 

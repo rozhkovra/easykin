@@ -12,6 +12,7 @@ import ru.rrozhkov.easykin.category.ICategory;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
+import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarPanel;
 import ru.rrozhkov.easykin.gui.auto.service.ServiceForm;
@@ -22,6 +23,9 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
 import ru.rrozhkov.easykin.service.calc.ICalculation;
 import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.task.ITask;
+import ru.rrozhkov.easykin.task.impl.filter.TaskFilterFactory;
+import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class PanelFactory {
 	private static JPanel createFamilyPanel(){		
@@ -33,14 +37,14 @@ public class PanelFactory {
 	public static JPanel createAutoServicePanel(){
 		return new TablePanel(AllDataProvider.get(4).getData(), new ServiceStyle());
 	}
-	private static JPanel createHomePanel() {
-		return new TablePanel(AllDataProvider.get(1).getData(), new TaskStyle());
+	private static JPanel createHomePanel(Collection<ITask> tasks) {
+		return new TablePanel(tasks, new TaskStyle());
 	}
 	private static JPanel createFinPanel() {
 		return new JPanel();
 	}
-	private static JPanel createWorkPanel() {
-		return new TablePanel(AllDataProvider.get(8).getData(), new TaskStyle());
+	private static JPanel createWorkPanel(Collection<ITask> tasks) {
+		return new TablePanel(tasks, new TaskStyle());
 	}
 	private static JPanel createPaymentPanel() {
 		return new TablePanel(AllDataProvider.get(6).getData(), new PaymentStyle());
@@ -57,18 +61,19 @@ public class PanelFactory {
 	public static JPanel createServiceForm(){
 		return new ServiceForm(AllDataProvider.get(4));
 	}
-	public static JPanel createTaskPanel(){
-		return new TablePanel(AllDataProvider.get(9).getData(), new TaskStyle());
+	public static JPanel createTaskPanel(Collection<ITask> tasks){
+		return new TablePanel(tasks, new TaskStyle());
 	}
 	public static JPanel createServicePanel(){
 		return new ServicePanel((ServiceCalc)((SingleCollectionDataProvider<ICalculation, ICalculation>)AllDataProvider.get(10)).getSingleData());
 	}
 	public static Map<String, JPanel> createPanels(){
-        Collection<ICategory> categories = CategoryHandler.getCategories();        
+        Collection<ICategory> categories = CategoryHandler.getCategories();
+        Collection<ITask> tasks = TaskHandler.getTasks();
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				panels.put(category.getName(), createHomePanel());
+				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter())));
 			}else if(category.getId()==2){
 				panels.put(category.getName(), createChildPanel());
 			}else if(category.getId()==3){
@@ -82,9 +87,9 @@ public class PanelFactory {
 			}else if(category.getId()==7){
 		        panels.put(category.getName(), createDocPanel());
 			}else if(category.getId()==8){
-		        panels.put(category.getName(), createWorkPanel());
+		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter())));
 			}else if(category.getId()==9){
-		        panels.put(category.getName(), createTaskPanel());
+		        panels.put(category.getName(), createTaskPanel(tasks));
 			}else if(category.getId()==10){
 		        panels.put(category.getName(), createServicePanel());
 			}

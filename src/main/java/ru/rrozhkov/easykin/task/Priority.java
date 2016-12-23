@@ -1,9 +1,9 @@
 package ru.rrozhkov.easykin.task;
 
 public enum Priority {
-	IMPOTANT_FAST("Важно и срочно"), 
-	IMPOTANT_NOFAST("Важно и не срочно"), 
-	SIMPLE("Обычный");
+	IMPOTANT_FAST("Важно и срочно1"), 
+	IMPOTANT_NOFAST("Важно и не срочно2"), 
+	SIMPLE("Обычный3");
 	
     private final String name;       
 
