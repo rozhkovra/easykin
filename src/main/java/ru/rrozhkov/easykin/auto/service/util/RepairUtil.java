@@ -9,6 +9,6 @@ public class RepairUtil {
 		for (IService detail : service.services()) {
 			sum.add(detail.getPrice());
 		}
-		return sum.substract(service.getPrice());
+		return sum;
 	}
 }
