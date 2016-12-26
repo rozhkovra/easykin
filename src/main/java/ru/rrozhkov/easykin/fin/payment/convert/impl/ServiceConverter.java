@@ -1,14 +1,11 @@
 package ru.rrozhkov.easykin.fin.payment.convert.impl;
 
 import static ru.rrozhkov.easykin.auto.service.impl.filter.ServiceFilterFactory.createNoFreeFilter;
-import static ru.rrozhkov.easykin.auto.service.impl.filter.ServiceFilterFactory.createOnlyRepairFilter;
-import static ru.rrozhkov.easykin.fin.payment.impl.PaymentFactory.createDetailPayment;
 import static ru.rrozhkov.easykin.fin.payment.impl.PaymentFactory.createServicePayment;
+import static ru.rrozhkov.easykin.fin.payment.impl.PaymentFactory.createDetailPayment;
 
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.auto.service.IDetail;
-import ru.rrozhkov.easykin.auto.service.IRepairService;
 import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.fin.payment.IPayment;
 import ru.rrozhkov.easykin.fin.payment.convert.IFinConverter;
@@ -25,17 +22,9 @@ public class ServiceConverter implements IFinConverter<IService> {
 		Collection<IPayment> collection = CollectionUtil.<IPayment>create();
 		for(IService service : FilterUtil.<IService>filter(entries, createNoFreeFilter())){
 			collection.add(convert(service));
-		}
-		for(IService service : FilterUtil.<IService>filter(entries, createOnlyRepairFilter())){
-			collection.addAll(convertDetails(((IRepairService)service).getDetails()));
-		}
-		return collection;
-	}
-
-	private Collection<? extends IPayment> convertDetails(Collection<IDetail> details) {
-		Collection<IPayment> collection = CollectionUtil.<IPayment>create();
-		for(IDetail detail : details) {
-			collection.add(createDetailPayment(detail));
+			for(IService detailService : service.services()){
+				collection.add(createDetailPayment(detailService));
+			}
 		}
 		return collection;
 	}

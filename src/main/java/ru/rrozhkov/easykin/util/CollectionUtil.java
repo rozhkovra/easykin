@@ -22,4 +22,10 @@ public class CollectionUtil {
 	public static <T> Collection<T> create(){
 		return new ArrayList<T>();
 	}
+
+	public static <T> Collection<T> create(T t){
+		Collection<T> collection = create();
+		collection.add(t);
+		return collection;
+	}
 }

@@ -3,21 +3,20 @@ package ru.rrozhkov.easykin.auto.service.impl;
 import java.util.Collection;
 import java.util.Date;
 
-import ru.rrozhkov.easykin.auto.service.IDetail;
-import ru.rrozhkov.easykin.auto.service.IRepairService;
+import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class RepairService extends Service implements IRepairService {
-	private Collection<IDetail> details;
+public class RepairService extends Service implements IService {
+	private Collection<IService> details;
 
 	public RepairService(String name, Money money, Date date,
-			Collection<IDetail> details) {
+			Collection<IService> details) {
 		super(name, money, date);
 		this.details = details;
 	}
 
-	public Collection<IDetail> getDetails() {
+	public Collection<IService> services() {
 		return details;
 	}
 

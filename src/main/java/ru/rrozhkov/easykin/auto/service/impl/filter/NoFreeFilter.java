@@ -5,6 +5,6 @@ import ru.rrozhkov.easykin.report.impl.Filter;
 
 public class NoFreeFilter extends Filter {
 	public boolean filter() {
-		return ((IService)obj).getPrice().free();
+		return !((IService)obj).getPrice().free();
 	}
 }

@@ -6,7 +6,6 @@ import static ru.rrozhkov.easykin.fin.payment.PaymentCategory.AUTOREPAIR;
 
 import java.util.Date;
 
-import ru.rrozhkov.easykin.auto.service.IDetail;
 import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.auto.service.impl.RepairService;
 import ru.rrozhkov.easykin.fin.Money;
@@ -19,8 +18,8 @@ public class PaymentFactory {
 	public static IPayment createAutoRepairPayment(String comment, Money amount, Date date){
 		return new Payment(AUTOREPAIR, comment,amount,date);
 	}
-	public static IPayment createDetailPayment(IDetail detail){
-		return new Payment(AUTODETAIL, detail.getName(),detail.getPrice(),detail.getBuyDate());
+	public static IPayment createDetailPayment(IService detail){
+		return new Payment(AUTODETAIL, detail.getName(),detail.getPrice(),detail.getDate());
 	}
 	public static IPayment createServicePayment(IService entry) {
 		if(entry instanceof RepairService){

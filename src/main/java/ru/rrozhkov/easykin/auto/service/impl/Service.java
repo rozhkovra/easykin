@@ -1,9 +1,11 @@
 package ru.rrozhkov.easykin.auto.service.impl;
 
+import java.util.Collection;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.fin.Money;
+import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class Service implements IService{
@@ -32,5 +34,9 @@ public class Service implements IService{
 	@Override
 	public String toString() {
 		return "\n " + name + ", " + money + ", " + DateUtil.format(date);
+	}
+
+	public Collection<IService> services() {
+		return CollectionUtil.<IService>create();
 	}	
 }
