@@ -22,7 +22,7 @@ public class DefaultPanel extends Panel {
  
 		add(getCalcBox());
 		add(new JLabel(""));
-		add(new JLabel(calcBean.getName())); 
+		add(new JLabel(String.valueOf(calcBean.getType()))); 
 		add(getItogoLabel()); 
 		add(getSumLabel()); 
 		add(getSumField()); 

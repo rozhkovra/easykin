@@ -10,7 +10,7 @@ public class GazCalc extends SimpleCalc {
 		super(gazPrevMesure, gazCurrentMesure,gazRate);
 	}
 
-	public String getName() {
-		return CalculationType.GAZ.toString();
+	public CalculationType getType() {
+		return CalculationType.GAZ;
 	}
 }

@@ -57,7 +57,7 @@ public class WaterCalc extends OdnSimpleCalc {
 		this.outRate = outRate;
 	}
 
-	public String getName() {
-		return CalculationType.WATER.toString();
+	public CalculationType getType() {
+		return CalculationType.WATER;
 	}
 }

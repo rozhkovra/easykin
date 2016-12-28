@@ -21,6 +21,7 @@ encoding//src/main/java/ru/rrozhkov/easykin/gui/service/HotWaterPanel.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/service/Panel.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/FamilyTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/PaymentTableStyle.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/ServiceCalcTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/ServiceTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/TaskTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/person/Sex.java=UTF-8

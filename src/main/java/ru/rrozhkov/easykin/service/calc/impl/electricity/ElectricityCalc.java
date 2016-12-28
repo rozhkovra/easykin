@@ -12,7 +12,7 @@ public class ElectricityCalc extends OdnSimpleCalc {
 		super(prevMesure, currentMesure, rate, odn);
 	}
 	
-	public String getName() {
-		return CalculationType.ELECTRICITY.toString();
+	public CalculationType getType() {
+		return CalculationType.ELECTRICITY;
 	}
 }

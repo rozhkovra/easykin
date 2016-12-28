@@ -10,8 +10,8 @@ public class HotWaterCalc extends OdnSimpleCalc {
 			Money rate, Money odn) {
 		super(hotPrevMesure, hotCurrentMesure, rate, odn);
 	}
-	
-	public String getName() {
-		return CalculationType.HOTWATER.toString();
+
+	public CalculationType getType() {
+		return CalculationType.HOTWATER;
 	}
 }

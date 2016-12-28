@@ -34,7 +34,7 @@ public class CalcFactory {
 	}
 
 	public static ICalculation createDefaultCalc(CalculationType name, Money sum) {
-		return new DefaultCalc(name.toString(), sum);
+		return new DefaultCalc(name, sum);
 	}
 	
 	public static ICalculation createServiceCalc(Collection<ICalculation> beans) {

@@ -8,7 +8,8 @@ public enum CalculationType {
 	GAZ("Газ"),
 	WATER("Вода"),
 	HOTWATER("Горячая вода"),
-	HOUSE("Квартплата");
+	HOUSE("Квартплата"),
+	ALL("Все");
 	
     private final String name;       
 
