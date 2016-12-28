@@ -7,7 +7,7 @@ import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class RepairService extends Service implements IService {
+public class RepairService extends Service{
 	private Collection<IService> details;
 
 	public RepairService(String name, Money money, Date date,

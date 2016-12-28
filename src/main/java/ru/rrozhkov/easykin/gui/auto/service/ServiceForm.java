@@ -17,7 +17,7 @@ import ru.rrozhkov.easykin.data.ICollectionDataProvider;
 import ru.rrozhkov.easykin.fin.Money;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class ServiceForm extends JPanel implements ActionListener {
+public class ServiceForm extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 	private JTextField priceField;
@@ -26,6 +26,7 @@ public class ServiceForm extends JPanel implements ActionListener {
 	private JLabel priceLabel;
 	private JLabel dateLabel;
 	private JButton addButton;
+	private JButton closeButton;
 	private IService service;
 	ICollectionDataProvider<IService> dataProvider;
 	public ServiceForm(IService service) {
@@ -39,7 +40,7 @@ public class ServiceForm extends JPanel implements ActionListener {
 		add(getPriceField()); 
 		add(getDateLabel()); 
 		add(getDateField());
-		add(getEmptyLabel());
+		add(getCloseButton());
 		add(getAddButton());
 	}
 	
@@ -101,13 +102,18 @@ public class ServiceForm extends JPanel implements ActionListener {
 	public JButton getAddButton(){
 	    if(addButton==null){
 	    	addButton = new JButton("Добавить");
-	    	addButton.addActionListener(this);
 	    }
 		return addButton;
 	}
-
-	public void actionPerformed(ActionEvent arg0) {
-		if(dataProvider!=null)
-			dataProvider.add(service);
+	
+	private Component getCloseButton() {
+	    if(closeButton==null){
+	    	closeButton = new JButton("Закрыть");
+	    	closeButton.addActionListener(new ActionListener() {           
+	            public void actionPerformed(ActionEvent e) {
+	            }           
+	        });
+	    }
+		return closeButton;
 	}
 }

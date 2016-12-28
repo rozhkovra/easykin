@@ -16,9 +16,10 @@ public class TaskHandler {
 		Statement stmt = null; 
 		ResultSet result = null; 
 		try { 
-			stmt = dbManager.openStatement(); 
-			result = stmt.executeQuery("SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
-					+ " INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID");
+			stmt = dbManager.openStatement();
+			StringBuilder builder = new StringBuilder("SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK")
+									.append(" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID");
+			result = stmt.executeQuery(builder.toString());
 			while(result.next()){
 				tasks.add(TaskFactory.createTask(result.getInt("id"), result.getString("name"), result.getDate("createdate")
 						, result.getDate("plandate"), result.getInt("priorityid"), result.getInt("categoryid")
