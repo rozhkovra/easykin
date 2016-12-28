@@ -5,6 +5,6 @@ import ru.rrozhkov.easykin.task.ITask;
 
 public class OnlyWorkFilter extends Filter {
 	public boolean filter() {
-		return ((ITask)obj).getCategory()==8;
+		return ((ITask)obj).getCategory().isWork();
 	}
 }

@@ -20,4 +20,12 @@ public class Category implements ICategory{
 	public String toString() {
         return this.name;
     }
+
+	public boolean isHome() {
+		return id==1;
+	}
+
+	public boolean isWork() {
+		return id==8;
+	}
 }

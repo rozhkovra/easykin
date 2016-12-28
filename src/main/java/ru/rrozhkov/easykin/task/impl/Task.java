@@ -2,28 +2,31 @@ package ru.rrozhkov.easykin.task.impl;
 
 import java.util.Date;
 
+import ru.rrozhkov.easykin.category.Category;
 import ru.rrozhkov.easykin.task.ITask;
+import ru.rrozhkov.easykin.task.Priority;
+import ru.rrozhkov.easykin.task.Status;
 
 public class Task implements ITask, Comparable<ITask>{
 	
 	protected String name;
 	protected Date createDate;
 	protected Date planDate;
-	protected int priority;
-	protected int categoryId;
+	protected Priority priority;
+	protected Category category;
 	protected Date closeDate;
-	protected int status;
+	protected Status status;
 	private int id;
 	
 	public Task(int id, String name, Date createDate, Date plannedDate,
-			int priority, int categoryId, Date closeDate, int status) {
+			Priority priority, Category category, Date closeDate, Status status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.createDate = createDate;
 		this.planDate = plannedDate;
 		this.priority = priority;
-		this.categoryId = categoryId;
+		this.category = category;
 		this.closeDate = closeDate;
 		this.status = status;
 	}
@@ -41,19 +44,19 @@ public class Task implements ITask, Comparable<ITask>{
 		return planDate;
 	}
 
-	public int getPriority() {
+	public Priority getPriority() {
 		return priority;
 	}
 
-	public int getCategory() {
-		return categoryId;
+	public Category getCategory() {
+		return category;
 	}
 
 	public Date getCloseDate() {
 		return closeDate;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 

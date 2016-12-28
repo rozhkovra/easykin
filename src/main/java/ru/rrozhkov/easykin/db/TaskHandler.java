@@ -17,11 +17,12 @@ public class TaskHandler {
 		ResultSet result = null; 
 		try { 
 			stmt = dbManager.openStatement(); 
-			result = stmt.executeQuery("SELECT * FROM task");
+			result = stmt.executeQuery("SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
+					+ " INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID");
 			while(result.next()){
-				tasks.add(TaskFactory.createTask(result.getInt("id"), result.getString("name")
-						, result.getDate("createdate"), result.getDate("plandate"), result.getInt("priorityid")
-						, result.getInt("categoryid"), result.getDate("closedate"), result.getInt("statusid")));
+				tasks.add(TaskFactory.createTask(result.getInt("id"), result.getString("name"), result.getDate("createdate")
+						, result.getDate("plandate"), result.getInt("priorityid"), result.getInt("categoryid")
+						, result.getString("categoryname"), result.getDate("closedate"), result.getInt("statusid")));
 			}		          
 		} catch (Exception e) { 
 			e.printStackTrace(System.out); 

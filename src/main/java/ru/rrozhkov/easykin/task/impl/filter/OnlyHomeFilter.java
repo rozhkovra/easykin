@@ -5,6 +5,6 @@ import ru.rrozhkov.easykin.task.ITask;
 
 public class OnlyHomeFilter extends Filter {
 	public boolean filter() {
-		return ((ITask)obj).getCategory()==1;
+		return ((ITask)obj).getCategory().isHome();
 	}
 }
