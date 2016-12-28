@@ -16,6 +16,7 @@ public class ServiceCalcConverter extends DataConverter<ServiceCalc> {
 				, getCalculator(entry.getCalcByType(CalculationType.HEATING)).calculate().getResult().toString()
 				, getCalculator(entry.getCalcByType(CalculationType.ANTENNA)).calculate().getResult().toString()
 				, getCalculator(entry.getCalcByType(CalculationType.INTERCOM)).calculate().getResult().toString()
-				, getCalculator(entry.getCalcByType(CalculationType.HOUSE)).calculate().getResult().toString()};
+				, getCalculator(entry.getCalcByType(CalculationType.HOUSE)).calculate().getResult().toString()
+				, getCalculator(entry).calculate().getResult().toString()};
 	}
 }
