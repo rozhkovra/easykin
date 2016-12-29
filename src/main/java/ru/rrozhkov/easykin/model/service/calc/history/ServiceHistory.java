@@ -10,6 +10,4 @@ public class ServiceHistory {
 	public ServiceHistory(Collection<ServiceCalc> calcs) {
 		this.calcs = calcs;
 	}
-	
-	
 }

@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.model.auto.service.report.impl;
+package ru.rrozhkov.easykin.report.auto.service.impl;
 
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.IServiceHistory;
