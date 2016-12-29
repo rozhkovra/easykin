@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
-import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.gui.style.impl.DataConverter;
+import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class ServiceConverter extends DataConverter<IService> {

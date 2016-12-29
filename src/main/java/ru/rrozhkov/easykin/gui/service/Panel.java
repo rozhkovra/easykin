@@ -8,10 +8,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ru.rrozhkov.easykin.fin.util.FormatUtil;
-import ru.rrozhkov.easykin.service.calc.ICalculator;
-import ru.rrozhkov.easykin.service.calc.impl.Calculation;
-import ru.rrozhkov.easykin.service.calc.impl.CalculatorFactory;
+import ru.rrozhkov.easykin.model.fin.util.FormatUtil;
+import ru.rrozhkov.easykin.model.service.calc.ICalculator;
+import ru.rrozhkov.easykin.model.service.calc.impl.Calculation;
+import ru.rrozhkov.easykin.model.service.calc.impl.CalculatorFactory;
 
 public abstract class Panel extends JPanel implements ActionListener{
 

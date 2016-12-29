@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.category.Category;
-import ru.rrozhkov.easykin.category.ICategory;
+import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class CategoryHandler {

@@ -3,8 +3,8 @@ package ru.rrozhkov.easykin.gui.style.impl.custom;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import ru.rrozhkov.easykin.fin.payment.IPayment;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
+import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 
 public class PaymentTableStyle extends TableStyle<IPayment> {
 	public int[] getColumnAlignment() {

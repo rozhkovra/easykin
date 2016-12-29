@@ -1,14 +1,14 @@
 package ru.rrozhkov.easykin.data.impl.stat;
 
-import static ru.rrozhkov.easykin.family.impl.FamilyFactory.createDaughter;
-import static ru.rrozhkov.easykin.family.impl.FamilyFactory.createFather;
-import static ru.rrozhkov.easykin.family.impl.FamilyFactory.createMother;
-import static ru.rrozhkov.easykin.family.impl.FamilyFactory.createSun;
+import static ru.rrozhkov.easykin.model.family.impl.FamilyFactory.createDaughter;
+import static ru.rrozhkov.easykin.model.family.impl.FamilyFactory.createFather;
+import static ru.rrozhkov.easykin.model.family.impl.FamilyFactory.createMother;
+import static ru.rrozhkov.easykin.model.family.impl.FamilyFactory.createSun;
 
 import java.util.Arrays;
 
 import ru.rrozhkov.easykin.data.impl.CollectionDataProvider;
-import ru.rrozhkov.easykin.family.IKinPerson;
+import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class StaticPersonDataProvider extends CollectionDataProvider<IKinPerson>{

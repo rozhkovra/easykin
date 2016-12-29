@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.auto.service.IService;
-import ru.rrozhkov.easykin.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.data.ICollectionDataProvider;
-import ru.rrozhkov.easykin.fin.Money;
+import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
+import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class ServiceForm extends JPanel{

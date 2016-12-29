@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.task.ITask;
-import ru.rrozhkov.easykin.task.impl.TaskFactory;
+import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class TaskHandler {

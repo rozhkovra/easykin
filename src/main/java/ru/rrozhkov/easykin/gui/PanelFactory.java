@@ -6,9 +6,6 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import ru.rrozhkov.easykin.auto.ICar;
-import ru.rrozhkov.easykin.auto.service.IService;
-import ru.rrozhkov.easykin.category.ICategory;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
@@ -21,8 +18,11 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
-import ru.rrozhkov.easykin.task.ITask;
-import ru.rrozhkov.easykin.task.impl.filter.TaskFilterFactory;
+import ru.rrozhkov.easykin.model.auto.ICar;
+import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class PanelFactory {

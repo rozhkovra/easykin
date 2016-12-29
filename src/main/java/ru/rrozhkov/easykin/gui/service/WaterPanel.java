@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
-import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.water.WaterCalc;
 
 public class WaterPanel extends Panel{
 	public static String HEADER_LABEL_TEXT = "WATER"; 

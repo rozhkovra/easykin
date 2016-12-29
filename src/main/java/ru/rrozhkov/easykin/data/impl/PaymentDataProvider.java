@@ -1,10 +1,10 @@
 package ru.rrozhkov.easykin.data.impl;
 
-import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.data.ICollectionDataProvider;
-import ru.rrozhkov.easykin.fin.payment.IPayment;
-import ru.rrozhkov.easykin.fin.payment.convert.FinConverterFactory;
-import ru.rrozhkov.easykin.fin.payment.convert.impl.ServiceConverter;
+import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.fin.payment.convert.FinConverterFactory;
+import ru.rrozhkov.easykin.model.fin.payment.convert.impl.ServiceConverter;
 
 public class PaymentDataProvider extends CollectionDataProvider<IPayment> {
 	private static ServiceConverter serviceConverter = FinConverterFactory.createServiceConverter();

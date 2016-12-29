@@ -1,6 +1,6 @@
 package ru.rrozhkov.easykin.gui.service.util;
 
-import ru.rrozhkov.easykin.fin.Money;
+import ru.rrozhkov.easykin.model.fin.Money;
 
 public class CalcUtil {
 	public static double doubleNUllOrEmpty(String text){

@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
-import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.electricity.ElectricityCalc;
 
 public class ElectricityPanel extends Panel{
 	public static String HEADER_LABEL_TEXT = "Электричество"; 

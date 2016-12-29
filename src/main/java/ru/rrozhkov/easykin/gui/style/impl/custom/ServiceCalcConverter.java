@@ -1,9 +1,9 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
-import static ru.rrozhkov.easykin.service.calc.impl.CalculatorFactory.getCalculator;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalculatorFactory.getCalculator;
 import ru.rrozhkov.easykin.gui.style.impl.DataConverter;
-import ru.rrozhkov.easykin.service.calc.CalculationType;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.service.calc.CalculationType;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class ServiceCalcConverter extends DataConverter<ServiceCalc> {

@@ -1,12 +1,12 @@
 package ru.rrozhkov.easykin.gui.service;
 
-import ru.rrozhkov.easykin.service.calc.ICalculation;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
-import ru.rrozhkov.easykin.service.calc.impl.def.DefaultCalc;
-import ru.rrozhkov.easykin.service.calc.impl.electricity.ElectricityCalc;
-import ru.rrozhkov.easykin.service.calc.impl.gaz.GazCalc;
-import ru.rrozhkov.easykin.service.calc.impl.water.WaterCalc;
-import ru.rrozhkov.easykin.service.calc.impl.water.hot.HotWaterCalc;
+import ru.rrozhkov.easykin.model.service.calc.ICalculation;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.def.DefaultCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.electricity.ElectricityCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.gaz.GazCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.water.WaterCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.water.hot.HotWaterCalc;
 
 public class PanelFactory {
 	public static Panel getPanel(ICalculation bean){

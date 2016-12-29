@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
 public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 	public int[] getColumnAlignment() {

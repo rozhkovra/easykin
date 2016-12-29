@@ -5,9 +5,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.fin.util.FormatUtil;
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
-import ru.rrozhkov.easykin.service.calc.impl.def.DefaultCalc;
+import ru.rrozhkov.easykin.model.fin.util.FormatUtil;
+import ru.rrozhkov.easykin.model.service.calc.impl.def.DefaultCalc;
 
 public class DefaultPanel extends Panel {
 	public static String HEADER_LABEL_TEXT = ""; 

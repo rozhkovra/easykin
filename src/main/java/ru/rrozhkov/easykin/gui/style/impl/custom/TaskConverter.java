@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ru.rrozhkov.easykin.gui.style.impl.DataConverter;
-import ru.rrozhkov.easykin.task.ITask;
+import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskConverter extends DataConverter<ITask>{

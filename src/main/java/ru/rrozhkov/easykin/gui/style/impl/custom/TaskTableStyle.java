@@ -11,9 +11,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
-import ru.rrozhkov.easykin.task.ITask;
-import ru.rrozhkov.easykin.task.Priority;
-import ru.rrozhkov.easykin.task.Status;
+import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.Status;
 
 public class TaskTableStyle extends TableStyle<ITask>  {
 	public int[] getColumnAlignment() {

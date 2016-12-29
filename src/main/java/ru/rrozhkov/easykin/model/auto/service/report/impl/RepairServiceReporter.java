@@ -1,0 +1,31 @@
+package ru.rrozhkov.easykin.model.auto.service.report.impl;
+
+import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.easykin.model.auto.service.IServiceHistory;
+import ru.rrozhkov.easykin.model.auto.service.util.RepairUtil;
+import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.util.FilterUtil;
+
+public class RepairServiceReporter extends ServiceReporter {
+
+	public RepairServiceReporter(IServiceHistory history) {
+		super(history);
+	}
+
+	public Money getDetailsSum() {
+		Money value = new Money();
+		for(IService service : FilterUtil.<IService>filter(history.getServices(), filters)){
+			value.add(RepairUtil.getDetailsPrice(service));
+		}						
+		return value;
+	}
+	
+	protected String getReportHeader(){
+		return "Отчет по у�?лугам c детал�?ми.";
+	}
+
+	protected String getReportFooter(){
+		return "Итого у�?луг на: "+getSum()+"\nИтого запча�?тей на: "+getDetailsSum()+"\nИтого: "+getSum().add(getDetailsSum());
+	}
+
+}

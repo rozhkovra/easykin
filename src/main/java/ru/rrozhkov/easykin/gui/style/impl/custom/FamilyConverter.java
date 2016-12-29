@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
-import ru.rrozhkov.easykin.family.IKinPerson;
 import ru.rrozhkov.easykin.gui.style.impl.DataConverter;
+import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class FamilyConverter extends DataConverter<IKinPerson> {

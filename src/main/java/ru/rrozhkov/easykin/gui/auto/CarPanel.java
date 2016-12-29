@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.auto.ICar;
+import ru.rrozhkov.easykin.model.auto.ICar;
 
 public class CarPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

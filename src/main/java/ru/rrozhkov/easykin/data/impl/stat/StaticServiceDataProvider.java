@@ -1,23 +1,23 @@
 package ru.rrozhkov.easykin.data.impl.stat;
 
-import static ru.rrozhkov.easykin.service.calc.CalculationType.ANTENNA;
-import static ru.rrozhkov.easykin.service.calc.CalculationType.HEATING;
-import static ru.rrozhkov.easykin.service.calc.CalculationType.HOUSE;
-import static ru.rrozhkov.easykin.service.calc.CalculationType.INTERCOM;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createDefaultCalc;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createElectricityCalc;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createGazCalc;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createHotWaterCalc;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createWaterCalc;
-import static ru.rrozhkov.easykin.service.calc.impl.CalcFactory.createServiceCalc;
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.ANTENNA;
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.HEATING;
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.HOUSE;
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.INTERCOM;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createDefaultCalc;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createElectricityCalc;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createGazCalc;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createHotWaterCalc;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createServiceCalc;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createWaterCalc;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.data.impl.CollectionDataProvider;
-import ru.rrozhkov.easykin.fin.Money;
-import ru.rrozhkov.easykin.service.calc.ICalculation;
-import ru.rrozhkov.easykin.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.service.calc.ICalculation;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCalc> {

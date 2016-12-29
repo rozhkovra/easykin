@@ -3,8 +3,8 @@ package ru.rrozhkov.easykin.gui.style.impl.custom;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import ru.rrozhkov.easykin.auto.service.IService;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
+import ru.rrozhkov.easykin.model.auto.service.IService;
 
 public class ServiceTableStyle extends TableStyle<IService> {
 	public int[] getColumnAlignment() {
