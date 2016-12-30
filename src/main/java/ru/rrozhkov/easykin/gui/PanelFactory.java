@@ -12,7 +12,7 @@ import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarPanel;
-import ru.rrozhkov.easykin.gui.auto.service.ServiceForm;
+import ru.rrozhkov.easykin.gui.service.ServicePanel;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
@@ -21,6 +21,7 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
@@ -57,7 +58,7 @@ public class PanelFactory {
 		return new AutoPanel();
 	}
 	public static JPanel createServiceForm(){
-		return new ServiceForm(AllDataProvider.get(4));
+		return new ServicePanel(new ServiceCalc(AllDataProvider.get(10).getData()));
 	}
 	public static JPanel createTaskPanel(Collection<ITask> tasks){
 		return new TablePanel(tasks, new TaskStyle());
