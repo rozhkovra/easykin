@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.model.task;
 
+import java.util.Collection;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
@@ -13,4 +14,5 @@ public interface ITask {
 	public Category getCategory();
 	public Date getCloseDate();
 	public Status getStatus();
+	public Collection<IComment> comments();
 }

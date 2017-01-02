@@ -1,8 +1,10 @@
 package ru.rrozhkov.easykin.model.task.impl;
 
+import java.util.Collection;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
@@ -17,6 +19,7 @@ public class Task implements ITask, Comparable<ITask>{
 	protected Date closeDate;
 	protected Status status;
 	private int id;
+	private Collection<IComment> comments;
 	
 	public Task(int id, String name, Date createDate, Date plannedDate,
 			Priority priority, Category category, Date closeDate, Status status) {
@@ -71,5 +74,10 @@ public class Task implements ITask, Comparable<ITask>{
 		if(val==0)
 			val = getName().compareTo(o.getName());
 		return val;
+	}
+
+
+	public Collection<IComment> comments() {
+		return comments;
 	}
 }
