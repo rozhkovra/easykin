@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
@@ -74,7 +76,7 @@ public class PanelFactory {
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter())));
+				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, Arrays.asList(TaskFilterFactory.createOnlyHomeFilter(), TaskFilterFactory.createStatusFilter(Status.OPEN)))));
 			}else if(category.getId()==2){
 				panels.put(category.getName(), createChildPanel());
 			}else if(category.getId()==3){
@@ -88,9 +90,9 @@ public class PanelFactory {
 			}else if(category.getId()==7){
 		        panels.put(category.getName(), createDocPanel());
 			}else if(category.getId()==8){
-		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter())));
+		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, Arrays.asList(TaskFilterFactory.createOnlyWorkFilter(), TaskFilterFactory.createStatusFilter(Status.OPEN)))));
 			}else if(category.getId()==9){
-		        panels.put(category.getName(), createTaskPanel(tasks));
+		        panels.put(category.getName(), createTaskPanel(FilterUtil.filter(tasks, TaskFilterFactory.createStatusFilter(Status.OPEN))));
 			}else if(category.getId()==10){
 		        panels.put(category.getName(), createServicePanel());
 			}
