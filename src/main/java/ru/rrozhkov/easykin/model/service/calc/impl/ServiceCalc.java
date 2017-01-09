@@ -29,14 +29,6 @@ public class ServiceCalc extends Calculation {
 		return date;
 	}
 	
-	public ICalculation getCalcByType(CalculationType type){
-		for(ICalculation calc : beans){
-			if(type.equals(calc.getType()))
-				return calc;
-		}
-		return null;
-	}
-
 	public CalculationType getType() {
 		return CalculationType.ALL;
 	}

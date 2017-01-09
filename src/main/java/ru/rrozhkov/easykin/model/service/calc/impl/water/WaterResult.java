@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.model.service.calc.impl.water;
 
 import ru.rrozhkov.easykin.model.fin.Money;
-import ru.rrozhkov.easykin.model.fin.util.FormatUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.Result;
 
 public class WaterResult extends Result {
@@ -33,15 +32,5 @@ public class WaterResult extends Result {
 
 	public Money getHotSum() {
 		return hotSum;
-	}
-
-	public String toString(){
-		return "WATER"
-//				+ "\nColdDelta = "+FormatUtil.formatInt(getColdDelta())
-				+ "\nColdSum = "+FormatUtil.formatMoney(getColdSum())
-//				+ "\nHotDelta = "+FormatUtil.formatInt(getHotDelta())
-				+ "\nHotSum = "+FormatUtil.formatMoney(getHotSum())
-				+ "\nSum = "+FormatUtil.formatMoney(getResult())
-				+ "\n\n";
 	}
 }
