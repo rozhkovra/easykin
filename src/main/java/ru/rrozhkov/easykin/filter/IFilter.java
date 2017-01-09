@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.report;
+package ru.rrozhkov.easykin.filter;
 
 public interface IFilter {
 	boolean filter();

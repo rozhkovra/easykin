@@ -1,6 +1,6 @@
-package ru.rrozhkov.easykin.report.impl;
+package ru.rrozhkov.easykin.filter.impl;
 
-import ru.rrozhkov.easykin.report.IFilter;
+import ru.rrozhkov.easykin.filter.IFilter;
 
 public abstract class Filter implements IFilter {
 	protected Object obj;

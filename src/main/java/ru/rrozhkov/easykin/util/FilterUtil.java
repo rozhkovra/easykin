@@ -2,7 +2,7 @@ package ru.rrozhkov.easykin.util;
 
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.report.IFilter;
+import ru.rrozhkov.easykin.filter.IFilter;
 
 public class FilterUtil {
 	public static <T> Collection<T> filter(Collection<T> collection, Collection<IFilter> filters){

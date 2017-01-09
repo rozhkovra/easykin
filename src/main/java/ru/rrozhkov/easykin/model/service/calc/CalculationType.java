@@ -2,14 +2,14 @@ package ru.rrozhkov.easykin.model.service.calc;
 
 public enum CalculationType {
 	HEATING("Отопление"),
-	ANTENNA("�?нтенна"),
+	ANTENNA("Антенна"),
 	INTERCOM("Домофон"),
-	ELECTRICITY("Электриче�?тво"),
+	ELECTRICITY("Электричество"),
 	GAZ("Газ"),
 	WATER("Вода"),
-	HOTWATER("Гор�?ча�? вода"),
+	HOTWATER("Горячая вода"),
 	HOUSE("Квартплата"),
-	ALL("В�?е");
+	ALL("Все");
 	
     private final String name;       
 
