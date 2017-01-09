@@ -18,6 +18,7 @@ encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/PaymentTableSt
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/ServiceCalcTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/ServiceTableStyle.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/TaskTableStyle.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/gui/task/TaskForm.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/category/Category.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/doc/DocType.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/family/KinType.java=UTF-8

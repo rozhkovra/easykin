@@ -24,4 +24,14 @@ public enum Priority {
 		}
     	return prio;
     }
+    
+    public static int priority(Priority i){
+		int prio = 3;
+		switch (i) {
+			case IMPOTANT_FAST : prio = 1;break;
+			case IMPOTANT_NOFAST : prio = 2;break;
+			default : prio = 3;
+		}
+    	return prio;
+    }
 }

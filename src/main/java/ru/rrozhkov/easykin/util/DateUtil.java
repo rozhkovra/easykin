@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class DateUtil {
 	private static final DateFormat SDF = new SimpleDateFormat("dd.MM.yyyy");
+	private static final DateFormat SQLSDF = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static Date parse(String date){
 		try{
@@ -17,5 +18,9 @@ public class DateUtil {
 	
 	public static String format(Date date){
 		return SDF.format(date);
+	}
+	
+	public static String formatSql(Date date){
+		return SQLSDF.format(date);
 	}
 }

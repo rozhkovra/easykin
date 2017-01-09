@@ -23,4 +23,13 @@ public enum Status {
 		}
     	return stat;
 	}
+	public static int status(Status status) {
+		int stat = 1;
+		switch (status) {
+			case OPEN : stat = 1;break;
+			case CLOSE : stat = 2;break;
+			default : stat = 1;
+		}
+    	return stat;
+	}
 }

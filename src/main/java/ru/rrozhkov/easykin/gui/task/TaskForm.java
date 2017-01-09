@@ -1,0 +1,147 @@
+package ru.rrozhkov.easykin.gui.task;
+
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.Status;
+import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
+import ru.rrozhkov.easykin.util.DateUtil;
+
+public class TaskForm extends JPanel{
+	private static final long serialVersionUID = 1L;
+	private boolean added = false;
+	private JTextField nameField;
+	private JTextField planDateField;
+	private JComboBox priorityComboBox;
+	private JComboBox categoryComboBox;
+	private JLabel nameLabel;
+	private JLabel planDateLabel;
+	private JLabel priorityLabel;
+	private JLabel categoryLabel;
+	private JButton addButton;
+	private JButton closeButton;
+	private ITask task;
+	public TaskForm() {
+		task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE), 1, "", null, Status.status(Status.OPEN));
+		setLayout(new GridLayout(6,2)); 		
+		add(getEmptyLabel());
+		add(getEmptyLabel());
+		add(getNameLabel()); 
+		add(getNameField()); 
+		add(getPlanDateLabel()); 
+		add(getPlanDateField()); 
+		add(getPriorityLabel()); 
+		add(getPriorityComboBox()); 
+		add(getCategoryLabel()); 
+		add(getCategoryComboBox()); 
+		add(getCloseButton());
+		add(getAddButton());
+	}
+	
+	private Component getEmptyLabel() {
+		return new JLabel(""); 
+	}
+
+	private JTextField getNameField(){
+		if(nameField == null){
+			nameField = new JTextField(250);
+			nameField.setText(task.getName());
+		}
+		return nameField;
+	}
+
+	private JTextField getPlanDateField(){
+		if(planDateField == null){
+			planDateField = new JTextField(10);
+			planDateField.setText(DateUtil.format(task.getPlanDate()));
+		}
+		return planDateField;
+	}
+	
+	private JComboBox getPriorityComboBox(){
+		if(priorityComboBox == null){
+			String[] items = {
+					Priority.IMPOTANT_FAST.toString(),
+					Priority.IMPOTANT_NOFAST.toString(),
+					Priority.SIMPLE.toString()
+					};
+			priorityComboBox = new JComboBox(items);
+		}
+		return priorityComboBox;
+	}
+	
+	private JComboBox getCategoryComboBox(){
+		if(categoryComboBox == null){
+			categoryComboBox = new JComboBox();
+		}
+		return categoryComboBox;
+	}
+	
+	private JLabel getNameLabel(){
+		if(nameLabel == null)
+			nameLabel = new JLabel("Описание"); 
+		return nameLabel;
+	}
+	
+	private JLabel getPlanDateLabel(){
+		if(planDateLabel == null)
+			planDateLabel = new JLabel("Плановая дата"); 
+		return planDateLabel;
+	}
+
+	private JLabel getPriorityLabel(){
+		if(priorityLabel == null)
+			priorityLabel = new JLabel("Приоритет"); 
+		return priorityLabel;
+	}
+
+	private JLabel getCategoryLabel(){
+		if(categoryLabel == null)
+			categoryLabel = new JLabel("Категория"); 
+		return categoryLabel;
+	}
+	
+	public JButton getAddButton(){
+	    if(addButton==null){
+	    	addButton = new JButton("Добавить");
+	    	addButton.addActionListener(new ActionListener() {           
+	            public void actionPerformed(ActionEvent e) {
+	            	try{
+	            		if(!added)
+	            			TaskHandler.addTask(task);
+	            	}catch(Exception ex){
+	            		ex.printStackTrace();
+	            	}
+	            	added = true;
+	            	System.out.println(added);
+	            }           
+	        });
+	    }
+		return addButton;
+	}
+	
+	private Component getCloseButton() {
+	    if(closeButton==null){
+	    	closeButton = new JButton("Закрыть");
+	    	closeButton.addActionListener(new ActionListener() {           
+	            public void actionPerformed(ActionEvent e) {
+	            	added = false;
+	            	System.out.println(added);
+	            }           
+	        });
+	    }
+		return closeButton;
+	}
+}

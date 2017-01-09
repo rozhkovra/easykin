@@ -6,8 +6,11 @@ import java.sql.Statement;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
 import ru.rrozhkov.easykin.util.CollectionUtil;
+import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
 	public static Collection<ITask> getTasks(){
@@ -38,5 +41,43 @@ public class TaskHandler {
 			}
 		} 
 		return tasks;
+	}
+	
+	public static int addTask(ITask task){
+		int id = -1;
+		DBManager dbManager = new DBManager();
+		Statement stmt = null;
+		ResultSet result = null;
+		try { 
+			stmt = dbManager.openStatement();
+			StringBuilder idBuilder = new StringBuilder("SELECT MAX(ID)+1 AS ID FROM TASK");
+			result = stmt.executeQuery(idBuilder.toString());
+			while(result.next()){
+				id = result.getInt("ID");
+			}		          			
+			StringBuilder builder = new StringBuilder("INSERT INTO TASK(ID, NAME, CREATEDATE, PLANDATE, PRIORITYID, CATEGORYID, CLOSEDATE, STATUSID)")
+				.append(" VALUES(")
+				.append(id).append(",")
+				.append("\'").append(task.getName()).append("\'").append(",")
+				.append("\'").append(DateUtil.formatSql(task.getCreateDate())).append("\'").append(",")
+				.append("\'").append(DateUtil.formatSql(task.getPlanDate())).append("\'").append(",")
+				.append(Priority.priority(task.getPriority())).append(",")
+				.append(task.getCategory().getId()).append(",")
+				.append("NULL,")
+				.append(Status.status(task.getStatus()))
+				.append(")");
+			stmt.executeUpdate(builder.toString());
+		} catch (Exception e) { 
+			e.printStackTrace(System.out); 
+		} finally {
+			try {
+				if(result!=null)
+					result.close();
+				dbManager.closeStatement(stmt);
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		return id;
 	}
 }

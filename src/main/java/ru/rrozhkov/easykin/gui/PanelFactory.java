@@ -19,6 +19,7 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
+import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
@@ -64,6 +65,10 @@ public class PanelFactory {
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
 				AllDataProvider.get(10).getData()));
 	}
+	public static JPanel createTaskForm(){
+		return new TaskForm();
+	}
+	
 	public static JPanel createTaskPanel(Collection<ITask> tasks){
 		return new TablePanel(tasks, new TaskStyle());
 	}

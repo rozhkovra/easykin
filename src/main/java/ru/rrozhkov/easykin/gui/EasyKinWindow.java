@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.gui;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanels;
-import static ru.rrozhkov.easykin.gui.PanelFactory.createServiceForm;
+import static ru.rrozhkov.easykin.gui.PanelFactory.createTaskForm;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -58,7 +58,7 @@ public class EasyKinWindow extends JFrame{
             	getContentPane().add(main);
                 JPanel content1 = new JPanel();
                 content1.setLayout(new BorderLayout());
-                content1.add(createServiceForm(),BorderLayout.NORTH);
+                content1.add(createTaskForm(),BorderLayout.NORTH);
                 getContentPane().add(content1);        		
             }           
         });
