@@ -31,6 +31,6 @@ public class StaticServiceDataProvider extends SingleCollectionDataProvider<Serv
     		, createDefaultCalc(INTERCOM, new Money(70.00))
     		, createDefaultCalc(HOUSE, new Money(1049.49)));
 	public StaticServiceDataProvider() {
-		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create(), (ServiceCalc)createServiceCalc("Δεκΰαπό 2016", calcs)), "Δεκΰαπό 2016");
+		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create(), (ServiceCalc)createServiceCalc("Π”ΠµΠΊΠ°Π±Ρ€Ρ 2016", calcs)), "Π”ΠµΠΊΠ°Π±Ρ€Ρ 2016");
 	}
 }
