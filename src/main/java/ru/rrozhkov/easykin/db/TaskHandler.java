@@ -18,7 +18,8 @@ public class TaskHandler {
 		try { 
 			stmt = dbManager.openStatement();
 			StringBuilder builder = new StringBuilder("SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK")
-									.append(" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID");
+									.append(" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID")
+									.append(" ORDER BY TASK.PLANDATE");
 			result = stmt.executeQuery(builder.toString());
 			while(result.next()){
 				tasks.add(TaskFactory.createTask(result.getInt("id"), result.getString("name"), result.getDate("createdate")
