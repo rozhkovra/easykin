@@ -14,13 +14,13 @@ import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createWate
 import java.util.Arrays;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.data.impl.CollectionDataProvider;
+import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
-public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCalc> {
+public class StaticServiceDataProvider extends SingleCollectionDataProvider<ServiceCalc, String> {
 	private static Collection<ICalculation> calcs = Arrays.asList(
   		  createWaterCalc(487, 495, 379, 386, new Money(14.14), new Money(17.25), new Money(12.20))
     		, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
@@ -31,6 +31,6 @@ public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCal
     		, createDefaultCalc(INTERCOM, new Money(70.00))
     		, createDefaultCalc(HOUSE, new Money(1049.49)));
 	public StaticServiceDataProvider() {
-		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create(), (ServiceCalc)createServiceCalc(calcs)));
+		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create(), (ServiceCalc)createServiceCalc("Декабрь 2016", calcs)), "Декабрь 2016");
 	}
 }

@@ -8,9 +8,11 @@ import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 
 public class ServiceCalc extends Calculation {
 	private Date date;
+	private String name;
 	private Collection<ICalculation> beans;
 
-	public ServiceCalc(Collection<ICalculation> beans) {
+	public ServiceCalc(String name, Collection<ICalculation> beans) {
+		this.name = name;
 		this.beans = beans;
 		this.date = new Date();
 	}
@@ -20,7 +22,7 @@ public class ServiceCalc extends Calculation {
 	}
 	
 	public String getName() {
-		return "";
+		return name;
 	}
 
 	public Date getDate() {

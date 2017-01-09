@@ -3,7 +3,7 @@ package ru.rrozhkov.easykin.model.fin.payment;
 public enum PaymentCategory {
 	AUTO("Машина"), 
 	AUTOREPAIR("Ремонт машины"), 
-	AUTODETAIL("Детали дл�? машины");
+	AUTODETAIL("Детали для машины");
 	
     private final String name;       
 

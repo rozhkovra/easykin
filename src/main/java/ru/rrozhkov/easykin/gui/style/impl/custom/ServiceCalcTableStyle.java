@@ -8,18 +8,18 @@ import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
 public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 	public int[] getColumnAlignment() {
-		return new int[]{JLabel.CENTER,JLabel.CENTER,JLabel.RIGHT
+		return new int[]{JLabel.LEFT,JLabel.CENTER,JLabel.RIGHT
 				,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT};
 	}
 	
 	public String[] getColumnNames() {
-		return new String[]{"№","Дата", "Вода", "Гор.вода", "Свет", "Газ", "Отопление", "Антенна", "Домофон", "Квартплата", "Итого"};
+		return new String[]{"Период","Дата", "Вода", "Гор.вода", "Свет", "Газ", "Отопление", "Антенна", "Домофон", "Квартплата", "Итого"};
 	}
 	
 	public void setColumnStyles(JTable table){
 	    super.setColumnStyles(table);
-	    table.getColumnModel().getColumn(0).setMinWidth(50);
-	    table.getColumnModel().getColumn(0).setMaxWidth(50);
+	    table.getColumnModel().getColumn(0).setMinWidth(150);
+	    table.getColumnModel().getColumn(0).setMaxWidth(150);
 	    table.getColumnModel().getColumn(1).setMinWidth(100);
 	    table.getColumnModel().getColumn(1).setMaxWidth(100);
 	    table.getColumnModel().getColumn(2).setMinWidth(70);

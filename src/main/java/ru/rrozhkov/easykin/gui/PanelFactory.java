@@ -58,7 +58,9 @@ public class PanelFactory {
 		return new AutoPanel();
 	}
 	public static JPanel createServiceForm(){
-		return new ServicePanel(new ServiceCalc(AllDataProvider.get(10).getData()));
+		return new ServicePanel(new ServiceCalc(
+				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
+				AllDataProvider.get(10).getData()));
 	}
 	public static JPanel createTaskPanel(Collection<ITask> tasks){
 		return new TablePanel(tasks, new TaskStyle());

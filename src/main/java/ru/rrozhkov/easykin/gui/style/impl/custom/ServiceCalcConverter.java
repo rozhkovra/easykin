@@ -8,7 +8,7 @@ import ru.rrozhkov.easykin.util.DateUtil;
 
 public class ServiceCalcConverter extends DataConverter<ServiceCalc> {
 	public String[] entryToStringArr(int i, ServiceCalc entry) {
-		return new String[]{String.valueOf(i), DateUtil.format(entry.getDate())
+		return new String[]{entry.getName(), DateUtil.format(entry.getDate())
 				, getCalculator(entry.getCalcByType(CalculationType.WATER)).calculate().getResult().toString()
 				, getCalculator(entry.getCalcByType(CalculationType.HOTWATER)).calculate().getResult().toString()
 				, getCalculator(entry.getCalcByType(CalculationType.ELECTRICITY)).calculate().getResult().toString()
