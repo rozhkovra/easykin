@@ -28,7 +28,6 @@ public class ServiceForm extends JPanel{
 	private JButton addButton;
 	private JButton closeButton;
 	private IService service;
-	ICollectionDataProvider<IService> dataProvider;
 	public ServiceForm(IService service) {
 		this.service = service;
 		setLayout(new GridLayout(5,2)); 		
@@ -48,11 +47,6 @@ public class ServiceForm extends JPanel{
 		this(ServiceFactory.createService("", new Money(), new Date()));
 	}
 	
-	public ServiceForm(ICollectionDataProvider<IService> dataProvider) {
-		this();
-		this.dataProvider = dataProvider;
-	}
-
 	private Component getEmptyLabel() {
 		return new JLabel(""); 
 	}

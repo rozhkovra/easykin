@@ -4,5 +4,4 @@ import java.util.Collection;
 
 public interface ICollectionDataProvider<T> {
 	Collection<T> getData();
-	void add(T t);
 }

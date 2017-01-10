@@ -27,11 +27,8 @@ public class EasyKinWindow extends JFrame{
 	public EasyKinWindow() throws HeadlessException {
 		super();
         tabbedPane = new JTabbedPane();
-		Map<String, JPanel> panels = createPanels();
-        for(String key : panels.keySet()) {
-        	tabbedPane.addTab(key, panels.get(key));
-        }
-                
+        fillTabbedPane();
+        
         JPanel content = new JPanel();
         content.setLayout(new BorderLayout());
         content.add(tabbedPane, BorderLayout.CENTER);        
@@ -86,10 +83,14 @@ public class EasyKinWindow extends JFrame{
 	@Override
 	public void repaint() {
 		super.repaint();
+		fillTabbedPane();
+	}
+	
+	private void fillTabbedPane(){
         tabbedPane.removeAll();
 		Map<String, JPanel> panels = createPanels();
         for(String key : panels.keySet()) {
         	tabbedPane.addTab(key, panels.get(key));
-        }
+        }		
 	}
 }

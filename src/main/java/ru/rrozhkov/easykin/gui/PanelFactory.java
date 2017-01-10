@@ -78,11 +78,11 @@ public class PanelFactory {
 	}
 	public static Map<String, JPanel> createPanels(){
         Collection<ICategory> categories = CategoryHandler.getCategories();
-        Collection<ITask> tasks = TaskHandler.getTasks();
+        Collection<ITask> tasks = FilterUtil.filter(TaskHandler.getTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, Arrays.asList(TaskFilterFactory.createOnlyHomeFilter(), TaskFilterFactory.createStatusFilter(Status.OPEN)))));
+				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter())));
 			}else if(category.getId()==2){
 				panels.put(category.getName(), createChildPanel());
 			}else if(category.getId()==3){
@@ -96,9 +96,9 @@ public class PanelFactory {
 			}else if(category.getId()==7){
 		        panels.put(category.getName(), createDocPanel());
 			}else if(category.getId()==8){
-		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, Arrays.asList(TaskFilterFactory.createOnlyWorkFilter(), TaskFilterFactory.createStatusFilter(Status.OPEN)))));
+		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter())));
 			}else if(category.getId()==9){
-		        panels.put(category.getName(), createTaskPanel(FilterUtil.filter(tasks, TaskFilterFactory.createStatusFilter(Status.OPEN))));
+		        panels.put(category.getName(), createTaskPanel(tasks));
 			}else if(category.getId()==10){
 		        panels.put(category.getName(), createServicePanel());
 			}

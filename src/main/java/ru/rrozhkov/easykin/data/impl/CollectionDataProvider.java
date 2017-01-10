@@ -14,8 +14,4 @@ public class CollectionDataProvider<T> implements ICollectionDataProvider<T> {
 	public Collection<T> getData() {		
 		return collection;
 	}
-
-	public void add(T t) {
-		collection.add(t);
-	}
 }
