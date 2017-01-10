@@ -118,6 +118,7 @@ public class TaskForm extends JPanel{
 	    	addButton = new JButton("Добавить");
 	    	addButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
+	            	update();
 	            	try{
 	            		if(!added)
 	            			TaskHandler.addTask(task);
@@ -132,6 +133,11 @@ public class TaskForm extends JPanel{
 		return addButton;
 	}
 	
+	protected void update() {
+		task = TaskFactory.createTask(-1, getNameField().getText(), new Date(), DateUtil.parse(getPlanDateField().getText())
+				, priorityComboBox.getSelectedIndex(), 1, "", null, Status.status(Status.OPEN));
+	}
+
 	private Component getCloseButton() {
 	    if(closeButton==null){
 	    	closeButton = new JButton("Закрыть");
