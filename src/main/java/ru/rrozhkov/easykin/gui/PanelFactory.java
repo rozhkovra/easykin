@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
@@ -65,8 +66,8 @@ public class PanelFactory {
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
 				AllDataProvider.get(10).getData()));
 	}
-	public static JPanel createTaskForm(){
-		return new TaskForm();
+	public static JPanel createTaskForm(JFrame parent){
+		return new TaskForm(parent);
 	}
 	
 	public static JPanel createTaskPanel(Collection<ITask> tasks){

@@ -58,7 +58,7 @@ public class EasyKinWindow extends JFrame{
             	getContentPane().add(main);
                 JPanel content1 = new JPanel();
                 content1.setLayout(new BorderLayout());
-                content1.add(createTaskForm(),BorderLayout.NORTH);
+                content1.add(createTaskForm(EasyKinWindow.this),BorderLayout.NORTH);
                 getContentPane().add(content1);        		
             }           
         });
@@ -67,5 +67,15 @@ public class EasyKinWindow extends JFrame{
         menuBar.add(fileMenu);
         
 		setJMenuBar(menuBar);
+	}
+
+	@Override
+	public void repaint() {
+		super.repaint();
+    	Component main = getContentPane().getComponent(0);
+    	Component form = getContentPane().getComponent(1);
+    	getContentPane().remove(form);
+    	getContentPane().setLayout(new BorderLayout());
+    	getContentPane().add(main);
 	}
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -33,8 +34,11 @@ public class TaskForm extends JPanel{
 	private JButton addButton;
 	private JButton closeButton;
 	private ITask task;
-	public TaskForm() {
-		task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE), 1, "", null, Status.status(Status.OPEN));
+	private JFrame parent;
+	public TaskForm(JFrame parent) {
+		this.parent = parent;
+		task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
+				, 1, "", null, Status.status(Status.OPEN));
 		setLayout(new GridLayout(6,2)); 		
 		add(getEmptyLabel());
 		add(getEmptyLabel());
@@ -134,8 +138,9 @@ public class TaskForm extends JPanel{
 	}
 	
 	protected void update() {
-		task = TaskFactory.createTask(-1, getNameField().getText(), new Date(), DateUtil.parse(getPlanDateField().getText())
-				, priorityComboBox.getSelectedIndex(), 1, "", null, Status.status(Status.OPEN));
+		task = TaskFactory.createTask(-1, getNameField().getText(), new Date()
+				, DateUtil.parse(getPlanDateField().getText()), priorityComboBox.getSelectedIndex()
+				, 1, "", null, Status.status(Status.OPEN));
 	}
 
 	private Component getCloseButton() {
@@ -145,6 +150,7 @@ public class TaskForm extends JPanel{
 	            public void actionPerformed(ActionEvent e) {
 	            	added = false;
 	            	System.out.println(added);
+	            	parent.repaint();
 	            }           
 	        });
 	    }
