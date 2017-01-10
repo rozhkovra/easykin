@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -52,8 +53,12 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		        else{
 	        		c.setBackground(Color.WHITE);
 		        	if(Priority.IMPOTANT_FAST.equals(task.getPriority())
-		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority()))
+		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority())){
 		        		c.setBackground(Color.YELLOW);
+		        		if(new Date().getTime()>task.getPlanDate().getTime()
+		        				&& column==5)
+		        			c.setBackground(Color.GRAY);
+		        	}
 		        }
 		        if (Priority.IMPOTANT_FAST.equals(task.getPriority())){
 		           c.setFont(c.getFont().deriveFont(Font.BOLD,15));

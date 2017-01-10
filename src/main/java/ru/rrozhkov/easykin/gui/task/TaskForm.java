@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -13,11 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
+import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskForm extends JPanel{
@@ -88,11 +92,19 @@ public class TaskForm extends JPanel{
 	
 	private JComboBox getCategoryComboBox(){
 		if(categoryComboBox == null){
-			categoryComboBox = new JComboBox();
+			categoryComboBox = new JComboBox(categories());
 		}
 		return categoryComboBox;
 	}
 	
+	private String[] categories() {
+		Collection<ICategory> categories = CategoryHandler.getCategories();
+		Collection<String> items = CollectionUtil.<String>create(); 
+		for(ICategory category : categories)
+			items.add(category.getName());
+		return items.toArray(new String[items.size()]);
+	}
+
 	private JLabel getNameLabel(){
 		if(nameLabel == null)
 			nameLabel = new JLabel("Описание"); 
@@ -131,6 +143,7 @@ public class TaskForm extends JPanel{
 	            	}
 	            	added = true;
 	            	System.out.println(added);
+	            	parent.repaint();
 	            }           
 	        });
 	    }
@@ -139,8 +152,8 @@ public class TaskForm extends JPanel{
 	
 	protected void update() {
 		task = TaskFactory.createTask(-1, getNameField().getText(), new Date()
-				, DateUtil.parse(getPlanDateField().getText()), priorityComboBox.getSelectedIndex()
-				, 1, "", null, Status.status(Status.OPEN));
+				, DateUtil.parse(getPlanDateField().getText()), priorityComboBox.getSelectedIndex()+1
+				, categoryComboBox.getSelectedIndex()+1, "", null, Status.status(Status.OPEN));
 	}
 
 	private Component getCloseButton() {
@@ -150,6 +163,8 @@ public class TaskForm extends JPanel{
 	            public void actionPerformed(ActionEvent e) {
 	            	added = false;
 	            	System.out.println(added);
+	            	Component form = parent.getContentPane().getComponent(1);
+	            	parent.getContentPane().remove(form);
 	            	parent.repaint();
 	            }           
 	        });

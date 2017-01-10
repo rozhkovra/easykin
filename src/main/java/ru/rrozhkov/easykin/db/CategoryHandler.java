@@ -17,7 +17,7 @@ public class CategoryHandler {
 		ResultSet result = null; 
 		try { 
 			stmt = dbManager.openStatement(); 
-			result = stmt.executeQuery("SELECT * FROM category");
+			result = stmt.executeQuery("SELECT * FROM category ORDER BY ID");
 			while(result.next()){
 				categories.add(new Category(result.getInt("id"), result.getString("name")));
 			}		          

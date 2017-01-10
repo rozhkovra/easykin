@@ -20,14 +20,14 @@ import javax.swing.JTabbedPane;
 
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private Map<String, JPanel> panels;
+	
+	private JTabbedPane tabbedPane;
 	public EasyKinWindow() throws HeadlessException {
 		super();
-		this.panels = createPanels();
-		
-        final JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
+		Map<String, JPanel> panels = createPanels();
         for(String key : panels.keySet()) {
-        	tabbedPane.addTab(key, this.panels.get(key));
+        	tabbedPane.addTab(key, panels.get(key));
         }
                 
         JPanel content = new JPanel();
@@ -72,10 +72,10 @@ public class EasyKinWindow extends JFrame{
 	@Override
 	public void repaint() {
 		super.repaint();
-    	Component main = getContentPane().getComponent(0);
-    	Component form = getContentPane().getComponent(1);
-    	getContentPane().remove(form);
-    	getContentPane().setLayout(new BorderLayout());
-    	getContentPane().add(main);
+        tabbedPane.removeAll();
+		Map<String, JPanel> panels = createPanels();
+        for(String key : panels.keySet()) {
+        	tabbedPane.addTab(key, panels.get(key));
+        }
 	}
 }
