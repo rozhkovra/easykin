@@ -9,6 +9,7 @@ public enum CalculationType {
 	WATER("Вода"),
 	HOTWATER("Горячая вода"),
 	HOUSE("Квартплата"),
+	REPAIR("Кап.ремонт"),
 	ALL("Все");
 	
     private final String name;       

@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Map;
 
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -62,7 +64,19 @@ public class EasyKinWindow extends JFrame{
                 getContentPane().add(content1);        		
             }           
         });
+        addItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
         fileMenu.add(addItem);
+        
+        JMenuItem refreshItem = new JMenuItem("Refresh");
+        refreshItem.addActionListener(new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+            	repaint();
+            }           
+        });
+        refreshItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
+        fileMenu.add(refreshItem);
         
         menuBar.add(fileMenu);
         

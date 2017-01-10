@@ -135,16 +135,21 @@ public class TaskForm extends JPanel{
 	    	addButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
 	            	update();
+	            	if(!validateTask())
+	            		return;
 	            	try{
-	            		if(!added)
-	            			TaskHandler.addTask(task);
+	            		TaskHandler.addTask(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}
 	            	added = true;
 	            	System.out.println(added);
 	            	parent.repaint();
-	            }           
+	            }
+
+				private boolean validateTask() {
+					return !added && !"".equals(task.getName());
+				}           
 	        });
 	    }
 		return addButton;
