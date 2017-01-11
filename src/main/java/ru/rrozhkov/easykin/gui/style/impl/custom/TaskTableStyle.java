@@ -61,10 +61,10 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		        	}
 		        }
 		        if (Priority.IMPOTANT_FAST.equals(task.getPriority())){
-		           c.setFont(c.getFont().deriveFont(Font.BOLD,15));
+		           c.setFont(c.getFont().deriveFont(Font.BOLD,18));
 		           
 		        } else {  
-	        	   c.setFont(c.getFont().deriveFont(Font.PLAIN,12));
+	        	   c.setFont(c.getFont().deriveFont(Font.PLAIN,15));
 		        }
 		        setHorizontalAlignment(getColumnAlignment()[column]);
 		        return c;
