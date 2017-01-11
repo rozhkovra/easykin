@@ -27,22 +27,19 @@ public class EasyKinWindow extends JFrame{
 		super();
         tabbedPane = new JTabbedPane();
         fillTabbedPane();
-        
+        createMenuBar();
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
-        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setTitle("EasyKin");
-    	createMenuBar();
     	
     	setVisible(true);
 	}
 	
 	private void createMenuBar(){
         JMenuItem addItem = new JMenuItem("Add");
-        addItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
+        addItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
         addItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
             	edit();
@@ -50,8 +47,7 @@ public class EasyKinWindow extends JFrame{
         });
         
         JMenuItem refreshItem = new JMenuItem("Refresh");
-        refreshItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
+        refreshItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
         refreshItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
             	repaint();

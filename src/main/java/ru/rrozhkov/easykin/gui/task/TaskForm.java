@@ -41,10 +41,8 @@ public class TaskForm extends JPanel{
 	private JFrame parent;
 	
 	public TaskForm(JFrame parent) {
-		this.parent = parent;
-		this.task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
-				, 1, "", null, Status.status(Status.OPEN));
-		fill();
+		this(parent, TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
+				, 1, "", null, Status.status(Status.OPEN)));
 	}
 
 	public TaskForm(JFrame parent, ITask task) {

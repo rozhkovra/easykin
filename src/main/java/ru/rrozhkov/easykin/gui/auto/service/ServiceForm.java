@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.data.ICollectionDataProvider;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.Money;
@@ -28,8 +28,18 @@ public class ServiceForm extends JPanel{
 	private JButton addButton;
 	private JButton closeButton;
 	private IService service;
-	public ServiceForm(IService service) {
+	private JFrame parent;
+	public ServiceForm(JFrame parent, IService service) {
 		this.service = service;
+		this.parent = parent;
+		fill();
+	}
+	
+	public ServiceForm(JFrame parent) {
+		this(parent, ServiceFactory.createService("", new Money(), new Date()));
+	}
+	
+	private void fill(){
 		setLayout(new GridLayout(5,2)); 		
 		add(getEmptyLabel());
 		add(getEmptyLabel());
@@ -41,10 +51,6 @@ public class ServiceForm extends JPanel{
 		add(getDateField());
 		add(getCloseButton());
 		add(getAddButton());
-	}
-	
-	public ServiceForm() {
-		this(ServiceFactory.createService("", new Money(), new Date()));
 	}
 	
 	private Component getEmptyLabel() {
@@ -105,6 +111,9 @@ public class ServiceForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
+	            	Component form = parent.getContentPane().getComponent(1);
+	            	parent.getContentPane().remove(form);
+	            	parent.repaint();
 	            }           
 	        });
 	    }

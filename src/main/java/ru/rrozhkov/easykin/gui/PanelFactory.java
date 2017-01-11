@@ -13,7 +13,6 @@ import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarForm;
 import ru.rrozhkov.easykin.gui.listener.TableOnClickListener;
-import ru.rrozhkov.easykin.gui.service.Panel;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
@@ -70,31 +69,32 @@ public class PanelFactory {
         Collection<ITask> tasks = FilterUtil.filter(TaskHandler.getTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
+			JPanel panel = null;
 			if(category.getId()==1){
-				panels.put(category.getName(), createHomePanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter())));
+				 panel = createHomePanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter()));
 			}else if(category.getId()==2){
-				panels.put(category.getName(), createChildPanel());
+				panel = createChildPanel();
 			}else if(category.getId()==3){
-		        panels.put(category.getName(), createFamilyPanel());
+				panel = createFamilyPanel();
 			}else if(category.getId()==4){
-		        panels.put(category.getName(), createAutoPanel());
+				panel = createAutoPanel();
 			}else if(category.getId()==5){
-		        panels.put(category.getName(), createFinPanel());
+				panel = createFinPanel();
 			}else if(category.getId()==6){
-		        panels.put(category.getName(), createPaymentPanel());
+				panel = createPaymentPanel();
 			}else if(category.getId()==7){
-		        panels.put(category.getName(), createDocPanel());
+				panel = createDocPanel();
 			}else if(category.getId()==8){
-		        panels.put(category.getName(), createWorkPanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter())));
+				panel = createWorkPanel(FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter()));
 			}else if(category.getId()==9){
-		        panels.put(category.getName(), createTaskPanel(tasks));
+				panel = createTaskPanel(tasks);
 			}else if(category.getId()==10){
-		        panels.put(category.getName(), createServicePanel());
+				panel = createServicePanel();
 			}
-		}
-		for(JPanel panel : panels.values())
 			if(panel instanceof TablePanel)
-			((TablePanel)panel).getTable().getSelectionModel().addListSelectionListener(new TableOnClickListener(parent));
+				((TablePanel)panel).getTable().getSelectionModel().addListSelectionListener(new TableOnClickListener(parent));
+			panels.put(category.getName(),panel);
+		}
         return panels;
 	}
 }

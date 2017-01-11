@@ -10,24 +10,23 @@ import javax.swing.JPanel;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
-import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.gui.auto.service.ServiceForm;
 import ru.rrozhkov.easykin.gui.service.ServicePanel;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
-import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Status;
-import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
-import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class FormFactory {
-	public static JPanel createServiceForm(){
+	public static JPanel createServiceCalcForm(){
 		return new ServicePanel(new ServiceCalc(
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
 				AllDataProvider.get(10).getData()));
 	}
 	public static JPanel createTaskForm(JFrame parent){
 		return new TaskForm(parent);
+	}
+	public static JPanel createServiceForm(JFrame parent){
+		return new ServiceForm(parent);
 	}
 	
 	public static Map<String, JPanel> createPanels(JFrame parent){
@@ -41,7 +40,7 @@ public class FormFactory {
 			}else if(category.getId()==3){
 		        panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==4){
-		        panels.put(category.getName(), new JPanel());
+		        panels.put(category.getName(), createServiceForm(parent));
 			}else if(category.getId()==5){
 		        panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==6){
@@ -53,7 +52,7 @@ public class FormFactory {
 			}else if(category.getId()==9){
 		        panels.put(category.getName(), createTaskForm(parent));
 			}else if(category.getId()==10){
-		        panels.put(category.getName(), createServiceForm());
+		        panels.put(category.getName(), createServiceCalcForm());
 			}
 		}
         return panels;
