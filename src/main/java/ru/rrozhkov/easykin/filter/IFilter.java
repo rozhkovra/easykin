@@ -1,6 +1,5 @@
 package ru.rrozhkov.easykin.filter;
 
-public interface IFilter {
-	boolean filter();
-	void setObj(Object obj);
+public interface IFilter<T> {
+	boolean filter(T obj);
 }

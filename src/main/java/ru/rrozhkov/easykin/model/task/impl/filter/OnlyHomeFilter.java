@@ -1,10 +1,10 @@
 package ru.rrozhkov.easykin.model.task.impl.filter;
 
-import ru.rrozhkov.easykin.filter.impl.Filter;
+import ru.rrozhkov.easykin.filter.IFilter;
 import ru.rrozhkov.easykin.model.task.ITask;
 
-public class OnlyHomeFilter extends Filter {
-	public boolean filter() {
-		return ((ITask)obj).getCategory().isHome();
+public class OnlyHomeFilter implements IFilter<ITask> {
+	public boolean filter(ITask obj) {
+		return obj.getCategory().isHome();
 	}
 }

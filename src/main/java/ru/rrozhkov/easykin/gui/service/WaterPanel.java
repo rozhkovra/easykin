@@ -10,7 +10,6 @@ import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.water.WaterCalc;
 
 public class WaterPanel extends Panel{
-	public static String HEADER_LABEL_TEXT = "WATER"; 
 	public static String COLD_PREV_MESURE_LABEL_TEXT = "Cold previous mesure";
 	public static String COLD_CURRENT_MESURE_LABEL_TEXT = "Cold current mesure";
 	public static String HOT_PREV_MESURE_LABEL_TEXT = "Hot previous mesure";
@@ -36,11 +35,14 @@ public class WaterPanel extends Panel{
 	
 	public WaterPanel(WaterCalc calcBean) {
 		super(calcBean);
+		fill();	 
+	}
+
+	private void fill() {
 		setLayout(new GridLayout(10,2)); 
- 
 		add(getCalcBox());
 		add(new JLabel(""));
-		add(new JLabel(HEADER_LABEL_TEXT)); 
+		add(new JLabel(String.valueOf(calc.getType()))); 
 		add(getItogoLabel()); 
 		add(getColdPrevMesureLabel()); 
 		add(getColdPrevMesureField()); 
@@ -56,7 +58,7 @@ public class WaterPanel extends Panel{
 		add(getRateOutField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-	    add(getCalcButton());	 
+	    add(getCalcButton());
 	}
 
 	public JTextField getRateOutField() {

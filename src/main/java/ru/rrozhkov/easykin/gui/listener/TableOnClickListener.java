@@ -9,7 +9,6 @@ public class TableOnClickListener implements ListSelectionListener {
 	private EasyKinWindow main;
 	
 	public TableOnClickListener(EasyKinWindow main) {
-		super();
 		this.main = main;
 	}
 

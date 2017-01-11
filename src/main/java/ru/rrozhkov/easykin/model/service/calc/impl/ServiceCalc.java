@@ -17,7 +17,7 @@ public class ServiceCalc extends Calculation {
 		this.date = new Date();
 	}
 
-	public Collection<ICalculation> getBeans() {
+	public Collection<ICalculation> calcs() {
 		return beans;
 	}
 	

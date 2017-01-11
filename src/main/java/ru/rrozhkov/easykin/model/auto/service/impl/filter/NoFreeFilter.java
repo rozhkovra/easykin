@@ -1,10 +1,10 @@
 package ru.rrozhkov.easykin.model.auto.service.impl.filter;
 
-import ru.rrozhkov.easykin.filter.impl.Filter;
+import ru.rrozhkov.easykin.filter.IFilter;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 
-public class NoFreeFilter extends Filter {
-	public boolean filter() {
-		return !((IService)obj).getPrice().free();
+public class NoFreeFilter implements IFilter<IService> {
+	public boolean filter(IService obj) {
+		return !obj.getPrice().free();
 	}
 }

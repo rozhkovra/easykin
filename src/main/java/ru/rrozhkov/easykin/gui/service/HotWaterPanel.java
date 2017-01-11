@@ -8,8 +8,7 @@ import javax.swing.JTextField;
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.water.hot.HotWaterCalc;
 
-public class HotWaterPanel extends Panel{
-	public static String HEADER_LABEL_TEXT = "HOT WATER"; 
+public class HotWaterPanel extends Panel{ 
 	public static String PREV_MESURE_LABEL_TEXT = "Предыдущие показания";
 	public static String CURRENT_MESURE_LABEL_TEXT = "Текущие показания";
 	public static String RATE_LABEL_TEXT = "Тариф";
@@ -26,11 +25,14 @@ public class HotWaterPanel extends Panel{
 	
 	public HotWaterPanel(HotWaterCalc calcBean) {
 		super(calcBean);
+		fill();	 
+	}
+
+	private void fill() {
 		setLayout(new GridLayout(7,2)); 
- 
-		add(getCalcBox());
+ 		add(getCalcBox());
 		add(new JLabel(""));
-		add(new JLabel(HEADER_LABEL_TEXT)); 
+		add(new JLabel(String.valueOf(calc.getType()))); 
 		add(getItogoLabel()); 
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
@@ -40,7 +42,7 @@ public class HotWaterPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-	    add(getCalcButton());	 
+	    add(getCalcButton());
 	}
 	
 	public JTextField getPrevMesureField(){

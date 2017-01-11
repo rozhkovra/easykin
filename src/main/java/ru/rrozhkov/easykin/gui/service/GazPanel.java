@@ -8,8 +8,7 @@ import javax.swing.JTextField;
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.gaz.GazCalc;
 
-public class GazPanel extends Panel{
-	public static String HEADER_LABEL_TEXT = "Газ"; 
+public class GazPanel extends Panel{ 
 	public static String PREV_MESURE_LABEL_TEXT = "Предыдущие показания";
 	public static String CURRENT_MESURE_LABEL_TEXT = "Текущие показания";
 	public static String RATE_LABEL_TEXT = "Тариф";
@@ -23,11 +22,14 @@ public class GazPanel extends Panel{
 	
 	public GazPanel(GazCalc calcBean) {
 		super(calcBean);
+		fill();
+	}
+
+	private void fill() {
 		setLayout(new GridLayout(6,2)); 
- 
 		add(getCalcBox());
 		add(new JLabel(""));
-		add(new JLabel(HEADER_LABEL_TEXT)); 
+		add(new JLabel(String.valueOf(calc.getType()))); 
 		add(getItogoLabel()); 
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 

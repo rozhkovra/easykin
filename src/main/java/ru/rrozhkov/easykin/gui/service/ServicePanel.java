@@ -12,10 +12,13 @@ public class ServicePanel extends Panel {
 	
 	public ServicePanel(ServiceCalc serviceCalcBean) {
 		super(serviceCalcBean);
-        setLayout(new GridLayout(5,4));
-        for(ICalculation bean : serviceCalcBean.getBeans()){
-        	Panel panel = PanelFactory.getPanel(bean);
-        	add(panel);
+        fill();
+	}
+
+	private void fill() {
+		setLayout(new GridLayout(5,4));
+        for(ICalculation bean : ((ServiceCalc)calc).calcs()){
+        	add(PanelFactory.getPanel(bean));
         }
         add(getCalcButton());
         add(getItogoLabel());

@@ -20,8 +20,7 @@ public class FilterUtil {
 			return collection;
 		Collection<T> filtered = CollectionUtil.copy(collection);
 		for(T obj : collection){
-			filter.setObj(obj);
-			if(!filter.filter())
+			if(!filter.filter(obj))
 				filtered.remove(obj);
 		}
 		return filtered;

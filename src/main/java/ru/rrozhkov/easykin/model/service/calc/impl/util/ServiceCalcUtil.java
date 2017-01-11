@@ -11,7 +11,7 @@ import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class ServiceCalcUtil {
 	public static ICalculation getCalcByType(ServiceCalc entry, CalculationType type){
-		Collection<ICalculation> calcs = FilterUtil.filter(entry.getBeans()
+		Collection<ICalculation> calcs = FilterUtil.filter(entry.calcs()
 				, ServiceCalcFilterFactory.createCalcTypeFilter(type));
 		if(calcs.size()==0)
 			return null;
