@@ -12,7 +12,7 @@ import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
-import ru.rrozhkov.easykin.gui.auto.CarPanel;
+import ru.rrozhkov.easykin.gui.auto.CarForm;
 import ru.rrozhkov.easykin.gui.service.ServicePanel;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
@@ -55,18 +55,10 @@ public class PanelFactory {
 		return new JPanel();
 	}
 	public static JPanel createCarPanel() {
-		return new CarPanel(((SingleCollectionDataProvider<IService, ICar>)AllDataProvider.get(4)).getSingleData());
+		return new CarForm(((SingleCollectionDataProvider<IService, ICar>)AllDataProvider.get(4)).getSingleData());
 	}
 	private static JPanel createAutoPanel() {
 		return new AutoPanel();
-	}
-	public static JPanel createServiceForm(){
-		return new ServicePanel(new ServiceCalc(
-				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
-				AllDataProvider.get(10).getData()));
-	}
-	public static JPanel createTaskForm(JFrame parent){
-		return new TaskForm(parent);
 	}
 	
 	public static JPanel createTaskPanel(Collection<ITask> tasks){

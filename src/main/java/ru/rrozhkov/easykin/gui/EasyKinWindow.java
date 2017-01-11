@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanels;
-import static ru.rrozhkov.easykin.gui.PanelFactory.createTaskForm;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -57,7 +56,7 @@ public class EasyKinWindow extends JFrame{
             	getContentPane().add(main);
                 JPanel content1 = new JPanel();
                 content1.setLayout(new BorderLayout());
-                content1.add(createTaskForm(EasyKinWindow.this),BorderLayout.NORTH);
+                content1.add(FormFactory.createPanels(EasyKinWindow.this).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())),BorderLayout.NORTH);
                 getContentPane().add(content1);        		
             }           
         });
@@ -91,6 +90,7 @@ public class EasyKinWindow extends JFrame{
 		Map<String, JPanel> panels = createPanels();
         for(String key : panels.keySet()) {
         	tabbedPane.addTab(key, panels.get(key));
-        }		
+        }
+        tabbedPane.getSelectedIndex();
 	}
 }

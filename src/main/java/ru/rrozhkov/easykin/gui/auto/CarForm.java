@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.model.auto.ICar;
 
-public class CarPanel extends JPanel {
+public class CarForm extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField brendField = null;
 	private JTextField modelField = null;
@@ -22,7 +22,7 @@ public class CarPanel extends JPanel {
 	private JLabel yearLabel = null;
 	private JLabel volumeLabel = null;
 	private ICar car;
-	public CarPanel(ICar car) {
+	public CarForm(ICar car) {
 		this.car = car;
 		
 		setLayout(new GridLayout(5,2)); 		
