@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
@@ -13,17 +12,16 @@ import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarForm;
-import ru.rrozhkov.easykin.gui.service.ServicePanel;
+import ru.rrozhkov.easykin.gui.listener.TableOnClickListener;
+import ru.rrozhkov.easykin.gui.service.Panel;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
-import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
@@ -67,7 +65,7 @@ public class PanelFactory {
 	public static JPanel createServicePanel(){
 		return new TablePanel(AllDataProvider.get(10).getData(), new ServiceCalcStyle());
 	}
-	public static Map<String, JPanel> createPanels(){
+	public static Map<String, JPanel> createPanels(EasyKinWindow parent){
         Collection<ICategory> categories = CategoryHandler.getCategories();
         Collection<ITask> tasks = FilterUtil.filter(TaskHandler.getTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
@@ -94,6 +92,9 @@ public class PanelFactory {
 		        panels.put(category.getName(), createServicePanel());
 			}
 		}
+		for(JPanel panel : panels.values())
+			if(panel instanceof TablePanel)
+			((TablePanel)panel).getTable().getSelectionModel().addListSelectionListener(new TableOnClickListener(parent));
         return panels;
 	}
 }

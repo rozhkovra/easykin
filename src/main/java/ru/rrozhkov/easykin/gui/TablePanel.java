@@ -10,12 +10,15 @@ import ru.rrozhkov.easykin.gui.style.IStyle;
 
 public class TablePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	
+	private JTable table;
 	public TablePanel(Collection data, IStyle style) {
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JTable table = new Table(data, style);
+		table = new Table(data, style);
 		add(table.getTableHeader());
 		add(table);
+	}
+	public JTable getTable() {
+		return table;
 	}
 }

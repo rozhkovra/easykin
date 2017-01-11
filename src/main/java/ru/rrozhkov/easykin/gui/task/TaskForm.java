@@ -39,10 +39,21 @@ public class TaskForm extends JPanel{
 	private JButton closeButton;
 	private ITask task;
 	private JFrame parent;
+	
 	public TaskForm(JFrame parent) {
 		this.parent = parent;
-		task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
+		this.task = TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
 				, 1, "", null, Status.status(Status.OPEN));
+		fill();
+	}
+
+	public TaskForm(JFrame parent, ITask task) {
+		this.parent = parent;
+		this.task = task;
+		fill();
+	}
+	
+	private void fill(){
 		setLayout(new GridLayout(6,2)); 		
 		add(getEmptyLabel());
 		add(getEmptyLabel());
@@ -55,7 +66,7 @@ public class TaskForm extends JPanel{
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
 		add(getCloseButton());
-		add(getAddButton());
+		add(getAddButton());		
 	}
 	
 	private Component getEmptyLabel() {
@@ -86,6 +97,7 @@ public class TaskForm extends JPanel{
 					Priority.SIMPLE.toString()
 					};
 			priorityComboBox = new JComboBox(items);
+			priorityComboBox.setSelectedItem(task.getPriority().toString());
 		}
 		return priorityComboBox;
 	}
@@ -93,6 +105,7 @@ public class TaskForm extends JPanel{
 	private JComboBox getCategoryComboBox(){
 		if(categoryComboBox == null){
 			categoryComboBox = new JComboBox(categories());
+			categoryComboBox.setSelectedItem(task.getCategory().getName());
 		}
 		return categoryComboBox;
 	}

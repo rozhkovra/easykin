@@ -28,10 +28,8 @@ public class EasyKinWindow extends JFrame{
         tabbedPane = new JTabbedPane();
         fillTabbedPane();
         
-        JPanel content = new JPanel();
-        content.setLayout(new BorderLayout());
-        content.add(tabbedPane, BorderLayout.CENTER);        
-        getContentPane().add(content);
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(tabbedPane, BorderLayout.CENTER);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,40 +40,30 @@ public class EasyKinWindow extends JFrame{
 	}
 	
 	private void createMenuBar(){
-		JMenuBar menuBar = new JMenuBar();
-        
-        JMenu fileMenu = new JMenu("Command");
-         
         JMenuItem addItem = new JMenuItem("Add");
-        addItem.addActionListener(new ActionListener() {           
-            public void actionPerformed(ActionEvent e) {
-        		if(getContentPane().getComponentCount()>1)
-        			return;
-            	Component main = getContentPane().getComponent(0);
-            	getContentPane().setLayout(new GridLayout(1,2));
-            	getContentPane().add(main);
-                JPanel content1 = new JPanel();
-                content1.setLayout(new BorderLayout());
-                content1.add(FormFactory.createPanels(EasyKinWindow.this).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())),BorderLayout.NORTH);
-                getContentPane().add(content1);        		
-            }           
-        });
         addItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
-        fileMenu.add(addItem);
+        addItem.addActionListener(new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+            	edit();
+            }           
+        });
         
         JMenuItem refreshItem = new JMenuItem("Refresh");
+        refreshItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
         refreshItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
             	repaint();
             }           
         });
-        refreshItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
+        
+        JMenu fileMenu = new JMenu("Command");
+        fileMenu.add(addItem);
         fileMenu.add(refreshItem);
-        
+
+		JMenuBar menuBar = new JMenuBar();        
         menuBar.add(fileMenu);
-        
 		setJMenuBar(menuBar);
 	}
 
@@ -85,12 +73,23 @@ public class EasyKinWindow extends JFrame{
 		fillTabbedPane();
 	}
 	
+	public void edit(){
+		if(getContentPane().getComponentCount()>1)
+			return;
+    	Component main = getContentPane().getComponent(0);
+    	getContentPane().setLayout(new GridLayout(1,2));
+    	getContentPane().add(main);
+        JPanel content1 = new JPanel();
+        content1.setLayout(new BorderLayout());
+        content1.add(FormFactory.createPanels(EasyKinWindow.this).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())),BorderLayout.NORTH);
+        getContentPane().add(content1);  
+	}
+	
 	private void fillTabbedPane(){
         tabbedPane.removeAll();
-		Map<String, JPanel> panels = createPanels();
+		Map<String, JPanel> panels = createPanels(this);
         for(String key : panels.keySet()) {
         	tabbedPane.addTab(key, panels.get(key));
         }
-        tabbedPane.getSelectedIndex();
 	}
 }

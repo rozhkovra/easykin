@@ -3,8 +3,6 @@ package ru.rrozhkov.easykin.gui;
 import java.util.Collection;
 
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import ru.rrozhkov.easykin.gui.style.IStyle;
 
@@ -19,11 +17,7 @@ public class Table extends JTable{
 				,style.tableStyle().getColumnNames());
 		this.style = style;
 		this.data = data;
-		getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-	        public void valueChanged(ListSelectionEvent event) {
-	            System.out.println(getValueAt(getSelectedRow(), 0).toString());
-	        }
-	    });
+
 	}
 
 	@Override
