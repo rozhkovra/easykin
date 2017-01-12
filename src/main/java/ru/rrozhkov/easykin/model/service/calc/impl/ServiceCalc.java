@@ -11,8 +11,8 @@ public class ServiceCalc extends Calculation {
 	private String name;
 	private Collection<ICalculation> beans;
 
-	public ServiceCalc(String name, Collection<ICalculation> beans, boolean isPaid) {
-		super(isPaid);
+	public ServiceCalc(String name, Collection<ICalculation> beans) {
+		super(false);
 		this.name = name;
 		this.beans = beans;
 		this.date = new Date();
@@ -33,4 +33,16 @@ public class ServiceCalc extends Calculation {
 	public CalculationType getType() {
 		return CalculationType.ALL;
 	}
+
+	@Override
+	public boolean isPaid() {
+		boolean isPaid = true;
+		for(ICalculation calc : beans){
+			if(!((Calculation)calc).isPaid())
+				isPaid = false;
+		}
+		return isPaid;
+	}
+	
+	
 }

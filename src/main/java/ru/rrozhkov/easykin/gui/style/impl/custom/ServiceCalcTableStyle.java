@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -17,6 +19,19 @@ import ru.rrozhkov.easykin.model.service.calc.impl.Calculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
 public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
+	private static final Map<Integer, CalculationType> column2caclType = new HashMap<Integer, CalculationType>(){
+		{
+			put(2,CalculationType.WATER);
+			put(3,CalculationType.HOTWATER);
+			put(4,CalculationType.ELECTRICITY);
+			put(5,CalculationType.GAZ);
+			put(6,CalculationType.HEATING);
+			put(7,CalculationType.ANTENNA);
+			put(8,CalculationType.INTERCOM);
+			put(9,CalculationType.HOUSE);
+			put(10,CalculationType.REPAIR);
+		}
+	};
 	public int[] getColumnAlignment() {
 		return new int[]{JLabel.LEFT,JLabel.CENTER,JLabel.RIGHT
 				,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT,JLabel.RIGHT};
@@ -60,78 +75,24 @@ public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 		    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 		    {
 		        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		        Collection<ICalculation> calcs = ((List<ServiceCalc>)data).get(0).calcs();
-		        for(ICalculation calc : calcs){
-		        	if(column==2){
-		        		if(CalculationType.WATER.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==3){
-		        		if(CalculationType.HOTWATER.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==4){
-		        		if(CalculationType.ELECTRICITY.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==5){
-		        		if(CalculationType.GAZ.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==6){
-		        		if(CalculationType.HEATING.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==7){
-		        		if(CalculationType.ANTENNA.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==8){
-		        		if(CalculationType.INTERCOM.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==9){
-		        		if(CalculationType.HOUSE.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else if(column==10){
-		        		if(CalculationType.REPAIR.equals(calc.getType())
-		        				&&((Calculation)calc).isPaid()){
-		        			c.setBackground(Color.GREEN);
-		        			c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		}else
-		        			c.setBackground(Color.YELLOW); 
-		        	}else
-		        		c.setBackground(Color.WHITE);
-		        }
 		        setHorizontalAlignment(getColumnAlignment()[column]);
+		        ServiceCalc serviceCalc = ((List<ServiceCalc>)data).get(0); 
+		        if(serviceCalc.isPaid()){
+    				c.setBackground(Color.GREEN);
+    				c.setFont(c.getFont().deriveFont(Font.BOLD,15));
+    				return c;
+    			}else
+    				c.setBackground(Color.YELLOW);
+		        Collection<ICalculation> calcs = serviceCalc.calcs();
+		        for(ICalculation calc : calcs){
+		        	CalculationType type = column2caclType.get(column);
+		        	if(type!= null && ((Calculation)calc).isPaid() && type.equals(calc.getType())){
+		        		c.setFont(c.getFont().deriveFont(Font.BOLD,15));
+		        		c.setBackground(Color.GREEN);
+		        	}
+		        }
 		        return c;
-		    }
-		    
+		    }		    
 		});
 	}
 }

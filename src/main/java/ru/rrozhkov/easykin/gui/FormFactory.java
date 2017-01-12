@@ -20,7 +20,7 @@ public class FormFactory {
 	public static JPanel createServiceCalcForm(){
 		return new ServicePanel(new ServiceCalc(
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
-				AllDataProvider.get(10).getData(), false));
+				AllDataProvider.get(10).getData()));
 	}
 	public static JPanel createTaskForm(JFrame parent){
 		return new TaskForm(parent);

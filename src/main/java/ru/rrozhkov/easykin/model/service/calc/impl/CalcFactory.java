@@ -37,7 +37,7 @@ public class CalcFactory {
 		return new DefaultCalc(name, sum, isPaid);
 	}
 	
-	public static ICalculation createServiceCalc(String name, Collection<ICalculation> beans, boolean isPaid) {
-		return new ServiceCalc(name, beans, isPaid);
+	public static ICalculation createServiceCalc(String name, Collection<ICalculation> beans) {
+		return new ServiceCalc(name, beans);
 	}
 }

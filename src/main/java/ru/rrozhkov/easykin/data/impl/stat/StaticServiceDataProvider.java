@@ -24,7 +24,7 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 public class StaticServiceDataProvider extends SingleCollectionDataProvider<ServiceCalc, String> {
 	private static Collection<ICalculation> calcs = Arrays.asList(
 //  		  		createWaterCalc(487, 495, 379, 386, new Money(14.14), new Money(17.25), new Money(12.20))
-		  	createDefaultCalc(WATER, new Money(1.22), false)	
+		  	createDefaultCalc(WATER, new Money(1.22), true)	
 			, createDefaultCalc(HOTWATER, new Money(941.19), false)
 //    		, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
     		, createElectricityCalc(51523, 51685, new Money(3.32), new Money(0.0), false)
@@ -36,6 +36,6 @@ public class StaticServiceDataProvider extends SingleCollectionDataProvider<Serv
     		, createDefaultCalc(HOUSE, new Money(1116.75), false));
 	public StaticServiceDataProvider() {
 		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create()
-				, (ServiceCalc)createServiceCalc("Декабрь 2016", calcs, false)), "Декабрь 2016");
+				, (ServiceCalc)createServiceCalc("Декабрь 2016", calcs)), "Декабрь 2016");
 	}
 }
