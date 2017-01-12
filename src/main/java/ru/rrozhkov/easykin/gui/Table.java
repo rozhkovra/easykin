@@ -31,4 +31,8 @@ public class Table extends JTable{
 	public String getColumnName(int col) {
 	    return style.tableStyle().getColumnNames()[col];
 	}
+
+	public Collection getData() {
+		return data;
+	}
 }

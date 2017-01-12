@@ -92,7 +92,7 @@ public class PanelFactory {
 				panel = createServicePanel();
 			}
 			if(panel instanceof TablePanel)
-				((TablePanel)panel).getTable().getSelectionModel().addListSelectionListener(new TableOnClickListener(parent));
+				((TablePanel)panel).getTable().getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,((TablePanel)panel).getTable()));
 			panels.put(category.getName(),panel);
 		}
         return panels;

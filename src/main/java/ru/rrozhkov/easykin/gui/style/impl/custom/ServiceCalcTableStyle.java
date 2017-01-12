@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
-import ru.rrozhkov.easykin.model.service.calc.impl.Calculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
 public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
@@ -83,10 +82,9 @@ public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
     				return c;
     			}else
     				c.setBackground(Color.YELLOW);
-		        Collection<ICalculation> calcs = serviceCalc.calcs();
-		        for(ICalculation calc : calcs){
+		        for(ICalculation calc : serviceCalc.calcs()){
 		        	CalculationType type = column2caclType.get(column);
-		        	if(type!= null && ((Calculation)calc).isPaid() && type.equals(calc.getType())){
+		        	if(type!= null && calc.isPaid() && type.equals(calc.getType())){
 		        		c.setFont(c.getFont().deriveFont(Font.BOLD,15));
 		        		c.setBackground(Color.GREEN);
 		        	}

@@ -9,6 +9,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JFrame;
@@ -42,7 +43,7 @@ public class EasyKinWindow extends JFrame{
         addItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
         addItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
-            	edit();
+            	edit(-1);
             }           
         });
         
@@ -69,15 +70,22 @@ public class EasyKinWindow extends JFrame{
 		fillTabbedPane();
 	}
 	
-	public void edit(){
+	public void edit(int index){
 		if(getContentPane().getComponentCount()>1)
 			return;
     	Component main = getContentPane().getComponent(0);
     	getContentPane().setLayout(new GridLayout(1,2));
     	getContentPane().add(main);
+        JPanel panel = (JPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        Object obj = null;
+        if(panel instanceof TablePanel){
+        	List list = (List)((TablePanel)panel).getTable().getData();
+        	obj = list.get(index);
+        }
         JPanel content1 = new JPanel();
         content1.setLayout(new BorderLayout());
-        content1.add(FormFactory.createPanels(EasyKinWindow.this).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())),BorderLayout.NORTH);
+        JPanel formPanel = FormFactory.createPanels(EasyKinWindow.this, obj).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
+        content1.add(formPanel,BorderLayout.NORTH);
         getContentPane().add(content1);  
 	}
 	

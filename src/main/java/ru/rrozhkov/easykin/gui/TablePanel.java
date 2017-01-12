@@ -4,13 +4,12 @@ import java.util.Collection;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import ru.rrozhkov.easykin.gui.style.IStyle;
 
 public class TablePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private Table table;
 	public TablePanel(Collection data, IStyle style) {
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -18,7 +17,7 @@ public class TablePanel extends JPanel {
 		add(table.getTableHeader());
 		add(table);
 	}
-	public JTable getTable() {
+	public Table getTable() {
 		return table;
 	}
 }

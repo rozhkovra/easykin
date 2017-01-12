@@ -42,7 +42,5 @@ public class ServiceCalc extends Calculation {
 				isPaid = false;
 		}
 		return isPaid;
-	}
-	
-	
+	}	
 }

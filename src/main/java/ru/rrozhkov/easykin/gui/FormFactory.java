@@ -13,8 +13,10 @@ import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.gui.auto.service.ServiceForm;
 import ru.rrozhkov.easykin.gui.service.ServicePanel;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
+import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.task.ITask;
 
 public class FormFactory {
 	public static JPanel createServiceCalcForm(){
@@ -22,25 +24,32 @@ public class FormFactory {
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
 				AllDataProvider.get(10).getData()));
 	}
-	public static JPanel createTaskForm(JFrame parent){
+	public static JPanel createTaskForm(JFrame parent, Object obj){
+		if(obj!=null && obj instanceof ITask)
+			return new TaskForm(parent,(ITask)obj);
 		return new TaskForm(parent);
 	}
-	public static JPanel createServiceForm(JFrame parent){
+	public static JPanel createServiceForm(JFrame parent, Object obj){
+		if(obj!=null && obj instanceof IService)
+			return new ServiceForm(parent,(IService)obj);
 		return new ServiceForm(parent);
 	}
 	
 	public static Map<String, JPanel> createPanels(JFrame parent){
+		return createPanels(parent, null);
+	}
+	public static Map<String, JPanel> createPanels(JFrame parent, Object obj){
         Collection<ICategory> categories = CategoryHandler.getCategories();
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				panels.put(category.getName(), createTaskForm(parent));
+				panels.put(category.getName(), createTaskForm(parent,obj));
 			}else if(category.getId()==2){
 				panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==3){
 		        panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==4){
-		        panels.put(category.getName(), createServiceForm(parent));
+		        panels.put(category.getName(), createServiceForm(parent,obj));
 			}else if(category.getId()==5){
 		        panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==6){
@@ -48,9 +57,9 @@ public class FormFactory {
 			}else if(category.getId()==7){
 		        panels.put(category.getName(), new JPanel());
 			}else if(category.getId()==8){
-		        panels.put(category.getName(), createTaskForm(parent));
+		        panels.put(category.getName(), createTaskForm(parent,obj));
 			}else if(category.getId()==9){
-		        panels.put(category.getName(), createTaskForm(parent));
+		        panels.put(category.getName(), createTaskForm(parent,obj));
 			}else if(category.getId()==10){
 		        panels.put(category.getName(), createServiceCalcForm());
 			}
