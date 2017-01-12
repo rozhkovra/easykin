@@ -8,8 +8,8 @@ public class ElectricityCalc extends OdnSimpleCalc {
 
 
 	public ElectricityCalc(int prevMesure, int currentMesure, Money rate,
-			Money odn) {
-		super(prevMesure, currentMesure, rate, odn);
+			Money odn, boolean isPaid) {
+		super(prevMesure, currentMesure, rate, odn, isPaid);
 	}
 	
 	public CalculationType getType() {

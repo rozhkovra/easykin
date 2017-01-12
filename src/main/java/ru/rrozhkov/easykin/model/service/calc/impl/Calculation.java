@@ -8,5 +8,8 @@ public abstract class Calculation implements ICalculation{
 	public boolean isPaid() {return isPaid;}
 	public void setPaid(boolean isPaid) {this.isPaid = isPaid;}
 	public boolean needCalc(){return needCalc;}
-	public void setCalc(boolean needCalc){this.needCalc=needCalc;}	
+	public void setCalc(boolean needCalc){this.needCalc=needCalc;}
+	public Calculation(boolean isPaid) {
+		this.isPaid = isPaid;
+	}	
 }

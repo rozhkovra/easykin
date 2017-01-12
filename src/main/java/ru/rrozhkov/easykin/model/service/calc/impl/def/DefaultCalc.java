@@ -8,7 +8,8 @@ public class DefaultCalc extends Calculation {
 	private Money sum;
 	private CalculationType type;
 
-	public DefaultCalc(CalculationType type, Money sum) {
+	public DefaultCalc(CalculationType type, Money sum, boolean isPaid) {
+		super(isPaid);
 		this.sum = sum;
 		this.type = type;
 	}

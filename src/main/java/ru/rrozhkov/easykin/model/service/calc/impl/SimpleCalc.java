@@ -7,7 +7,8 @@ public abstract class SimpleCalc extends Calculation {
 	protected double currentMesure; 
 	protected Money rate;
 	
-	public SimpleCalc(double prevMesure, double currentMesure, Money rate) {
+	public SimpleCalc(double prevMesure, double currentMesure, Money rate, boolean isPaid) {
+		super(isPaid);
 		this.prevMesure = prevMesure;
 		this.currentMesure = currentMesure;
 		this.rate = rate;

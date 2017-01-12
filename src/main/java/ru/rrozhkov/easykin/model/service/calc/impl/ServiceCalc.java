@@ -11,7 +11,8 @@ public class ServiceCalc extends Calculation {
 	private String name;
 	private Collection<ICalculation> beans;
 
-	public ServiceCalc(String name, Collection<ICalculation> beans) {
+	public ServiceCalc(String name, Collection<ICalculation> beans, boolean isPaid) {
+		super(isPaid);
 		this.name = name;
 		this.beans = beans;
 		this.date = new Date();

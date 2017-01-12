@@ -6,8 +6,8 @@ import ru.rrozhkov.easykin.model.service.calc.impl.SimpleCalc;
 
 public class GazCalc extends SimpleCalc {
 	public GazCalc(double gazPrevMesure, double gazCurrentMesure,
-			Money gazRate) {
-		super(gazPrevMesure, gazCurrentMesure,gazRate);
+			Money gazRate, boolean isPaid) {
+		super(gazPrevMesure, gazCurrentMesure,gazRate,isPaid);
 	}
 
 	public CalculationType getType() {

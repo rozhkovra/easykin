@@ -12,8 +12,8 @@ public class WaterCalc extends OdnSimpleCalc {
 	
 	public WaterCalc(double coldPrevMesure, double coldCurrentMesure,
 			double hotPrevMesure, double hotCurrentMesure, Money inRate,
-			Money outRate, Money odn) {
-		super(coldPrevMesure, coldCurrentMesure, new Money(), odn);
+			Money outRate, Money odn, boolean isPaid) {
+		super(coldPrevMesure, coldCurrentMesure, new Money(), odn, isPaid);
 		this.hotPrevMesure = hotPrevMesure;
 		this.hotCurrentMesure = hotCurrentMesure;
 		this.inRate = inRate;
