@@ -76,11 +76,13 @@ public class EasyKinWindow extends JFrame{
     	Component main = getContentPane().getComponent(0);
     	getContentPane().setLayout(new GridLayout(1,2));
     	getContentPane().add(main);
-        JPanel panel = (JPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         Object obj = null;
-        if(panel instanceof TablePanel){
-        	List list = (List)((TablePanel)panel).getTable().getData();
-        	obj = list.get(index);
+        if(index!=-1){
+        	JPanel panel = (JPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        	if(panel instanceof TablePanel){
+        		List list = (List)((TablePanel)panel).getTable().getData();
+        		obj = list.get(index);
+        	}
         }
         JPanel content1 = new JPanel();
         content1.setLayout(new BorderLayout());

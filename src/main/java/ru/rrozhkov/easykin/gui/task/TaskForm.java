@@ -36,6 +36,7 @@ public class TaskForm extends JPanel{
 	private JLabel priorityLabel;
 	private JLabel categoryLabel;
 	private JButton addButton;
+	private JButton saveButton;
 	private JButton closeButton;
 	private ITask task;
 	private JFrame parent;
@@ -64,7 +65,12 @@ public class TaskForm extends JPanel{
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
 		add(getCloseButton());
-		add(getAddButton());		
+		if(!Status.CLOSE.equals(task.getStatus())){
+			if(task.getId()!=-1)
+				add(getSaveButton());
+			else
+				add(getAddButton());
+		}
 	}
 	
 	private Component getEmptyLabel() {
@@ -75,6 +81,8 @@ public class TaskForm extends JPanel{
 		if(nameField == null){
 			nameField = new JTextField(250);
 			nameField.setText(task.getName());
+			if(Status.CLOSE.equals(task.getStatus()))
+				nameField.setEditable(false);
 		}
 		return nameField;
 	}
@@ -83,6 +91,8 @@ public class TaskForm extends JPanel{
 		if(planDateField == null){
 			planDateField = new JTextField(10);
 			planDateField.setText(DateUtil.format(task.getPlanDate()));
+			if(Status.CLOSE.equals(task.getStatus()))
+				planDateField.setEditable(false);
 		}
 		return planDateField;
 	}
@@ -96,6 +106,8 @@ public class TaskForm extends JPanel{
 					};
 			priorityComboBox = new JComboBox(items);
 			priorityComboBox.setSelectedItem(task.getPriority().toString());
+			if(Status.CLOSE.equals(task.getStatus()))
+				priorityComboBox.setEditable(false);
 		}
 		return priorityComboBox;
 	}
@@ -104,6 +116,8 @@ public class TaskForm extends JPanel{
 		if(categoryComboBox == null){
 			categoryComboBox = new JComboBox(categories());
 			categoryComboBox.setSelectedItem(task.getCategory().getName());
+			if(Status.CLOSE.equals(task.getStatus()))
+				categoryComboBox.setEditable(false);
 		}
 		return categoryComboBox;
 	}
@@ -155,6 +169,25 @@ public class TaskForm extends JPanel{
 	            	}
 	            	added = true;
 	            	System.out.println(added);
+	            	parent.repaint();
+	            }
+
+				private boolean validateTask() {
+					return !added && !"".equals(task.getName());
+				}           
+	        });
+	    }
+		return addButton;
+	}
+
+	public JButton getSaveButton(){
+	    if(addButton==null){
+	    	addButton = new JButton("Сохранить");
+	    	addButton.addActionListener(new ActionListener() {           
+	            public void actionPerformed(ActionEvent e) {
+	            	update();
+	            	if(!validateTask())
+	            		return;
 	            	parent.repaint();
 	            }
 
