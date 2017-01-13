@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.Date;
 
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
@@ -13,7 +14,7 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
-	public static Collection<ITask> getTasks(){
+	public static Collection<ITask> selectTasks(){
 		Collection<ITask> tasks = CollectionUtil.<ITask>create();
 		DBManager dbManager = new DBManager();
 		Statement stmt = null; 
@@ -43,7 +44,7 @@ public class TaskHandler {
 		return tasks;
 	}
 	
-	public static int addTask(ITask task){
+	public static int insertTask(ITask task){
 		int id = -1;
 		DBManager dbManager = new DBManager();
 		Statement stmt = null;
@@ -80,4 +81,53 @@ public class TaskHandler {
 		} 
 		return id;
 	}
+	
+	public static int updateTask(ITask task){
+		DBManager dbManager = new DBManager();
+		Statement stmt = null;
+		int count = 0;
+		try {
+			stmt = dbManager.openStatement();
+			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
+				.append(" NAME=").append("\'").append(task.getName()).append("\'").append(",")
+				.append(" PLANDATE=").append("\'").append(DateUtil.formatSql(task.getPlanDate())).append("\'").append(",")
+				.append(" PRIORITYID=").append(Priority.priority(task.getPriority())).append(",")
+				.append(" CATEGORYID=").append(task.getCategory().getId())
+				.append(" WHERE ID=").append(task.getId());
+			count = stmt.executeUpdate(builder.toString());
+		} catch (Exception e) { 
+			e.printStackTrace(System.out); 
+		} finally {
+			try {
+				dbManager.closeStatement(stmt);
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		return count;
+	}
+
+	public static int closeTask(ITask task){
+		DBManager dbManager = new DBManager();
+		Statement stmt = null;
+		int count = 0;
+		try {
+			stmt = dbManager.openStatement();
+			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
+				.append(" CLOSEDATE=").append("\'").append(DateUtil.formatSql(new Date())).append("\'").append(",")
+				.append(" STATUSID=").append(Status.status(Status.CLOSE))
+				.append(" WHERE ID=").append(task.getId());
+			count = stmt.executeUpdate(builder.toString());
+		} catch (Exception e) { 
+			e.printStackTrace(System.out); 
+		} finally {
+			try {
+				dbManager.closeStatement(stmt);
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		return count;
+	}
+
 }

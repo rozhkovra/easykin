@@ -163,7 +163,7 @@ public class TaskForm extends JPanel{
 	            	if(!validateTask())
 	            		return;
 	            	try{
-	            		TaskHandler.addTask(task);
+	            		TaskHandler.insertTask(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}
@@ -181,26 +181,31 @@ public class TaskForm extends JPanel{
 	}
 
 	public JButton getSaveButton(){
-	    if(addButton==null){
-	    	addButton = new JButton("Сохранить");
-	    	addButton.addActionListener(new ActionListener() {           
+	    if(saveButton==null){
+	    	saveButton = new JButton("Сохранить");
+	    	saveButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
 	            	update();
 	            	if(!validateTask())
 	            		return;
+	            	try{
+	            		TaskHandler.updateTask(task);
+	            	}catch(Exception ex){
+	            		ex.printStackTrace();
+	            	}
 	            	parent.repaint();
 	            }
 
 				private boolean validateTask() {
-					return !added && !"".equals(task.getName());
+					return !"".equals(task.getName());
 				}           
 	        });
 	    }
-		return addButton;
+		return saveButton;
 	}
 	
 	protected void update() {
-		task = TaskFactory.createTask(-1, getNameField().getText(), new Date()
+		task = TaskFactory.createTask(task.getId(), getNameField().getText(), task.getCreateDate()
 				, DateUtil.parse(getPlanDateField().getText()), priorityComboBox.getSelectedIndex()+1
 				, categoryComboBox.getSelectedIndex()+1, "", null, Status.status(Status.OPEN));
 	}

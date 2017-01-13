@@ -22,6 +22,7 @@ import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
@@ -65,8 +66,8 @@ public class PanelFactory {
 	}
 	public static Map<String, JPanel> createPanels(EasyKinWindow parent){
         Collection<ICategory> categories = CategoryHandler.getCategories();
-//        Collection<ITask> tasks = FilterUtil.filter(TaskHandler.getTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
-        Collection<ITask> tasks = TaskHandler.getTasks();
+        Collection<ITask> tasks = FilterUtil.filter(TaskHandler.selectTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
+//        Collection<ITask> tasks = TaskHandler.getTasks();
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : categories){
 			JPanel panel = null;
