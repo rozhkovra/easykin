@@ -15,11 +15,9 @@ public class ServiceCalculator extends Calculator {
 		for(ICalculation calc : calcBean.calcs()){
 			Calculation bean = (Calculation)calc;
 			if(bean.needCalc()){
-				System.out.println(getCalculator(bean).calculate());
 				itogo.add(getCalculator(bean).calculate().getResult());
 			}
 		}
-		System.out.println("\n\nItogo = "+itogo);
 		return new ServiceResult(itogo);
 	}
 }
