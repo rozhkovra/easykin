@@ -38,6 +38,7 @@ public class TaskForm extends JPanel{
 	private JButton addButton;
 	private JButton saveButton;
 	private JButton closeButton;
+	private JButton doneButton;
 	private ITask task;
 	private JFrame parent;
 	
@@ -53,9 +54,15 @@ public class TaskForm extends JPanel{
 	}
 	
 	private void fill(){
-		setLayout(new GridLayout(6,2)); 		
+		setLayout(new GridLayout(7,2)); 		
 		add(getEmptyLabel());
-		add(getEmptyLabel());
+		if(!Status.CLOSE.equals(task.getStatus())){
+			if(task.getId()!=-1){
+				add(getDoneButton());
+			}
+		}else{
+			add(getCloseDateLabel());
+		}
 		add(getNameLabel()); 
 		add(getNameField()); 
 		add(getPlanDateLabel()); 
@@ -66,13 +73,17 @@ public class TaskForm extends JPanel{
 		add(getCategoryComboBox()); 
 		add(getCloseButton());
 		if(!Status.CLOSE.equals(task.getStatus())){
-			if(task.getId()!=-1)
+			if(task.getId()!=-1){
 				add(getSaveButton());
-			else
+			}else
 				add(getAddButton());
 		}
 	}
 	
+	private Component getCloseDateLabel() {
+ 		return new JLabel(DateUtil.format(task.getCloseDate()));
+	}
+
 	private Component getEmptyLabel() {
 		return new JLabel(""); 
 	}
@@ -224,5 +235,29 @@ public class TaskForm extends JPanel{
 	        });
 	    }
 		return closeButton;
+	}
+
+	private Component getDoneButton() {
+	    if(doneButton==null){
+	    	doneButton = new JButton("Выполнить");
+	    	doneButton.addActionListener(new ActionListener() {           
+	            public void actionPerformed(ActionEvent e) {
+	            	update();
+	            	if(!validateTask())
+	            		return;
+	            	try{
+	            		TaskHandler.closeTask(task);
+	            	}catch(Exception ex){
+	            		ex.printStackTrace();
+	            	}
+	            	parent.repaint();
+	            }
+
+				private boolean validateTask() {
+					return !"".equals(task.getName());
+				}                      
+	        });
+	    }
+		return doneButton;
 	}
 }
