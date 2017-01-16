@@ -28,7 +28,7 @@ public class StaticServiceDataProvider extends SingleCollectionDataProvider<Serv
 			, createDefaultCalc(HOTWATER, new Money(941.19), false)
 //    		, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
     		, createElectricityCalc(51523, 51685, new Money(3.32), new Money(0.0), false)
-    		, createGazCalc(0.0, 0.0, new Money(80.06), false)
+    		, createGazCalc(0.0, 0.0, new Money(80.06), true)
     		, createDefaultCalc(HEATING, new Money(1520.62), false)
     		, createDefaultCalc(REPAIR, new Money(341.03), false)
     		, createDefaultCalc(ANTENNA, new Money(72.00), false)
