@@ -32,4 +32,8 @@ public enum Status {
 		}
     	return stat;
 	}
+
+	public boolean isOpen() {
+		return OPEN.equals(this);
+	}
 }

@@ -15,7 +15,10 @@ public class TaskConverter extends DataConverter<ITask>{
 		list.add(DateUtil.format(t.getPlanDate()));
 		list.add(t.getPriority().toString());
 		list.add(t.getCategory().getName());
-		list.add(t.getStatus().toString());
+		if(t.getStatus().isOpen()){
+			list.add(DateUtil.format(t.getCreateDate()));
+		}else
+			list.add(DateUtil.format(t.getCloseDate()));
 		return list.toArray(new String[list.size()]);
 	}
 }

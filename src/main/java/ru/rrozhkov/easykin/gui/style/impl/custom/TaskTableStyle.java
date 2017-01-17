@@ -22,7 +22,7 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 	}
 	
 	public String[] getColumnNames() {
-		return new String[]{"№","Описание","Дата", "Приоритет", "Категория", "Статус"};
+		return new String[]{"№","Описание","Выполнить до", "Приоритет", "Категория", "Дата"};
 	}
 	
 	public void setColumnStyles(JTable table){
@@ -49,9 +49,12 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		    {
 		        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		        ITask task = (ITask) ((List)data).get(row);		        		
-		        if(Status.CLOSE.equals(task.getStatus()))
-		        	c.setBackground(Color.GREEN);		        
-		        else{
+		        if(Status.CLOSE.equals(task.getStatus())){
+		        	if(task.getCloseDate().getTime()>task.getPlanDate().getTime())
+		        		c.setBackground(Color.GRAY);
+		        	else
+		        		c.setBackground(Color.GREEN);		        
+		        }else{
 	        		c.setBackground(Color.WHITE);
 		        	if(Priority.IMPOTANT_FAST.equals(task.getPriority())
 		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority())){
