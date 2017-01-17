@@ -5,6 +5,10 @@ import ru.rrozhkov.easykin.gui.EasyKinWindow;
 public class EasyKin 
 {
     public static void main( String[] args ) {
-        new EasyKinWindow();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {   
+                new EasyKinWindow();   
+            }   
+        });
     }
 }

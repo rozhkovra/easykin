@@ -37,6 +37,7 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 	    table.getColumnModel().getColumn(4).setMaxWidth(200);
 	    table.getColumnModel().getColumn(5).setMinWidth(100);
 	    table.getColumnModel().getColumn(5).setMaxWidth(200);
+	    table.setRowHeight(40);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class Table extends JTable{
 				,style.tableStyle().getColumnNames());
 		this.style = style;
 		this.data = data;
-
+		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 
 	@Override
