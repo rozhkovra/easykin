@@ -1,0 +1,5 @@
+﻿<project default="compile">
+    <target name="compile">
+        <javac srcdir="src/main/java" destdir="target/classes"/>
+    </target>
+</project>
