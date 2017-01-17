@@ -59,7 +59,8 @@ public class TaskForm extends JPanel{
 		if(!Status.CLOSE.equals(task.getStatus())){
 			if(task.getId()!=-1){
 				add(getDoneButton());
-			}
+			}else
+				add(getEmptyLabel());
 		}else{
 			add(getCloseDateLabel());
 		}
