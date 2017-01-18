@@ -61,7 +61,8 @@ public class PanelFactory {
 	public static JPanel createServicePanel(EasyKinWindow parent){
 		return new TablePanel(parent, new Table(AllDataProvider.get(10).getData(), new ServiceCalcStyle()));
 	}
-	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){        
+	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
+		context.init();
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : context.getCategories()){
 			JPanel panel = null;
