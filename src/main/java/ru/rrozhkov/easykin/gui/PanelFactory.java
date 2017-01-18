@@ -6,10 +6,9 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
-import ru.rrozhkov.easykin.db.CategoryHandler;
-import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarForm;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
@@ -62,15 +61,12 @@ public class PanelFactory {
 	public static JPanel createServicePanel(EasyKinWindow parent){
 		return new TablePanel(parent, new Table(AllDataProvider.get(10).getData(), new ServiceCalcStyle()));
 	}
-	public static Map<String, JPanel> createPanels(EasyKinWindow parent){
-        Collection<ICategory> categories = CategoryHandler.getCategories();
-//        Collection<ITask> tasks = FilterUtil.filter(TaskHandler.selectTasks(),TaskFilterFactory.createStatusFilter(Status.OPEN));
-        Collection<ITask> tasks = TaskHandler.selectTasks();
+	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){        
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
-		for(ICategory category : categories){
+		for(ICategory category : context.getCategories()){
 			JPanel panel = null;
 			if(category.getId()==1){
-				 panel = createHomePanel(parent, FilterUtil.filter(tasks, TaskFilterFactory.createOnlyHomeFilter()));
+				 panel = createHomePanel(parent, FilterUtil.filter(context.getTasks(), TaskFilterFactory.createOnlyHomeFilter()));
 			}else if(category.getId()==2){
 				panel = createChildPanel(parent);
 			}else if(category.getId()==3){
@@ -84,9 +80,9 @@ public class PanelFactory {
 			}else if(category.getId()==7){
 				panel = createDocPanel();
 			}else if(category.getId()==8){
-				panel = createWorkPanel(parent, FilterUtil.filter(tasks, TaskFilterFactory.createOnlyWorkFilter()));
+				panel = createWorkPanel(parent, FilterUtil.filter(context.getTasks(), TaskFilterFactory.createOnlyWorkFilter()));
 			}else if(category.getId()==9){
-				panel = createTaskPanel(parent, tasks);
+				panel = createTaskPanel(parent, context.getTasks());
 			}else if(category.getId()==10){
 				panel = createServicePanel(parent);
 			}

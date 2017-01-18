@@ -135,7 +135,7 @@ public class TaskForm extends JPanel{
 	}
 	
 	private String[] categories() {
-		Collection<ICategory> categories = CategoryHandler.getCategories();
+		Collection<ICategory> categories = CategoryHandler.selectCategories();
 		Collection<String> items = CollectionUtil.<String>create(); 
 		for(ICategory category : categories)
 			items.add(category.getName());

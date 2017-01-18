@@ -9,6 +9,6 @@ import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class StaticChildDataProvider extends StaticPersonDataProvider{	
 	public Collection<IKinPerson> getData() {		
-		return FilterUtil.filter(super.getData(), KinFilterFactory.createKinTypeFilter(new KinType[]{KinType.SUN, KinType.DAUGHTER}));
+		return FilterUtil.filter(super.getData(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER}));
 	}
 }

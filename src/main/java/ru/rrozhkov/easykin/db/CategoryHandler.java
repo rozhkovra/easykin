@@ -10,7 +10,7 @@ import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class CategoryHandler {
-	public static Collection<ICategory> getCategories(){
+	public static Collection<ICategory> selectCategories(){
 		Collection<ICategory> categories = CollectionUtil.<ICategory>create();
 		DBManager dbManager = new DBManager();
 		Statement stmt = null; 

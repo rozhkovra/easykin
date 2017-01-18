@@ -3,13 +3,11 @@ package ru.rrozhkov.easykin.gui;
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanels;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JFrame;
@@ -20,12 +18,17 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
+import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.gui.util.ContextUtil;
+
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JTabbedPane tabbedPane = new JTabbedPane();
-	public EasyKinWindow() throws HeadlessException {
+	private EasyKinContext context;
+	public EasyKinWindow(EasyKinContext context) throws HeadlessException {
 		super("EasyKin");
+		this.context = context;
         fillTabbedPane();
         createMenuBar();
         getContentPane().setLayout(new BorderLayout());
@@ -81,15 +84,14 @@ public class EasyKinWindow extends JFrame{
         	}
         }
         JPanel content1 = new JPanel(new BorderLayout());
-        JPanel formPanel = FormFactory.createPanels(EasyKinWindow.this, obj).get(tabbedPane.getTitleAt(currentTabIndex));
+        JPanel formPanel = FormFactory.getFormPanel(this, ContextUtil.getCategoryByTabIndex(context, tabbedPane, currentTabIndex), obj);
         content1.add(formPanel,BorderLayout.NORTH);
         getContentPane().add(content1);
-        super.repaint();
 	}
 	
 	private void fillTabbedPane(){
         tabbedPane.removeAll();
-		Map<String, JPanel> panels = createPanels(this);
+		Map<String, JPanel> panels = createPanels(this, context);
         for(String key : panels.keySet()) {
         	tabbedPane.addTab(key, panels.get(key));
         }
