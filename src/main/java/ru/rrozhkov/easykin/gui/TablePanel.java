@@ -10,11 +10,9 @@ import ru.rrozhkov.easykin.gui.listener.TableOnClickListener;
 public class TablePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Table table;
-	private EasyKinWindow parent;
 	public TablePanel(EasyKinWindow parent, Table table) {
 		super();
 		this.table = table;
-		this.parent = parent;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(table.getTableHeader());
 		JScrollPane js = new JScrollPane(table
@@ -23,7 +21,7 @@ public class TablePanel extends JPanel {
 		add(js);
 		table.getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,table));
 	}
-	public Table getTable() {
-		return table;
+	public Object getObjByIndex(int index) {
+		return table.getObjByIndex(index);
 	}
 }

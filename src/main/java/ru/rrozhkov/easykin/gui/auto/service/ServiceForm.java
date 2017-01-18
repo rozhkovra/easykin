@@ -49,8 +49,8 @@ public class ServiceForm extends JPanel{
 		add(getPriceField()); 
 		add(getDateLabel()); 
 		add(getDateField());
-		add(getCloseButton());
 		add(getAddButton());
+		add(getCloseButton());
 	}
 	
 	private Component getEmptyLabel() {

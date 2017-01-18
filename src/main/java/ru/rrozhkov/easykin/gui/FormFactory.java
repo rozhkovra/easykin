@@ -1,8 +1,5 @@
 package ru.rrozhkov.easykin.gui;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,7 +14,6 @@ import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 
 public class FormFactory {
-	private static Map<String, JPanel> panels = new HashMap<String, JPanel>();
 	public static JPanel createServiceCalcForm(){
 		return new ServicePanel(new ServiceCalc(
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),

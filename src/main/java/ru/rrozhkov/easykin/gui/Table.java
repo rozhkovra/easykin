@@ -34,7 +34,7 @@ public class Table extends JTable{
 	}
 	
 	public Object getObjByIndex(int index){
-		if(index > data.size()-1)
+		if(index > data.size()-1 || index < 0)
 			return null;		
 		return ((List)data).get(index);
 	}

@@ -35,7 +35,6 @@ public class TaskForm extends JPanel{
 	private JLabel planDateLabel;
 	private JLabel priorityLabel;
 	private JLabel categoryLabel;
-	private JButton addButton;
 	private JButton saveButton;
 	private JButton closeButton;
 	private JButton doneButton;
@@ -54,7 +53,7 @@ public class TaskForm extends JPanel{
 	}
 	
 	private void fill(){
-		setLayout(new GridLayout(7,2)); 		
+		setLayout(new GridLayout(7,2));
 		add(getEmptyLabel());
 		if(!Status.CLOSE.equals(task.getStatus())){
 			if(task.getId()!=-1){
@@ -72,13 +71,11 @@ public class TaskForm extends JPanel{
 		add(getPriorityComboBox()); 
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
-		add(getCloseButton());
 		if(!Status.CLOSE.equals(task.getStatus())){
-			if(task.getId()!=-1){
-				add(getSaveButton());
-			}else
-				add(getAddButton());
-		}
+			add(getSaveButton());
+		}else
+			add(getEmptyLabel());
+		add(getCloseButton());
 	}
 	
 	private Component getCloseDateLabel() {
@@ -166,32 +163,6 @@ public class TaskForm extends JPanel{
 		return categoryLabel;
 	}
 	
-	public JButton getAddButton(){
-	    if(addButton==null){
-	    	addButton = new JButton("Добавить");
-	    	addButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	update();
-	            	if(!validateTask())
-	            		return;
-	            	try{
-	            		TaskHandler.insertTask(task);
-	            	}catch(Exception ex){
-	            		ex.printStackTrace();
-	            	}
-	            	added = true;
-	            	System.out.println(added);
-	            	parent.repaint();
-	            }
-
-				private boolean validateTask() {
-					return !added && !"".equals(task.getName());
-				}           
-	        });
-	    }
-		return addButton;
-	}
-
 	public JButton getSaveButton(){
 	    if(saveButton==null){
 	    	saveButton = new JButton("Сохранить");
@@ -201,7 +172,10 @@ public class TaskForm extends JPanel{
 	            	if(!validateTask())
 	            		return;
 	            	try{
-	            		TaskHandler.updateTask(task);
+	            		if(task.getId()==-1)
+		            		TaskHandler.insertTask(task);
+	            		else
+	            			TaskHandler.updateTask(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}

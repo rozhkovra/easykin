@@ -20,6 +20,7 @@ import javax.swing.KeyStroke;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
+import ru.rrozhkov.easykin.model.category.ICategory;
 
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -74,18 +75,18 @@ public class EasyKinWindow extends JFrame{
         if(getContentPane().getComponentCount()>1)
 			return;
 		int currentTabIndex = tabbedPane.getSelectedIndex();
+		ICategory currentCategory = ContextUtil.getCategoryByTabIndex(context, tabbedPane, currentTabIndex);
         Object obj = null;
-    	getContentPane().setLayout(new GridLayout(1,2));
-    	getContentPane().add(getContentPane().getComponent(0));
-        if(index!=-1){
-        	JPanel panel = (JPanel)tabbedPane.getComponentAt(currentTabIndex);
-        	if(panel instanceof TablePanel){
-        		obj = ((TablePanel)panel).getTable().getObjByIndex(index);
-        	}
-        }
+       	JPanel panel = (JPanel)tabbedPane.getComponentAt(currentTabIndex);
+      	if(panel instanceof TablePanel){
+       		obj = ((TablePanel)panel).getObjByIndex(index);
+       	}
         JPanel content1 = new JPanel(new BorderLayout());
-        JPanel formPanel = FormFactory.getFormPanel(this, ContextUtil.getCategoryByTabIndex(context, tabbedPane, currentTabIndex), obj);
+        JPanel formPanel = FormFactory.getFormPanel(this, currentCategory, obj);
         content1.add(formPanel,BorderLayout.NORTH);
+
+        getContentPane().setLayout(new GridLayout(1,2));
+    	getContentPane().add(getContentPane().getComponent(0));
         getContentPane().add(content1);
 	}
 	
