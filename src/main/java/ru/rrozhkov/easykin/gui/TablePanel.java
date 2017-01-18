@@ -1,24 +1,27 @@
 package ru.rrozhkov.easykin.gui;
 
-import java.util.Collection;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
-import ru.rrozhkov.easykin.gui.style.IStyle;
+import ru.rrozhkov.easykin.gui.listener.TableOnClickListener;
 
 public class TablePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Table table;
-	public TablePanel(Collection data, IStyle style) {
+	private EasyKinWindow parent;
+	public TablePanel(EasyKinWindow parent, Table table) {
 		super();
+		this.table = table;
+		this.parent = parent;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		table = new Table(data, style);
 		add(table.getTableHeader());
-		JScrollPane js = new JScrollPane(table);
-		js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane js = new JScrollPane(table
+				, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED
+				, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		add(js);
+		table.getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,table));
 	}
 	public Table getTable() {
 		return table;

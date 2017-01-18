@@ -23,18 +23,15 @@ import javax.swing.KeyStroke;
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	private JTabbedPane tabbedPane;
+	private JTabbedPane tabbedPane = new JTabbedPane();
 	public EasyKinWindow() throws HeadlessException {
-		super();
-        tabbedPane = new JTabbedPane();
+		super("EasyKin");
         fillTabbedPane();
         createMenuBar();
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	setTitle("EasyKin");
-    	
     	setVisible(true);
 	}
 	
@@ -71,24 +68,23 @@ public class EasyKinWindow extends JFrame{
 	}
 	
 	public void edit(int index){
-		if(getContentPane().getComponentCount()>1)
+        if(getContentPane().getComponentCount()>1)
 			return;
-    	Component main = getContentPane().getComponent(0);
-    	getContentPane().setLayout(new GridLayout(1,2));
-    	getContentPane().add(main);
+		int currentTabIndex = tabbedPane.getSelectedIndex();
         Object obj = null;
+    	getContentPane().setLayout(new GridLayout(1,2));
+    	getContentPane().add(getContentPane().getComponent(0));
         if(index!=-1){
-        	JPanel panel = (JPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        	JPanel panel = (JPanel)tabbedPane.getComponentAt(currentTabIndex);
         	if(panel instanceof TablePanel){
-        		List list = (List)((TablePanel)panel).getTable().getData();
-        		obj = list.get(index);
+        		obj = ((TablePanel)panel).getTable().getObjByIndex(index);
         	}
         }
-        JPanel content1 = new JPanel();
-        content1.setLayout(new BorderLayout());
-        JPanel formPanel = FormFactory.createPanels(EasyKinWindow.this, obj).get(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
+        JPanel content1 = new JPanel(new BorderLayout());
+        JPanel formPanel = FormFactory.createPanels(EasyKinWindow.this, obj).get(tabbedPane.getTitleAt(currentTabIndex));
         content1.add(formPanel,BorderLayout.NORTH);
-        getContentPane().add(content1);  
+        getContentPane().add(content1);
+        super.repaint();
 	}
 	
 	private void fillTabbedPane(){
