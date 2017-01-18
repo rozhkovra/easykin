@@ -26,7 +26,6 @@ import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskForm extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private boolean added = false;
 	private JTextField nameField;
 	private JTextField planDateField;
 	private JComboBox priorityComboBox;
@@ -201,8 +200,6 @@ public class TaskForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
-	            	added = false;
-	            	System.out.println(added);
 	            	Component form = parent.getContentPane().getComponent(1);
 	            	parent.getContentPane().remove(form);
 	            	parent.repaint();
