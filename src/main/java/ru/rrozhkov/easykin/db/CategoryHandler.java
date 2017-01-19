@@ -12,7 +12,7 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 public class CategoryHandler {
 	public static Collection<ICategory> selectCategories(){
 		Collection<ICategory> categories = CollectionUtil.<ICategory>create();
-		DBManager dbManager = new DBManager();
+		DBManager dbManager = DBManager.getInstance();
 		Statement stmt = null; 
 		ResultSet result = null; 
 		try { 

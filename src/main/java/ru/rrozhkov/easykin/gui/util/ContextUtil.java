@@ -8,8 +8,8 @@ import ru.rrozhkov.easykin.model.category.ICategory;
 public class ContextUtil {
 	public static ICategory getCategoryByTabIndex(EasyKinContext context, JTabbedPane tabs, int index){
 		String categoryName = tabs.getTitleAt(index);
-		for(ICategory category : context.getCategories()){
-			if(category.getName().equals(categoryName))
+		for(ICategory category : context.categories()){
+			if(categoryName.equals(category.getName()))
 				return category;
 		}
 		return null;

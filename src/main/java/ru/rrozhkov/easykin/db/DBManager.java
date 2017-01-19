@@ -6,7 +6,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBManager {
+	private static DBManager dbManager;
     private Connection connection;
+    
+    private DBManager(){    	
+    }
+    
+    public static DBManager getInstance(){
+    	if(dbManager==null)
+    		dbManager = new DBManager();
+    	return dbManager;
+    }
     
     private Connection openConnection() throws ClassNotFoundException, SQLException{
 		if(connection==null || connection.isClosed()){

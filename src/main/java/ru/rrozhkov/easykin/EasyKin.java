@@ -7,8 +7,10 @@ public class EasyKin
 {
     public static void main( String[] args ) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {   
-                new EasyKinWindow(new EasyKinContext().init());   
+            public void run() {
+            	EasyKinContext context = new EasyKinContext();
+            	context.init();
+                new EasyKinWindow(context);   
             }   
         });
     }

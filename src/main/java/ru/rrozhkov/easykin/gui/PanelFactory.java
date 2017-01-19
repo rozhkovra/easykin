@@ -64,10 +64,10 @@ public class PanelFactory {
 	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
 		context.init();
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
-		for(ICategory category : context.getCategories()){
+		for(ICategory category : context.categories()){
 			JPanel panel = null;
 			if(category.getId()==1){
-				 panel = createHomePanel(parent, FilterUtil.filter(context.getTasks(), TaskFilterFactory.createOnlyHomeFilter()));
+				 panel = createHomePanel(parent, FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyHomeFilter()));
 			}else if(category.getId()==2){
 				panel = createChildPanel(parent);
 			}else if(category.getId()==3){
@@ -81,9 +81,9 @@ public class PanelFactory {
 			}else if(category.getId()==7){
 				panel = createDocPanel();
 			}else if(category.getId()==8){
-				panel = createWorkPanel(parent, FilterUtil.filter(context.getTasks(), TaskFilterFactory.createOnlyWorkFilter()));
+				panel = createWorkPanel(parent, FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyWorkFilter()));
 			}else if(category.getId()==9){
-				panel = createTaskPanel(parent, context.getTasks());
+				panel = createTaskPanel(parent, context.tasks());
 			}else if(category.getId()==10){
 				panel = createServicePanel(parent);
 			}

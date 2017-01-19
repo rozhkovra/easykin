@@ -12,20 +12,18 @@ public class EasyKinContext {
 	private Collection<ITask> tasks;
 
 	public EasyKinContext() {
-		super();
 	}
 	
-	public EasyKinContext init(){
+	public void init(){
 		this.categories = CategoryHandler.selectCategories();
 		this.tasks = TaskHandler.selectTasks();
-		return this;
 	}
 
-	public Collection<ICategory> getCategories() {
+	public Collection<ICategory> categories() {
 		return categories;
 	}
 
-	public Collection<ITask> getTasks() {
+	public Collection<ITask> tasks() {
 		return tasks;
 	}
 }

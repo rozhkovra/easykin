@@ -16,7 +16,7 @@ import ru.rrozhkov.easykin.util.DateUtil;
 public class TaskHandler {
 	public static Collection<ITask> selectTasks(){
 		Collection<ITask> tasks = CollectionUtil.<ITask>create();
-		DBManager dbManager = new DBManager();
+		DBManager dbManager = DBManager.getInstance();
 		Statement stmt = null; 
 		ResultSet result = null; 
 		try { 
@@ -46,7 +46,7 @@ public class TaskHandler {
 	
 	public static int insertTask(ITask task){
 		int id = -1;
-		DBManager dbManager = new DBManager();
+		DBManager dbManager = DBManager.getInstance();
 		Statement stmt = null;
 		ResultSet result = null;
 		try { 
@@ -83,7 +83,7 @@ public class TaskHandler {
 	}
 	
 	public static int updateTask(ITask task){
-		DBManager dbManager = new DBManager();
+		DBManager dbManager = DBManager.getInstance();
 		Statement stmt = null;
 		int count = 0;
 		try {
@@ -108,7 +108,7 @@ public class TaskHandler {
 	}
 
 	public static int closeTask(ITask task){
-		DBManager dbManager = new DBManager();
+		DBManager dbManager = DBManager.getInstance();
 		Statement stmt = null;
 		int count = 0;
 		try {
@@ -129,5 +129,4 @@ public class TaskHandler {
 		} 
 		return count;
 	}
-
 }
