@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,13 +14,10 @@ import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.db.TaskHandler;
-import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
-import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskForm extends JPanel{
@@ -166,9 +161,9 @@ public class TaskForm extends JPanel{
 	            		return;
 	            	try{
 	            		if(task.getId()==-1)
-		            		TaskHandler.insertTask(task);
+		            		TaskHandler.insert(task);
 	            		else
-	            			TaskHandler.updateTask(task);
+	            			TaskHandler.update(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}
@@ -213,7 +208,7 @@ public class TaskForm extends JPanel{
 	            	if(!validateTask())
 	            		return;
 	            	try{
-	            		TaskHandler.closeTask(task);
+	            		TaskHandler.close(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}

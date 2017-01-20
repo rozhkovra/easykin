@@ -12,12 +12,12 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 public class CategoryHandler {
 	public static String selectCategories = "SELECT * FROM category ORDER BY ID";
 	
-	public static Collection<ICategory> selectCategories() throws SQLException{
+	public static Collection<ICategory> select() throws SQLException{
 		ResultSet result = null; 
 		try { 
 			Collection<ICategory> categories = CollectionUtil.<ICategory>create();
 			IConverter<ResultSet,ICategory> converter = new DBCategoryConverter();
-			result = DBManager.getInstance().executeQuery(selectCategories);
+			result = DBManager.instance().executeQuery(selectCategories);
 			while(result.next()){
 				categories.add(converter.convert(result));
 			}

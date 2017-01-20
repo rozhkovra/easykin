@@ -18,8 +18,8 @@ public class EasyKinContext {
 	
 	public void init(){
 		try{
-			this.categories = CategoryHandler.selectCategories();
-			this.tasks = TaskHandler.selectTasks();
+			this.categories = CategoryHandler.select();
+			this.tasks = TaskHandler.select();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

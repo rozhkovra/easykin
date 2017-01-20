@@ -14,11 +14,10 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class ServiceConverter implements IConverter<Collection<IService>,Collection<IPayment>> {
-	private SingleServiceConverter singleConverter = new SingleServiceConverter();
 	public Collection<IPayment> convert(Collection<IService> entries) {
 		Collection<IPayment> collection = CollectionUtil.<IPayment>create();
 		for(IService service : entries){
-			collection.add(singleConverter.convert(service));
+			collection.add(new SingleConverter().convert(service));
 			for(IService detailService : service.services()){
 				collection.add(createDetailPayment(detailService.getName(),detailService.getPrice(),detailService.getDate()));
 			}
@@ -26,8 +25,7 @@ public class ServiceConverter implements IConverter<Collection<IService>,Collect
 		return FilterUtil.<IPayment>filter(collection, createNoFreeFilter());
 	}
 	
-	class SingleServiceConverter implements IConverter<IService, IPayment> {
-
+	class SingleConverter implements IConverter<IService, IPayment> {
 		public IPayment convert(IService entry) {
 			if(entry instanceof RepairService){
 				return PaymentFactory.createAutoRepairPayment(entry.getName(),entry.getPrice(),entry.getDate());

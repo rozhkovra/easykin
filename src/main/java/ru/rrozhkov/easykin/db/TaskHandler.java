@@ -20,12 +20,12 @@ public class TaskHandler {
 	
 	public static String newTaskId = "SELECT MAX(ID)+1 AS ID FROM TASK";
 
-	public static Collection<ITask> selectTasks() throws SQLException{
+	public static Collection<ITask> select() throws SQLException{
 		ResultSet result = null; 
 		try {
 			Collection<ITask> tasks = CollectionUtil.<ITask>create();
 			IConverter<ResultSet,ITask> converter = new DBTaskConverter();
-			result = DBManager.getInstance().executeQuery(selectTasks);
+			result = DBManager.instance().executeQuery(selectTasks);
 			while(result.next()){
 				tasks.add(converter.convert(result));
 			}
@@ -42,11 +42,11 @@ public class TaskHandler {
 		}
 	}
 	
-	public static int insertTask(ITask task) throws SQLException{
+	public static int insert(ITask task) throws SQLException{
 		ResultSet result = null;
 		try {
 			int id = -1;
-			DBManager dbManager = DBManager.getInstance();
+			DBManager dbManager = DBManager.instance();
 			result = dbManager.executeQuery(newTaskId);
 			while(result.next()){
 				id = result.getInt("ID");
@@ -77,7 +77,7 @@ public class TaskHandler {
 
 	}
 	
-	public static int updateTask(ITask task) throws SQLException{
+	public static int update(ITask task) throws SQLException{
 		try {
 			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
 				.append(" NAME=").append("\'").append(task.getName()).append("\'").append(",")
@@ -85,7 +85,7 @@ public class TaskHandler {
 				.append(" PRIORITYID=").append(Priority.priority(task.getPriority())).append(",")
 				.append(" CATEGORYID=").append(task.getCategory().getId())
 				.append(" WHERE ID=").append(task.getId());
-			int count = DBManager.getInstance().executeUpdate(builder.toString());
+			int count = DBManager.instance().executeUpdate(builder.toString());
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
@@ -93,13 +93,13 @@ public class TaskHandler {
 
 	}
 
-	public static int closeTask(ITask task) throws SQLException{
+	public static int close(ITask task) throws SQLException{
 		try {
 			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
 				.append(" CLOSEDATE=").append("\'").append(DateUtil.formatSql(new Date())).append("\'").append(",")
 				.append(" STATUSID=").append(Status.status(Status.CLOSE))
 				.append(" WHERE ID=").append(task.getId());
-			int count = DBManager.getInstance().executeUpdate(builder.toString());
+			int count = DBManager.instance().executeUpdate(builder.toString());
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 

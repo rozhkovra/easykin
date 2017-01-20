@@ -13,13 +13,13 @@ public class DBManager {
     private DBManager(){    	
     }
     
-    public static DBManager getInstance(){
+    public static DBManager instance(){
     	if(dbManager==null)
     		dbManager = new DBManager();
     	return dbManager;
     }
     
-    private Connection openConnection() throws ClassNotFoundException, SQLException{
+    private Connection connect() throws ClassNotFoundException, SQLException{
 		if(connection==null || connection.isClosed()){
 			Class.forName("org.hsqldb.jdbc.JDBCDriver"); 
 			connection =  DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/easykin", "SA", "");
@@ -27,7 +27,7 @@ public class DBManager {
 		return connection;
     }
 
-    private boolean closeConnection() throws SQLException{
+    private boolean disconnect() throws SQLException{
     	if(connection!=null && !connection.isClosed()){
     		connection.close();
     		return true;
@@ -36,13 +36,13 @@ public class DBManager {
     }
     
 	public Statement openStatement() throws SQLException, ClassNotFoundException{
-		return openConnection().createStatement();
+		return connect().createStatement();
 	}
 
 	public boolean closeStatement(Statement stmt) throws SQLException{
 		if(stmt!=null && !stmt.isClosed()){
 			stmt.close();
-			return closeConnection();
+			return disconnect();
 		}
 		return false;
 	}
