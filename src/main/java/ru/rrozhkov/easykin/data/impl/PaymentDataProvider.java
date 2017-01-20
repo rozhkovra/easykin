@@ -1,13 +1,16 @@
 package ru.rrozhkov.easykin.data.impl;
 
+import java.util.Collection;
+
 import ru.rrozhkov.easykin.data.ICollectionDataProvider;
 import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
-import ru.rrozhkov.easykin.model.fin.payment.convert.FinConverterFactory;
-import ru.rrozhkov.easykin.model.fin.payment.convert.impl.ServiceConverter;
+import ru.rrozhkov.easykin.model.fin.payment.convert.impl.FinConverterFactory;
 
 public class PaymentDataProvider extends CollectionDataProvider<IPayment> {
-	private static ServiceConverter serviceConverter = FinConverterFactory.createServiceConverter();
+	private static IConverter<Collection<IService>,Collection<IPayment>> serviceConverter 
+										= FinConverterFactory.createServiceConverter();
 	protected ICollectionDataProvider<IService> serviceData;
 
 	public PaymentDataProvider(ICollectionDataProvider<IService> serviceData) {

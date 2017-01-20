@@ -4,8 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.model.category.CategoryFactory;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.category.convert.DBCategoryConverter;
+import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class CategoryHandler {
@@ -15,9 +16,10 @@ public class CategoryHandler {
 		ResultSet result = null; 
 		try { 
 			Collection<ICategory> categories = CollectionUtil.<ICategory>create();
+			IConverter<ResultSet,ICategory> converter = new DBCategoryConverter();
 			result = DBManager.getInstance().executeQuery(selectCategories);
 			while(result.next()){
-				categories.add(CategoryFactory.create(result.getInt("id"), result.getString("name")));
+				categories.add(converter.convert(result));
 			}
 			return categories;
 		} catch (Exception e) { 

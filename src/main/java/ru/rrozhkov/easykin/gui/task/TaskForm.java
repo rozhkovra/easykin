@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
@@ -37,13 +38,13 @@ public class TaskForm extends JPanel{
 	private JButton saveButton;
 	private JButton closeButton;
 	private JButton doneButton;
+	
 	private ITask task;
 	private JFrame parent;
 	private EasyKinContext context;
 	
 	public TaskForm(EasyKinContext context, JFrame parent) {
-		this(context, parent, TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
-				, 1, "", null, Status.status(Status.OPEN)));
+		this(context, parent, TaskFactory.newTask());
 	}
 
 	public TaskForm(EasyKinContext context, JFrame parent, ITask task) {
@@ -56,7 +57,7 @@ public class TaskForm extends JPanel{
 	private void fill(){
 		setLayout(new GridLayout(7,2));
 		add(getEmptyLabel());
-		if(!Status.CLOSE.equals(task.getStatus())){
+		if(!task.getStatus().isClose()){
 			if(task.getId()!=-1){
 				add(getDoneButton());
 			}else
@@ -72,7 +73,7 @@ public class TaskForm extends JPanel{
 		add(getPriorityComboBox()); 
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
-		if(!Status.CLOSE.equals(task.getStatus())){
+		if(!task.getStatus().isClose()){
 			add(getSaveButton());
 		}else
 			add(getEmptyLabel());
@@ -91,7 +92,7 @@ public class TaskForm extends JPanel{
 		if(nameField == null){
 			nameField = new JTextField(250);
 			nameField.setText(task.getName());
-			if(Status.CLOSE.equals(task.getStatus()))
+			if(task.getStatus().isClose())
 				nameField.setEditable(false);
 		}
 		return nameField;
@@ -101,7 +102,7 @@ public class TaskForm extends JPanel{
 		if(planDateField == null){
 			planDateField = new JTextField(10);
 			planDateField.setText(DateUtil.format(task.getPlanDate()));
-			if(Status.CLOSE.equals(task.getStatus()))
+			if(task.getStatus().isClose())
 				planDateField.setEditable(false);
 		}
 		return planDateField;
@@ -109,14 +110,9 @@ public class TaskForm extends JPanel{
 	
 	private JComboBox getPriorityComboBox(){
 		if(priorityComboBox == null){
-			String[] items = {
-					Priority.IMPOTANT_FAST.toString(),
-					Priority.IMPOTANT_NOFAST.toString(),
-					Priority.SIMPLE.toString()
-					};
-			priorityComboBox = new JComboBox(items);
+			priorityComboBox = new JComboBox(context.priorities());
 			priorityComboBox.setSelectedItem(task.getPriority().toString());
-			if(Status.CLOSE.equals(task.getStatus()))
+			if(task.getStatus().isClose())
 				priorityComboBox.setEditable(false);
 		}
 		return priorityComboBox;
@@ -126,18 +122,14 @@ public class TaskForm extends JPanel{
 		if(categoryComboBox == null){
 			categoryComboBox = new JComboBox(categories());
 			categoryComboBox.setSelectedItem(task.getCategory().getName());
-			if(Status.CLOSE.equals(task.getStatus()))
+			if(task.getStatus().isClose())
 				categoryComboBox.setEditable(false);
 		}
 		return categoryComboBox;
 	}
 	
 	private String[] categories() {
-		Collection<ICategory> categories = context.categories();
-		Collection<String> items = CollectionUtil.<String>create(); 
-		for(ICategory category : categories)
-			items.add(category.getName());
-		return items.toArray(new String[items.size()]);
+		return new ArrayCategoryConverter().convert(context.categories());
 	}
 
 	private JLabel getNameLabel(){

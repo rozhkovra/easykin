@@ -36,4 +36,8 @@ public enum Status {
 	public boolean isOpen() {
 		return OPEN.equals(this);
 	}
+	
+	public boolean isClose() {
+		return CLOSE.equals(this);
+	}
 }

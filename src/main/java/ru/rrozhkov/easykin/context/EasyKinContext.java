@@ -7,6 +7,7 @@ import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
 
 public class EasyKinContext {
 	private Collection<ICategory> categories;
@@ -30,5 +31,13 @@ public class EasyKinContext {
 
 	public Collection<ITask> tasks() {
 		return tasks;
+	}
+	
+	public Priority[] priorities(){
+		return new Priority[]{
+			Priority.IMPOTANT_FAST,
+			Priority.IMPOTANT_NOFAST,
+			Priority.SIMPLE
+			};
 	}
 }
