@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.context;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.db.CategoryHandler;
@@ -15,8 +16,12 @@ public class EasyKinContext {
 	}
 	
 	public void init(){
-		this.categories = CategoryHandler.selectCategories();
-		this.tasks = TaskHandler.selectTasks();
+		try{
+			this.categories = CategoryHandler.selectCategories();
+			this.tasks = TaskHandler.selectTasks();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 	public Collection<ICategory> categories() {

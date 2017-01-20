@@ -2,36 +2,32 @@ package ru.rrozhkov.easykin.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.category.CategoryFactory;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class CategoryHandler {
-	public static Collection<ICategory> selectCategories(){
-		Collection<ICategory> categories = CollectionUtil.<ICategory>create();
-		DBManager dbManager = DBManager.getInstance();
-		Statement stmt = null; 
+	public static String selectCategories = "SELECT * FROM category ORDER BY ID";
+	
+	public static Collection<ICategory> selectCategories() throws SQLException{
 		ResultSet result = null; 
 		try { 
-			stmt = dbManager.openStatement(); 
-			result = stmt.executeQuery("SELECT * FROM category ORDER BY ID");
+			Collection<ICategory> categories = CollectionUtil.<ICategory>create();
+			result = DBManager.getInstance().executeQuery(selectCategories);
 			while(result.next()){
-				categories.add(new Category(result.getInt("id"), result.getString("name")));
-			}		          
+				categories.add(CategoryFactory.create(result.getInt("id"), result.getString("name")));
+			}
+			return categories;
 		} catch (Exception e) { 
-			e.printStackTrace(System.out); 
+			throw new SQLException(e); 
 		} finally {
 			try {
 				if(result!=null)
 					result.close();
-				dbManager.closeStatement(stmt);
 			}catch (SQLException e) {
-				e.printStackTrace();
-			}
+				throw new SQLException(e);			}
 		} 
-		return categories;
 	}
 }

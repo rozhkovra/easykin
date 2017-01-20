@@ -2,6 +2,7 @@ package ru.rrozhkov.easykin.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -44,5 +45,37 @@ public class DBManager {
 			return closeConnection();
 		}
 		return false;
+	}
+	
+	public ResultSet executeQuery(String query) throws SQLException{
+		Statement stmt = null;  
+		try { 
+			stmt = dbManager.openStatement(); 
+			return stmt.executeQuery(query);
+		} catch (Exception e) { 
+			throw new SQLException(e); 
+		} finally {
+			try {
+				dbManager.closeStatement(stmt);
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public int executeUpdate(String query) throws SQLException {
+		Statement stmt = null;  
+		try { 
+			stmt = dbManager.openStatement(); 
+			return stmt.executeUpdate(query);
+		} catch (Exception e) { 
+			throw new SQLException(e); 
+		} finally {
+			try {
+				dbManager.closeStatement(stmt);
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 }

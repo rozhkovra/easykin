@@ -2,57 +2,52 @@ package ru.rrozhkov.easykin.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 import java.util.Date;
 
+import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
-import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
+import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
-	public static Collection<ITask> selectTasks(){
-		Collection<ITask> tasks = CollectionUtil.<ITask>create();
-		DBManager dbManager = DBManager.getInstance();
-		Statement stmt = null; 
+	public static String selectTasks = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
+			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
+			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
+	
+	public static String newTaskId = "SELECT MAX(ID)+1 AS ID FROM TASK";
+
+	public static Collection<ITask> selectTasks() throws SQLException{
 		ResultSet result = null; 
-		try { 
-			stmt = dbManager.openStatement();
-			StringBuilder builder = new StringBuilder("SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK")
-									.append(" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID")
-									.append(" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID");
-			result = stmt.executeQuery(builder.toString());
+		try {
+			Collection<ITask> tasks = CollectionUtil.<ITask>create();
+			IConverter<ResultSet,ITask> converter = new DBTaskConverter();
+			result = DBManager.getInstance().executeQuery(selectTasks);
 			while(result.next()){
-				tasks.add(TaskFactory.createTask(result.getInt("id"), result.getString("name"), result.getDate("createdate")
-						, result.getDate("plandate"), result.getInt("priorityid"), result.getInt("categoryid")
-						, result.getString("categoryname"), result.getDate("closedate"), result.getInt("statusid")));
-			}		          
+				tasks.add(converter.convert(result));
+			}
+			return tasks;
 		} catch (Exception e) { 
-			e.printStackTrace(System.out); 
+			throw new SQLException(e); 
 		} finally {
 			try {
 				if(result!=null)
 					result.close();
-				dbManager.closeStatement(stmt);
 			}catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException(e);
 			}
-		} 
-		return tasks;
+		}
 	}
 	
-	public static int insertTask(ITask task){
-		int id = -1;
-		DBManager dbManager = DBManager.getInstance();
-		Statement stmt = null;
+	public static int insertTask(ITask task) throws SQLException{
 		ResultSet result = null;
-		try { 
-			stmt = dbManager.openStatement();
-			StringBuilder idBuilder = new StringBuilder("SELECT MAX(ID)+1 AS ID FROM TASK");
-			result = stmt.executeQuery(idBuilder.toString());
+		try {
+			int id = -1;
+			DBManager dbManager = DBManager.getInstance();
+			result = dbManager.executeQuery(newTaskId);
 			while(result.next()){
 				id = result.getInt("ID");
 			}		          			
@@ -67,66 +62,48 @@ public class TaskHandler {
 				.append("NULL,")
 				.append(Status.status(task.getStatus()))
 				.append(")");
-			stmt.executeUpdate(builder.toString());
+			dbManager.executeUpdate(builder.toString());
+			return id;
 		} catch (Exception e) { 
-			e.printStackTrace(System.out); 
+			throw new SQLException(e); 
 		} finally {
 			try {
 				if(result!=null)
 					result.close();
-				dbManager.closeStatement(stmt);
 			}catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException(e);
 			}
 		} 
-		return id;
+
 	}
 	
-	public static int updateTask(ITask task){
-		DBManager dbManager = DBManager.getInstance();
-		Statement stmt = null;
-		int count = 0;
+	public static int updateTask(ITask task) throws SQLException{
 		try {
-			stmt = dbManager.openStatement();
 			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
 				.append(" NAME=").append("\'").append(task.getName()).append("\'").append(",")
 				.append(" PLANDATE=").append("\'").append(DateUtil.formatSql(task.getPlanDate())).append("\'").append(",")
 				.append(" PRIORITYID=").append(Priority.priority(task.getPriority())).append(",")
 				.append(" CATEGORYID=").append(task.getCategory().getId())
 				.append(" WHERE ID=").append(task.getId());
-			count = stmt.executeUpdate(builder.toString());
+			int count = DBManager.getInstance().executeUpdate(builder.toString());
+			return count;
 		} catch (Exception e) { 
-			e.printStackTrace(System.out); 
-		} finally {
-			try {
-				dbManager.closeStatement(stmt);
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
+			throw new SQLException(e); 
 		} 
-		return count;
+
 	}
 
-	public static int closeTask(ITask task){
-		DBManager dbManager = DBManager.getInstance();
-		Statement stmt = null;
-		int count = 0;
+	public static int closeTask(ITask task) throws SQLException{
 		try {
-			stmt = dbManager.openStatement();
 			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
 				.append(" CLOSEDATE=").append("\'").append(DateUtil.formatSql(new Date())).append("\'").append(",")
 				.append(" STATUSID=").append(Status.status(Status.CLOSE))
 				.append(" WHERE ID=").append(task.getId());
-			count = stmt.executeUpdate(builder.toString());
+			int count = DBManager.getInstance().executeUpdate(builder.toString());
+			return count;
 		} catch (Exception e) { 
-			e.printStackTrace(System.out); 
-		} finally {
-			try {
-				dbManager.closeStatement(stmt);
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
+			throw new SQLException(e); 
 		} 
-		return count;
+
 	}
 }

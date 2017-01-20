@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.db.CategoryHandler;
+import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.ITask;
@@ -39,13 +39,15 @@ public class TaskForm extends JPanel{
 	private JButton doneButton;
 	private ITask task;
 	private JFrame parent;
+	private EasyKinContext context;
 	
-	public TaskForm(JFrame parent) {
-		this(parent, TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
+	public TaskForm(EasyKinContext context, JFrame parent) {
+		this(context, parent, TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
 				, 1, "", null, Status.status(Status.OPEN)));
 	}
 
-	public TaskForm(JFrame parent, ITask task) {
+	public TaskForm(EasyKinContext context, JFrame parent, ITask task) {
+		this.context = context;
 		this.parent = parent;
 		this.task = task;
 		fill();
@@ -131,7 +133,7 @@ public class TaskForm extends JPanel{
 	}
 	
 	private String[] categories() {
-		Collection<ICategory> categories = CategoryHandler.selectCategories();
+		Collection<ICategory> categories = context.categories();
 		Collection<String> items = CollectionUtil.<String>create(); 
 		for(ICategory category : categories)
 			items.add(category.getName());
@@ -178,6 +180,7 @@ public class TaskForm extends JPanel{
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}
+	        		context.init();
 	            	parent.repaint();
 	            }
 
@@ -222,6 +225,7 @@ public class TaskForm extends JPanel{
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();
 	            	}
+	        		context.init();
 	            	parent.repaint();
 	            }
 

@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.gui.auto.service.ServiceForm;
@@ -19,10 +20,10 @@ public class FormFactory {
 				((SingleCollectionDataProvider<ServiceCalc, String>)AllDataProvider.get(10)).getSingleData(),
 				AllDataProvider.get(10).getData()));
 	}
-	public static JPanel createTaskForm(JFrame parent, Object obj){
+	public static JPanel createTaskForm(EasyKinContext context,JFrame parent, Object obj){
 		if(obj!=null && obj instanceof ITask)
-			return new TaskForm(parent,(ITask)obj);
-		return new TaskForm(parent);
+			return new TaskForm(context, parent,(ITask)obj);
+		return new TaskForm(context, parent);
 	}
 	public static JPanel createServiceForm(JFrame parent, Object obj){
 		if(obj!=null && obj instanceof IService)
@@ -30,9 +31,9 @@ public class FormFactory {
 		return new ServiceForm(parent);
 	}
 	
-	public static JPanel getFormPanel(JFrame parent, ICategory category, Object obj) {
+	public static JPanel getFormPanel(EasyKinContext context, JFrame parent, ICategory category, Object obj) {
 		if(category.getId()==1){
-			return createTaskForm(parent,obj);
+			return createTaskForm(context, parent,obj);
 		}else if(category.getId()==2){
 			return new JPanel();
 		}else if(category.getId()==3){
@@ -46,9 +47,9 @@ public class FormFactory {
 		}else if(category.getId()==7){
 			return new JPanel();
 		}else if(category.getId()==8){
-			return createTaskForm(parent,obj);
+			return createTaskForm(context, parent,obj);
 		}else if(category.getId()==9){
-			return createTaskForm(parent,obj);
+			return createTaskForm(context, parent,obj);
 		}else if(category.getId()==10){
 			return createServiceCalcForm();
 		}

@@ -82,7 +82,7 @@ public class EasyKinWindow extends JFrame{
        		obj = ((TablePanel)panel).getObjByIndex(index);
        	}
         JPanel content1 = new JPanel(new BorderLayout());
-        JPanel formPanel = FormFactory.getFormPanel(this, currentCategory, obj);
+        JPanel formPanel = FormFactory.getFormPanel(context, this, currentCategory, obj);
         content1.add(formPanel,BorderLayout.NORTH);
 
         getContentPane().setLayout(new GridLayout(1,2));
