@@ -14,7 +14,7 @@ public class Table extends JTable{
 	protected Collection data;
 	
 	public Table(Collection data, IStyle style) {
-		super((String[][])style.dataConverter().convert(data, style.tableStyle().getColumnNames().length)
+		super((String[][])style.dataConverter().convert(data)
 				,style.tableStyle().getColumnNames());
 		this.style = style;
 		this.data = data;

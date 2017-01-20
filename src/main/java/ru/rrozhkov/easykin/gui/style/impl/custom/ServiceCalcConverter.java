@@ -1,14 +1,18 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
 import static ru.rrozhkov.easykin.model.service.calc.impl.CalculatorFactory.getCalculator;
-import ru.rrozhkov.easykin.gui.style.impl.DataConverter;
+import ru.rrozhkov.easykin.gui.style.impl.CollectionConverter;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.util.ServiceCalcUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class ServiceCalcConverter extends DataConverter<ServiceCalc> {
-	public String[] entryToStringArr(int i, ServiceCalc entry) {
+public class ServiceCalcConverter extends CollectionConverter<ServiceCalc> {
+	public ServiceCalcConverter(int colSize) {
+		super(colSize);
+	}
+
+	public String[] convert(int i, ServiceCalc entry) {
 		return new String[]{entry.getName(), DateUtil.format(entry.getDate())
 				, getCalculator(ServiceCalcUtil.getCalcByType(entry, CalculationType.WATER)).calculate().toString()
 				, getCalculator(ServiceCalcUtil.getCalcByType(entry,CalculationType.HOTWATER)).calculate().toString()

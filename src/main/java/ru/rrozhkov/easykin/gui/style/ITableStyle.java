@@ -9,4 +9,5 @@ public interface ITableStyle<T>{
 	String[] getColumnNames();
 	int[] getColumnAlignment();
 	void setCellRenderer(JTable table, Collection<T> data);
+	int getColumnCount();
 }

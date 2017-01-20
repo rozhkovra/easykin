@@ -24,4 +24,8 @@ public abstract class TableStyle<T> implements ITableStyle<T>{
 		    }		    
 		});
 	}
+	public int getColumnCount() {
+		return getColumnNames().length;
+	}
+	
 }
