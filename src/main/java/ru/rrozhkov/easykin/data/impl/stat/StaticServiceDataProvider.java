@@ -27,13 +27,13 @@ public class StaticServiceDataProvider extends SingleCollectionDataProvider<Serv
 		  	createDefaultCalc(WATER, new Money(1.22), true)	
 			, createDefaultCalc(HOTWATER, new Money(941.19), false)
 //    		, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
-    		, createElectricityCalc(51523, 51685, new Money(3.32), new Money(0.0), false)
+    		, createElectricityCalc(15332, 15429, new Money(3.56), new Money(0.0), false)
     		, createGazCalc(0.0, 0.0, new Money(80.06), true)
     		, createDefaultCalc(HEATING, new Money(1520.62), false)
     		, createDefaultCalc(REPAIR, new Money(341.03), false)
-    		, createDefaultCalc(ANTENNA, new Money(72.00), false)
-    		, createDefaultCalc(INTERCOM, new Money(30.00), false)
-    		, createDefaultCalc(HOUSE, new Money(1116.75), false));
+    		, createDefaultCalc(ANTENNA, new Money(72.00), true)
+    		, createDefaultCalc(INTERCOM, new Money(30.00), true)
+    		, createDefaultCalc(HOUSE, new Money(1116.75), true));
 	public StaticServiceDataProvider() {
 		super(CollectionUtil.<ServiceCalc>merge2copy(CollectionUtil.<ServiceCalc>create()
 				, (ServiceCalc)createServiceCalc("Декабрь 2016", calcs)), "Декабрь 2016");
