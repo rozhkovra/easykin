@@ -75,7 +75,7 @@ public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 		    {
 		        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		        setHorizontalAlignment(getColumnAlignment()[column]);
-		        ServiceCalc serviceCalc = ((List<ServiceCalc>)data).get(0); 
+		        ServiceCalc serviceCalc = ((List<ServiceCalc>)data).get(row); 
 		        if(serviceCalc.isPaid()){
     				c.setBackground(Color.GREEN);
     				c.setFont(c.getFont().deriveFont(Font.BOLD,15));
