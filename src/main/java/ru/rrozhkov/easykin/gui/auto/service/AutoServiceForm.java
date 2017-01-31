@@ -17,7 +17,7 @@ import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class ServiceForm extends JPanel{
+public class AutoServiceForm extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 	private JTextField priceField;
@@ -29,13 +29,13 @@ public class ServiceForm extends JPanel{
 	private JButton closeButton;
 	private IService service;
 	private JFrame parent;
-	public ServiceForm(JFrame parent, IService service) {
+	public AutoServiceForm(JFrame parent, IService service) {
 		this.service = service;
 		this.parent = parent;
 		fill();
 	}
 	
-	public ServiceForm(JFrame parent) {
+	public AutoServiceForm(JFrame parent) {
 		this(parent, ServiceFactory.createService("", new Money(), new Date()));
 	}
 	

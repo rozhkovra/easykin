@@ -21,7 +21,7 @@ public class PanelFactory {
 		else if (bean instanceof DefaultCalc)
 			return new DefaultPanel((DefaultCalc) bean);
 		else if (bean instanceof ServiceCalc)
-			return new ServicePanel((ServiceCalc) bean);
+			return new ServiceCalcForm((ServiceCalc) bean);
 		return null;
 	}
 }

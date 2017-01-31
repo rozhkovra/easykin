@@ -40,10 +40,8 @@ public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCal
 				)
 				,(ServiceCalc)createServiceCalc("Январь 2017", 
 						Arrays.asList(
-//	  		  				createWaterCalc(487, 495, 379, 386, new Money(14.14), new Money(17.25), new Money(12.20))
 								createDefaultCalc(WATER, new Money(0.00), false)	
 								, createDefaultCalc(HOTWATER, new Money(0.00), false)
-//	    						, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
 								, createElectricityCalc(15429, 15429, new Money(3.56), new Money(0.0), false)
 								, createGazCalc(0.0, 0.0, new Money(80.06), false)
 								, createDefaultCalc(HEATING, new Money(1520.62), false)
