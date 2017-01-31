@@ -27,9 +27,9 @@ public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCal
 					Arrays.asList(
 //  		  				createWaterCalc(487, 495, 379, 386, new Money(14.14), new Money(17.25), new Money(12.20))
 							createDefaultCalc(WATER, new Money(1.22), true)	
-							, createDefaultCalc(HOTWATER, new Money(941.19), false)
+							, createDefaultCalc(HOTWATER, new Money(941.19), true)
 //    						, createHotWaterCalc(379, 386, new Money(78.95), new Money(15.12))
-							, createElectricityCalc(15332, 15429, new Money(3.56), new Money(0.0), false)
+							, createElectricityCalc(15332, 15429, new Money(3.56), new Money(0.0), true)
 							, createGazCalc(0.0, 0.0, new Money(80.06), true)
 							, createDefaultCalc(HEATING, new Money(1520.62), false)
 							, createDefaultCalc(REPAIR, new Money(341.03), false)
