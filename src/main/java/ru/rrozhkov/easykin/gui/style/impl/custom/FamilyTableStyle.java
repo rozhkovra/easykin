@@ -4,9 +4,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
-import ru.rrozhkov.easykin.model.family.IKinPerson;
+import ru.rrozhkov.easykin.model.person.IPerson;
 
-public class FamilyTableStyle extends TableStyle<IKinPerson> {
+public class FamilyTableStyle extends TableStyle<IPerson> {
 	public int[] getColumnAlignment() {
 		return new int[]{JLabel.CENTER,JLabel.LEFT,JLabel.LEFT,JLabel.LEFT,JLabel.CENTER};
 	}

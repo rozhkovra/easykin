@@ -10,6 +10,12 @@ public enum Sex {
         name = s;
     }
     
+    public static Sex sex(String s){
+    	if("M".equals(s))
+    		return MALE;
+    	return FEMALE;
+    }
+    
     public String toString() {
         return this.name;
     }

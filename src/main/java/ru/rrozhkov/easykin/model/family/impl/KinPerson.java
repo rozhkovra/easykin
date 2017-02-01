@@ -13,7 +13,7 @@ public class KinPerson extends Person implements IKinPerson{
 	
 	public KinPerson(String surname, String name, String secondName,
 			Date birthDate, Sex sex, KinType kinType) {
-		super(surname, name, secondName, birthDate, sex);
+		super(0, surname, name, secondName, birthDate, sex);
 		this.kinType = kinType; 
 	}
 

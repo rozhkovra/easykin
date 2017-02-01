@@ -7,13 +7,15 @@ import ru.rrozhkov.easykin.model.person.Sex;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class Person implements IPerson {
+	private int id;
 	private String surname;
 	private String name;
 	private String secondName;
 	private Date birthDate;
 	private Sex sex;
 	
-	public Person(String surname, String name, String secondName, Date birthDate, Sex sex) {	
+	public Person(int id, String surname, String name, String secondName, Date birthDate, Sex sex) {
+		this.id = id;
 		this.surname = surname;
 		this.name = name;
 		this.secondName = secondName;
@@ -46,5 +48,9 @@ public class Person implements IPerson {
 		return surname + ", " + name
 				+ ", " + secondName + ", " + DateUtil.format(birthDate)
 				+ ", " + sex;
+	}
+
+	public int getId() {
+		return id;
 	}
 }

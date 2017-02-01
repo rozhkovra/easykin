@@ -4,14 +4,17 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.db.CategoryHandler;
+import ru.rrozhkov.easykin.db.PersonHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 
 public class EasyKinContext {
 	private Collection<ICategory> categories;
 	private Collection<ITask> tasks;
+	private Collection<IPerson> persons;
 
 	public EasyKinContext() {
 	}
@@ -20,6 +23,7 @@ public class EasyKinContext {
 		try{
 			this.categories = CategoryHandler.select();
 			this.tasks = TaskHandler.select();
+			this.persons = PersonHandler.select();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -39,5 +43,9 @@ public class EasyKinContext {
 			Priority.IMPOTANT_NOFAST,
 			Priority.SIMPLE
 			};
+	}
+
+	public Collection<IPerson> persons() {
+		return persons;
 	}
 }

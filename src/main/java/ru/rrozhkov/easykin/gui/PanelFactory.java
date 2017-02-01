@@ -19,13 +19,14 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class PanelFactory {
-	private static JPanel createFamilyPanel(EasyKinWindow parent){		
-		return new TablePanel(parent, new Table(AllDataProvider.get(3).getData(), new FamilyStyle()));
+	private static JPanel createFamilyPanel(EasyKinWindow parent, Collection<IPerson> persons){		
+		return new TablePanel(parent, new Table(persons, new FamilyStyle()));
 	}
 	private static JPanel createChildPanel(EasyKinWindow parent){
 		return new TablePanel(parent, new Table(AllDataProvider.get(2).getData(), new FamilyStyle()));
@@ -70,7 +71,7 @@ public class PanelFactory {
 			}else if(category.getId()==2){
 				panel = createChildPanel(parent);
 			}else if(category.getId()==3){
-				panel = createFamilyPanel(parent);
+				panel = createFamilyPanel(parent, context.persons());
 			}else if(category.getId()==4){
 				panel = createAutoPanel(parent);
 			}else if(category.getId()==5){
