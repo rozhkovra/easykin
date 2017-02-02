@@ -8,9 +8,7 @@ import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 
 public class AllDataProvider {
 	public static Map<Integer, ICollectionDataProvider> providers = new HashMap<Integer, ICollectionDataProvider>(){{		
-		put(3, new StaticPersonDataProvider());
         put(4, new StaticServiceHistoryDataProvider());
-        put(2, new StaticChildDataProvider());
         put(6, new PaymentDataProvider(new StaticAutoServiceDataProvider()));	
         put(10, new StaticServiceDataProvider());
 	}};

@@ -11,11 +11,17 @@ import ru.rrozhkov.easykin.util.DateUtil;
 public class KinPerson extends Person implements IKinPerson{
 	private KinType kinType;
 	
-	public KinPerson(String surname, String name, String secondName,
+	public KinPerson(int id, String surname, String name, String secondName,
 			Date birthDate, Sex sex, KinType kinType) {
-		super(0, surname, name, secondName, birthDate, sex);
+		super(id, surname, name, secondName, birthDate, sex);
 		this.kinType = kinType; 
 	}
+	
+	public KinPerson(String surname, String name, String secondName,
+			Date birthDate, Sex sex, KinType kinType) {
+		this(0, surname, name, secondName, birthDate, sex, kinType); 
+	}
+
 
 	public KinType getKinType() {
 		return kinType;

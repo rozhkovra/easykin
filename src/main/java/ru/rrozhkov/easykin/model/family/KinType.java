@@ -12,6 +12,17 @@ public enum KinType {
         name = s;
     }
     
+    public static KinType kin(String s){
+    	if("F".equals(s))
+    		return FATHER;
+    	if("M".equals(s))
+    		return MOTHER;
+    	if("D".equals(s))
+    		return DAUGHTER;
+    	if("S".equals(s))
+    		return SUN;
+    	return null;
+    }
     public String toString() {
         return this.name;
     }

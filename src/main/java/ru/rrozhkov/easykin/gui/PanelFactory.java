@@ -19,17 +19,19 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.person.IPerson;
+import ru.rrozhkov.easykin.model.family.IKinPerson;
+import ru.rrozhkov.easykin.model.family.KinType;
+import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class PanelFactory {
-	private static JPanel createFamilyPanel(EasyKinWindow parent, Collection<IPerson> persons){		
-		return new TablePanel(parent, new Table(persons, new FamilyStyle()));
+	private static JPanel createFamilyPanel(EasyKinWindow parent, Collection<IKinPerson> collection){		
+		return new TablePanel(parent, new Table(collection, new FamilyStyle()));
 	}
-	private static JPanel createChildPanel(EasyKinWindow parent){
-		return new TablePanel(parent, new Table(AllDataProvider.get(2).getData(), new FamilyStyle()));
+	private static JPanel createChildPanel(EasyKinWindow parent, Collection<IKinPerson> collection){
+		return new TablePanel(parent, new Table(collection, new FamilyStyle()));
 	}
 	public static JPanel createAutoServicePanel(EasyKinWindow parent){
 		return new TablePanel(parent, new Table(AllDataProvider.get(4).getData(), new ServiceStyle()));
@@ -69,9 +71,9 @@ public class PanelFactory {
 			if(category.getId()==1){
 				 panel = createHomePanel(parent, FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyHomeFilter()));
 			}else if(category.getId()==2){
-				panel = createChildPanel(parent);
+				panel = createChildPanel(parent, FilterUtil.filter(context.kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
 			}else if(category.getId()==3){
-				panel = createFamilyPanel(parent, context.persons());
+				panel = createFamilyPanel(parent, context.kinPersons());
 			}else if(category.getId()==4){
 				panel = createAutoPanel(parent);
 			}else if(category.getId()==5){

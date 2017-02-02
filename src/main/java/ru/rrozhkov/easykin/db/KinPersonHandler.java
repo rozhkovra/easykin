@@ -5,18 +5,18 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.model.convert.IConverter;
-import ru.rrozhkov.easykin.model.person.IPerson;
-import ru.rrozhkov.easykin.model.person.impl.convert.DBPersonConverter;
+import ru.rrozhkov.easykin.model.family.IKinPerson;
+import ru.rrozhkov.easykin.model.family.impl.convert.DBKinPersonConverter;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
-public class PersonHandler {
-	public static String select = "select * from PERSON";
+public class KinPersonHandler {
+	public static String select = "select * from PERSON inner join KINPERSON on PERSON.id = KINPERSON.person";
 	
-	public static Collection<IPerson> select() throws SQLException {
+	public static Collection<IKinPerson> select() throws SQLException {
 		ResultSet result = null;
 		try{
-			Collection<IPerson> persons = CollectionUtil.<IPerson>create();
-			IConverter<ResultSet,IPerson> converter = new DBPersonConverter();
+			Collection<IKinPerson> persons = CollectionUtil.<IKinPerson>create();
+			IConverter<ResultSet,IKinPerson> converter = new DBKinPersonConverter();
 			result = DBManager.instance().executeQuery(select);
 			while(result.next()){
 				persons.add(converter.convert(result));
