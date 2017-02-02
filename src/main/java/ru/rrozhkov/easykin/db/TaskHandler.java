@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 
+import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.category.convert.DBCategoryConverter;
 import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
@@ -14,32 +16,14 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
-	public static String selectTasks = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
+	public static String select = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
 			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
 			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
 	
 	public static String newTaskId = "SELECT MAX(ID)+1 AS ID FROM TASK";
 
 	public static Collection<ITask> select() throws SQLException{
-		ResultSet result = null; 
-		try {
-			Collection<ITask> tasks = CollectionUtil.<ITask>create();
-			IConverter<ResultSet,ITask> converter = new DBTaskConverter();
-			result = DBManager.instance().executeQuery(selectTasks);
-			while(result.next()){
-				tasks.add(converter.convert(result));
-			}
-			return tasks;
-		} catch (Exception e) { 
-			throw new SQLException(e); 
-		} finally {
-			try {
-				if(result!=null)
-					result.close();
-			}catch (SQLException e) {
-				throw new SQLException(e);
-			}
-		}
+		return DBManager.instance().<ITask>select(select, new DBTaskConverter());
 	}
 	
 	public static int insert(ITask task) throws SQLException{

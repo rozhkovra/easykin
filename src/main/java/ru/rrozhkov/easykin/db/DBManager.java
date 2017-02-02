@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+
+import ru.rrozhkov.easykin.model.convert.IConverter;
+import ru.rrozhkov.easykin.util.CollectionUtil;
 
 public class DBManager {
 	private static DBManager dbManager;
@@ -18,33 +22,26 @@ public class DBManager {
     		dbManager = new DBManager();
     	return dbManager;
     }
-    
-    private Connection connect() throws ClassNotFoundException, SQLException{
-		if(connection==null || connection.isClosed()){
-			Class.forName("org.hsqldb.jdbc.JDBCDriver"); 
-			connection =  DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/easykin", "SA", "");
-		}
-		return connection;
-    }
-
-    private boolean disconnect() throws SQLException{
-    	if(connection!=null && !connection.isClosed()){
-    		connection.close();
-    		return true;
-    	}
-    	return false;
-    }
-    
-	public Statement openStatement() throws SQLException, ClassNotFoundException{
-		return connect().createStatement();
-	}
-
-	public boolean closeStatement(Statement stmt) throws SQLException{
-		if(stmt!=null && !stmt.isClosed()){
-			stmt.close();
-			return disconnect();
-		}
-		return false;
+	
+	public <T> Collection<T> select(String select, IConverter<ResultSet,T> converter) throws SQLException {
+		ResultSet result = null;
+		try {
+			Collection<T> collection = CollectionUtil.<T>create();
+			result = DBManager.instance().executeQuery(select);
+			while(result.next()){
+				collection.add((T)converter.convert(result));
+			}
+			return collection;
+		} catch (Exception e) { 
+			throw new SQLException(e); 
+		} finally {
+			try {
+				if(result!=null)
+					result.close();
+			}catch (SQLException e) {
+				throw new SQLException(e);			
+			}
+		} 
 	}
 	
 	public ResultSet executeQuery(String query) throws SQLException{
@@ -77,5 +74,33 @@ public class DBManager {
 				e.printStackTrace();
 			}
 		}		
+	}
+    
+    private Connection connect() throws ClassNotFoundException, SQLException{
+		if(connection==null || connection.isClosed()){
+			Class.forName("org.hsqldb.jdbc.JDBCDriver"); 
+			connection =  DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/easykin", "SA", "");
+		}
+		return connection;
+    }
+
+    private boolean disconnect() throws SQLException{
+    	if(connection!=null && !connection.isClosed()){
+    		connection.close();
+    		return true;
+    	}
+    	return false;
+    }
+    
+	private Statement openStatement() throws SQLException, ClassNotFoundException{
+		return connect().createStatement();
+	}
+
+	private boolean closeStatement(Statement stmt) throws SQLException{
+		if(stmt!=null && !stmt.isClosed()){
+			stmt.close();
+			return disconnect();
+		}
+		return false;
 	}
 }
