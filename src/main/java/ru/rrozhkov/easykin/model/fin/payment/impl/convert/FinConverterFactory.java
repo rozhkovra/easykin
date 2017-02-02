@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.model.fin.payment.convert.impl;
+package ru.rrozhkov.easykin.model.fin.payment.impl.convert;
 
 import java.util.Collection;
 
