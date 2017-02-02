@@ -5,25 +5,30 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 
-import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.category.convert.DBCategoryConverter;
-import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
-import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
 	public static String select = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
 			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
 			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
+
+	public static String selectForPerson = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
+			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
+			+" INNER JOIN TASK2PERSON ON TASK2PERSON.TASK = TASK.ID AND TASK2PERSON.PERSON=#person#"
+			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
 	
 	public static String newTaskId = "SELECT MAX(ID)+1 AS ID FROM TASK";
 
 	public static Collection<ITask> select() throws SQLException{
 		return DBManager.instance().<ITask>select(select, new DBTaskConverter());
+	}
+
+	public static Collection<ITask> selectForPerson(int id) throws SQLException{
+		return DBManager.instance().<ITask>select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
 	}
 	
 	public static int insert(ITask task) throws SQLException{

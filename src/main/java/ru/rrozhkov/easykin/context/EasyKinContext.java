@@ -30,7 +30,10 @@ public class EasyKinContext {
 	public void init(){
 		try{
 			this.categories = CategoryHandler.select();
-			this.tasks = TaskHandler.select();
+			if(person!=null)
+				this.tasks = TaskHandler.selectForPerson(person.getId());
+			else
+				this.tasks = TaskHandler.select();
 			this.persons = PersonHandler.select();
 			this.kinPersons = KinPersonHandler.select();
 		}catch(SQLException e){
