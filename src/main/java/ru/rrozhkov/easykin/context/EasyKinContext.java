@@ -14,12 +14,17 @@ import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 
 public class EasyKinContext {
+	private IPerson person;
 	private Collection<ICategory> categories;
 	private Collection<ITask> tasks;
 	private Collection<IPerson> persons;
 	private Collection<IKinPerson> kinPersons;
 
 	public EasyKinContext() {
+	}
+
+	public EasyKinContext(IPerson person) {
+		this.person = person;
 	}
 	
 	public void init(){

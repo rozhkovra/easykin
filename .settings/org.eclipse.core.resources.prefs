@@ -1,8 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/ru/rrozhkov/easykin/EasyKin.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticAutoServiceDataProvider.java=UTF-8
-encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticChildDataProvider.java=UTF-8
-encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticPersonDataProvider.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticServiceDataProvider.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/EasyKinWindow.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/PanelFactory.java=UTF-8
