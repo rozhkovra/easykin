@@ -12,6 +12,8 @@ import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
+	private static String TABLENAME = "TASK";
+	
 	public static String select = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
 			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
 			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
@@ -20,8 +22,6 @@ public class TaskHandler {
 			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
 			+" INNER JOIN TASK2PERSON ON TASK2PERSON.TASK = TASK.ID AND TASK2PERSON.PERSON=#person#"
 			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
-	
-	public static String newTaskId = "SELECT MAX(ID)+1 AS ID FROM TASK";
 
 	public static Collection<ITask> select() throws SQLException{
 		return DBManager.instance().<ITask>select(select, new DBTaskConverter());
@@ -32,14 +32,8 @@ public class TaskHandler {
 	}
 	
 	public static int insert(ITask task) throws SQLException{
-		ResultSet result = null;
 		try {
-			int id = -1;
-			DBManager dbManager = DBManager.instance();
-			result = dbManager.executeQuery(newTaskId);
-			while(result.next()){
-				id = result.getInt("ID");
-			}		          			
+			int id = DBManager.instance().nextId(TABLENAME);
 			StringBuilder builder = new StringBuilder("INSERT INTO TASK(ID, NAME, CREATEDATE, PLANDATE, PRIORITYID, CATEGORYID, CLOSEDATE, STATUSID)")
 				.append(" VALUES(")
 				.append(id).append(",")
@@ -51,19 +45,11 @@ public class TaskHandler {
 				.append("NULL,")
 				.append(Status.status(task.getStatus()))
 				.append(")");
-			dbManager.executeUpdate(builder.toString());
+			DBManager.instance().executeUpdate(builder.toString());
 			return id;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
-		} finally {
-			try {
-				if(result!=null)
-					result.close();
-			}catch (SQLException e) {
-				throw new SQLException(e);
-			}
-		} 
-
+		}
 	}
 	
 	public static int update(ITask task) throws SQLException{

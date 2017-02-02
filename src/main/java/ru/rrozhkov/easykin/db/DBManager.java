@@ -13,6 +13,7 @@ import ru.rrozhkov.easykin.util.CollectionUtil;
 public class DBManager {
 	private static DBManager dbManager;
     private Connection connection;
+	private static String nextId = "SELECT MAX(ID)+1 AS ID FROM #table#";
     
     private DBManager(){    	
     }
@@ -21,6 +22,27 @@ public class DBManager {
     	if(dbManager==null)
     		dbManager = new DBManager();
     	return dbManager;
+    }
+    
+    public int nextId(String tableName) throws SQLException {
+		ResultSet result = null;
+		try {
+			int id = -1;
+			result = DBManager.instance().executeQuery(nextId.replace("#table#", tableName));
+			while(result.next()){
+				id = result.getInt("ID");
+			}
+			return id;
+		} catch (Exception e) { 
+			throw new SQLException(e); 
+		} finally {
+			try {
+				if(result!=null)
+					result.close();
+			}catch (SQLException e) {
+				throw new SQLException(e);
+			}
+		}
     }
 	
 	public <T> Collection<T> select(String select, IConverter<ResultSet,T> converter) throws SQLException {
