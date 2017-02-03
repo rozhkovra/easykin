@@ -20,7 +20,7 @@ import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.util.CollectionUtil;
 
-public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCalc> {
+public class StaticServiceCalcDataProvider extends CollectionDataProvider<ServiceCalc> {
 
 	private static Collection<ServiceCalc> serviceCalcs = Arrays.asList(
 				(ServiceCalc)createServiceCalc("Декабрь 2016", 
@@ -52,7 +52,7 @@ public class StaticServiceDataProvider extends CollectionDataProvider<ServiceCal
 								)
 					)
 			);
-	public StaticServiceDataProvider() {
+	public StaticServiceCalcDataProvider() {
 		super(CollectionUtil.<ServiceCalc>copy(serviceCalcs));
 	}
 }

@@ -10,7 +10,7 @@ public class AllDataProvider {
 	public static Map<Integer, ICollectionDataProvider> providers = new HashMap<Integer, ICollectionDataProvider>(){{		
         put(4, new StaticServiceHistoryDataProvider());
         put(6, new PaymentDataProvider(new StaticAutoServiceDataProvider()));	
-        put(10, new StaticServiceDataProvider());
+        put(10, new StaticServiceCalcDataProvider());
 	}};
 	
 	public static void put(Integer id, ICollectionDataProvider provider){

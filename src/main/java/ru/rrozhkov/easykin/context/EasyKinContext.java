@@ -3,13 +3,19 @@ package ru.rrozhkov.easykin.context;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
+import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.KinPersonHandler;
 import ru.rrozhkov.easykin.db.PersonHandler;
 import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.model.auto.ICar;
+import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.family.IKinPerson;
+import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.person.IPerson;
+import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 
@@ -19,6 +25,10 @@ public class EasyKinContext {
 	private Collection<ITask> tasks;
 	private Collection<IPerson> persons;
 	private Collection<IKinPerson> kinPersons;
+	private Collection<IPayment> payments;
+	private Collection<IService> services;
+	private Collection<ServiceCalc> calcServices;
+	private ICar car;
 
 	public EasyKinContext() {
 	}
@@ -36,6 +46,10 @@ public class EasyKinContext {
 				this.tasks = TaskHandler.select();
 			this.persons = PersonHandler.select();
 			this.kinPersons = KinPersonHandler.select();
+			this.car = ((SingleCollectionDataProvider<IService, ICar>)AllDataProvider.get(4)).getSingleData();
+			this.services = AllDataProvider.get(4).getData();
+			this.payments = AllDataProvider.get(6).getData();
+			this.calcServices = AllDataProvider.get(10).getData();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -63,5 +77,21 @@ public class EasyKinContext {
 
 	public Collection<IKinPerson> kinPersons() {
 		return kinPersons;
+	}
+
+	public Collection<IPayment> payments() {
+		return payments;
+	}
+
+	public Collection<IService> services() {
+		return services;
+	}
+
+	public ICar car() {
+		return car;
+	}
+
+	public Collection<ServiceCalc> calcs() {
+		return calcServices;
 	}
 }

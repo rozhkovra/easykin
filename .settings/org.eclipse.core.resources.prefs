@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/ru/rrozhkov/easykin/EasyKin.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticAutoServiceDataProvider.java=UTF-8
-encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticServiceDataProvider.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticServiceCalcDataProvider.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/EasyKinWindow.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/PanelFactory.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/auto/CarForm.java=UTF-8
@@ -21,6 +21,7 @@ encoding//src/main/java/ru/rrozhkov/easykin/model/category/Category.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/doc/DocType.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/family/KinType.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/fin/Money.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/model/fin/Status.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/fin/payment/PaymentCategory.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/person/Sex.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/model/service/calc/CalculationType.java=UTF-8

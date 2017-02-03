@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.model.fin.payment.impl;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.Status;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 
@@ -11,12 +12,14 @@ public class Payment implements IPayment {
 	protected String comment;
 	protected Money amount;
 	protected Date date;
+	protected Status status;
 	
-	public Payment(PaymentCategory category, String comment, Money amount, Date date) {
+	public Payment(PaymentCategory category, String comment, Money amount, Date date, Status status) {
 		this.category = category;
 		this.comment = comment;
 		this.amount = amount;
 		this.date = date;
+		this.status = status;
 	}
 
 	public PaymentCategory getCategory() {
@@ -33,5 +36,9 @@ public class Payment implements IPayment {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public Status getStatus() {
+		return status;
 	}
 }
