@@ -59,8 +59,8 @@ public class PanelFactory {
 		return new AutoPanel(parent, context);
 	}
 	
-	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
-		Map<String, JPanel> panels = new HashMap<String, JPanel>();
+	public static Map<ICategory, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
+		Map<ICategory, JPanel> panels = new HashMap<ICategory, JPanel>();
 		for(ICategory category : context.categories()){
 			JPanel panel = null;
 			if(category.getId()==1){
@@ -84,7 +84,7 @@ public class PanelFactory {
 			}else if(category.getId()==10){
 				panel = createServicePanel(parent, context);
 			}
-			panels.put(category.getName(),panel);
+			panels.put(category,panel);
 		}
         return panels;
 	}

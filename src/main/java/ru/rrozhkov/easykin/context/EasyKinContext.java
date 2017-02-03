@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
-import ru.rrozhkov.easykin.data.impl.stat.StaticAutoServiceDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;

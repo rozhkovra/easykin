@@ -92,9 +92,9 @@ public class EasyKinWindow extends JFrame{
 	
 	private void fillTabbedPane(){
         tabbedPane.removeAll();
-		Map<String, JPanel> panels = createPanels(this, context);
-        for(String key : panels.keySet()) {
-        	tabbedPane.addTab(key, panels.get(key));
+		Map<ICategory, JPanel> panels = createPanels(this, context);
+        for(ICategory key : panels.keySet()) {
+        	tabbedPane.addTab(key.getName(), panels.get(key));
         }
 	}
 }
