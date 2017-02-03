@@ -13,7 +13,6 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
-import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
@@ -44,6 +43,12 @@ public class PanelFactory {
 	private static JPanel createPaymentPanel(EasyKinWindow parent, EasyKinContext context) {
 		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)), new PaymentStyle()));
 	}
+	private static JPanel createTaskPanel(EasyKinWindow parent, EasyKinContext context){
+		return new TablePanel(parent, new Table(context.tasks(), new TaskStyle()));
+	}
+	public static JPanel createServicePanel(EasyKinWindow parent, EasyKinContext context){
+		return new TablePanel(parent, new Table(context.calcs(), new ServiceCalcStyle()));
+	}
 	private static JPanel createDocPanel() {
 		return new JPanel();
 	}
@@ -54,12 +59,6 @@ public class PanelFactory {
 		return new AutoPanel(parent, context);
 	}
 	
-	public static JPanel createTaskPanel(EasyKinWindow parent, EasyKinContext context){
-		return new TablePanel(parent, new Table(context.tasks(), new TaskStyle()));
-	}
-	public static JPanel createServicePanel(EasyKinWindow parent, EasyKinContext context){
-		return new TablePanel(parent, new Table(context.calcs(), new ServiceCalcStyle()));
-	}
 	public static Map<String, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
 		Map<String, JPanel> panels = new HashMap<String, JPanel>();
 		for(ICategory category : context.categories()){

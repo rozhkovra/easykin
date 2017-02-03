@@ -52,8 +52,8 @@ public class EasyKinContext {
 			this.kinPersons = KinPersonHandler.select();
 			this.car = autoProvider.getSingleData();
 			this.services = autoProvider.getData();
-			this.payments = new PaymentDataProvider(new StaticAutoServiceDataProvider()).getData();
 			this.calcServices = new StaticServiceCalcDataProvider().getData();
+			this.payments = new PaymentDataProvider(services,calcServices).getData();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

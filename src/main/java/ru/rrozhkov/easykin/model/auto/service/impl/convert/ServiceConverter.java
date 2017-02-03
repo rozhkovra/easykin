@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.model.fin.payment.impl.convert;
+package ru.rrozhkov.easykin.model.auto.service.impl.convert;
 
 import static ru.rrozhkov.easykin.model.fin.payment.impl.PaymentFactory.createDetailPayment;
 import static ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory.createNoFreeFilter;
