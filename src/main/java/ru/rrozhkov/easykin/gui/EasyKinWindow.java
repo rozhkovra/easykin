@@ -73,16 +73,15 @@ public class EasyKinWindow extends JFrame{
 	public void edit(int index){
         if(getContentPane().getComponentCount()>1)
 			return;
-		int currentTabIndex = tabbedPane.getSelectedIndex();
-		ICategory currentCategory = ContextUtil.getCategoryByTabIndex(context, tabbedPane, currentTabIndex);
+		ICategory currentCategory = ContextUtil.getCurrentCategory(context, tabbedPane);
         Object obj = context.getObjByIndex(currentCategory, index);
-        JPanel content1 = new JPanel(new BorderLayout());
+        JPanel content = new JPanel(new BorderLayout());
         JPanel formPanel = FormFactory.getFormPanel(context, this, currentCategory, obj);
-        content1.add(formPanel,BorderLayout.NORTH);
+        content.add(formPanel,BorderLayout.NORTH);
 
         getContentPane().setLayout(new GridLayout(1,2));
     	getContentPane().add(getContentPane().getComponent(0));
-        getContentPane().add(content1);
+        getContentPane().add(content);
 	}
 	
 	private void fillTabbedPane(){
