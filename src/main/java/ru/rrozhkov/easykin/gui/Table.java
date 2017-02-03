@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.JTable;
 
@@ -31,11 +30,5 @@ public class Table extends JTable{
 	@Override
 	public String getColumnName(int col) {
 	    return style.tableStyle().getColumnNames()[col];
-	}
-	
-	public Object getObjByIndex(int index){
-		if(index > data.size()-1 || index < 0)
-			return null;		
-		return ((List)data).get(index);
 	}
 }

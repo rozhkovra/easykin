@@ -1,7 +1,5 @@
 package ru.rrozhkov.easykin.gui;
 
-import java.util.Map;
-
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
