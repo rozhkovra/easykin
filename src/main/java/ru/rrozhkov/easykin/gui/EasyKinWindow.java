@@ -1,6 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
-import static ru.rrozhkov.easykin.gui.PanelFactory.createPanels;
+import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -77,11 +77,7 @@ public class EasyKinWindow extends JFrame{
 			return;
 		int currentTabIndex = tabbedPane.getSelectedIndex();
 		ICategory currentCategory = ContextUtil.getCategoryByTabIndex(context, tabbedPane, currentTabIndex);
-        Object obj = null;
-       	JPanel panel = (JPanel)tabbedPane.getComponentAt(currentTabIndex);
-      	if(panel instanceof TablePanel){
-       		obj = ((TablePanel)panel).getObjByIndex(index);
-       	}
+        Object obj = context.getObjByIndex(currentCategory, index);
         JPanel content1 = new JPanel(new BorderLayout());
         JPanel formPanel = FormFactory.getFormPanel(context, this, currentCategory, obj);
         content1.add(formPanel,BorderLayout.NORTH);
@@ -93,9 +89,8 @@ public class EasyKinWindow extends JFrame{
 	
 	private void fillTabbedPane(){
         tabbedPane.removeAll();
-		Map<ICategory, JPanel> panels = createPanels(this, context);
-        for(ICategory key : context.categories()) {
-        	tabbedPane.addTab(key.getName(), panels.get(key));
+        for(ICategory category : context.categories()) {
+        	tabbedPane.addTab(category.getName(), createPanel(this, context, category));
         }
 	}
 }

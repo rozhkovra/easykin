@@ -2,6 +2,9 @@ package ru.rrozhkov.easykin.context;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
@@ -14,12 +17,20 @@ import ru.rrozhkov.easykin.db.TaskHandler;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.doc.IDoc;
 import ru.rrozhkov.easykin.model.family.IKinPerson;
+import ru.rrozhkov.easykin.model.family.KinType;
+import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
+import ru.rrozhkov.easykin.model.fin.Status;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
+import ru.rrozhkov.easykin.util.CollectionUtil;
+import ru.rrozhkov.easykin.util.FilterUtil;
 
 public class EasyKinContext {
 	private IPerson person;
@@ -31,6 +42,7 @@ public class EasyKinContext {
 	private Collection<IService> services;
 	private Collection<ServiceCalc> calcServices;
 	private ICar car;
+	private Map<ICategory, Collection> categoryData = new HashMap<ICategory, Collection>();
 
 	public EasyKinContext() {
 	}
@@ -56,7 +68,42 @@ public class EasyKinContext {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		initCategoryData();
 	}
+
+	private void initCategoryData() {
+		categoryData.clear();
+		for(ICategory category : categories){
+			if(category.getId()==1){
+				categoryData.put(category, FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyHomeFilter()));
+			}else if(category.getId()==2){
+				categoryData.put(category, FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
+			}else if(category.getId()==3){
+				categoryData.put(category, kinPersons());
+			}else if(category.getId()==4){
+				categoryData.put(category, services());
+			}else if(category.getId()==5){
+				categoryData.put(category, FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.PLAN)));
+			}else if(category.getId()==6){
+				categoryData.put(category, FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)));
+			}else if(category.getId()==7){
+				categoryData.put(category, CollectionUtil.<IDoc>create());
+			}else if(category.getId()==8){
+				categoryData.put(category, FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyWorkFilter()));
+			}else if(category.getId()==9){
+				categoryData.put(category, tasks());
+			}else if(category.getId()==10){
+				categoryData.put(category, calcs());
+			}
+		}
+	}
+	
+	public Object getObjByIndex(ICategory category, int index){
+		if(index > categoryData.get(category).size()-1 || index < 0)
+			return null;		
+		return ((List)categoryData.get(category)).get(index);
+	}
+
 
 	public Collection<ICategory> categories() {
 		return categories;

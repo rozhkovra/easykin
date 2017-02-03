@@ -21,7 +21,4 @@ public class TablePanel extends JPanel {
 		add(js);
 		table.getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,table));
 	}
-	public Object getObjByIndex(int index) {
-		return table.getObjByIndex(index);
-	}
 }

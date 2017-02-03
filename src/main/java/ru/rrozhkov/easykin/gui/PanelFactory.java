@@ -1,6 +1,5 @@
 package ru.rrozhkov.easykin.gui;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -59,33 +58,28 @@ public class PanelFactory {
 		return new AutoPanel(parent, context);
 	}
 	
-	public static Map<ICategory, JPanel> createPanels(EasyKinWindow parent, EasyKinContext context){
-		Map<ICategory, JPanel> panels = new HashMap<ICategory, JPanel>();
-		for(ICategory category : context.categories()){
-			JPanel panel = null;
-			if(category.getId()==1){
-				 panel = createHomePanel(parent, context);
-			}else if(category.getId()==2){
-				panel = createChildPanel(parent, context);
-			}else if(category.getId()==3){
-				panel = createFamilyPanel(parent, context);
-			}else if(category.getId()==4){
-				panel = createAutoPanel(parent, context);
-			}else if(category.getId()==5){
-				panel = createFinPanel(parent, context);
-			}else if(category.getId()==6){
-				panel = createPaymentPanel(parent, context);
-			}else if(category.getId()==7){
-				panel = createDocPanel();
-			}else if(category.getId()==8){
-				panel = createWorkPanel(parent, context);
-			}else if(category.getId()==9){
-				panel = createTaskPanel(parent, context);
-			}else if(category.getId()==10){
-				panel = createServicePanel(parent, context);
-			}
-			panels.put(category,panel);
+	public static JPanel createPanel(EasyKinWindow parent, EasyKinContext context, ICategory category){
+		if(category.getId()==1){
+			 return createHomePanel(parent, context);
+		}else if(category.getId()==2){
+			return createChildPanel(parent, context);
+		}else if(category.getId()==3){
+			return createFamilyPanel(parent, context);
+		}else if(category.getId()==4){
+			return createAutoPanel(parent, context);
+		}else if(category.getId()==5){
+			return createFinPanel(parent, context);
+		}else if(category.getId()==6){
+			return createPaymentPanel(parent, context);
+		}else if(category.getId()==7){
+			return createDocPanel();
+		}else if(category.getId()==8){
+			return createWorkPanel(parent, context);
+		}else if(category.getId()==9){
+			return createTaskPanel(parent, context);
+		}else if(category.getId()==10){
+			return createServicePanel(parent, context);
 		}
-        return panels;
+        return new JPanel();
 	}
 }
