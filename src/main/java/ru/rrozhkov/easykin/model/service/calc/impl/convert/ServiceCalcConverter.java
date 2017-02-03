@@ -17,15 +17,13 @@ public class ServiceCalcConverter implements
 	public Collection<IPayment> convert(Collection<ServiceCalc> entries) {
 		Collection<IPayment> payments = CollectionUtil.<IPayment>create();
 		for(ServiceCalc calc : entries){
-			if(!calc.isPaid()){
-				for(ICalculation c : calc.calcs()){
-					payments.add(
-						PaymentFactory.createServiceCalcPayment(
-								calc.getName()+" "+c.getType()
-								, CalculatorFactory.getCalculator(c).calculate().getResult()
-								, new Date(), c.isPaid())
-						);
-				}
+			for(ICalculation c : calc.calcs()){
+				payments.add(
+					PaymentFactory.createServiceCalcPayment(
+							calc.getName()+" "+c.getType()
+							, CalculatorFactory.getCalculator(c).calculate().getResult()
+							, new Date(), c.isPaid())
+					);
 			}
 		}
 		return payments;
