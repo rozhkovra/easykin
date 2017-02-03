@@ -3,8 +3,11 @@ package ru.rrozhkov.easykin.context;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
-import ru.rrozhkov.easykin.data.impl.stat.AllDataProvider;
+import ru.rrozhkov.easykin.data.impl.stat.StaticAutoServiceDataProvider;
+import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
+import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
 import ru.rrozhkov.easykin.db.CategoryHandler;
 import ru.rrozhkov.easykin.db.KinPersonHandler;
 import ru.rrozhkov.easykin.db.PersonHandler;
@@ -39,6 +42,7 @@ public class EasyKinContext {
 	
 	public void init(){
 		try{
+			SingleCollectionDataProvider<IService, ICar> autoProvider = new StaticServiceHistoryDataProvider();
 			this.categories = CategoryHandler.select();
 			if(person!=null)
 				this.tasks = TaskHandler.selectForPerson(person.getId());
@@ -46,10 +50,10 @@ public class EasyKinContext {
 				this.tasks = TaskHandler.select();
 			this.persons = PersonHandler.select();
 			this.kinPersons = KinPersonHandler.select();
-			this.car = ((SingleCollectionDataProvider<IService, ICar>)AllDataProvider.get(4)).getSingleData();
-			this.services = AllDataProvider.get(4).getData();
-			this.payments = AllDataProvider.get(6).getData();
-			this.calcServices = AllDataProvider.get(10).getData();
+			this.car = autoProvider.getSingleData();
+			this.services = autoProvider.getData();
+			this.payments = new PaymentDataProvider(new StaticAutoServiceDataProvider()).getData();
+			this.calcServices = new StaticServiceCalcDataProvider().getData();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
