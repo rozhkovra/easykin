@@ -8,6 +8,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 import java.util.Map;
 
 import javax.swing.JFrame;
@@ -93,7 +94,7 @@ public class EasyKinWindow extends JFrame{
 	private void fillTabbedPane(){
         tabbedPane.removeAll();
 		Map<ICategory, JPanel> panels = createPanels(this, context);
-        for(ICategory key : panels.keySet()) {
+        for(ICategory key : context.categories()) {
         	tabbedPane.addTab(key.getName(), panels.get(key));
         }
 	}
