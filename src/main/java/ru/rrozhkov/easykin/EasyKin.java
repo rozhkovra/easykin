@@ -6,10 +6,10 @@ import ru.rrozhkov.easykin.gui.EasyKinWindow;
 public class EasyKin 
 {
     public static void main( String[] args ) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+    	final EasyKinContext context = new EasyKinContext();
+    	context.init();
+    	javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	EasyKinContext context = new EasyKinContext();
-            	context.init();
                 new EasyKinWindow(context);   
             }   
         });
