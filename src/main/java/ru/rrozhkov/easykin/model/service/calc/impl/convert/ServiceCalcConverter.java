@@ -19,14 +19,12 @@ public class ServiceCalcConverter implements
 		for(ServiceCalc calc : entries){
 			if(!calc.isPaid()){
 				for(ICalculation c : calc.calcs()){
-					if(!calc.isPaid()){
-						payments.add(
-							PaymentFactory.createServiceCalcPayment(
-									calc.getName()+" "+c.getType()
-									, CalculatorFactory.getCalculator(c).calculate().getResult()
-									, new Date())
-							);
-					}
+					payments.add(
+						PaymentFactory.createServiceCalcPayment(
+								calc.getName()+" "+c.getType()
+								, CalculatorFactory.getCalculator(c).calculate().getResult()
+								, new Date(), c.isPaid())
+						);
 				}
 			}
 		}

@@ -21,7 +21,9 @@ public class PaymentFactory {
 	public static IPayment createDetailPayment(String comment, Money amount, Date date){
 		return new Payment(AUTODETAIL, comment,amount,date,Status.FACT);
 	}
-	public static IPayment createServiceCalcPayment(String comment, Money amount, Date date){
+	public static IPayment createServiceCalcPayment(String comment, Money amount, Date date, boolean isPaid){
+		if(isPaid)
+			return new Payment(SERVICE, comment,amount,date,Status.FACT);
 		return new Payment(SERVICE, comment,amount,date,Status.PLAN);
 	}
 }
