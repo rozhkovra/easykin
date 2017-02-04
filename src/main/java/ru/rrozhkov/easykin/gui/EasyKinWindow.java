@@ -82,6 +82,7 @@ public class EasyKinWindow extends JFrame{
         getContentPane().setLayout(new GridLayout(1,2));
     	getContentPane().add(getContentPane().getComponent(0));
         getContentPane().add(content);
+        getContentPane().validate();
 	}
 	
 	private void fillTabbedPane(){
