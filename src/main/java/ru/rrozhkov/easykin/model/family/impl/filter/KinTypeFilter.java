@@ -1,8 +1,8 @@
 package ru.rrozhkov.easykin.model.family.impl.filter;
 
-import ru.rrozhkov.easykin.filter.IFilter;
 import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.model.family.KinType;
+import ru.rrozhkov.lib.filter.IFilter;
 
 public class KinTypeFilter implements IFilter<IKinPerson>{
 	private KinType[] kinTypes;

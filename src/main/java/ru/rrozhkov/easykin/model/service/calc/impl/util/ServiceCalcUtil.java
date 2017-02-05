@@ -10,7 +10,7 @@ import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.filter.ServiceCalcFilterFactory;
-import ru.rrozhkov.easykin.util.FilterUtil;
+import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class ServiceCalcUtil {
 	public static ICalculation getCalcByType(ServiceCalc entry, CalculationType type){

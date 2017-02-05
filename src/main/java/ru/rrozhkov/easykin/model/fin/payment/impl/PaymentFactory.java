@@ -8,8 +8,8 @@ import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.AUTOREPAIR;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.fin.Money;
-import ru.rrozhkov.easykin.model.fin.Status;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.fin.payment.Status;
 
 public class PaymentFactory {
 	public static IPayment createAutoPayment(String comment, Money amount, Date date){

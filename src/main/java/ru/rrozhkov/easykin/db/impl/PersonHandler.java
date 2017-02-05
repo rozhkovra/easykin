@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.db;
+package ru.rrozhkov.easykin.db.impl;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -10,6 +10,6 @@ public class PersonHandler {
 	public static String select = "select * from PERSON";
 	
 	public static Collection<IPerson> select() throws SQLException {
-		return DBManager.instance().<IPerson>select(select,new DBPersonConverter());
+		return EasyKinDBManager.instance().<IPerson>select(select,new DBPersonConverter());
 	}
 }

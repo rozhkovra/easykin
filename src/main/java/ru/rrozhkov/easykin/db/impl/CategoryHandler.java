@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.db;
+package ru.rrozhkov.easykin.db.impl;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -10,6 +10,6 @@ public class CategoryHandler {
 	public static String select = "SELECT * FROM category ORDER BY ID";
 	
 	public static Collection<ICategory> select() throws SQLException{
-		return DBManager.instance().<ICategory>select(select, new DBCategoryConverter());
+		return EasyKinDBManager.instance().<ICategory>select(select, new DBCategoryConverter());
 	}
 }

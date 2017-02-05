@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.db;
+package ru.rrozhkov.easykin.db.impl;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -10,6 +10,6 @@ public class KinPersonHandler {
 	public static String select = "select * from PERSON inner join KINPERSON on PERSON.id = KINPERSON.person";
 	
 	public static Collection<IKinPerson> select() throws SQLException {
-		return DBManager.instance().<IKinPerson>select(select,new DBKinPersonConverter());
+		return EasyKinDBManager.instance().<IKinPerson>select(select,new DBKinPersonConverter());
 	}
 }

@@ -3,8 +3,8 @@ package ru.rrozhkov.easykin.model.category.convert;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.convert.IConverter;
-import ru.rrozhkov.easykin.util.CollectionUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
+import ru.rrozhkov.lib.convert.IConverter;
 
 public class ArrayCategoryConverter implements IConverter<Collection<ICategory>, String[]> {
 

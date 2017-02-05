@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import ru.rrozhkov.easykin.model.category.CategoryFactory;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.convert.IConverter;
+import ru.rrozhkov.lib.convert.IConverter;
 
 public class DBCategoryConverter implements IConverter<ResultSet, ICategory> {
 

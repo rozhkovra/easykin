@@ -5,8 +5,8 @@ import java.util.Date;
 
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.fin.Money;
-import ru.rrozhkov.easykin.util.CollectionUtil;
 import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
 
 public class Service implements IService{
 	private String name;

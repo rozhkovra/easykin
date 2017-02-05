@@ -3,7 +3,7 @@ package ru.rrozhkov.easykin.gui.style.impl;
 import java.util.Collection;
 
 import ru.rrozhkov.easykin.gui.style.ICollectionConverter;
-import ru.rrozhkov.easykin.util.CollectionUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
 
 public abstract class CollectionConverter<E> implements ICollectionConverter<E>{
 	private int colSize;

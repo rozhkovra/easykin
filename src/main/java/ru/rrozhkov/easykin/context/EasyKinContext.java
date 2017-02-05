@@ -7,13 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
-import ru.rrozhkov.easykin.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
-import ru.rrozhkov.easykin.db.CategoryHandler;
-import ru.rrozhkov.easykin.db.KinPersonHandler;
-import ru.rrozhkov.easykin.db.PersonHandler;
-import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.db.impl.CategoryHandler;
+import ru.rrozhkov.easykin.db.impl.KinPersonHandler;
+import ru.rrozhkov.easykin.db.impl.PersonHandler;
+import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
@@ -21,16 +20,17 @@ import ru.rrozhkov.easykin.model.doc.IDoc;
 import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
-import ru.rrozhkov.easykin.model.fin.Status;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.fin.payment.Status;
 import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
-import ru.rrozhkov.easykin.util.CollectionUtil;
-import ru.rrozhkov.easykin.util.FilterUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
+import ru.rrozhkov.lib.data.impl.SingleCollectionDataProvider;
+import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class EasyKinContext {
 	private IPerson person;

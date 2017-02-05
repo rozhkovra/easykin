@@ -13,10 +13,10 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
-import ru.rrozhkov.easykin.model.fin.Status;
+import ru.rrozhkov.easykin.model.fin.payment.Status;
 import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
-import ru.rrozhkov.easykin.util.FilterUtil;
+import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class PanelFactory {
 	private static JPanel createFamilyPanel(EasyKinWindow parent, EasyKinContext context){		

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
-import ru.rrozhkov.easykin.db.TaskHandler;
+import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;

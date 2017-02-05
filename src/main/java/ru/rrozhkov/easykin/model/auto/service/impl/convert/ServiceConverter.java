@@ -7,11 +7,11 @@ import java.util.Collection;
 
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.RepairService;
-import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.impl.PaymentFactory;
-import ru.rrozhkov.easykin.util.CollectionUtil;
-import ru.rrozhkov.easykin.util.FilterUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
+import ru.rrozhkov.lib.convert.IConverter;
+import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class ServiceConverter implements IConverter<Collection<IService>,Collection<IPayment>> {
 	public Collection<IPayment> convert(Collection<IService> entries) {

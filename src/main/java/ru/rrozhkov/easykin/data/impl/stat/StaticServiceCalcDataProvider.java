@@ -15,10 +15,10 @@ import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createServ
 import java.util.Arrays;
 import java.util.Collection;
 
-import ru.rrozhkov.easykin.data.impl.CollectionDataProvider;
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
-import ru.rrozhkov.easykin.util.CollectionUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
+import ru.rrozhkov.lib.data.impl.CollectionDataProvider;
 
 public class StaticServiceCalcDataProvider extends CollectionDataProvider<ServiceCalc> {
 

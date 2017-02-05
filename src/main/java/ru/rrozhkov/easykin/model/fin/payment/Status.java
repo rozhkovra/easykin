@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.model.fin;
+package ru.rrozhkov.easykin.model.fin.payment;
 
 
 public enum Status {

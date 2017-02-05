@@ -2,8 +2,8 @@ package ru.rrozhkov.easykin.model.auto.service.impl.filter;
 
 import java.util.Date;
 
-import ru.rrozhkov.easykin.filter.IFilter;
 import ru.rrozhkov.easykin.model.auto.service.IService;
+import ru.rrozhkov.lib.filter.IFilter;
 
 public class DateFilter implements IFilter<IService>{
 	private Date start;

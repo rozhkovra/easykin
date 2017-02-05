@@ -2,10 +2,10 @@ package ru.rrozhkov.easykin.model.person.impl.convert;
 
 import java.sql.ResultSet;
 
-import ru.rrozhkov.easykin.model.convert.IConverter;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.person.Sex;
 import ru.rrozhkov.easykin.model.person.impl.PersonFactory;
+import ru.rrozhkov.lib.convert.IConverter;
 
 public class DBPersonConverter implements IConverter<ResultSet, IPerson> {
 

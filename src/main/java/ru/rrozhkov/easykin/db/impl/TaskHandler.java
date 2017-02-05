@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.db;
+package ru.rrozhkov.easykin.db.impl;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -23,16 +23,16 @@ public class TaskHandler {
 			+" ORDER BY TASK.STATUSID, TASK.PLANDATE, TASK.PRIORITYID, TASK.CATEGORYID";
 
 	public static Collection<ITask> select() throws SQLException{
-		return DBManager.instance().<ITask>select(select, new DBTaskConverter());
+		return EasyKinDBManager.instance().<ITask>select(select, new DBTaskConverter());
 	}
 
 	public static Collection<ITask> selectForPerson(int id) throws SQLException{
-		return DBManager.instance().<ITask>select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
+		return EasyKinDBManager.instance().<ITask>select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
 	}
 	
 	public static int insert(ITask task) throws SQLException{
 		try {
-			int id = DBManager.instance().nextId(TABLENAME);
+			int id = EasyKinDBManager.instance().nextId(TABLENAME);
 			StringBuilder builder = new StringBuilder("INSERT INTO TASK(ID, NAME, CREATEDATE, PLANDATE, PRIORITYID, CATEGORYID, CLOSEDATE, STATUSID)")
 				.append(" VALUES(")
 				.append(id).append(",")
@@ -44,7 +44,7 @@ public class TaskHandler {
 				.append("NULL,")
 				.append(Status.status(task.getStatus()))
 				.append(")");
-			DBManager.instance().executeUpdate(builder.toString());
+			EasyKinDBManager.instance().executeUpdate(builder.toString());
 			return id;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
@@ -59,7 +59,7 @@ public class TaskHandler {
 				.append(" PRIORITYID=").append(Priority.priority(task.getPriority())).append(",")
 				.append(" CATEGORYID=").append(task.getCategory().getId())
 				.append(" WHERE ID=").append(task.getId());
-			int count = DBManager.instance().executeUpdate(builder.toString());
+			int count = EasyKinDBManager.instance().executeUpdate(builder.toString());
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
@@ -73,7 +73,7 @@ public class TaskHandler {
 				.append(" CLOSEDATE=").append("\'").append(DateUtil.formatSql(new Date())).append("\'").append(",")
 				.append(" STATUSID=").append(Status.status(Status.CLOSE))
 				.append(" WHERE ID=").append(task.getId());
-			int count = DBManager.instance().executeUpdate(builder.toString());
+			int count = EasyKinDBManager.instance().executeUpdate(builder.toString());
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
