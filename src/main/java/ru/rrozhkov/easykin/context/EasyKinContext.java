@@ -121,6 +121,13 @@ public class EasyKinContext {
 			};
 	}
 
+	public ru.rrozhkov.easykin.model.task.Status[] statuses(){
+		return new ru.rrozhkov.easykin.model.task.Status[]{
+				ru.rrozhkov.easykin.model.task.Status.OPEN,
+				ru.rrozhkov.easykin.model.task.Status.CLOSE
+			};
+	}
+
 	public Collection<IPerson> persons() {
 		return persons;
 	}
