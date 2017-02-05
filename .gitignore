@@ -1,2 +1,5 @@
 /target/
 /jar/
+/data/easykin.log
+/data/easykin.lck
+/data/easykin.properties
