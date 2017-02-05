@@ -1,3 +1,3 @@
 # easykin
 # libs for work
-rrozhkov-lib.jar
+lib\rrozhkov-lib.jar

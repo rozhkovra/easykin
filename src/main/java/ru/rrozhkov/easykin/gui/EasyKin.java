@@ -1,7 +1,6 @@
-package ru.rrozhkov.easykin;
+package ru.rrozhkov.easykin.gui;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
-import ru.rrozhkov.easykin.gui.EasyKinWindow;
 
 public class EasyKin 
 {
