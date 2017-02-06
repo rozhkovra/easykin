@@ -8,6 +8,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -20,6 +21,7 @@ import javax.swing.KeyStroke;
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.util.DateUtil;
 
 public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class EasyKinWindow extends JFrame{
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private EasyKinContext context;
 	public EasyKinWindow(EasyKinContext context) throws HeadlessException {
-		super("EasyKin");
+		super("EasyKin, "+DateUtil.formatWeek(new Date()));
 		this.context = context;
         fillTabbedPane();
         createMenuBar();
