@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JLabel;
+
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
@@ -20,7 +22,12 @@ public class ServiceCalcForm extends Panel {
         for(ICalculation bean : ((ServiceCalc)calc).calcs()){
         	add(PanelFactory.getPanel(bean));
         }
-        add(getCalcButton());
+		if(!calc.isPaid())
+			add(getCalcButton());
+		else{
+			actionPerformed(null);
+			add(new JLabel("ИТОГО"));
+		}
         add(getItogoLabel());
 	}
 

@@ -20,14 +20,22 @@ public class DefaultPanel extends Panel {
 	}
 	
 	private void fill(){
-		setLayout(new GridLayout(4,2));		
- 		add(getCalcBox());
+		setLayout(new GridLayout(5,2));
+		if(calc.isPaid())
+			add(new JLabel(""));
+		else
+			add(getCalcBox());
 		add(new JLabel(""));
 		add(new JLabel(String.valueOf(calc.getType()))); 
-		add(getItogoLabel()); 
+		add(new JLabel(""));
 		add(getSumLabel()); 
-		add(getSumField()); 
-		add(getCalcButton());
+		add(getSumField());
+		add(new JLabel("ИТОГО"));
+		add(getItogoLabel()); 
+		if(!calc.isPaid())
+			add(getCalcButton());
+		else
+			actionPerformed(null);
 	}
 	
 	public JTextField getSumField(){
@@ -35,6 +43,8 @@ public class DefaultPanel extends Panel {
 			sumField = new JTextField(10);
 			String sum = FormatUtil.formatEditMoney(((DefaultCalc)calc).getSum());
 			sumField.setText(sum);
+			if(calc.isPaid())
+				sumField.setEditable(false);
 		}
 		return sumField;
 	}

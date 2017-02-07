@@ -26,25 +26,35 @@ public class GazPanel extends Panel{
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(6,2)); 
-		add(getCalcBox());
+		setLayout(new GridLayout(7,2)); 
+		if(calc.isPaid())
+			add(new JLabel(""));
+		else
+			add(getCalcBox());
 		add(new JLabel(""));
 		add(new JLabel(String.valueOf(calc.getType()))); 
-		add(getItogoLabel()); 
+		add(new JLabel(""));
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
 		add(getCurrentMesureField()); 
 		add(getRateLabel()); 
 		add(getRateField()); 
-		add(getCalcButton());
+		add(new JLabel("ИТОГО"));
+		add(getItogoLabel()); 
+		if(!calc.isPaid())
+			add(getCalcButton());
+		else
+			actionPerformed(null);
 	}
 	
 	public JTextField getPrevMesureField(){
 		if(prevMesureField == null){
 			prevMesureField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getPrevMesure());
-			prevMesureField.setText(text);			
+			prevMesureField.setText(text);
+			if(calc.isPaid())
+				prevMesureField.setEditable(false);			
 		}
 		return prevMesureField;
 	}
@@ -54,6 +64,8 @@ public class GazPanel extends Panel{
 			currentMesureField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getCurrentMesure());
 			currentMesureField.setText(text);			
+			if(calc.isPaid())
+				currentMesureField.setEditable(false);			
 		}
 		return currentMesureField;
 	}
@@ -62,7 +74,9 @@ public class GazPanel extends Panel{
 		if(rateField == null){
 			rateField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getRate());
-			rateField.setText(text);			
+			rateField.setText(text);
+			if(calc.isPaid())
+				rateField.setEditable(false);			
 		}
 		return rateField;
 	}

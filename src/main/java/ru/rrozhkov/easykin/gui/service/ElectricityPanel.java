@@ -29,11 +29,14 @@ public class ElectricityPanel extends Panel{
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(7,2)); 
-		add(getCalcBox());
+		setLayout(new GridLayout(8,2)); 
+		if(calc.isPaid())
+			add(new JLabel(""));
+		else
+			add(getCalcBox());
 		add(new JLabel(""));
 		add(new JLabel(String.valueOf(calc.getType()))); 
-		add(getItogoLabel()); 
+		add(new JLabel(""));
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
@@ -42,7 +45,12 @@ public class ElectricityPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-	    add(getCalcButton());
+		add(new JLabel("ИТОГО"));
+		add(getItogoLabel()); 
+		if(!calc.isPaid())
+			add(getCalcButton());
+		else
+			actionPerformed(null);
 	}
 	
 	public JTextField getPrevMesureField(){
@@ -50,6 +58,8 @@ public class ElectricityPanel extends Panel{
 			prevMesureField = new JTextField(5);
 			String text = String.valueOf(((ElectricityCalc)calc).getPrevMesure());
 			prevMesureField.setText(text);
+			if(calc.isPaid())
+				prevMesureField.setEditable(false);			
 		}
 		return prevMesureField;
 	}
@@ -57,8 +67,10 @@ public class ElectricityPanel extends Panel{
 	public JTextField getCurrentMesureField(){
 		if(currentMesureField == null){
 			currentMesureField = new JTextField(5);
-			String text = String.valueOf(((ElectricityCalc)calc).getCurrentMesure());
+			String text = String.valueOf(((ElectricityCalc)calc).getCurrentMesure());			
 			currentMesureField.setText(text);
+			if(calc.isPaid())
+				currentMesureField.setEditable(false);
 		}
 		return currentMesureField;
 	}
@@ -68,6 +80,8 @@ public class ElectricityPanel extends Panel{
 			rateField = new JTextField(5);
 			String text = String.valueOf(((ElectricityCalc)calc).getRate());
 			rateField.setText(text);
+			if(calc.isPaid())
+				rateField.setEditable(false);			
 		}
 		return rateField;
 	}
@@ -77,6 +91,8 @@ public class ElectricityPanel extends Panel{
 			odnField = new JTextField(6);
 			String text = String.valueOf(((ElectricityCalc)calc).getOdn());
 			odnField.setText(text);
+			if(calc.isPaid())
+				odnField.setEditable(false);			
 		}
 		return odnField;
 	}
