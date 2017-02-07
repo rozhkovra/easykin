@@ -27,6 +27,7 @@ import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.impl.TaskBuilder;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.SingleCollectionDataProvider;
@@ -58,7 +59,7 @@ public class EasyKinContext {
 			if(person!=null)
 				this.tasks = TaskHandler.selectForPerson(person.getId());
 			else
-				this.tasks = TaskHandler.select();
+				this.tasks = TaskBuilder.build();
 			this.persons = PersonHandler.select();
 			this.kinPersons = KinPersonHandler.select();
 			this.car = autoProvider.getSingleData();
