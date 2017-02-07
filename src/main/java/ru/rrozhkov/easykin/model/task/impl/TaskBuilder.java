@@ -39,5 +39,20 @@ public class TaskBuilder {
 			e.printStackTrace();
 			return CollectionUtil.<ITask>create();
 		}
+	}	
+	
+	public static Collection<ITask> build(int personId){
+		try {
+			Collection<ITask> tasks = TaskHandler.selectForPerson(personId);
+			Collection<IComment> comments = CommentHandler.selectForPerson(personId);
+			for(ITask task : tasks){
+				task.comments().clear();
+				task.comments().addAll(FilterUtil.filter(comments,CommentFilterFactory.createTaskFilter(task.getId())));
+			}
+			return tasks;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return CollectionUtil.<ITask>create();
+		}
 	}
 }

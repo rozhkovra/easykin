@@ -11,6 +11,9 @@ public class CommentHandler {
 	
 	public static String select = "SELECT * FROM "+TABLENAME;
 	public static String selectForTask = "SELECT * FROM "+TABLENAME+" where taskId=#taskId#";
+	public static String selectForPerson = "SELECT * FROM "+TABLENAME
+			+" INNER JOIN TASK2PERSON ON TASK2PERSON.TASK = COMMENT.TASKID AND TASK2PERSON.PERSON=#person#";
+
 
 	public static Collection<IComment> select() throws SQLException{
 		return EasyKinDBManager.instance().<IComment>select(select, new DBCommentConverter());
@@ -18,5 +21,9 @@ public class CommentHandler {
 	
 	public static Collection<IComment> selectForTask(int taskId) throws SQLException{
 		return EasyKinDBManager.instance().<IComment>select(selectForTask.replace("#taskId#", String.valueOf(taskId)), new DBCommentConverter());
+	}
+	
+	public static Collection<IComment> selectForPerson(int personId) throws SQLException{
+		return EasyKinDBManager.instance().<IComment>select(selectForTask.replace("#person#", String.valueOf(personId)), new DBCommentConverter());
 	}
 }

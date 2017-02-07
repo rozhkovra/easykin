@@ -57,7 +57,7 @@ public class EasyKinContext {
 			SingleCollectionDataProvider<IService, ICar> autoProvider = new StaticServiceHistoryDataProvider();
 			this.categories = CategoryHandler.select();
 			if(person!=null)
-				this.tasks = TaskHandler.selectForPerson(person.getId());
+				this.tasks = TaskBuilder.build(person.getId());
 			else
 				this.tasks = TaskBuilder.build();
 			this.persons = PersonHandler.select();
