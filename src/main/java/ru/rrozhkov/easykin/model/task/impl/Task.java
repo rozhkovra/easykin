@@ -8,6 +8,7 @@ import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
+import ru.rrozhkov.lib.collection.CollectionUtil;
 
 public class Task implements ITask, Comparable<ITask>{
 	
@@ -32,6 +33,7 @@ public class Task implements ITask, Comparable<ITask>{
 		this.category = category;
 		this.closeDate = closeDate;
 		this.status = status;
+		this.comments = CollectionUtil.<IComment>create();
 	}
 
 	

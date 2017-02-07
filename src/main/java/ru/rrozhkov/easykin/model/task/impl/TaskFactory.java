@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.model.task.impl;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
@@ -17,5 +18,9 @@ public class TaskFactory{
 	public static ITask newTask(){
 		return TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
 				, 1, "", null, Status.status(Status.OPEN));
+	}
+	
+	public static IComment createComment(int id, String text, Date date, int taskId) {
+		return new Comment(id, text, date, taskId);
 	}
 }
