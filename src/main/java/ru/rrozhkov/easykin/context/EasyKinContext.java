@@ -12,7 +12,6 @@ import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
 import ru.rrozhkov.easykin.db.impl.CategoryHandler;
 import ru.rrozhkov.easykin.db.impl.KinPersonHandler;
 import ru.rrozhkov.easykin.db.impl.PersonHandler;
-import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.model.auto.ICar;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;

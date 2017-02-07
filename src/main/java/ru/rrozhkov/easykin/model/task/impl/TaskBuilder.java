@@ -13,6 +13,7 @@ import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class TaskBuilder {
+	@Deprecated
 	public static ITask build(int id, String name, Date createDate, Date plannedDate,
 			int priority, int categoryId, String categoryName, Date closeDate, int status){
 		ITask task = TaskFactory.createTask(id, name, createDate, plannedDate, priority, categoryId, categoryName, closeDate, status);		 
