@@ -103,9 +103,9 @@ public class EasyKinContext {
 	}
 	
 	public Object getObjByIndex(ICategory category, int index){
-		if(index > categoryData.get(category).size()-1 || index < 0)
+		if(index > categoryData.get(category.getId()).size()-1 || index < 0)
 			return null;		
-		return ((List)categoryData.get(category)).get(index);
+		return ((List)categoryData.get(category.getId())).get(index);
 	}
 
 

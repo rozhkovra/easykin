@@ -192,7 +192,7 @@ public class TaskForm extends JPanel{
 	            public void actionPerformed(ActionEvent e) {
 	            	Component form = parent.getContentPane().getComponent(1);
 	            	parent.getContentPane().remove(form);
-	            	parent.repaint();
+	            	parent.getContentPane().validate();
 	            }           
 	        });
 	    }

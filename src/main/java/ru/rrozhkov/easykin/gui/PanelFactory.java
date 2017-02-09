@@ -1,10 +1,13 @@
 package ru.rrozhkov.easykin.gui;
 
+import java.util.Collection;
+
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarForm;
+import ru.rrozhkov.easykin.gui.style.impl.custom.CommentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
@@ -15,6 +18,7 @@ import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
 import ru.rrozhkov.easykin.model.fin.payment.Status;
 import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
+import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
 
@@ -55,7 +59,9 @@ public class PanelFactory {
 	private static JPanel createAutoPanel(EasyKinWindow parent, EasyKinContext context) {
 		return new AutoPanel(parent, context);
 	}
-	
+	public static JPanel createTaskCommentPanel(EasyKinWindow parent, Collection<IComment> comments){
+		return new TablePanel(parent, new Table(comments, new CommentStyle()));
+	}	
 	public static JPanel createPanel(EasyKinWindow parent, EasyKinContext context, ICategory category){
 		if(category.getId()==1){
 			 return createHomePanel(parent, context);

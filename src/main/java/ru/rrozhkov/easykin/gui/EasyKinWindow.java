@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui;
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -73,8 +74,11 @@ public class EasyKinWindow extends JFrame{
 	}
 	
 	public void edit(int index){
-        if(getContentPane().getComponentCount()>1)
-			return;
+        if(getContentPane().getComponentCount()>1){
+        	Component form = getContentPane().getComponent(1);
+        	getContentPane().remove(form);
+        }
+			
 		ICategory currentCategory = ContextUtil.getCurrentCategory(context, tabbedPane);
         Object obj = context.getObjByIndex(currentCategory, index);
         JPanel content = new JPanel(new BorderLayout());

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
 import ru.rrozhkov.easykin.gui.service.ServiceCalcForm;
+import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
@@ -23,6 +24,11 @@ public class FormFactory {
 			return new TaskForm(context, parent,(ITask)obj);
 		return new TaskForm(context, parent);
 	}
+	public static JPanel createTaskEditor(EasyKinContext context,JFrame parent, Object obj){
+		if(obj!=null && obj instanceof ITask)
+			return new TaskEditor(context, (EasyKinWindow)parent,(ITask)obj);
+		return new TaskEditor(context, (EasyKinWindow)parent);
+	}
 	public static JPanel createServiceForm(JFrame parent, Object obj){
 		if(obj!=null && obj instanceof IService)
 			return new AutoServiceForm(parent,(IService)obj);
@@ -31,7 +37,7 @@ public class FormFactory {
 	
 	public static JPanel getFormPanel(EasyKinContext context, JFrame parent, ICategory category, Object obj) {
 		if(category.getId()==1){
-			return createTaskForm(context, parent,obj);
+			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==2){
 			return new JPanel();
 		}else if(category.getId()==3){
