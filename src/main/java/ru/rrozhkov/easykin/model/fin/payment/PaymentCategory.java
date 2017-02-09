@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.model.fin.payment;
 
-public enum PaymentCategory {
+public enum PaymentCategory{
+	TASK("Задача"),
 	SERVICE("Ком. услуги"),
 	AUTO("Машина"), 
 	AUTOREPAIR("Ремонт машины"), 

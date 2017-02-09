@@ -2,6 +2,7 @@ package ru.rrozhkov.easykin.model.fin.payment.impl;
 
 import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.AUTO;
 import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.SERVICE;
+import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.TASK;
 import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.AUTODETAIL;
 import static ru.rrozhkov.easykin.model.fin.payment.PaymentCategory.AUTOREPAIR;
 
@@ -25,5 +26,10 @@ public class PaymentFactory {
 		if(isPaid)
 			return new Payment(SERVICE, comment,amount,date,Status.FACT);
 		return new Payment(SERVICE, comment,amount,date,Status.PLAN);
+	}
+	public static IPayment createTaskPayment(String comment, Money amount, Date date, ru.rrozhkov.easykin.model.task.Status status){
+		if(status.isClose())
+			return new Payment(TASK, comment,amount,date,Status.FACT);
+		return new Payment(TASK, comment,amount,date,Status.PLAN);
 	}
 }

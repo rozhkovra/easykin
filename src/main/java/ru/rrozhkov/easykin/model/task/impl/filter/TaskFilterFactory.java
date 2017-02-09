@@ -22,4 +22,7 @@ public class TaskFilterFactory {
 	public static IFilter<ITask> createPriorityFilter(Priority priority){
 		return new PriorityFilter(priority);
 	}
+	public static IFilter<ITask> createWithPaymentFilter(){
+		return new WithPaymentFilter();
+	}
 }
