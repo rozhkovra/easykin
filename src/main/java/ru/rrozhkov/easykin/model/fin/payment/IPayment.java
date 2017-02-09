@@ -9,5 +9,5 @@ public interface IPayment {
 	String getComment();
 	Money getAmount();
 	Date getDate();
-	Status getStatus();
+	PaymentStatus getStatus();
 }

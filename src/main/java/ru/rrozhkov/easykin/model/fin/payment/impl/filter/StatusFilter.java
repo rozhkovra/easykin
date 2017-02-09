@@ -1,12 +1,12 @@
 package ru.rrozhkov.easykin.model.fin.payment.impl.filter;
 
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
-import ru.rrozhkov.easykin.model.fin.payment.Status;
+import ru.rrozhkov.easykin.model.fin.payment.PaymentStatus;
 import ru.rrozhkov.lib.filter.IFilter;
 
 public class StatusFilter implements IFilter<IPayment> {
-	private Status status;
-	public StatusFilter(Status status) {
+	private PaymentStatus status;
+	public StatusFilter(PaymentStatus status) {
 		this.status = status;
 	}
 

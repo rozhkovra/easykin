@@ -5,16 +5,16 @@ import java.util.Date;
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
-import ru.rrozhkov.easykin.model.fin.payment.Status;
+import ru.rrozhkov.easykin.model.fin.payment.PaymentStatus;
 
 public class Payment implements IPayment {
 	protected PaymentCategory category;
 	protected String comment;
 	protected Money amount;
 	protected Date date;
-	protected Status status;
+	protected PaymentStatus status;
 	
-	public Payment(PaymentCategory category, String comment, Money amount, Date date, Status status) {
+	public Payment(PaymentCategory category, String comment, Money amount, Date date, PaymentStatus status) {
 		this.category = category;
 		this.comment = comment;
 		this.amount = amount;
@@ -38,7 +38,7 @@ public class Payment implements IPayment {
 		return date;
 	}
 
-	public Status getStatus() {
+	public PaymentStatus getStatus() {
 		return status;
 	}
 }

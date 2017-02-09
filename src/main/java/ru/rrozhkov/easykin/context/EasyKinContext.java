@@ -20,7 +20,7 @@ import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
-import ru.rrozhkov.easykin.model.fin.payment.Status;
+import ru.rrozhkov.easykin.model.fin.payment.PaymentStatus;
 import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
@@ -83,9 +83,9 @@ public class EasyKinContext {
 			}else if(category.getId()==4){
 				categoryData.put(category.getId(), services());
 			}else if(category.getId()==5){
-				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.PLAN)));
+				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.PLAN)));
 			}else if(category.getId()==6){
-				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)));
+				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.FACT)));
 			}else if(category.getId()==7){
 				categoryData.put(category.getId(), CollectionUtil.<IDoc>create());
 			}else if(category.getId()==8){

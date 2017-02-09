@@ -17,7 +17,7 @@ import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
-import ru.rrozhkov.easykin.model.fin.payment.Status;
+import ru.rrozhkov.easykin.model.fin.payment.PaymentStatus;
 import ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
@@ -37,13 +37,13 @@ public class PanelFactory {
 		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyHomeFilter()), new TaskStyle()));
 	}
 	private static JPanel createFinPanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(Status.PLAN)), new PaymentStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.PLAN)), new PaymentStyle()));
 	}
 	private static JPanel createWorkPanel(EasyKinWindow parent, EasyKinContext context) {
 		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyWorkFilter()), new TaskStyle()));
 	}
 	private static JPanel createPaymentPanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)), new PaymentStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.FACT)), new PaymentStyle()));
 	}
 	private static JPanel createTaskPanel(EasyKinWindow parent, EasyKinContext context){
 		return new TablePanel(parent, new Table(context.tasks(), new TaskStyle()));

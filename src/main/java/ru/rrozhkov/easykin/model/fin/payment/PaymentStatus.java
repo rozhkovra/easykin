@@ -1,13 +1,13 @@
 package ru.rrozhkov.easykin.model.fin.payment;
 
 
-public enum Status {
+public enum PaymentStatus {
 	PLAN("План"), 
 	FACT("Факт");
 	
     private final String name;       
 
-    private Status (String s) {
+    private PaymentStatus (String s) {
         name = s;
     }
     
@@ -15,8 +15,8 @@ public enum Status {
         return this.name;
     }
 
-	public static Status status(int status) {
-		Status stat = null;
+	public static PaymentStatus status(int status) {
+		PaymentStatus stat = null;
 		switch (status) {
 			case 1 : stat = PLAN;break;
 			case 2 : stat = FACT;break;
@@ -24,7 +24,7 @@ public enum Status {
 		}
     	return stat;
 	}
-	public static int status(Status status) {
+	public static int status(PaymentStatus status) {
 		int stat = 1;
 		switch (status) {
 			case PLAN : stat = 1;break;
