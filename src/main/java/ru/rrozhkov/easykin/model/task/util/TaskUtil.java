@@ -5,7 +5,10 @@ import ru.rrozhkov.easykin.model.task.ITask;
 
 public class TaskUtil {
 	public static boolean withPayment(ITask task){
-		return task.getName().contains("$");
+		String text = task.getName();
+		int index = text.indexOf('$');
+		int lastIndex = text.lastIndexOf('$');
+		return index!=-1 && lastIndex!=-1 && index!=lastIndex;
 	}
 	
 	public static Money extractAmount(ITask task){
@@ -13,7 +16,7 @@ public class TaskUtil {
 			String text = task.getName();
 			int index = text.indexOf('$');
 			int lastIndex = text.lastIndexOf('$');
-			String value = text.substring(index, lastIndex);
+			String value = text.substring(index+1, lastIndex);
 			return new Money(Double.valueOf(value));
 		}
 		return null;

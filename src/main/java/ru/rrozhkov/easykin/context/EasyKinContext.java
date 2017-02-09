@@ -64,7 +64,7 @@ public class EasyKinContext {
 			this.car = autoProvider.getSingleData();
 			this.services = autoProvider.getData();
 			this.calcServices = new StaticServiceCalcDataProvider().getData();
-			this.payments = new PaymentDataProvider(services,calcServices).getData();
+			this.payments = new PaymentDataProvider(this).getData();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
