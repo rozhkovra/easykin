@@ -24,6 +24,6 @@ public class CommentHandler {
 	}
 	
 	public static Collection<IComment> selectForPerson(int personId) throws SQLException{
-		return EasyKinDBManager.instance().<IComment>select(selectForTask.replace("#person#", String.valueOf(personId)), new DBCommentConverter());
+		return EasyKinDBManager.instance().<IComment>select(selectForPerson.replace("#person#", String.valueOf(personId)), new DBCommentConverter());
 	}
 }
