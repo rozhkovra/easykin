@@ -6,6 +6,7 @@ encoding//src/main/java/ru/rrozhkov/easykin/gui/EasyKinWindow.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/PanelFactory.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/auto/CarForm.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/auto/service/AutoServiceForm.java=UTF-8
+encoding//src/main/java/ru/rrozhkov/easykin/gui/payment/PaymentForm.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/service/DefaultPanel.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/service/ElectricityPanel.java=UTF-8
 encoding//src/main/java/ru/rrozhkov/easykin/gui/service/GazPanel.java=UTF-8

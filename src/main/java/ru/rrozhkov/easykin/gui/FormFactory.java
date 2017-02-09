@@ -4,12 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.gui.auto.service.AutoServiceEditor;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
+import ru.rrozhkov.easykin.gui.payment.PaymentForm;
 import ru.rrozhkov.easykin.gui.service.ServiceCalcForm;
 import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 
@@ -29,12 +32,21 @@ public class FormFactory {
 			return new TaskEditor(context, (EasyKinWindow)parent,(ITask)obj);
 		return new TaskEditor(context, (EasyKinWindow)parent);
 	}
-	public static JPanel createServiceForm(JFrame parent, Object obj){
+	public static JPanel createAutoServiceForm(JFrame parent, Object obj){
 		if(obj!=null && obj instanceof IService)
 			return new AutoServiceForm(parent,(IService)obj);
 		return new AutoServiceForm(parent);
 	}
-	
+	public static JPanel createAutoServiceEditor(JFrame parent, Object obj){
+		if(obj!=null && obj instanceof IService)
+			return new AutoServiceEditor((EasyKinWindow)parent,(IService)obj);
+		return new AutoServiceEditor((EasyKinWindow)parent);
+	}
+	public static JPanel createPaymentForm(EasyKinContext context,JFrame parent, Object obj){
+		if(obj!=null && obj instanceof IPayment)
+			return new PaymentForm(parent,(IPayment)obj);
+		return new PaymentForm(parent);
+	}
 	public static JPanel getFormPanel(EasyKinContext context, JFrame parent, ICategory category, Object obj) {
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
@@ -43,11 +55,11 @@ public class FormFactory {
 		}else if(category.getId()==3){
 			return new JPanel();
 		}else if(category.getId()==4){
-			return createServiceForm(parent,obj);
+			return createAutoServiceEditor(parent,obj);
 		}else if(category.getId()==5){
-			return new JPanel();
+			return createPaymentForm(context, parent, obj);
 		}else if(category.getId()==6){
-			return new JPanel();
+			return createPaymentForm(context, parent, obj);
 		}else if(category.getId()==7){
 			return new JPanel();
 		}else if(category.getId()==8){

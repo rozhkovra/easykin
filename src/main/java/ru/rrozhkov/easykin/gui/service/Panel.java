@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.service;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,8 +42,10 @@ public abstract class Panel extends JPanel implements ActionListener{
 			getItogoLabel().setText(FormatUtil.formatMoney(calculator.calculate().getResult()));
 	}
 	public JLabel getItogoLabel(){
-		if(itogoLabel == null)
+		if(itogoLabel == null){
 			itogoLabel  = new JLabel("");
+			itogoLabel.setFont(itogoLabel.getFont().deriveFont(Font.BOLD, 20));			
+		}
 		return itogoLabel;
 	}
 	public JButton getCalcButton(){

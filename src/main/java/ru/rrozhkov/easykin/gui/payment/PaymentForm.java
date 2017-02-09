@@ -1,54 +1,59 @@
-package ru.rrozhkov.easykin.gui.auto.service;
+package ru.rrozhkov.easykin.gui.payment;
 
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.model.auto.service.IService;
-import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
-import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class AutoServiceForm extends JPanel{
+public class PaymentForm extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private JTextField nameField;
-	private JTextField priceField;
+	private JTextField commentField;
+	private JTextField amountField;
 	private JTextField dateField;
 	private JLabel nameLabel;
 	private JLabel priceLabel;
 	private JLabel dateLabel;
 	private JButton addButton;
 	private JButton closeButton;
-	private IService service;
+	private IPayment payment;
 	private JFrame parent;
-	public AutoServiceForm(JFrame parent, IService service) {
-		this.service = service;
+	private JComboBox categoryComboBox;
+	private JLabel categoryLabel;
+	
+	public PaymentForm(JFrame parent, IPayment payment) {
+		this.payment = payment;
 		this.parent = parent;
 		fill();
 	}
-	
-	public AutoServiceForm(JFrame parent) {
-		this(parent, ServiceFactory.createService("", new Money(), new Date()));
+
+	public PaymentForm(JFrame parent) {
+		this(parent, null);
 	}
+
 	
 	private void fill(){
-		setLayout(new GridLayout(5,2)); 		
+		setLayout(new GridLayout(6,2)); 		
 		add(getEmptyLabel());
 		add(getEmptyLabel());
-		add(getNameLabel()); 
-		add(getNameField()); 
-		add(getPriceLabel()); 
-		add(getPriceField()); 
+		add(getCommentLabel()); 
+		add(getCommentField()); 
+		add(getAmountLabel()); 
+		add(getAmountField()); 
 		add(getDateLabel()); 
 		add(getDateField());
+		add(getCategoryLabel()); 
+		add(getCategoryComboBox()); 
 		add(getEmptyLabel());
 		add(getCloseButton());
 	}
@@ -57,37 +62,52 @@ public class AutoServiceForm extends JPanel{
 		return new JLabel(""); 
 	}
 
-	private JTextField getNameField(){
-		if(nameField == null){
-			nameField = new JTextField(50);
-			nameField.setText(service.getName());
+	private JTextField getCommentField(){
+		if(commentField == null){
+			commentField = new JTextField(50);
+			commentField.setText(payment.getComment());
 		}
-		return nameField;
+		return commentField;
 	}
 
-	private JTextField getPriceField(){
-		if(priceField == null){
-			priceField = new JTextField(10);
-			priceField.setText(service.getPrice().toString());
+	private JTextField getAmountField(){
+		if(amountField == null){
+			amountField = new JTextField(10);
+			amountField.setText(payment.getAmount().toString());
 		}
-		return priceField;
+		return amountField;
 	}
 	
 	private JTextField getDateField(){
 		if(dateField == null){
 			dateField = new JTextField(10);
-			dateField.setText(DateUtil.format(service.getDate()));
+			dateField.setText(DateUtil.format(payment.getDate()));
 		}
 		return dateField;
 	}
 	
-	private JLabel getNameLabel(){
+	private JComboBox getCategoryComboBox(){
+		if(categoryComboBox == null){
+			categoryComboBox = new JComboBox(new PaymentCategory[]{
+					PaymentCategory.AUTO,
+					PaymentCategory.AUTODETAIL,
+					PaymentCategory.AUTOREPAIR,
+					PaymentCategory.SERVICE,
+					PaymentCategory.TASK
+					}
+			);
+			categoryComboBox.setSelectedItem(payment.getCategory());
+		}
+		return categoryComboBox;
+	}
+	
+	private JLabel getCommentLabel(){
 		if(nameLabel == null)
 			nameLabel = new JLabel("Описание"); 
 		return nameLabel;
 	}
 	
-	private JLabel getPriceLabel(){
+	private JLabel getAmountLabel(){
 		if(priceLabel == null)
 			priceLabel = new JLabel("Цена"); 
 		return priceLabel;
@@ -97,6 +117,12 @@ public class AutoServiceForm extends JPanel{
 		if(dateLabel == null)
 			dateLabel = new JLabel("Дата"); 
 		return dateLabel;
+	}
+	
+	private JLabel getCategoryLabel(){
+		if(categoryLabel == null)
+			categoryLabel = new JLabel("Категория"); 
+		return categoryLabel;
 	}
 	
 	public JButton getAddButton(){

@@ -15,6 +15,6 @@ public class AutoPanel extends JPanel{
 	public AutoPanel(EasyKinWindow parent, EasyKinContext context) {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		add(createCarPanel(context));
-		add(createAutoServicePanel(parent,context));
+		add(createAutoServicePanel(parent,context.services()));
 	}	
 }

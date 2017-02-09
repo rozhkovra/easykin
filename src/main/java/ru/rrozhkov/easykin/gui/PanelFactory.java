@@ -13,6 +13,7 @@ import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
 import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
+import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.family.KinType;
 import ru.rrozhkov.easykin.model.family.impl.filter.KinFilterFactory;
@@ -29,8 +30,8 @@ public class PanelFactory {
 	private static JPanel createChildPanel(EasyKinWindow parent, EasyKinContext context){
 		return new TablePanel(parent, new Table(FilterUtil.filter(context.kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})), new FamilyStyle()));
 	}
-	public static JPanel createAutoServicePanel(EasyKinWindow parent, EasyKinContext context){
-		return new TablePanel(parent, new Table(context.services(), new ServiceStyle()));
+	public static JPanel createAutoServicePanel(EasyKinWindow parent, Collection<IService> services){
+		return new TablePanel(parent, new Table(services, new ServiceStyle()));
 	}
 	private static JPanel createHomePanel(EasyKinWindow parent, EasyKinContext context) {
 		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyHomeFilter()), new TaskStyle()));
