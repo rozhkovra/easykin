@@ -42,7 +42,7 @@ public class EasyKinContext {
 	private Collection<IService> services;
 	private Collection<ServiceCalc> calcServices;
 	private ICar car;
-	private Map<ICategory, Collection> categoryData = new HashMap<ICategory, Collection>();
+	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
 
 	public EasyKinContext() {
 	}
@@ -75,27 +75,31 @@ public class EasyKinContext {
 		categoryData.clear();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				categoryData.put(category, FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyHomeFilter()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyHomeFilter()));
 			}else if(category.getId()==2){
-				categoryData.put(category, FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
+				categoryData.put(category.getId(), FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
 			}else if(category.getId()==3){
-				categoryData.put(category, kinPersons());
+				categoryData.put(category.getId(), kinPersons());
 			}else if(category.getId()==4){
-				categoryData.put(category, services());
+				categoryData.put(category.getId(), services());
 			}else if(category.getId()==5){
-				categoryData.put(category, FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.PLAN)));
+				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.PLAN)));
 			}else if(category.getId()==6){
-				categoryData.put(category, FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)));
+				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(Status.FACT)));
 			}else if(category.getId()==7){
-				categoryData.put(category, CollectionUtil.<IDoc>create());
+				categoryData.put(category.getId(), CollectionUtil.<IDoc>create());
 			}else if(category.getId()==8){
-				categoryData.put(category, FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyWorkFilter()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyWorkFilter()));
 			}else if(category.getId()==9){
-				categoryData.put(category, tasks());
+				categoryData.put(category.getId(), tasks());
 			}else if(category.getId()==10){
-				categoryData.put(category, calcs());
+				categoryData.put(category.getId(), calcs());
 			}
 		}
+	}
+	
+	public Collection dataForCategory(int categoryId){
+		return categoryData.get(Integer.valueOf(categoryId));
 	}
 	
 	public Object getObjByIndex(ICategory category, int index){
