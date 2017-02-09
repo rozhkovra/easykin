@@ -43,7 +43,7 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 								createDefaultCalc(WATER, new Money(0.00), false)	
 								, createDefaultCalc(HOTWATER, new Money(0.00), false)
 								, createElectricityCalc(15429, 15429, new Money(3.56), new Money(0.0), false)
-								, createGazCalc(0.0, 0.0, new Money(80.06), false)
+								, createGazCalc(0.0, 0.0, new Money(80.06), true)
 								, createDefaultCalc(HEATING, new Money(1520.62), false)
 								, createDefaultCalc(REPAIR, new Money(341.03), true)
 								, createDefaultCalc(ANTENNA, new Money(72.00), true)
