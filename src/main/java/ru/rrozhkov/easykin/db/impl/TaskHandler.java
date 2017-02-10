@@ -3,24 +3,36 @@ package ru.rrozhkov.easykin.db.impl;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
+import ru.rrozhkov.easykin.model.task.impl.convert.TaskMapConverter;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class TaskHandler {
 	private static String TABLENAME = "TASK";
 	
-	public static String select = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
-			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
-			+" ORDER BY TASK.STATUSID, TASK.PRIORITYID, TASK.PLANDATE, TASK.CATEGORYID";
+	public static String select = "SELECT "+TABLENAME+".*, CATEGORY.NAME as CATEGORYNAME FROM "+TABLENAME
+			+" INNER JOIN CATEGORY ON "+TABLENAME+".CATEGORYID = CATEGORY.ID"
+			+" ORDER BY "+TABLENAME+".STATUSID, "+TABLENAME+".PRIORITYID, "+TABLENAME+".PLANDATE, "+TABLENAME+".CATEGORYID";
 
-	public static String selectForPerson = "SELECT TASK.*, CATEGORY.NAME as CATEGORYNAME FROM TASK"
-			+" INNER JOIN CATEGORY ON TASK.CATEGORYID = CATEGORY.ID"
-			+" INNER JOIN TASK2PERSON ON TASK2PERSON.TASK = TASK.ID AND TASK2PERSON.PERSON=#person#"
-			+" ORDER BY TASK.STATUSID, TASK.PRIORITYID, TASK.PLANDATE, TASK.CATEGORYID";
+	public static String selectForPerson = "SELECT "+TABLENAME+".*, CATEGORY.NAME as CATEGORYNAME FROM "+TABLENAME
+			+" INNER JOIN CATEGORY ON "+TABLENAME+".CATEGORYID = CATEGORY.ID"
+			+" INNER JOIN TASK2PERSON ON TASK2PERSON.TASK = "+TABLENAME+".ID AND TASK2PERSON.PERSON=#person#"
+			+" ORDER BY "+TABLENAME+".STATUSID, "+TABLENAME+".PRIORITYID, "+TABLENAME+".PLANDATE, "+TABLENAME+".CATEGORYID";
+	
+	public static String insert = "INSERT INTO "+TABLENAME
+			+"(ID, NAME, CREATEDATE, PLANDATE, PRIORITYID, CATEGORYID, CLOSEDATE, STATUSID)"
+			+" VALUES(#id#,'#name#','#createdate#','#plandate#',#priorityid#,#categoryid#,NULL,#statusid#)";
+	
+	public static String update = "UPDATE "+TABLENAME+" SET NAME='#name#', PLANDATE='#plandate#', PRIORITYID=#priorityid#,"
+			+" CATEGORYID=#categoryid# WHERE ID=#id#";
+	
+	public static String close = "UPDATE "+TABLENAME+" SET CLOSEDATE='"+DateUtil.formatSql(new Date())+"',"
+			+ " STATUSID="+Status.status(Status.CLOSE)+" WHERE ID=#id#";
+
 
 	public static Collection<ITask> select() throws SQLException{
 		return EasyKinDBManager.instance().<ITask>select(select, new DBTaskConverter());
@@ -32,19 +44,10 @@ public class TaskHandler {
 	
 	public static int insert(ITask task) throws SQLException{
 		try {
+			Map<String, Object> map = new TaskMapConverter().convert(task);
 			int id = EasyKinDBManager.instance().nextId(TABLENAME);
-			StringBuilder builder = new StringBuilder("INSERT INTO TASK(ID, NAME, CREATEDATE, PLANDATE, PRIORITYID, CATEGORYID, CLOSEDATE, STATUSID)")
-				.append(" VALUES(")
-				.append(id).append(",")
-				.append("\'").append(task.getName()).append("\'").append(",")
-				.append("\'").append(DateUtil.formatSql(task.getCreateDate())).append("\'").append(",")
-				.append("\'").append(DateUtil.formatSql(task.getPlanDate())).append("\'").append(",")
-				.append(Priority.priority(task.getPriority())).append(",")
-				.append(task.getCategory().getId()).append(",")
-				.append("NULL,")
-				.append(Status.status(task.getStatus()))
-				.append(")");
-			EasyKinDBManager.instance().executeUpdate(builder.toString());
+			map.put("id", id);
+			EasyKinDBManager.instance().insert(insert,map);
 			return id;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
@@ -53,31 +56,21 @@ public class TaskHandler {
 	
 	public static int update(ITask task) throws SQLException{
 		try {
-			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
-				.append(" NAME=").append("\'").append(task.getName()).append("\'").append(",")
-				.append(" PLANDATE=").append("\'").append(DateUtil.formatSql(task.getPlanDate())).append("\'").append(",")
-				.append(" PRIORITYID=").append(Priority.priority(task.getPriority())).append(",")
-				.append(" CATEGORYID=").append(task.getCategory().getId())
-				.append(" WHERE ID=").append(task.getId());
-			int count = EasyKinDBManager.instance().executeUpdate(builder.toString());
+			Map<String, Object> map = new TaskMapConverter().convert(task);
+			int count = EasyKinDBManager.instance().update(update, map);
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
 		} 
-
 	}
 
 	public static int close(ITask task) throws SQLException{
 		try {
-			StringBuilder builder = new StringBuilder("UPDATE TASK SET ")
-				.append(" CLOSEDATE=").append("\'").append(DateUtil.formatSql(new Date())).append("\'").append(",")
-				.append(" STATUSID=").append(Status.status(Status.CLOSE))
-				.append(" WHERE ID=").append(task.getId());
-			int count = EasyKinDBManager.instance().executeUpdate(builder.toString());
+			Map<String, Object> map = new TaskMapConverter().convert(task);
+			int count = EasyKinDBManager.instance().update(close, map);
 			return count;
 		} catch (Exception e) { 
 			throw new SQLException(e); 
 		} 
-
 	}
 }

@@ -26,6 +26,7 @@ import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskBuilder;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
@@ -125,10 +126,10 @@ public class EasyKinContext {
 			};
 	}
 
-	public ru.rrozhkov.easykin.model.task.Status[] statuses(){
+	public Status[] statuses(){
 		return new ru.rrozhkov.easykin.model.task.Status[]{
-				ru.rrozhkov.easykin.model.task.Status.OPEN,
-				ru.rrozhkov.easykin.model.task.Status.CLOSE
+				Status.OPEN,
+				Status.CLOSE
 			};
 	}
 
