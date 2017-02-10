@@ -19,7 +19,6 @@ public class TaskMapConverter implements IConverter<ITask, Map<String, Object>> 
 		map.put("plandate", DateUtil.formatSql(task.getPlanDate()));
 		map.put("priorityid", Priority.priority(task.getPriority()));
 		map.put("categoryid", task.getCategory().getId());
-//		map.put("closedate", DateUtil.formatSql(task.getCloseDate()));
 		map.put("statusid", Status.status(task.getStatus()));
 		return map;
 	}

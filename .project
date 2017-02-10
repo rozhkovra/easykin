@@ -22,11 +22,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>RRozhkovLib</name>
-			<type>2</type>
-			<location>F:/projects/workspace_rrozhkov/RRozhkovLib/src</location>
-		</link>
-		<link>
 			<name>java</name>
 			<type>2</type>
 			<location>F:/projects/workspace_rrozhkov/RRozhkovLib/src/main/java</location>
