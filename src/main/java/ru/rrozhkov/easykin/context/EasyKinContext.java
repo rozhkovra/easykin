@@ -76,7 +76,7 @@ public class EasyKinContext {
 		categoryData.clear();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyHomeFilter()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.onlyHome()));
 			}else if(category.getId()==2){
 				categoryData.put(category.getId(), FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
 			}else if(category.getId()==3){
@@ -84,13 +84,23 @@ public class EasyKinContext {
 			}else if(category.getId()==4){
 				categoryData.put(category.getId(), services());
 			}else if(category.getId()==5){
-				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.PLAN)));
+				categoryData.put(category.getId(), 
+						FilterUtil.filter(payments()
+								, PaymentFilterFactory.status(PaymentStatus.PLAN)
+								, PaymentFilterFactory.noFree()
+						)
+				);
 			}else if(category.getId()==6){
-				categoryData.put(category.getId(), FilterUtil.filter(payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.FACT)));
+				categoryData.put(category.getId(), 
+						FilterUtil.filter(payments()
+								, PaymentFilterFactory.status(PaymentStatus.FACT)
+								, PaymentFilterFactory.noFree()
+						)
+				);
 			}else if(category.getId()==7){
 				categoryData.put(category.getId(), CollectionUtil.<IDoc>create());
 			}else if(category.getId()==8){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.createOnlyWorkFilter()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.onlyWork()));
 			}else if(category.getId()==9){
 				categoryData.put(category.getId(), tasks());
 			}else if(category.getId()==10){

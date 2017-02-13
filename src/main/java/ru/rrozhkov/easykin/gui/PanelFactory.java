@@ -34,16 +34,16 @@ public class PanelFactory {
 		return new TablePanel(parent, new Table(services, new ServiceStyle()));
 	}
 	private static JPanel createHomePanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyHomeFilter()), new TaskStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.onlyHome()), new TaskStyle()));
 	}
 	private static JPanel createFinPanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.PLAN)), new PaymentStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.status(PaymentStatus.PLAN), PaymentFilterFactory.noFree()), new PaymentStyle()));
 	}
 	private static JPanel createWorkPanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.createOnlyWorkFilter()), new TaskStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.tasks(), TaskFilterFactory.onlyWork()), new TaskStyle()));
 	}
 	private static JPanel createPaymentPanel(EasyKinWindow parent, EasyKinContext context) {
-		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.createStatusFilter(PaymentStatus.FACT)), new PaymentStyle()));
+		return new TablePanel(parent, new Table(FilterUtil.filter(context.payments(), PaymentFilterFactory.status(PaymentStatus.FACT), PaymentFilterFactory.noFree()), new PaymentStyle()));
 	}
 	private static JPanel createTaskPanel(EasyKinWindow parent, EasyKinContext context){
 		return new TablePanel(parent, new Table(context.tasks(), new TaskStyle()));

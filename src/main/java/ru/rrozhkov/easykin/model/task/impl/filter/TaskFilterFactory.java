@@ -7,22 +7,22 @@ import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.lib.filter.IFilter;
 
 public class TaskFilterFactory {
-	public static IFilter<ITask> createOnlyHomeFilter(){
+	public static IFilter<ITask> onlyHome(){
 		return new OnlyHomeFilter();
 	}
-	public static IFilter<ITask> createOnlyWorkFilter(){
+	public static IFilter<ITask> onlyWork(){
 		return new OnlyWorkFilter();
 	}
-	public static IFilter<ITask> createStatusFilter(Status status){
+	public static IFilter<ITask> status(Status status){
 		return new StatusFilter(status);
 	}
-	public static IFilter<ITask> createCategoryFilter(ICategory category){
+	public static IFilter<ITask> category(ICategory category){
 		return new CategoryFilter(category);
 	}
-	public static IFilter<ITask> createPriorityFilter(Priority priority){
+	public static IFilter<ITask> priority(Priority priority){
 		return new PriorityFilter(priority);
 	}
-	public static IFilter<ITask> createWithPaymentFilter(){
+	public static IFilter<ITask> withPayment(){
 		return new WithPaymentFilter();
 	}
 }

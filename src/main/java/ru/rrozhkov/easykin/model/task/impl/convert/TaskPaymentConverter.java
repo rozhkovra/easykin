@@ -14,7 +14,7 @@ import ru.rrozhkov.lib.filter.util.FilterUtil;
 public class TaskPaymentConverter implements IConverter<Collection<ITask>,Collection<IPayment>> {
 	public Collection<IPayment> convert(Collection<ITask> entries) {
 		Collection<IPayment> collection = CollectionUtil.<IPayment>create();
-		entries = FilterUtil.<ITask>filter(entries, TaskFilterFactory.createWithPaymentFilter());
+		entries = FilterUtil.<ITask>filter(entries, TaskFilterFactory.withPayment());
 		for(ITask task : entries){
 			collection.add(new SingleConverter().convert(task));
 		}

@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.model.auto.service.impl.convert;
 
 import static ru.rrozhkov.easykin.model.fin.payment.impl.PaymentFactory.createDetailPayment;
-import static ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory.createNoFreeFilter;
+import static ru.rrozhkov.easykin.model.fin.payment.impl.filter.PaymentFilterFactory.noFree;
 
 import java.util.Collection;
 
@@ -22,7 +22,7 @@ public class ServiceConverter implements IConverter<Collection<IService>,Collect
 				collection.add(createDetailPayment(detailService.getName(),detailService.getPrice(),detailService.getDate()));
 			}
 		}
-		return FilterUtil.<IPayment>filter(collection, createNoFreeFilter());
+		return FilterUtil.<IPayment>filter(collection, noFree());
 	}
 	
 	class SingleConverter implements IConverter<IService, IPayment> {
