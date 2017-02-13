@@ -33,7 +33,7 @@ import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
 
-public class EasyKinContext {
+public class MasterDataContext {
 	private IPerson person;
 	private Collection<ICategory> categories;
 	private Collection<ITask> tasks;
@@ -45,10 +45,10 @@ public class EasyKinContext {
 	private ICar car;
 	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
 
-	public EasyKinContext() {
+	public MasterDataContext() {
 	}
 
-	public EasyKinContext(IPerson person) {
+	public MasterDataContext(IPerson person) {
 		this.person = person;
 	}
 	
@@ -76,31 +76,21 @@ public class EasyKinContext {
 		categoryData.clear();
 		for(ICategory category : categories){
 			if(category.getId()==1){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.onlyHome()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.home()));
 			}else if(category.getId()==2){
-				categoryData.put(category.getId(), FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER})));
+				categoryData.put(category.getId(), kids());
 			}else if(category.getId()==3){
 				categoryData.put(category.getId(), kinPersons());
 			}else if(category.getId()==4){
 				categoryData.put(category.getId(), services());
 			}else if(category.getId()==5){
-				categoryData.put(category.getId(), 
-						FilterUtil.filter(payments()
-								, PaymentFilterFactory.status(PaymentStatus.PLAN)
-								, PaymentFilterFactory.noFree()
-						)
-				);
+				categoryData.put(category.getId(), finance());
 			}else if(category.getId()==6){
-				categoryData.put(category.getId(), 
-						FilterUtil.filter(payments()
-								, PaymentFilterFactory.status(PaymentStatus.FACT)
-								, PaymentFilterFactory.noFree()
-						)
-				);
+				categoryData.put(category.getId(), factPayments());
 			}else if(category.getId()==7){
 				categoryData.put(category.getId(), CollectionUtil.<IDoc>create());
 			}else if(category.getId()==8){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.onlyWork()));
+				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.work()));
 			}else if(category.getId()==9){
 				categoryData.put(category.getId(), tasks());
 			}else if(category.getId()==10){
@@ -151,8 +141,20 @@ public class EasyKinContext {
 		return kinPersons;
 	}
 
+	public Collection<IKinPerson> kids() {
+		return FilterUtil.filter(kinPersons(), KinFilterFactory.create(new KinType[]{KinType.SUN, KinType.DAUGHTER}));
+	}
+
 	public Collection<IPayment> payments() {
 		return payments;
+	}
+
+	public Collection<IPayment> finance() {
+		return FilterUtil.filter(payments(), PaymentFilterFactory.status(PaymentStatus.PLAN), PaymentFilterFactory.noFree());
+	}
+
+	public Collection<IPayment> factPayments() {
+		return FilterUtil.filter(payments(), PaymentFilterFactory.status(PaymentStatus.FACT), PaymentFilterFactory.noFree());
 	}
 
 	public Collection<IService> services() {

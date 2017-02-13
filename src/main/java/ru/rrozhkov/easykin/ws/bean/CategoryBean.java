@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.ws.category;
+package ru.rrozhkov.easykin.ws.bean;
 
 
 public class CategoryBean{

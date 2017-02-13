@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
-import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.util.DateUtil;
@@ -28,8 +28,8 @@ public class EasyKinWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JTabbedPane tabbedPane = new JTabbedPane();
-	private EasyKinContext context;
-	public EasyKinWindow(EasyKinContext context) throws HeadlessException {
+	private MasterDataContext context;
+	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
 		super("EasyKin, "+DateUtil.formatWeek(new Date()));
 		this.context = context;
         fillTabbedPane();

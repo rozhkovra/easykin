@@ -1,24 +1,53 @@
 package ru.rrozhkov.easykin.ws;
 
+import java.util.Collection;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.ws.category.CategoryBean;
-import ru.rrozhkov.easykin.ws.category.convert.WSCategoryConverter;
+import ru.rrozhkov.easykin.model.person.IPerson;
+import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.ws.bean.CategoryBean;
+import ru.rrozhkov.easykin.ws.bean.PersonBean;
+import ru.rrozhkov.easykin.ws.bean.TaskBean;
+import ru.rrozhkov.easykin.ws.convert.WSCategoryConverter;
+import ru.rrozhkov.easykin.ws.convert.WSPersonConverter;
+import ru.rrozhkov.easykin.ws.convert.WSTaskConverter;
+import ru.rrozhkov.lib.collection.CollectionUtil;
 
 @WebService(serviceName="EasyKin", portName="EasyKinPort", targetNamespace="http://rrozhkov.ru/easykin")
 public class EasyKinService {
 
 	@WebMethod
-	public CategoryBean processCategory(int categoryId) {
-		EasyKinContext context = new EasyKinContext();
+	public Collection<CategoryBean> categories() {
+		MasterDataContext context = new MasterDataContext();
 		context.init();
+		Collection<CategoryBean> beans = CollectionUtil.<CategoryBean>create();
 		for(ICategory category : context.categories()){
-			if(category.getId() == categoryId)
-				return new WSCategoryConverter().convert(category);
+			beans.add(new WSCategoryConverter().convert(category));
 		}
-		return new CategoryBean();
+		return beans;
+	}
+	@WebMethod
+	public Collection<PersonBean> persons() {
+		MasterDataContext context = new MasterDataContext();
+		context.init();
+		Collection<PersonBean> beans = CollectionUtil.<PersonBean>create();
+		for(IPerson person : context.persons()){
+			beans.add(new WSPersonConverter().convert(person));
+		}
+		return beans;
+	}
+	@WebMethod
+	public Collection<TaskBean> tasks() {
+		MasterDataContext context = new MasterDataContext();
+		context.init();
+		Collection<TaskBean> beans = CollectionUtil.<TaskBean>create();
+		for(ITask task : context.tasks()){
+			beans.add(new WSTaskConverter().convert(task));
+		}
+		return beans;
 	}
 }

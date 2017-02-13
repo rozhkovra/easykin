@@ -1,7 +1,7 @@
-package ru.rrozhkov.easykin.ws.category.convert;
+package ru.rrozhkov.easykin.ws.convert;
 
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.ws.category.CategoryBean;
+import ru.rrozhkov.easykin.ws.bean.CategoryBean;
 import ru.rrozhkov.lib.convert.IConverter;
 
 public class WSCategoryConverter implements IConverter<ICategory, CategoryBean> {

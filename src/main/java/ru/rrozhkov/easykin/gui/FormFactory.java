@@ -3,7 +3,7 @@ package ru.rrozhkov.easykin.gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceEditor;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
 import ru.rrozhkov.easykin.gui.payment.PaymentForm;
@@ -22,12 +22,12 @@ public class FormFactory {
 			return new ServiceCalcForm((ServiceCalc)obj);
 		return new JPanel();
 	}
-	public static JPanel createTaskForm(EasyKinContext context,JFrame parent, Object obj){
+	public static JPanel createTaskForm(MasterDataContext context,JFrame parent, Object obj){
 		if(obj!=null && obj instanceof ITask)
 			return new TaskForm(context, parent,(ITask)obj);
 		return new TaskForm(context, parent);
 	}
-	public static JPanel createTaskEditor(EasyKinContext context,JFrame parent, Object obj){
+	public static JPanel createTaskEditor(MasterDataContext context,JFrame parent, Object obj){
 		if(obj!=null && obj instanceof ITask)
 			return new TaskEditor(context, (EasyKinWindow)parent,(ITask)obj);
 		return new TaskEditor(context, (EasyKinWindow)parent);
@@ -42,12 +42,12 @@ public class FormFactory {
 			return new AutoServiceEditor((EasyKinWindow)parent,(IService)obj);
 		return new AutoServiceEditor((EasyKinWindow)parent);
 	}
-	public static JPanel createPaymentForm(EasyKinContext context,JFrame parent, Object obj){
+	public static JPanel createPaymentForm(MasterDataContext context,JFrame parent, Object obj){
 		if(obj!=null && obj instanceof IPayment)
 			return new PaymentForm(parent,(IPayment)obj);
 		return new PaymentForm(parent);
 	}
-	public static JPanel getFormPanel(EasyKinContext context, JFrame parent, ICategory category, Object obj) {
+	public static JPanel getFormPanel(MasterDataContext context, JFrame parent, ICategory category, Object obj) {
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==2){

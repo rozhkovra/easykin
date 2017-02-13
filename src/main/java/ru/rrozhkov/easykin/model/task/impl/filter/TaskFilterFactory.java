@@ -7,10 +7,10 @@ import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.lib.filter.IFilter;
 
 public class TaskFilterFactory {
-	public static IFilter<ITask> onlyHome(){
+	public static IFilter<ITask> home(){
 		return new OnlyHomeFilter();
 	}
-	public static IFilter<ITask> onlyWork(){
+	public static IFilter<ITask> work(){
 		return new OnlyWorkFilter();
 	}
 	public static IFilter<ITask> status(Status status){

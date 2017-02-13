@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
@@ -36,13 +36,13 @@ public class TaskForm extends JPanel{
 	
 	private ITask task;
 	private JFrame parent;
-	private EasyKinContext context;
+	private MasterDataContext context;
 	
-	public TaskForm(EasyKinContext context, JFrame parent) {
+	public TaskForm(MasterDataContext context, JFrame parent) {
 		this(context, parent, TaskFactory.newTask());
 	}
 
-	public TaskForm(EasyKinContext context, JFrame parent, ITask task) {
+	public TaskForm(MasterDataContext context, JFrame parent, ITask task) {
 		this.context = context;
 		this.parent = parent;
 		this.task = task;
