@@ -22,31 +22,31 @@ import ru.rrozhkov.easykin.model.task.ITask;
 
 public class PanelFactory {
 	private static JPanel createFamilyPanel(EasyKinWindow parent, Collection<IKinPerson> collection){		
-		return new TablePanel(parent, new Table(collection, new FamilyStyle()));
+		return new TablePanel(parent, new Table(collection, new FamilyStyle()), true);
 	}
 	private static JPanel createChildPanel(EasyKinWindow parent, Collection<IKinPerson> collection){
-		return new TablePanel(parent, new Table(collection, new FamilyStyle()));
+		return new TablePanel(parent, new Table(collection, new FamilyStyle()), true);
 	}
 	public static JPanel createAutoServicePanel(EasyKinWindow parent, Collection<IService> services){
-		return new TablePanel(parent, new Table(services, new ServiceStyle()));
+		return new TablePanel(parent, new Table(services, new ServiceStyle()), true);
 	}
 	private static JPanel createHomePanel(EasyKinWindow parent, Collection<ITask> tasks) {
-		return new TablePanel(parent, new Table(tasks, new TaskStyle()));
+		return new TablePanel(parent, new Table(tasks, new TaskStyle()), true);
 	}
 	private static JPanel createFinPanel(EasyKinWindow parent, Collection<IPayment> collection) {
-		return new TablePanel(parent, new Table(collection, new PaymentStyle()));
+		return new TablePanel(parent, new Table(collection, new PaymentStyle()), true);
 	}
 	private static JPanel createWorkPanel(EasyKinWindow parent, Collection<ITask> collection) {
-		return new TablePanel(parent, new Table(collection, new TaskStyle()));
+		return new TablePanel(parent, new Table(collection, new TaskStyle()), true);
 	}
 	private static JPanel createPaymentPanel(EasyKinWindow parent, Collection<IPayment> collection) {
-		return new TablePanel(parent, new Table(collection, new PaymentStyle()));
+		return new TablePanel(parent, new Table(collection, new PaymentStyle()), true);
 	}
 	private static JPanel createTaskPanel(EasyKinWindow parent, Collection<ITask> collection){
-		return new TablePanel(parent, new Table(collection, new TaskStyle()));
+		return new TablePanel(parent, new Table(collection, new TaskStyle()), true);
 	}
 	public static JPanel createServicePanel(EasyKinWindow parent, MasterDataContext context){
-		return new TablePanel(parent, new Table(context.calcs(), new ServiceCalcStyle()));
+		return new TablePanel(parent, new Table(context.calcs(), new ServiceCalcStyle()), true);
 	}
 	private static JPanel createDocPanel() {
 		return new JPanel();

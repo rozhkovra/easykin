@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ListSelectionListener;
 
 import ru.rrozhkov.easykin.gui.listener.TableOnClickListener;
 
@@ -17,6 +18,10 @@ public class TablePanel extends JPanel {
 				, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED
 				, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		add(js);
-		table.getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,table));
+	}
+	public TablePanel(EasyKinWindow parent, Table table, boolean listener) {
+		this(parent, table);
+		if(listener)
+			table.getSelectionModel().addListSelectionListener(new TableOnClickListener(parent,table));
 	}
 }
