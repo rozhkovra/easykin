@@ -7,12 +7,14 @@ import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceEditor;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
 import ru.rrozhkov.easykin.gui.payment.PaymentForm;
+import ru.rrozhkov.easykin.gui.person.PersonForm;
 import ru.rrozhkov.easykin.gui.service.ServiceCalcForm;
 import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
+import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.ITask;
 
@@ -47,13 +49,20 @@ public class FormFactory {
 			return new PaymentForm(parent,(IPayment)obj);
 		return new PaymentForm(parent);
 	}
+
+	private static JPanel createPersonForm(MasterDataContext context, JFrame parent, Object obj) {
+		if(obj!=null && obj instanceof IPerson)
+			return new PersonForm(parent,(IPerson)obj);
+		return new JPanel();
+	}
+
 	public static JPanel getFormPanel(MasterDataContext context, JFrame parent, ICategory category, Object obj) {
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==2){
-			return new JPanel();
+			return createPersonForm(context, parent, obj);
 		}else if(category.getId()==3){
-			return new JPanel();
+			return createPersonForm(context, parent,obj);
 		}else if(category.getId()==4){
 			return createAutoServiceEditor(parent,obj);
 		}else if(category.getId()==5){
