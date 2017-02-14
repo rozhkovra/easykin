@@ -23,8 +23,8 @@ public class HotWaterPanel extends Panel{
 	private JLabel rateLabel = null;
 	private JLabel odnLabel = null;
 	
-	public HotWaterPanel(HotWaterCalc calcBean) {
-		super(calcBean);
+	public HotWaterPanel(Panel parent, HotWaterCalc calcBean) {
+		super(parent, calcBean);
 		fill();	 
 	}
 
@@ -41,14 +41,15 @@ public class HotWaterPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-	    add(getCalcButton());
+		refresh();
 	}
 	
 	public JTextField getPrevMesureField(){
 		if(prevMesureField == null){
 			prevMesureField = new JTextField(5);
 			String text = String.valueOf(((HotWaterCalc)calc).getPrevMesure());
-			prevMesureField.setText(text);			
+			prevMesureField.setText(text);
+			prevMesureField.getDocument().addDocumentListener(this);
 		}
 		return prevMesureField;
 	}
@@ -57,7 +58,8 @@ public class HotWaterPanel extends Panel{
 		if(currentMesureField == null){
 			currentMesureField = new JTextField(5);
 			String text = String.valueOf(((HotWaterCalc)calc).getCurrentMesure());
-			currentMesureField.setText(text);			
+			currentMesureField.setText(text);
+			currentMesureField.getDocument().addDocumentListener(this);
 		}
 		return currentMesureField;
 	}
@@ -66,7 +68,8 @@ public class HotWaterPanel extends Panel{
 		if(rateField == null){
 			rateField = new JTextField(5);
 			String text = String.valueOf(((HotWaterCalc)calc).getRate());
-			rateField.setText(text);			
+			rateField.setText(text);
+			rateField.getDocument().addDocumentListener(this);
 		}
 		return rateField;
 	}
@@ -75,7 +78,8 @@ public class HotWaterPanel extends Panel{
 		if(odnField == null){
 			odnField = new JTextField(6);
 			String text = String.valueOf(((HotWaterCalc)calc).getOdn());
-			odnField.setText(text);			
+			odnField.setText(text);
+			odnField.getDocument().addDocumentListener(this);
 		}
 		return odnField;
 	}

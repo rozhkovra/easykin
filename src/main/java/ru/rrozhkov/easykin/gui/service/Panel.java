@@ -1,36 +1,47 @@
 package ru.rrozhkov.easykin.gui.service;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import ru.rrozhkov.easykin.model.fin.util.FormatUtil;
 import ru.rrozhkov.easykin.model.service.calc.ICalculator;
 import ru.rrozhkov.easykin.model.service.calc.impl.Calculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.CalculatorFactory;
 
-public abstract class Panel extends JPanel implements ActionListener{
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+
+public abstract class Panel extends JPanel implements DocumentListener {
 
 	private static final long serialVersionUID = 1L;
-	public static String CALC_LABEL_TEXT = "Пуск";
 	private JLabel itogoLabel = null;
-	private JButton calcButton = null;
 	private ICalculator calculator;
 	protected Calculation calc; 
-	
-	public Panel(Calculation calc) {
+	protected Panel parent;
+	public Panel(Panel parent, Calculation calc) {
 		super();
 		this.calc = calc;
+		this.parent = parent;
 		this.calculator = CalculatorFactory.getCalculator(calc);
 	}
-	public void actionPerformed(ActionEvent e) {
-			updateBean();
-			updateUI();
+
+	public void insertUpdate(DocumentEvent e) {
+		refresh();
+	}
+
+	public void removeUpdate(DocumentEvent e) {
+		refresh();
+	}
+
+	public void changedUpdate(DocumentEvent e) {
+		refresh();
+	}
+
+	public void refresh() {
+		updateBean();
+		updateUI();
+		if(parent!=null)
+			parent.refresh();
+
 	}
 	@Override
 	public void updateUI() {
@@ -50,13 +61,6 @@ public abstract class Panel extends JPanel implements ActionListener{
 	}
 	public JLabel getCalcTypeLabel(){
 		return new JLabel(String.valueOf(calc.getType()));
-	}
-	public JButton getCalcButton(){
-	    if(calcButton==null){
-	    	calcButton = new JButton(CALC_LABEL_TEXT);
-	    	calcButton.addActionListener(this);
-	    }
-		return calcButton;
 	}
 	public Calculation getCalc(){
 		return calc;

@@ -20,13 +20,13 @@ public class GazPanel extends Panel{
 	private JLabel currentMesureLabel = null;
 	private JLabel rateLabel = null;
 	
-	public GazPanel(GazCalc calcBean) {
-		super(calcBean);
+	public GazPanel(Panel parent, GazCalc calcBean) {
+		super(parent, calcBean);
 		fill();
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(7,2)); 
+		setLayout(new GridLayout(7, 2));
 		add(getEmptyLabel());
 		add(getEmptyLabel());
 		add(getCalcTypeLabel());
@@ -39,7 +39,7 @@ public class GazPanel extends Panel{
 		add(getRateField()); 
 		add(getEmptyLabel());
 		add(getItogoLabel()); 
-		actionPerformed(null);
+		refresh();
 	}
 	
 	public JTextField getPrevMesureField(){
@@ -47,6 +47,7 @@ public class GazPanel extends Panel{
 			prevMesureField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getPrevMesure());
 			prevMesureField.setText(text);
+			prevMesureField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				prevMesureField.setEditable(false);			
 		}
@@ -57,7 +58,8 @@ public class GazPanel extends Panel{
 		if(currentMesureField == null){
 			currentMesureField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getCurrentMesure());
-			currentMesureField.setText(text);			
+			currentMesureField.setText(text);
+			currentMesureField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				currentMesureField.setEditable(false);			
 		}
@@ -69,7 +71,8 @@ public class GazPanel extends Panel{
 			rateField = new JTextField(5);
 			String text = String.valueOf(((GazCalc)calc).getRate());
 			rateField.setText(text);
-			if(calc.isPaid())
+			rateField.getDocument().addDocumentListener(this);
+			if (calc.isPaid())
 				rateField.setEditable(false);			
 		}
 		return rateField;

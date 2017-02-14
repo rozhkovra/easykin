@@ -14,8 +14,8 @@ public class DefaultPanel extends Panel {
 	private JTextField sumField;
 	private JLabel sumLabel;
 	
-	public DefaultPanel(DefaultCalc calcBean) {		
-		super(calcBean);
+	public DefaultPanel(Panel parent, DefaultCalc calcBean) {
+		super(parent, calcBean);
 		fill();
 	}
 	
@@ -29,7 +29,7 @@ public class DefaultPanel extends Panel {
 		add(getSumField());
 		add(getEmptyLabel());
 		add(getItogoLabel()); 
-		actionPerformed(null);
+		refresh();
 	}
 	
 	public JTextField getSumField(){
@@ -37,6 +37,7 @@ public class DefaultPanel extends Panel {
 			sumField = new JTextField(10);
 			String sum = FormatUtil.formatEditMoney(((DefaultCalc)calc).getSum());
 			sumField.setText(sum);
+			sumField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				sumField.setEditable(false);
 		}

@@ -23,13 +23,13 @@ public class ElectricityPanel extends Panel{
 	private JLabel rateLabel = null;
 	private JLabel odnLabel = null;
 	
-	public ElectricityPanel(ElectricityCalc bean) {
-		super(bean);
+	public ElectricityPanel(Panel parent, ElectricityCalc bean) {
+		super(parent, bean);
 		fill();	 
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(8,2)); 
+		setLayout(new GridLayout(8, 2));
 		add(getEmptyLabel());
 		add(getEmptyLabel());
 		add(getCalcTypeLabel());
@@ -44,7 +44,7 @@ public class ElectricityPanel extends Panel{
 		add(getOdnField());
 		add(getEmptyLabel());
 		add(getItogoLabel()); 
-		actionPerformed(null);
+		refresh();
 	}
 	
 	public JTextField getPrevMesureField(){
@@ -52,6 +52,7 @@ public class ElectricityPanel extends Panel{
 			prevMesureField = new JTextField(5);
 			String text = String.valueOf(((ElectricityCalc)calc).getPrevMesure());
 			prevMesureField.setText(text);
+			prevMesureField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				prevMesureField.setEditable(false);			
 		}
@@ -63,6 +64,7 @@ public class ElectricityPanel extends Panel{
 			currentMesureField = new JTextField(5);
 			String text = String.valueOf(((ElectricityCalc)calc).getCurrentMesure());			
 			currentMesureField.setText(text);
+			currentMesureField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				currentMesureField.setEditable(false);
 		}
@@ -74,6 +76,7 @@ public class ElectricityPanel extends Panel{
 			rateField = new JTextField(5);
 			String text = String.valueOf(((ElectricityCalc)calc).getRate());
 			rateField.setText(text);
+			rateField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				rateField.setEditable(false);			
 		}
@@ -85,6 +88,7 @@ public class ElectricityPanel extends Panel{
 			odnField = new JTextField(6);
 			String text = String.valueOf(((ElectricityCalc)calc).getOdn());
 			odnField.setText(text);
+			odnField.getDocument().addDocumentListener(this);
 			if(calc.isPaid())
 				odnField.setEditable(false);			
 		}
