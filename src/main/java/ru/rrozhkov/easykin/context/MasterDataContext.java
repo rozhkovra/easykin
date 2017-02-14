@@ -104,9 +104,7 @@ public class MasterDataContext {
 	}
 	
 	public Object getObjByIndex(ICategory category, int index){
-		if(index > categoryData.get(category.getId()).size()-1 || index < 0)
-			return null;		
-		return ((List)categoryData.get(category.getId())).get(index);
+		return CollectionUtil.<ICategory>get(categoryData.get(category.getId()),index);
 	}
 
 

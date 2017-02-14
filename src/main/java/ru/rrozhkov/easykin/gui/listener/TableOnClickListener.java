@@ -4,13 +4,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import ru.rrozhkov.easykin.gui.EasyKinWindow;
+import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.Table;
 
 public class TableOnClickListener implements ListSelectionListener {
-	private EasyKinWindow main;
+	private IGUIEditor main;
 	private Table table;
 	
-	public TableOnClickListener(EasyKinWindow main, Table table) {
+	public TableOnClickListener(IGUIEditor main, Table table) {
 		this.main = main;
 		this.table = table;
 	}

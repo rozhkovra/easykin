@@ -9,6 +9,7 @@ import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
 import ru.rrozhkov.easykin.gui.payment.PaymentForm;
 import ru.rrozhkov.easykin.gui.person.PersonForm;
 import ru.rrozhkov.easykin.gui.service.ServiceCalcForm;
+import ru.rrozhkov.easykin.gui.task.CommentForm;
 import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.service.IService;
@@ -16,6 +17,7 @@ import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 
 public class FormFactory {
@@ -54,6 +56,12 @@ public class FormFactory {
 		if(obj!=null && obj instanceof IPerson)
 			return new PersonForm(parent,(IPerson)obj);
 		return new JPanel();
+	}
+
+	public static JPanel createCommentForm(MasterDataContext context,IGUIEditor parent, Object obj){
+		if(obj!=null && obj instanceof IComment)
+			return new CommentForm(context, parent,(IComment)obj);
+		return new CommentForm(context, parent);
 	}
 
 	public static JPanel getFormPanel(MasterDataContext context, JFrame parent, ICategory category, Object obj) {

@@ -24,7 +24,7 @@ import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-public class EasyKinWindow extends JFrame{
+public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private static final long serialVersionUID = 1L;
 	
 	private JTabbedPane tabbedPane = new JTabbedPane();
@@ -90,8 +90,12 @@ public class EasyKinWindow extends JFrame{
         getContentPane().add(content);
         getContentPane().validate();
 	}
-	
-	private void fillTabbedPane(){
+
+        public void closeEditor() {
+
+        }
+
+        private void fillTabbedPane(){
         tabbedPane.removeAll();
         for(ICategory category : context.categories()) {
         	tabbedPane.addTab(category.getName(), createPanel(this, context, category));
