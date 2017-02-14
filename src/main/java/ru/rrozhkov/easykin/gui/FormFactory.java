@@ -21,38 +21,38 @@ import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 
 public class FormFactory {
-	public static JPanel createServiceCalcForm(JFrame parent, Object obj){
+	public static JPanel createServiceCalcForm( Object obj){
 		if(obj!=null && obj instanceof ServiceCalc)
 			return new ServiceCalcForm((ServiceCalc)obj);
 		return new JPanel();
 	}
-	public static JPanel createTaskForm(MasterDataContext context,JFrame parent, Object obj){
+	public static JPanel createTaskForm(MasterDataContext context,IGUIEditor parent, Object obj){
 		if(obj!=null && obj instanceof ITask)
 			return new TaskForm(context, parent,(ITask)obj);
 		return new TaskForm(context, parent);
 	}
-	public static JPanel createTaskEditor(MasterDataContext context,JFrame parent, Object obj){
+	public static JPanel createTaskEditor(MasterDataContext context,IGUIEditor parent, Object obj){
 		if(obj!=null && obj instanceof ITask)
 			return new TaskEditor(context, (EasyKinWindow)parent,(ITask)obj);
 		return new TaskEditor(context, (EasyKinWindow)parent);
 	}
-	public static JPanel createAutoServiceForm(JFrame parent, Object obj){
+	public static JPanel createAutoServiceForm(IGUIEditor parent, Object obj){
 		if(obj!=null && obj instanceof IService)
 			return new AutoServiceForm(parent,(IService)obj);
 		return new AutoServiceForm(parent);
 	}
-	public static JPanel createAutoServiceEditor(JFrame parent, Object obj){
+	public static JPanel createAutoServiceEditor(IGUIEditor parent, Object obj){
 		if(obj!=null && obj instanceof IService)
 			return new AutoServiceEditor((EasyKinWindow)parent,(IService)obj);
 		return new AutoServiceEditor((EasyKinWindow)parent);
 	}
-	public static JPanel createPaymentForm(MasterDataContext context,JFrame parent, Object obj){
+	public static JPanel createPaymentForm(MasterDataContext context,IGUIEditor parent, Object obj){
 		if(obj!=null && obj instanceof IPayment)
 			return new PaymentForm(parent,(IPayment)obj);
 		return new PaymentForm(parent);
 	}
 
-	private static JPanel createPersonForm(MasterDataContext context, JFrame parent, Object obj) {
+	private static JPanel createPersonForm(MasterDataContext context, IGUIEditor parent, Object obj) {
 		if(obj!=null && obj instanceof IPerson)
 			return new PersonForm(parent,(IPerson)obj);
 		return new JPanel();
@@ -64,7 +64,7 @@ public class FormFactory {
 		return new CommentForm(context, parent);
 	}
 
-	public static JPanel getFormPanel(MasterDataContext context, JFrame parent, ICategory category, Object obj) {
+	public static JPanel getFormPanel(MasterDataContext context, IGUIEditor parent, ICategory category, Object obj) {
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==2){
@@ -84,7 +84,7 @@ public class FormFactory {
 		}else if(category.getId()==9){
 			return createTaskForm(context, parent,obj);
 		}else if(category.getId()==10){
-			return createServiceCalcForm(parent,obj);
+			return createServiceCalcForm(obj);
 		}
 		return new JPanel();
 	}

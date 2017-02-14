@@ -2,6 +2,7 @@ package ru.rrozhkov.easykin.gui.person;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
+import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.task.ITask;
@@ -29,9 +30,9 @@ public class PersonForm extends JPanel{
 	private JButton closeButton;
 
 	private IPerson person;
-	private JFrame parent;
+	private IGUIEditor parent;
 
-	public PersonForm(JFrame parent, IPerson person) {
+	public PersonForm(IGUIEditor parent, IPerson person) {
 		this.parent = parent;
 		this.person = person;
 		fill();
@@ -122,10 +123,8 @@ public class PersonForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
-	            	Component form = parent.getContentPane().getComponent(1);
-	            	parent.getContentPane().remove(form);
-	            	parent.getContentPane().validate();
-	            }           
+	            	parent.closeEditor();
+	            }
 	        });
 	    }
 		return closeButton;

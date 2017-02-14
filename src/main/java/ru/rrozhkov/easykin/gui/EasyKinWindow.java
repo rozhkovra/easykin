@@ -67,12 +67,6 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 		setJMenuBar(menuBar);
 	}
 
-	@Override
-	public void repaint() {
-		super.repaint();
-		fillTabbedPane();
-	}
-	
 	public void edit(int index){
         if(getContentPane().getComponentCount()>1){
         	Component form = getContentPane().getComponent(1);
@@ -91,11 +85,20 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         getContentPane().validate();
 	}
 
-        public void closeEditor() {
-
+    public void closeEditor() {
+        if(getContentPane().getComponentCount()>1){
+            Component form = getContentPane().getComponent(1);
+            getContentPane().remove(form);
         }
+        getContentPane().validate();
+    }
 
-        private void fillTabbedPane(){
+    public void refresh() {
+        super.repaint();
+        fillTabbedPane();
+    }
+
+    private void fillTabbedPane(){
         tabbedPane.removeAll();
         for(ICategory category : context.categories()) {
         	tabbedPane.addTab(category.getName(), createPanel(this, context, category));

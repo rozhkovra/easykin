@@ -6,4 +6,5 @@ package ru.rrozhkov.easykin.gui;
 public interface IGUIEditor {
     void edit(int index);
     void closeEditor();
+    void refresh();
 }

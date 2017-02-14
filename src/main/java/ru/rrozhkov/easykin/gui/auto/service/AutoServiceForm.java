@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.Money;
@@ -29,14 +30,14 @@ public class AutoServiceForm extends JPanel{
 	private JButton addButton;
 	private JButton closeButton;
 	private IService service;
-	private JFrame parent;
-	public AutoServiceForm(JFrame parent, IService service) {
+	private IGUIEditor parent;
+	public AutoServiceForm(IGUIEditor parent, IService service) {
 		this.service = service;
 		this.parent = parent;
 		fill();
 	}
 	
-	public AutoServiceForm(JFrame parent) {
+	public AutoServiceForm(IGUIEditor parent) {
 		this(parent, ServiceFactory.createService("", MoneyFactory.create(), new Date()));
 	}
 	
@@ -112,9 +113,7 @@ public class AutoServiceForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
-	            	Component form = parent.getContentPane().getComponent(1);
-	            	parent.getContentPane().remove(form);
-	            	parent.getContentPane().validate();
+	            	parent.closeEditor();
 	            }           
 	        });
 	    }

@@ -49,4 +49,8 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		remove(form);
 		validate();
 	}
+
+	public void refresh() {
+
+	}
 }

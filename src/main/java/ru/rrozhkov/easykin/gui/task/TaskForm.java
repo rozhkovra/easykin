@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
+import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;
@@ -35,14 +36,14 @@ public class TaskForm extends JPanel{
 	private JButton doneButton;
 	
 	private ITask task;
-	private JFrame parent;
+	private IGUIEditor parent;
 	private MasterDataContext context;
 	
-	public TaskForm(MasterDataContext context, JFrame parent) {
+	public TaskForm(MasterDataContext context, IGUIEditor parent) {
 		this(context, parent, TaskFactory.newTask());
 	}
 
-	public TaskForm(MasterDataContext context, JFrame parent, ITask task) {
+	public TaskForm(MasterDataContext context, IGUIEditor parent, ITask task) {
 		this.context = context;
 		this.parent = parent;
 		this.task = task;
@@ -168,7 +169,7 @@ public class TaskForm extends JPanel{
 	            		ex.printStackTrace();
 	            	}
 	        		context.init();
-	            	parent.repaint();
+	            	parent.refresh();
 	            }
 
 				private boolean validateTask() {
@@ -190,10 +191,8 @@ public class TaskForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
-	            	Component form = parent.getContentPane().getComponent(1);
-	            	parent.getContentPane().remove(form);
-	            	parent.getContentPane().validate();
-	            }           
+					parent.closeEditor();
+	            }
 	        });
 	    }
 		return closeButton;
@@ -213,7 +212,7 @@ public class TaskForm extends JPanel{
 	            		ex.printStackTrace();
 	            	}
 	        		context.init();
-	            	parent.repaint();
+	            	parent.refresh();
 	            }
 
 				private boolean validateTask() {

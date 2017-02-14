@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 import ru.rrozhkov.easykin.util.DateUtil;
@@ -27,17 +28,17 @@ public class PaymentForm extends JPanel{
 	private JButton addButton;
 	private JButton closeButton;
 	private IPayment payment;
-	private JFrame parent;
+	private IGUIEditor parent;
 	private JComboBox categoryComboBox;
 	private JLabel categoryLabel;
 	
-	public PaymentForm(JFrame parent, IPayment payment) {
+	public PaymentForm(IGUIEditor parent, IPayment payment) {
 		this.payment = payment;
 		this.parent = parent;
 		fill();
 	}
 
-	public PaymentForm(JFrame parent) {
+	public PaymentForm(IGUIEditor parent) {
 		this(parent, null);
 	}
 
@@ -137,9 +138,7 @@ public class PaymentForm extends JPanel{
 	    	closeButton = new JButton("Закрыть");
 	    	closeButton.addActionListener(new ActionListener() {           
 	            public void actionPerformed(ActionEvent e) {
-	            	Component form = parent.getContentPane().getComponent(1);
-	            	parent.getContentPane().remove(form);
-	            	parent.getContentPane().validate();
+	            	parent.closeEditor();
 	            }           
 	        });
 	    }
