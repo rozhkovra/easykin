@@ -18,6 +18,7 @@ public class StaticAutoServiceDataProvider extends CollectionDataProvider<IServi
             	,ServiceFactory.createService("Заправка", new Money(500.0), DateUtil.parse("24.01.2017"))
             	,ServiceFactory.createService("Заправка", new Money(300.0), DateUtil.parse("28.01.2017"))
             	,ServiceFactory.createService("Заправка", new Money(1000.0), DateUtil.parse("05.02.2017"))
+				,ServiceFactory.createService("Заправка", new Money(1000.0), DateUtil.parse("14.02.2017"))
             	)));
 	}
 }
