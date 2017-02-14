@@ -15,9 +15,7 @@ public class ServiceCalculator extends Calculator {
 		Money itogo = MoneyFactory.create();
 		for(ICalculation calc : calcBean.calcs()){
 			Calculation bean = (Calculation)calc;
-			if(bean.needCalc()){
-				itogo.add(getCalculator(bean).calculate().getResult());
-			}
+			itogo.add(getCalculator(bean).calculate().getResult());
 		}
 		return new ServiceResult(itogo);
 	}

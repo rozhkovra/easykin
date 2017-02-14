@@ -30,13 +30,10 @@ public class ElectricityPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(8,2)); 
-		if(calc.isPaid())
-			add(new JLabel(""));
-		else
-			add(getCalcBox());
-		add(new JLabel(""));
-		add(new JLabel(String.valueOf(calc.getType()))); 
-		add(new JLabel(""));
+		add(getEmptyLabel());
+		add(getEmptyLabel());
+		add(getCalcTypeLabel());
+		add(getEmptyLabel());
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
@@ -45,12 +42,9 @@ public class ElectricityPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-		add(new JLabel("ИТОГО"));
+		add(getEmptyLabel());
 		add(getItogoLabel()); 
-		if(!calc.isPaid())
-			add(getCalcButton());
-		else
-			actionPerformed(null);
+		actionPerformed(null);
 	}
 	
 	public JTextField getPrevMesureField(){
@@ -123,7 +117,6 @@ public class ElectricityPanel extends Panel{
 
 	@Override
 	public void updateBean() {
-		super.updateBean();
 		ElectricityCalc bean = (ElectricityCalc)getCalc();
 		bean.setPrevMesure(CalcUtil.doubleNUllOrEmpty(getPrevMesureField().getText()));
 		bean.setCurrentMesure(CalcUtil.doubleNUllOrEmpty(getCurrentMesureField().getText()));

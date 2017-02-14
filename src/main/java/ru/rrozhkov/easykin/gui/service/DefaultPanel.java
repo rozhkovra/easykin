@@ -21,21 +21,15 @@ public class DefaultPanel extends Panel {
 	
 	private void fill(){
 		setLayout(new GridLayout(5,2));
-		if(calc.isPaid())
-			add(new JLabel(""));
-		else
-			add(getCalcBox());
-		add(new JLabel(""));
-		add(new JLabel(String.valueOf(calc.getType()))); 
-		add(new JLabel(""));
+		add(getEmptyLabel());
+		add(getEmptyLabel());
+		add(getCalcTypeLabel());
+		add(getEmptyLabel());
 		add(getSumLabel()); 
 		add(getSumField());
-		add(new JLabel("ИТОГО"));
+		add(getEmptyLabel());
 		add(getItogoLabel()); 
-		if(!calc.isPaid())
-			add(getCalcButton());
-		else
-			actionPerformed(null);
+		actionPerformed(null);
 	}
 	
 	public JTextField getSumField(){
@@ -55,7 +49,6 @@ public class DefaultPanel extends Panel {
 	}
 	@Override
 	public void updateBean() {
-		super.updateBean();
 		DefaultCalc bean = (DefaultCalc)getCalc();
 		bean.setSum(CalcUtil.moneyNUllOrEmpty(getSumField().getText()));
 	}

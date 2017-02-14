@@ -39,10 +39,10 @@ public class WaterPanel extends Panel{
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(10,2)); 
-		add(getCalcBox());
-		add(new JLabel(""));
-		add(new JLabel(String.valueOf(calc.getType()))); 
+		setLayout(new GridLayout(10, 2));
+		add(getEmptyLabel());
+		add(getEmptyLabel());
+		add(getCalcTypeLabel());
 		add(getItogoLabel()); 
 		add(getColdPrevMesureLabel()); 
 		add(getColdPrevMesureField()); 
@@ -53,12 +53,11 @@ public class WaterPanel extends Panel{
 		add(getHotCurrentMesureLabel()); 
 		add(getHotCurrentMesureField()); 
 		add(getRateInLabel()); 
-		add(getRateInField()); 
-		add(getRateOutLabel()); 
+		add(getRateInField());
+		add(getRateOutLabel());
 		add(getRateOutField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-	    add(getCalcButton());
 	}
 
 	public JTextField getRateOutField() {
@@ -167,7 +166,6 @@ public class WaterPanel extends Panel{
 
 	@Override
 	public void updateBean() {
-		super.updateBean();
 		WaterCalc bean = (WaterCalc)getCalc();
 		bean.setColdPrevMesure(CalcUtil.doubleNUllOrEmpty(getColdPrevMesureField().getText()));
 		bean.setColdCurrentMesure(CalcUtil.doubleNUllOrEmpty(getColdCurrentMesureField().getText()));

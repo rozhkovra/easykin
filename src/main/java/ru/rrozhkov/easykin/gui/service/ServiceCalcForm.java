@@ -18,17 +18,14 @@ public class ServiceCalcForm extends Panel {
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(5,4));
+		setLayout(new GridLayout(5, 4));
         for(ICalculation bean : ((ServiceCalc)calc).calcs()){
         	add(PanelFactory.getPanel(bean));
         }
-		if(!calc.isPaid())
-			add(getCalcButton());
-		else{
-			actionPerformed(null);
-			add(new JLabel("ИТОГО"));
-		}
-        add(getItogoLabel());
+		actionPerformed(null);
+		add(getEmptyLabel());
+		add(getEmptyLabel());
+		add(getItogoLabel());
 	}
 
 	@Override
@@ -38,5 +35,9 @@ public class ServiceCalcForm extends Panel {
 				((Panel)component).actionPerformed(e);
 		}
 		super.actionPerformed(e);
-	}	
+	}
+
+	@Override
+	public void updateBean() {
+	}
 }

@@ -29,10 +29,9 @@ public class HotWaterPanel extends Panel{
 	}
 
 	private void fill() {
-		setLayout(new GridLayout(7,2)); 
- 		add(getCalcBox());
-		add(new JLabel(""));
-		add(new JLabel(String.valueOf(calc.getType()))); 
+		setLayout(new GridLayout(7,2));
+		add(getEmptyLabel());
+		add(getCalcTypeLabel());
 		add(getItogoLabel()); 
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
@@ -107,7 +106,6 @@ public class HotWaterPanel extends Panel{
 
 	@Override
 	public void updateBean() {
-		super.updateBean();
 		HotWaterCalc bean = (HotWaterCalc)getCalc();
 		bean.setPrevMesure(CalcUtil.doubleNUllOrEmpty(getPrevMesureField().getText()));
 		bean.setCurrentMesure(CalcUtil.doubleNUllOrEmpty(getCurrentMesureField().getText()));
