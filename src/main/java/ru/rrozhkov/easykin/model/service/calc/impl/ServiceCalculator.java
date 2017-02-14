@@ -2,6 +2,7 @@ package ru.rrozhkov.easykin.model.service.calc.impl;
 
 import static ru.rrozhkov.easykin.model.service.calc.impl.CalculatorFactory.getCalculator;
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 
 public class ServiceCalculator extends Calculator {
@@ -11,7 +12,7 @@ public class ServiceCalculator extends Calculator {
 
 	public ServiceResult calculate() {
 		ServiceCalc calcBean = (ServiceCalc)getCalc();
-		Money itogo = new Money();
+		Money itogo = MoneyFactory.create();
 		for(ICalculation calc : calcBean.calcs()){
 			Calculation bean = (Calculation)calc;
 			if(bean.needCalc()){

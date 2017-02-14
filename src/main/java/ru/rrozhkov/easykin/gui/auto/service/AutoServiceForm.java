@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 public class AutoServiceForm extends JPanel{
@@ -36,7 +37,7 @@ public class AutoServiceForm extends JPanel{
 	}
 	
 	public AutoServiceForm(JFrame parent) {
-		this(parent, ServiceFactory.createService("", new Money(), new Date()));
+		this(parent, ServiceFactory.createService("", MoneyFactory.create(), new Date()));
 	}
 	
 	private void fill(){

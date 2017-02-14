@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.model.task.util;
 
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.task.ITask;
 
 public class TaskUtil {
@@ -17,7 +18,7 @@ public class TaskUtil {
 			int index = text.indexOf('$');
 			int lastIndex = text.lastIndexOf('$');
 			String value = text.substring(index+1, lastIndex);
-			return new Money(Double.valueOf(value));
+			return MoneyFactory.create(Double.valueOf(value));
 		}
 		return null;
 	}

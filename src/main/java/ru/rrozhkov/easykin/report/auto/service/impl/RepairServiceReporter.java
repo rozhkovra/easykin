@@ -4,6 +4,7 @@ import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.IServiceHistory;
 import ru.rrozhkov.easykin.model.auto.service.util.RepairUtil;
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class RepairServiceReporter extends ServiceReporter {
@@ -13,7 +14,7 @@ public class RepairServiceReporter extends ServiceReporter {
 	}
 
 	public Money getDetailsSum() {
-		Money value = new Money();
+		Money value = MoneyFactory.create();
 		for(IService service : FilterUtil.<IService>filter(history.getServices(), filters)){
 			value.add(RepairUtil.getDetailsPrice(service));
 		}						

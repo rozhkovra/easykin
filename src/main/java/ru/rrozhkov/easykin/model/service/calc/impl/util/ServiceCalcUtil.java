@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
@@ -22,7 +23,7 @@ public class ServiceCalcUtil {
 	}
 	
 	public static Money getPaidSum(ServiceCalc entry){
-		Money sum = new Money();
+		Money sum = MoneyFactory.create();
 		for(ICalculation calc : entry.calcs()){
 			if(calc.isPaid())
 				sum.add(getCalculator(calc).calculate().getResult());
@@ -31,7 +32,7 @@ public class ServiceCalcUtil {
 	}
 	
 	public static Money getNoPaidSum(ServiceCalc entry){
-		Money sum = new Money();
+		Money sum = MoneyFactory.create();
 		for(ICalculation calc : entry.calcs()){
 			if(!calc.isPaid())
 				sum.add(getCalculator(calc).calculate().getResult());

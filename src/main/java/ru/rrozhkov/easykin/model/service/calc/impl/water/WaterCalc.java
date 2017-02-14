@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.model.service.calc.impl.water;
 
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.impl.OdnSimpleCalc;
 
@@ -13,7 +14,7 @@ public class WaterCalc extends OdnSimpleCalc {
 	public WaterCalc(double coldPrevMesure, double coldCurrentMesure,
 			double hotPrevMesure, double hotCurrentMesure, Money inRate,
 			Money outRate, Money odn, boolean isPaid) {
-		super(coldPrevMesure, coldCurrentMesure, new Money(), odn, isPaid);
+		super(coldPrevMesure, coldCurrentMesure, MoneyFactory.create(), odn, isPaid);
 		this.hotPrevMesure = hotPrevMesure;
 		this.hotCurrentMesure = hotCurrentMesure;
 		this.inRate = inRate;
