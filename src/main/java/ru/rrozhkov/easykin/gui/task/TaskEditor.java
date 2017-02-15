@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui.task;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.FormFactory;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
@@ -11,18 +12,23 @@ import ru.rrozhkov.lib.collection.CollectionUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TaskEditor extends JPanel implements IGUIEditor{
 	private ITask task;
 	private MasterDataContext context;
 	private EasyKinWindow parent;
+	private JButton addButton;
+
 	public TaskEditor(MasterDataContext context, EasyKinWindow parent, ITask task) {
 		super();
 		this.task = task;
 		this.context = context;
 		this.parent = parent;
-		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(FormFactory.createTaskForm(context, parent, task));
+		add(getAddButton());
 		if(task!=null && !CollectionUtil.isNullOrEmpty(task.comments()))
 			add(PanelFactory.createTaskCommentPanel(this, task.comments()));
 	}
@@ -31,26 +37,44 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 	}
 
 	public void edit(int index){
-		if(getComponentCount()>2)
+		if(getComponentCount()>3)
 			return;
-		if(task==null || task.comments().isEmpty())
+		if(task==null)
 			return;
-		if(index > task.comments().size()-1 || index < 0)
-			return;
-		IComment comment =  CollectionUtil.get(task.comments(), index);
+		IComment comment =  null;
+		if (task.comments().size()>0 && index!=-1)
+			comment = CollectionUtil.get(task.comments(), index);
 		add(FormFactory.createCommentForm(context,this, comment));
+		getAddButton().setEnabled(false);
 		validate();
 	}
 
+	public void add() {
+		edit(-1);
+	}
+
 	public void closeEditor() {
-		if(getComponentCount()<3)
+		if(getComponentCount()<4)
 			return;
-		Component form = getComponent(2);
+		Component form = getComponent(3);
 		remove(form);
+		getAddButton().setEnabled(true);
 		validate();
 	}
 
 	public void refresh() {
 
+	}
+
+	private JButton getAddButton(){
+		if(addButton==null){
+			addButton = new JButton("Добавить");
+			addButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					add();
+				}
+			});
+		}
+		return addButton;
 	}
 }

@@ -46,7 +46,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         addItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
         addItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
-            	edit(-1);
+            	add();
             }           
         });
         
@@ -84,6 +84,10 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         getContentPane().add(content);
         getContentPane().validate();
 	}
+
+    public void add() {
+        edit(-1);
+    }
 
     public void closeEditor() {
         if(getContentPane().getComponentCount()>1){
