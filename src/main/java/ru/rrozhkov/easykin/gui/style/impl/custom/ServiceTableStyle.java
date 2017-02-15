@@ -18,6 +18,7 @@ public class ServiceTableStyle extends TableStyle<IService> {
 	    super.setColumnStyles(table);
 	    table.getColumnModel().getColumn(0).setMinWidth(50);
 	    table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setMinWidth(300);
 	    table.getColumnModel().getColumn(2).setMinWidth(150);
 	    table.getColumnModel().getColumn(2).setMaxWidth(150);	    
 	    table.getColumnModel().getColumn(3).setMaxWidth(150);

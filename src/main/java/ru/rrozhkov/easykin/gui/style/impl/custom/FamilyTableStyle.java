@@ -19,6 +19,9 @@ public class FamilyTableStyle extends TableStyle<IPerson> {
 	    super.setColumnStyles(table);
 	    table.getColumnModel().getColumn(0).setMaxWidth(50);
 	    table.getColumnModel().getColumn(0).setMinWidth(50);
+		table.getColumnModel().getColumn(1).setMinWidth(150);
+		table.getColumnModel().getColumn(2).setMinWidth(150);
+		table.getColumnModel().getColumn(3).setMinWidth(150);
 	    table.getColumnModel().getColumn(4).setMaxWidth(150);
 	    table.getColumnModel().getColumn(4).setMinWidth(150);
 	}

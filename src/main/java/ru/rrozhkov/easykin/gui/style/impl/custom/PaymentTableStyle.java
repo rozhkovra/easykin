@@ -20,6 +20,7 @@ public class PaymentTableStyle extends TableStyle<IPayment> {
 	    table.getColumnModel().getColumn(0).setMaxWidth(50);
 	    table.getColumnModel().getColumn(1).setMinWidth(150);
 	    table.getColumnModel().getColumn(1).setMaxWidth(200);
+		table.getColumnModel().getColumn(2).setMinWidth(300);
 	    table.getColumnModel().getColumn(3).setMinWidth(100);
 	    table.getColumnModel().getColumn(3).setMaxWidth(100);
 	    table.getColumnModel().getColumn(4).setMinWidth(100);
