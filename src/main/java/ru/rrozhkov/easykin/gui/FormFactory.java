@@ -58,10 +58,10 @@ public class FormFactory {
 		return new JPanel();
 	}
 
-	public static JPanel createCommentForm(MasterDataContext context,IGUIEditor parent, Object obj){
+	public static JPanel createCommentForm(MasterDataContext context, IGUIEditor parent, Object obj, int id){
 		if(obj!=null && obj instanceof IComment)
 			return new CommentForm(context, parent,(IComment)obj);
-		return new CommentForm(context, parent);
+		return new CommentForm(context, parent, id);
 	}
 
 	public static JPanel getFormPanel(MasterDataContext context, IGUIEditor parent, ICategory category, Object obj) {

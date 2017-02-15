@@ -26,14 +26,20 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		this.task = task;
 		this.context = context;
 		this.parent = parent;
+		fill();
+	}
+	public TaskEditor(MasterDataContext context, EasyKinWindow parent) {
+		this(context, parent, null);
+	}
+
+	private void fill(){
+		removeAll();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(FormFactory.createTaskForm(context, parent, task));
 		add(getAddButton());
 		if(task!=null && !CollectionUtil.isNullOrEmpty(task.comments()))
 			add(PanelFactory.createTaskCommentPanel(this, task.comments()));
-	}
-	public TaskEditor(MasterDataContext context, EasyKinWindow parent) {
-		this(context, parent, null);
+		validate();
 	}
 
 	public void edit(int index){
@@ -44,7 +50,7 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		IComment comment =  null;
 		if (task.comments().size()>0 && index!=-1)
 			comment = CollectionUtil.get(task.comments(), index);
-		add(FormFactory.createCommentForm(context,this, comment));
+		add(FormFactory.createCommentForm(context, this, comment, task.getId()));
 		getAddButton().setEnabled(false);
 		validate();
 	}

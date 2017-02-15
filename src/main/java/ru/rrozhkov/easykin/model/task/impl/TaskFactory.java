@@ -23,8 +23,8 @@ public class TaskFactory{
 	public static IComment createComment(int id, String text, Date date, int taskId) {
 		return new Comment(id, text, date, taskId);
 	}
-	public static IComment newComment() {
-		return new Comment(-1, "", new Date(), -1);
+	public static IComment newComment(int taskId) {
+		return new Comment(-1, "", new Date(), taskId);
 	}
 
 }

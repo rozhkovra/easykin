@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui.task;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.db.impl.CommentHandler;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
@@ -13,19 +14,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class CommentForm extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JLabel textLabel;
 	private JButton closeButton;
-
+	private JButton saveButton;
 	private IComment comment;
 	private IGUIEditor parent;
 	private MasterDataContext context;
 
-	public CommentForm(MasterDataContext context, IGUIEditor parent) {
-		this(context, parent, TaskFactory.newComment());
+	public CommentForm(MasterDataContext context, IGUIEditor parent, int taskId) {
+		this(context, parent, TaskFactory.newComment(taskId));
 	}
 
 	public CommentForm(MasterDataContext context, IGUIEditor parent, IComment comment) {
@@ -41,7 +43,7 @@ public class CommentForm extends JPanel{
 		add(getEmptyLabel());
 		add(getTextLabel());
 		add(getTextField());
-		add(getEmptyLabel());
+		add(getSaveButton());
 		add(getCloseButton());
 	}
 	
@@ -73,5 +75,37 @@ public class CommentForm extends JPanel{
 	        });
 	    }
 		return closeButton;
+	}
+
+	private JButton getSaveButton(){
+		if(saveButton==null){
+			saveButton = new JButton("Сохранить");
+			saveButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					update();
+					if(!validate())
+						return;
+					try{
+						if(comment.getId()==-1)
+							CommentHandler.insert(comment);
+						else
+							CommentHandler.update(comment);
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					context.init();
+					parent.refresh();
+				}
+
+				private boolean validate() {
+					return !"".equals(comment.getText());
+				}
+			});
+		}
+		return saveButton;
+	}
+
+	protected void update() {
+		comment = TaskFactory.createComment(comment.getId(), getTextField().getText(), comment.getDate(), comment.getTaskId());
 	}
 }
