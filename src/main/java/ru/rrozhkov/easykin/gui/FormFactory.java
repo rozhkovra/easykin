@@ -80,9 +80,9 @@ public class FormFactory {
 		}else if(category.getId()==7){
 			return new JPanel();
 		}else if(category.getId()==8){
-			return createTaskForm(context, parent,obj);
+			return createTaskEditor(context, parent, obj);
 		}else if(category.getId()==9){
-			return createTaskForm(context, parent,obj);
+			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==10){
 			return createServiceCalcForm(obj);
 		}
