@@ -80,7 +80,7 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 					add();
 				}
 			});
-			if(task.getStatus().isClose())
+			if(task!=null && task.getStatus().isClose())
 				getAddButton().setEnabled(false);
 		}
 		return addButton;
