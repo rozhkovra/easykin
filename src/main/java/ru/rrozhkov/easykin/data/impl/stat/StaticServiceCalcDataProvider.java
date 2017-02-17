@@ -43,7 +43,7 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 						Arrays.asList(
 								createDefaultCalc(WATER, MoneyFactory.create(373.22), false)
 								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), false)
-								, createElectricityCalc(15429, 15429, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
+								, createElectricityCalc(15429, 15539, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
 								, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), true)
 								, createDefaultCalc(HEATING, MoneyFactory.create(1520.62), false)
 								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), true)
