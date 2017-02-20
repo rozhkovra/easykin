@@ -10,11 +10,16 @@ import ru.rrozhkov.easykin.model.task.Status;
 
 public class TaskFactory{
 	public static ITask createTask(int id, String name, Date createDate, Date plannedDate,
-			int priority, int categoryId, String categoryName, Date closeDate, int status) {
+								   int priority, int categoryId, String categoryName, Date closeDate, int status) {
 		return new Task(id, name, createDate, plannedDate, Priority.priority(priority)
 				, new Category(categoryId,categoryName), closeDate, Status.status(status));
 	}
-	
+
+	public static ITask createTask(int id, String name, Date createDate, Date plannedDate,
+								   Priority priority, Category category,  Date closeDate, Status status) {
+		return new Task(id, name, createDate, plannedDate, priority, category, closeDate, status);
+	}
+
 	public static ITask newTask(){
 		return TaskFactory.createTask(-1, "", new Date(), new Date(), Priority.priority(Priority.SIMPLE)
 				, 1, "", null, Status.status(Status.OPEN));
