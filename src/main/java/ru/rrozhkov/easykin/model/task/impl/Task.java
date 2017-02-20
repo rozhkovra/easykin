@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
@@ -16,14 +17,14 @@ public class Task implements ITask, Comparable<ITask>{
 	protected Date createDate;
 	protected Date planDate;
 	protected Priority priority;
-	protected Category category;
+	protected ICategory category;
 	protected Date closeDate;
 	protected Status status;
 	private int id;
 	private Collection<IComment> comments;
 	
 	public Task(int id, String name, Date createDate, Date plannedDate,
-			Priority priority, Category category, Date closeDate, Status status) {
+			Priority priority, ICategory category, Date closeDate, Status status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,7 +54,7 @@ public class Task implements ITask, Comparable<ITask>{
 		return priority;
 	}
 
-	public Category getCategory() {
+	public ICategory getCategory() {
 		return category;
 	}
 

@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.model.task.impl;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
+import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
@@ -16,7 +17,7 @@ public class TaskFactory{
 	}
 
 	public static ITask createTask(int id, String name, Date createDate, Date plannedDate,
-								   Priority priority, Category category,  Date closeDate, Status status) {
+								   Priority priority, ICategory category,  Date closeDate, Status status) {
 		return new Task(id, name, createDate, plannedDate, priority, category, closeDate, status);
 	}
 

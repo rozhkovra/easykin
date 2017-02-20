@@ -1,6 +1,8 @@
 package ru.rrozhkov.easykin.ws.convert;
 
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
+import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.ws.bean.TaskBean;
 import ru.rrozhkov.lib.convert.IConverter;
 
@@ -12,10 +14,10 @@ public class WSTaskConverter implements IConverter<ITask, TaskBean> {
 		bean.setName(task.getName());
 		bean.setCreateDate(task.getCreateDate());
 		bean.setPlanDate(task.getPlanDate());
-		bean.setCategory(task.getCategory());
-		bean.setPriority(task.getPriority());
+		bean.setCategory(task.getCategory().getId());
+		bean.setPriority(Priority.priority(task.getPriority()));
 		bean.setCloseDate(task.getCloseDate());
-		bean.setStatus(task.getStatus());
+		bean.setStatus(Status.status(task.getStatus()));
 		return bean;
 	}
 	

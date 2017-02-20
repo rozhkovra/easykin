@@ -11,10 +11,10 @@ public class TaskBean{
 	protected String name;
 	protected Date createDate;
 	protected Date planDate;
-	protected Priority priority;
-	protected Category category;
+	protected int priority;
+	protected int category;
 	protected Date closeDate;
-	protected Status status;
+	protected int status;
 	private int id;
 	
 	public String getName() {
@@ -35,16 +35,16 @@ public class TaskBean{
 	public void setPlanDate(Date planDate) {
 		this.planDate = planDate;
 	}
-	public Priority getPriority() {
+	public int getPriority() {
 		return priority;
 	}
-	public void setPriority(Priority priority) {
+	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public Category getCategory() {
+	public int getCategory() {
 		return category;
 	}
-	public void setCategory(Category category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 	public Date getCloseDate() {
@@ -53,10 +53,10 @@ public class TaskBean{
 	public void setCloseDate(Date closeDate) {
 		this.closeDate = closeDate;
 	}
-	public Status getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public int getId() {
