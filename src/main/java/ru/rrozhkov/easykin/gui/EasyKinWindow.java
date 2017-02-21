@@ -9,15 +9,10 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.Date;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
@@ -31,6 +26,9 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private MasterDataContext context;
 	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
 		super("EasyKin, "+DateUtil.formatWeek(new Date()));
+        URL iconUrl = getClass().getResource("/icon/logo.png");
+        ImageIcon icon = new ImageIcon(iconUrl);
+        setIconImage(icon.getImage());
 		this.context = context;
         fillTabbedPane();
         createMenuBar();
