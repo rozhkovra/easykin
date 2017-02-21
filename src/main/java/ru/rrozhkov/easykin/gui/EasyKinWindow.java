@@ -2,18 +2,18 @@ package ru.rrozhkov.easykin.gui;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.BootstrapResolver;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
@@ -32,8 +32,41 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 		this.context = context;
         fillTabbedPane();
         createMenuBar();
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JPanel menuButtons = new JPanel();
+        menuButtons.setLayout(new BoxLayout(menuButtons,BoxLayout.X_AXIS));
+
+        ImageIcon plusIcon = new ImageIcon(getClass().getResource("/icon/plus.png"));
+        Image image = plusIcon.getImage();
+        Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        plusIcon = new ImageIcon(newimg);
+        JButton plusButton = new JButton(plusIcon);
+        plusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                add();
+            }
+        });
+        menuButtons.add(plusButton);
+
+        ImageIcon refreshIcon = new ImageIcon(getClass().getResource("/icon/refresh.png"));
+        image = refreshIcon.getImage();
+        newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        refreshIcon = new ImageIcon(newimg);
+        JButton refreshButton = new JButton(refreshIcon);
+        refreshButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                refresh();
+            }
+        });
+        menuButtons.add(refreshButton);
+
+        getContentPane().add(menuButtons);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(tabbedPane);
+        getContentPane().add(panel, BorderLayout.SOUTH);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setVisible(true);
@@ -52,11 +85,11 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         refreshItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
         refreshItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
-            	repaint();
+               refresh();
             }           
         });
         
-        JMenu fileMenu = new JMenu("Редактирование");
+        JMenu fileMenu = new JMenu("Меню");
         fileMenu.add(addItem);
         fileMenu.add(refreshItem);
 
@@ -66,9 +99,10 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 	}
 
 	public void edit(int index){
-        if(getContentPane().getComponentCount()>1){
-        	Component form = getContentPane().getComponent(1);
-        	getContentPane().remove(form);
+        Container main = (Container)getContentPane().getComponent(1);
+        if(main.getComponentCount()>1){
+        	Component form = main.getComponent(1);
+            main.remove(form);
         }
 			
 		ICategory currentCategory = ContextUtil.getCurrentCategory(context, tabbedPane);
@@ -77,10 +111,10 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JPanel formPanel = FormFactory.getFormPanel(context, this, currentCategory, obj);
         content.add(formPanel,BorderLayout.NORTH);
 
-        getContentPane().setLayout(new GridLayout(1,2));
-    	getContentPane().add(getContentPane().getComponent(0));
-        getContentPane().add(content);
-        getContentPane().validate();
+        main.setLayout(new GridLayout(1, 2));
+        main.add(main.getComponent(0));
+        main.add(content);
+        main.validate();
 	}
 
     public void add() {
@@ -88,10 +122,12 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
     }
 
     public void closeEditor() {
-        if(getContentPane().getComponentCount()>1){
-            Component form = getContentPane().getComponent(1);
-            getContentPane().remove(form);
+        Container main = (Container)getContentPane().getComponent(1);
+        if(main.getComponentCount()>1){
+            Component form = main.getComponent(1);
+            main.remove(form);
         }
+        main.validate();
         getContentPane().validate();
     }
 
