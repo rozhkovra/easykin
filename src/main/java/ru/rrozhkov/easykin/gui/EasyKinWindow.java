@@ -40,7 +40,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 	}
 	
 	private void createMenuBar(){
-        JMenuItem addItem = new JMenuItem("Add");
+        JMenuItem addItem = new JMenuItem("Добавить");
         addItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
         addItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +48,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }           
         });
         
-        JMenuItem refreshItem = new JMenuItem("Refresh");
+        JMenuItem refreshItem = new JMenuItem("Обновить");
         refreshItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, ActionEvent.CTRL_MASK));
         refreshItem.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
@@ -56,7 +56,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }           
         });
         
-        JMenu fileMenu = new JMenu("Command");
+        JMenu fileMenu = new JMenu("Редактирование");
         fileMenu.add(addItem);
         fileMenu.add(refreshItem);
 
