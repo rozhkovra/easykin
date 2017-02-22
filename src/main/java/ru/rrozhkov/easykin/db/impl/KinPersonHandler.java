@@ -10,6 +10,6 @@ public class KinPersonHandler {
 	public static String select = "select * from PERSON inner join KINPERSON on PERSON.id = KINPERSON.person";
 	
 	public static Collection<IKinPerson> select() throws SQLException {
-		return EasyKinDBManager.instance().<IKinPerson>select(select,new DBKinPersonConverter());
+		return EasyKinDBManager.instance().select(select,new DBKinPersonConverter());
 	}
 }

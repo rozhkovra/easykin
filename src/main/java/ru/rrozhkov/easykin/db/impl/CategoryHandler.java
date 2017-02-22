@@ -10,6 +10,6 @@ public class CategoryHandler {
 	public static String select = "SELECT * FROM category ORDER BY ID";
 	
 	public static Collection<ICategory> select() throws SQLException{
-		return EasyKinDBManager.instance().<ICategory>select(select, new DBCategoryConverter());
+		return EasyKinDBManager.instance().select(select, new DBCategoryConverter());
 	}
 }

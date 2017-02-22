@@ -10,6 +10,6 @@ public class PersonHandler {
 	public static String select = "select * from PERSON";
 	
 	public static Collection<IPerson> select() throws SQLException {
-		return EasyKinDBManager.instance().<IPerson>select(select,new DBPersonConverter());
+		return EasyKinDBManager.instance().select(select,new DBPersonConverter());
 	}
 }

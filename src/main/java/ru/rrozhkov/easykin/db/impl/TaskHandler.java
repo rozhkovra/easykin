@@ -35,11 +35,11 @@ public class TaskHandler {
 
 
 	public static Collection<ITask> select() throws SQLException{
-		return EasyKinDBManager.instance().<ITask>select(select, new DBTaskConverter());
+		return EasyKinDBManager.instance().select(select, new DBTaskConverter());
 	}
 
 	public static Collection<ITask> selectForPerson(int id) throws SQLException{
-		return EasyKinDBManager.instance().<ITask>select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
+		return EasyKinDBManager.instance().select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
 	}
 	
 	public static int insert(ITask task) throws SQLException{

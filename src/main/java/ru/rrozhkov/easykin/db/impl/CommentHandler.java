@@ -26,15 +26,15 @@ public class CommentHandler {
 
 
 	public static Collection<IComment> select() throws SQLException{
-		return EasyKinDBManager.instance().<IComment>select(select, new DBCommentConverter());
+		return EasyKinDBManager.instance().select(select, new DBCommentConverter());
 	}
 	
 	public static Collection<IComment> selectForTask(int taskId) throws SQLException{
-		return EasyKinDBManager.instance().<IComment>select(selectForTask.replace("#taskId#", String.valueOf(taskId)), new DBCommentConverter());
+		return EasyKinDBManager.instance().select(selectForTask.replace("#taskId#", String.valueOf(taskId)), new DBCommentConverter());
 	}
 	
 	public static Collection<IComment> selectForPerson(int personId) throws SQLException{
-		return EasyKinDBManager.instance().<IComment>select(selectForPerson.replace("#person#", String.valueOf(personId)), new DBCommentConverter());
+		return EasyKinDBManager.instance().select(selectForPerson.replace("#person#", String.valueOf(personId)), new DBCommentConverter());
 	}
 
 	public static int insert(IComment comment) throws SQLException{
