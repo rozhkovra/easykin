@@ -42,16 +42,29 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 				,(ServiceCalc)createServiceCalc("Январь 2017", 
 						Arrays.asList(
 								createDefaultCalc(WATER, MoneyFactory.create(373.22), false)
-								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), false)
-								, createElectricityCalc(15429, 15539, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
+								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), true)
+								, createElectricityCalc(15429, 15539, MoneyFactory.create(3.56), MoneyFactory.create(0.0), true)
 								, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), true)
-								, createDefaultCalc(HEATING, MoneyFactory.create(1520.62), false)
+								, createDefaultCalc(HEATING, MoneyFactory.create(1520.62), true)
 								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), true)
 								, createDefaultCalc(ANTENNA, MoneyFactory.create(72.00), true)
 								, createDefaultCalc(INTERCOM, MoneyFactory.create(30.00), true)
 								, createDefaultCalc(HOUSE, MoneyFactory.create(1116.75), false)
 								)
 					)
+				,(ServiceCalc)createServiceCalc("Февраль 2017",
+						Arrays.asList(
+								createDefaultCalc(WATER, MoneyFactory.create(0.00), false)
+								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), false)
+								, createElectricityCalc(15539, 15539, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
+								, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), false)
+								, createDefaultCalc(HEATING, MoneyFactory.create(1520.62), false)
+								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), false)
+								, createDefaultCalc(ANTENNA, MoneyFactory.create(72.00), false)
+								, createDefaultCalc(INTERCOM, MoneyFactory.create(30.00), false)
+								, createDefaultCalc(HOUSE, MoneyFactory.create(1116.75), false)
+						)
+				)
 			);
 	public StaticServiceCalcDataProvider() {
 		super(CollectionUtil.<ServiceCalc>copy(serviceCalcs));
