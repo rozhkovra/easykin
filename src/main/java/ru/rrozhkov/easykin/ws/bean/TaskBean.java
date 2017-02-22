@@ -13,6 +13,7 @@ public class TaskBean{
 	protected Date planDate;
 	protected int priority;
 	protected int category;
+	protected String categoryName;
 	protected Date closeDate;
 	protected int status;
 	private int id;
@@ -65,5 +66,10 @@ public class TaskBean{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 }

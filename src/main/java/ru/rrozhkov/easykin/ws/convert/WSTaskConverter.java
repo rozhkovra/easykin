@@ -15,6 +15,7 @@ public class WSTaskConverter implements IConverter<ITask, TaskBean> {
 		bean.setCreateDate(task.getCreateDate());
 		bean.setPlanDate(task.getPlanDate());
 		bean.setCategory(task.getCategory().getId());
+		bean.setCategoryName(task.getCategory().getName());
 		bean.setPriority(Priority.priority(task.getPriority()));
 		bean.setCloseDate(task.getCloseDate());
 		bean.setStatus(Status.status(task.getStatus()));
