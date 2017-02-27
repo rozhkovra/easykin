@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="rrozhkov-lib:jar">
-    <output-path>$PROJECT_DIR$/../RRozhkovLib/target</output-path>
-    <root id="archive" name="RRozhkovLib.jar">
-      <element id="module-output" name="EasyKinLib" />
-    </root>
-  </artifact>
-</component>
