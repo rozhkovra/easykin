@@ -49,7 +49,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         });
         menuButtons.add(plusButton);
 
-        ImageIcon refreshIcon = new ImageIcon(getClass().getResource("/icon/refresh.png"));
+        ImageIcon refreshIcon = new ImageIcon(getClass().getResource("/icon/refresh1.png"));
         image = refreshIcon.getImage();
         newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         refreshIcon = new ImageIcon(newimg);
