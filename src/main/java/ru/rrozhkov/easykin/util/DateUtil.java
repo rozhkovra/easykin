@@ -8,6 +8,7 @@ import java.util.Locale;
 public class DateUtil {
 	private static final DateFormat SDF = new SimpleDateFormat("dd.MM.yyyy");
 	private static final DateFormat SDFWEEKDAY = new SimpleDateFormat("dd MMMMM yyyy, EEEE ", new Locale("ru"));
+	private static final DateFormat SDFSERVICE = new SimpleDateFormat("MMMMM yyyy", new Locale("ru"));
 	private static final DateFormat SQLSDF = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static Date parse(String date){
@@ -28,5 +29,8 @@ public class DateUtil {
 	
 	public static String formatSql(Date date){
 		return SQLSDF.format(date);
+	}
+	public static String formatService(Date date){
+		return SDFSERVICE.format(date);
 	}
 }

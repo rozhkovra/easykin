@@ -18,13 +18,14 @@ import java.util.Collection;
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.CollectionDataProvider;
 
 public class StaticServiceCalcDataProvider extends CollectionDataProvider<ServiceCalc> {
 
 	private static Collection<ServiceCalc> serviceCalcs = Arrays.asList(
-				(ServiceCalc)createServiceCalc("Декабрь 2016", 
+				(ServiceCalc)createServiceCalc(DateUtil.parse("31.12.2016"),
 					Arrays.asList(
 //  		  				createWaterCalc(487, 495, 379, 386, new Money(14.14), new Money(17.25), new Money(12.20))
 							createDefaultCalc(WATER, MoneyFactory.create(1.22), true)
@@ -39,7 +40,7 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 							, createDefaultCalc(HOUSE, MoneyFactory.create(1116.75), true)
 							)
 				)
-				,(ServiceCalc)createServiceCalc("Январь 2017", 
+				,(ServiceCalc)createServiceCalc(DateUtil.parse("31.01.2017"),
 						Arrays.asList(
 								createDefaultCalc(WATER, MoneyFactory.create(373.22), false)
 								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), true)
@@ -49,10 +50,10 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), true)
 								, createDefaultCalc(ANTENNA, MoneyFactory.create(72.00), true)
 								, createDefaultCalc(INTERCOM, MoneyFactory.create(30.00), true)
-								, createDefaultCalc(HOUSE, MoneyFactory.create(1116.75), false)
+								, createDefaultCalc(HOUSE, MoneyFactory.create(1477.12), false)
 								)
 					)
-				,(ServiceCalc)createServiceCalc("Февраль 2017",
+				,(ServiceCalc)createServiceCalc(DateUtil.parse("28.02.2017"),
 						Arrays.asList(
 								createDefaultCalc(WATER, MoneyFactory.create(0.00), false)
 								, createDefaultCalc(HOTWATER, MoneyFactory.create(941.19), false)
@@ -62,11 +63,11 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), false)
 								, createDefaultCalc(ANTENNA, MoneyFactory.create(72.00), false)
 								, createDefaultCalc(INTERCOM, MoneyFactory.create(30.00), false)
-								, createDefaultCalc(HOUSE, MoneyFactory.create(1116.75), false)
+								, createDefaultCalc(HOUSE, MoneyFactory.create(1477.12), false)
 						)
 				)
 			);
 	public StaticServiceCalcDataProvider() {
-		super(CollectionUtil.<ServiceCalc>copy(serviceCalcs));
+		super(CollectionUtil.copy(serviceCalcs));
 	}
 }

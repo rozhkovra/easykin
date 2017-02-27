@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.model.service.calc.impl;
 
 import java.util.Collection;
+import java.util.Date;
 
 import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
@@ -36,8 +37,12 @@ public class CalcFactory {
 	public static ICalculation createDefaultCalc(CalculationType name, Money sum, boolean isPaid) {
 		return new DefaultCalc(name, sum, isPaid);
 	}
-	
+
 	public static ICalculation createServiceCalc(String name, Collection<ICalculation> beans) {
 		return new ServiceCalc(name, beans);
+	}
+
+	public static ICalculation createServiceCalc(Date date, Collection<ICalculation> beans) {
+		return new ServiceCalc(date, beans);
 	}
 }

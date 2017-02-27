@@ -15,14 +15,14 @@ public class ServiceCalcConverter implements
 		IConverter<Collection<ServiceCalc>, Collection<IPayment>> {
 
 	public Collection<IPayment> convert(Collection<ServiceCalc> entries) {
-		Collection<IPayment> payments = CollectionUtil.<IPayment>create();
+		Collection<IPayment> payments = CollectionUtil.create();
 		for(ServiceCalc calc : entries){
 			for(ICalculation c : calc.calcs()){
 				payments.add(
 					PaymentFactory.createServiceCalcPayment(
 							calc.getName()+" "+c.getType()
 							, CalculatorFactory.getCalculator(c).calculate().getResult()
-							, new Date(), c.isPaid())
+							, calc.getDate(), c.isPaid())
 					);
 			}
 		}
