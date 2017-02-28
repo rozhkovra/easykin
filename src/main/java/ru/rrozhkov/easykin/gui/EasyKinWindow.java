@@ -133,6 +133,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 
     public void refresh() {
         super.repaint();
+        context.init();
         fillTabbedPane();
     }
 
