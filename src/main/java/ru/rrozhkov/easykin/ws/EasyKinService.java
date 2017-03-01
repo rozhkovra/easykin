@@ -1,22 +1,20 @@
 package ru.rrozhkov.easykin.ws;
 
-import java.util.Collection;
-
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.model.category.ICategory;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
-import ru.rrozhkov.easykin.model.fin.payment.impl.Payment;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.ws.bean.CategoryBean;
 import ru.rrozhkov.easykin.ws.bean.PaymentBean;
 import ru.rrozhkov.easykin.ws.bean.PersonBean;
 import ru.rrozhkov.easykin.ws.bean.TaskBean;
-import ru.rrozhkov.easykin.ws.convert.*;
+import ru.rrozhkov.easykin.ws.convert.WSConverterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import java.util.Collection;
 
 @WebService(serviceName="EasyKin", portName="EasyKinPort", targetNamespace="http://rrozhkov.ru/easykin")
 public class EasyKinService {

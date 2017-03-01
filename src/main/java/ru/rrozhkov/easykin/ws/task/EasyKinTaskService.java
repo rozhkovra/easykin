@@ -2,7 +2,6 @@ package ru.rrozhkov.easykin.ws.task;
 
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.ws.bean.TaskBean;
-import ru.rrozhkov.easykin.ws.convert.TaskWSConverter;
 import ru.rrozhkov.easykin.ws.convert.WSConverterFactory;
 
 import javax.jws.WebMethod;
