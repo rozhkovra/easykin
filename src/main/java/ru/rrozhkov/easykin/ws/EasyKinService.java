@@ -15,10 +15,7 @@ import ru.rrozhkov.easykin.ws.bean.CategoryBean;
 import ru.rrozhkov.easykin.ws.bean.PaymentBean;
 import ru.rrozhkov.easykin.ws.bean.PersonBean;
 import ru.rrozhkov.easykin.ws.bean.TaskBean;
-import ru.rrozhkov.easykin.ws.convert.WSCategoryConverter;
-import ru.rrozhkov.easykin.ws.convert.WSPaymentConverter;
-import ru.rrozhkov.easykin.ws.convert.WSPersonConverter;
-import ru.rrozhkov.easykin.ws.convert.WSTaskConverter;
+import ru.rrozhkov.easykin.ws.convert.*;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 
 @WebService(serviceName="EasyKin", portName="EasyKinPort", targetNamespace="http://rrozhkov.ru/easykin")
@@ -30,7 +27,7 @@ public class EasyKinService {
 		context.init();
 		Collection<CategoryBean> beans = CollectionUtil.create();
 		for(ICategory category : context.categories()){
-			beans.add(new WSCategoryConverter().convert(category));
+			beans.add(WSConverterFactory.category().convert(category));
 		}
 		return beans;
 	}
@@ -40,7 +37,7 @@ public class EasyKinService {
 		context.init();
 		Collection<PersonBean> beans = CollectionUtil.create();
 		for(IPerson person : context.persons()){
-			beans.add(new WSPersonConverter().convert(person));
+			beans.add(WSConverterFactory.person().convert(person));
 		}
 		return beans;
 	}
@@ -50,7 +47,7 @@ public class EasyKinService {
 		context.init();
 		Collection<TaskBean> beans = CollectionUtil.create();
 		for(ITask task : context.tasks()){
-			beans.add(new WSTaskConverter().convert(task));
+			beans.add(WSConverterFactory.task().convert(task));
 		}
 		return beans;
 	}
@@ -60,7 +57,7 @@ public class EasyKinService {
 		context.init();
 		Collection<PaymentBean> beans = CollectionUtil.create();
 		for(IPayment payment : context.payments()){
-			beans.add(new WSPaymentConverter().convert(payment));
+			beans.add(WSConverterFactory.payment().convert(payment));
 		}
 		return beans;
 	}

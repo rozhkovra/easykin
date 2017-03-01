@@ -15,14 +15,14 @@ import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 public class ServiceConverter implements IConverter<Collection<IService>,Collection<IPayment>> {
 	public Collection<IPayment> convert(Collection<IService> entries) {
-		Collection<IPayment> collection = CollectionUtil.<IPayment>create();
+		Collection<IPayment> collection = CollectionUtil.create();
 		for(IService service : entries){
 			collection.add(new SingleConverter().convert(service));
 			for(IService detailService : service.services()){
 				collection.add(createDetailPayment(detailService.getName(),detailService.getPrice(),detailService.getDate()));
 			}
 		}
-		return FilterUtil.<IPayment>filter(collection, noFree());
+		return FilterUtil.filter(collection, noFree());
 	}
 	
 	class SingleConverter implements IConverter<IService, IPayment> {

@@ -1,4 +1,4 @@
-package ru.rrozhkov.easykin.ws.task.convert;
+package ru.rrozhkov.easykin.ws.convert;
 
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;

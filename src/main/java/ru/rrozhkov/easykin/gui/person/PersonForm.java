@@ -1,13 +1,7 @@
 package ru.rrozhkov.easykin.gui.person;
 
-import ru.rrozhkov.easykin.context.MasterDataContext;
-import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
-import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.person.IPerson;
-import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Status;
-import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
@@ -21,12 +15,10 @@ public class PersonForm extends JPanel{
 	private JTextField nameField;
 	private JTextField secondNameField;
 	private JTextField birthDateField;
-	private JTextField sexField;
 	private JLabel surnameLabel;
 	private JLabel nameLabel;
 	private JLabel secondNameLabel;
 	private JLabel birthDateLabel;
-	private JLabel sexLabel;
 	private JButton closeButton;
 
 	private IPerson person;

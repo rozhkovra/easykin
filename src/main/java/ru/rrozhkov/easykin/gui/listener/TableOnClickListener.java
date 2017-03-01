@@ -1,11 +1,10 @@
 package ru.rrozhkov.easykin.gui.listener;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.Table;
+
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TableOnClickListener implements ListSelectionListener {
 	private IGUIEditor main;

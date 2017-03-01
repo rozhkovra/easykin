@@ -2,19 +2,14 @@ package ru.rrozhkov.easykin.gui.task;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.CommentHandler;
-import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
-import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.IComment;
-import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
-import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class CommentForm extends JPanel{
 	private static final long serialVersionUID = 1L;

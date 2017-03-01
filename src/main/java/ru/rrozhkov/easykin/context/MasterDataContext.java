@@ -1,11 +1,5 @@
 package ru.rrozhkov.easykin.context;
 
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
@@ -32,6 +26,11 @@ import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.SingleCollectionDataProvider;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
+
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MasterDataContext {
 	private IPerson person;
@@ -125,7 +124,7 @@ public class MasterDataContext {
 	}
 
 	public Status[] statuses(){
-		return new ru.rrozhkov.easykin.model.task.Status[]{
+		return new Status[]{
 				Status.OPEN,
 				Status.CLOSE
 			};

@@ -1,8 +1,5 @@
 package ru.rrozhkov.easykin.gui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceEditor;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
@@ -19,6 +16,8 @@ import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
+
+import javax.swing.*;
 
 public class FormFactory {
 	public static JPanel createServiceCalcForm( Object obj){

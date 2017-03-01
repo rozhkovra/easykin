@@ -1,21 +1,14 @@
 package ru.rrozhkov.easykin.gui.payment;
 
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 import ru.rrozhkov.easykin.util.DateUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PaymentForm extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -25,7 +18,6 @@ public class PaymentForm extends JPanel{
 	private JLabel nameLabel;
 	private JLabel priceLabel;
 	private JLabel dateLabel;
-	private JButton addButton;
 	private JButton closeButton;
 	private IPayment payment;
 	private IGUIEditor parent;
@@ -125,14 +117,7 @@ public class PaymentForm extends JPanel{
 			categoryLabel = new JLabel("Категория"); 
 		return categoryLabel;
 	}
-	
-	public JButton getAddButton(){
-	    if(addButton==null){
-	    	addButton = new JButton("Добавить");
-	    }
-		return addButton;
-	}
-	
+
 	private Component getCloseButton() {
 	    if(closeButton==null){
 	    	closeButton = new JButton("Закрыть");

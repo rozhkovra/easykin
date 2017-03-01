@@ -27,7 +27,6 @@ public class AutoServiceForm extends JPanel{
 	private JLabel nameLabel;
 	private JLabel priceLabel;
 	private JLabel dateLabel;
-	private JButton addButton;
 	private JButton closeButton;
 	private IService service;
 	private IGUIEditor parent;
@@ -99,13 +98,6 @@ public class AutoServiceForm extends JPanel{
 		if(dateLabel == null)
 			dateLabel = new JLabel("Дата"); 
 		return dateLabel;
-	}
-	
-	public JButton getAddButton(){
-	    if(addButton==null){
-	    	addButton = new JButton("Добавить");
-	    }
-		return addButton;
 	}
 	
 	private Component getCloseButton() {

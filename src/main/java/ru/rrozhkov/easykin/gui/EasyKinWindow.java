@@ -1,23 +1,20 @@
 package ru.rrozhkov.easykin.gui;
 
-import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
+import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.gui.util.ContextUtil;
+import ru.rrozhkov.easykin.gui.util.ImageUtil;
+import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.util.DateUtil;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import com.sun.org.apache.xml.internal.resolver.helpers.BootstrapResolver;
-import ru.rrozhkov.easykin.context.MasterDataContext;
-import ru.rrozhkov.easykin.gui.util.ContextUtil;
-import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.util.DateUtil;
+import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 
 public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private static final long serialVersionUID = 1L;
@@ -35,12 +32,9 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         JPanel menuButtons = new JPanel();
-        menuButtons.setLayout(new BoxLayout(menuButtons,BoxLayout.X_AXIS));
+        menuButtons.setLayout(new BoxLayout(menuButtons, BoxLayout.X_AXIS));
 
-        ImageIcon plusIcon = new ImageIcon(getClass().getResource("/icon/plus.png"));
-        Image image = plusIcon.getImage();
-        Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        plusIcon = new ImageIcon(newimg);
+        ImageIcon plusIcon = ImageUtil.scaleImage(100, 100, new ImageIcon(getClass().getResource("/icon/plus.png")));
         JButton plusButton = new JButton(plusIcon);
         plusButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,10 +43,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         });
         menuButtons.add(plusButton);
 
-        ImageIcon refreshIcon = new ImageIcon(getClass().getResource("/icon/refresh1.png"));
-        image = refreshIcon.getImage();
-        newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        refreshIcon = new ImageIcon(newimg);
+        ImageIcon refreshIcon = ImageUtil.scaleImage(100, 100, new ImageIcon(getClass().getResource("/icon/refresh1.png")));
         JButton refreshButton = new JButton(refreshIcon);
         refreshButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

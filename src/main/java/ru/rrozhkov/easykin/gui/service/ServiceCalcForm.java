@@ -1,11 +1,9 @@
 package ru.rrozhkov.easykin.gui.service;
 
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+
+import java.awt.*;
 
 public class ServiceCalcForm extends Panel {
 	private static final long serialVersionUID = 1L;

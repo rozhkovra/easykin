@@ -2,7 +2,8 @@ package ru.rrozhkov.easykin.ws.task;
 
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.ws.bean.TaskBean;
-import ru.rrozhkov.easykin.ws.task.convert.TaskWSConverter;
+import ru.rrozhkov.easykin.ws.convert.TaskWSConverter;
+import ru.rrozhkov.easykin.ws.convert.WSConverterFactory;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -17,7 +18,7 @@ public class EasyKinTaskService {
     @WebMethod
     public int add(TaskBean bean) {
         try {
-            return TaskHandler.insert(new TaskWSConverter().convert(bean));
+            return TaskHandler.insert(WSConverterFactory.taskws().convert(bean));
         }catch (SQLException e){
             e.printStackTrace();
         }
