@@ -59,4 +59,9 @@ public class EasyKinService {
 		}
 		return beans;
 	}
+
+	@WebMethod
+	public int ping(){
+		return 1;
+	}
 }
