@@ -34,7 +34,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JPanel menuButtons = new JPanel();
         menuButtons.setLayout(new BoxLayout(menuButtons, BoxLayout.X_AXIS));
 
-        ImageIcon plusIcon = ImageUtil.scaleImage(100, 100, new ImageIcon(getClass().getResource("/icon/plus.png")));
+        ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, new ImageIcon(getClass().getResource("/icon/plus.png")));
         JButton plusButton = new JButton(plusIcon);
         plusButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +43,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         });
         menuButtons.add(plusButton);
 
-        ImageIcon refreshIcon = ImageUtil.scaleImage(100, 100, new ImageIcon(getClass().getResource("/icon/refresh1.png")));
+        ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, new ImageIcon(getClass().getResource("/icon/refresh1.png")));
         JButton refreshButton = new JButton(refreshIcon);
         refreshButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
