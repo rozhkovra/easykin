@@ -27,6 +27,19 @@ public class TaskBuilder {
 		return task;
 	}
 
+	public static ITask buildTask(int id){
+		try {
+			ITask task = TaskHandler.selectTask(id);
+			Collection<IComment> comments = CommentHandler.selectForTask(id);
+			task.comments().clear();
+			task.comments().addAll(comments);
+			return task;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static Collection<ITask> build(){
 		try {
 			Collection<ITask> tasks = TaskHandler.select();

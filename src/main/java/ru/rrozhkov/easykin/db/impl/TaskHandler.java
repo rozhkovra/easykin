@@ -10,13 +10,18 @@ import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
 import ru.rrozhkov.easykin.model.task.impl.convert.TaskMapConverter;
 import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.collection.CollectionUtil;
 
 public class TaskHandler {
 	private static String TABLENAME = "TASK";
-	
+
 	public static String select = "SELECT "+TABLENAME+".*, CATEGORY.NAME as CATEGORYNAME FROM "+TABLENAME
 			+" INNER JOIN CATEGORY ON "+TABLENAME+".CATEGORYID = CATEGORY.ID"
 			+" ORDER BY "+TABLENAME+".STATUSID, "+TABLENAME+".PRIORITYID, "+TABLENAME+".PLANDATE, "+TABLENAME+".CATEGORYID";
+
+	public static String selectTask = "SELECT "+TABLENAME+".*, CATEGORY.NAME as CATEGORYNAME FROM "+TABLENAME
+			+" INNER JOIN CATEGORY ON "+TABLENAME+".CATEGORYID = CATEGORY.ID"
+			+" WHERE ID=#id#";
 
 	public static String selectForPerson = "SELECT "+TABLENAME+".*, CATEGORY.NAME as CATEGORYNAME FROM "+TABLENAME
 			+" INNER JOIN CATEGORY ON "+TABLENAME+".CATEGORYID = CATEGORY.ID"
@@ -40,6 +45,13 @@ public class TaskHandler {
 
 	public static Collection<ITask> selectForPerson(int id) throws SQLException{
 		return EasyKinDBManager.instance().select(selectForPerson.replace("#person#", String.valueOf(id)), new DBTaskConverter());
+	}
+
+	public static ITask selectTask(int taskId) throws SQLException{
+		Collection<ITask> tasks = EasyKinDBManager.instance().select(selectTask.replace("#id#", String.valueOf(taskId)), new DBTaskConverter());
+		if(tasks!=null && !tasks.isEmpty())
+			return CollectionUtil.get(tasks,0);
+		return null;
 	}
 	
 	public static int insert(ITask task) throws SQLException{

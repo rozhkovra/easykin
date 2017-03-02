@@ -1,18 +1,21 @@
 package ru.rrozhkov.easykin.gui.task;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.FormFactory;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.PanelFactory;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.impl.TaskBuilder;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class TaskEditor extends JPanel implements IGUIEditor{
 	private ITask task;
@@ -36,8 +39,8 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(FormFactory.createTaskForm(context, parent, task));
 		add(getAddButton());
-		if(task!=null && !CollectionUtil.isNullOrEmpty(task.comments()))
-			add(PanelFactory.createTaskCommentPanel(this, task.comments()));
+		getAddButton().setEnabled(true);
+		add(PanelFactory.createTaskCommentPanel(this, task.comments()));
 		validate();
 	}
 
@@ -68,7 +71,10 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 	}
 
 	public void refresh() {
-
+		if(task!=null) {
+			task = TaskBuilder.buildTask(task.getId());
+			fill();
+		}
 	}
 
 	private JButton getAddButton(){
