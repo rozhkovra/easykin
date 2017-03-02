@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 import java.util.Date;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
@@ -23,9 +22,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private MasterDataContext context;
 	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
 		super("EasyKin, "+DateUtil.formatWeek(new Date()));
-        URL iconUrl = getClass().getResource("/icon/logo.png");
-        ImageIcon icon = new ImageIcon(iconUrl);
-        setIconImage(icon.getImage());
+        setIconImage(ImageUtil.imageByPath(getClass(), "/icon/logo.png"));
 		this.context = context;
         fillTabbedPane();
         createMenuBar();
@@ -34,7 +31,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JPanel menuButtons = new JPanel();
         menuButtons.setLayout(new BoxLayout(menuButtons, BoxLayout.X_AXIS));
 
-        ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, new ImageIcon(getClass().getResource("/icon/plus.png")));
+        ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, ImageUtil.imageIconByPath(getClass(), "/icon/plus.png"));
         JButton plusButton = new JButton(plusIcon);
         plusButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +40,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         });
         menuButtons.add(plusButton);
 
-        ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, new ImageIcon(getClass().getResource("/icon/refresh1.png")));
+        ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, ImageUtil.imageIconByPath(getClass(), "/icon/refresh1.png"));
         JButton refreshButton = new JButton(refreshIcon);
         refreshButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
