@@ -25,7 +25,7 @@ public class DefaultPanel extends Panel {
 		add(GuiUtil.getEmptyLabel());
 		add(GuiUtil.getEmptyLabel());
 		add(getCalcTypeLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getSumLabel()); 
 		add(getSumField());
 		add(GuiUtil.getEmptyLabel());
