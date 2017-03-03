@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.db.impl.HSQLDBServer;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.gui.util.ImageUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
@@ -8,22 +9,21 @@ import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.Date;
 
 import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 
 public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private static final long serialVersionUID = 1L;
-	
+    final private HSQLDBServer dbServer;
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private MasterDataContext context;
-	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
-		super("EasyKin, "+DateUtil.formatWeek(new Date()));
+	public EasyKinWindow(HSQLDBServer dbServer, MasterDataContext context) throws HeadlessException {
+		super("EasyKin, " + DateUtil.formatWeek(new Date()));
         setIconImage(ImageUtil.imageByPath(getClass(), "/icon/logo.png"));
 		this.context = context;
+        this.dbServer = dbServer;
         fillTabbedPane();
         createMenuBar();
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -58,8 +58,14 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setVisible(true);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                EasyKinWindow.this.dbServer.shutdown();
+                System.exit(0);
+            }
+        });
 	}
-	
+
 	private void createMenuBar(){
         JMenuItem addItem = new JMenuItem("Добавить");
         addItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.SHIFT_MASK));
