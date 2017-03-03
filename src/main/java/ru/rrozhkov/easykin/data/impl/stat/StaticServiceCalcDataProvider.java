@@ -1,26 +1,16 @@
 package ru.rrozhkov.easykin.data.impl.stat;
 
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.ANTENNA;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.HEATING;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.HOTWATER;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.HOUSE;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.INTERCOM;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.REPAIR;
-import static ru.rrozhkov.easykin.model.service.calc.CalculationType.WATER;
-import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createDefaultCalc;
-import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createElectricityCalc;
-import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createGazCalc;
-import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.createServiceCalc;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.CollectionDataProvider;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.*;
+import static ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory.*;
 
 public class StaticServiceCalcDataProvider extends CollectionDataProvider<ServiceCalc> {
 

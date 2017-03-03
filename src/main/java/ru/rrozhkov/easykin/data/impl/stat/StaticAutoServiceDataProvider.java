@@ -1,14 +1,13 @@
 package ru.rrozhkov.easykin.data.impl.stat;
 
-import java.util.Arrays;
-
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
-import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.CollectionDataProvider;
+
+import java.util.Arrays;
 
 public class StaticAutoServiceDataProvider extends CollectionDataProvider<IService>{
 	
