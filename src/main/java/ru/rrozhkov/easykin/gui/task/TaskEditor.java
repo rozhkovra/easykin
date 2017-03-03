@@ -40,7 +40,8 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		add(FormFactory.createTaskForm(context, parent, task));
 		add(getAddButton());
 		getAddButton().setEnabled(true);
-		add(PanelFactory.createTaskCommentPanel(this, task.comments()));
+		if(task!=null)
+			add(PanelFactory.createTaskCommentPanel(this, task.comments()));
 		validate();
 	}
 
