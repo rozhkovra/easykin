@@ -3,6 +3,10 @@ package ru.rrozhkov.easykin.gui;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.HSQLDBServer;
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class EasyKin 
 {
     public static void main( String[] args ) {
@@ -12,7 +16,13 @@ public class EasyKin
     	context.init();
     	javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new EasyKinWindow(dbServer, context);
+                JFrame window = new EasyKinWindow(context);
+                window.addWindowListener(new WindowAdapter() {
+                    public void windowClosing(WindowEvent e) {
+                        dbServer.shutdown();
+                        System.exit(0);
+                    }
+                });
             }   
         });
     }

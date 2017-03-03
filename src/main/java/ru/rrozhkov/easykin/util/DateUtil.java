@@ -33,4 +33,6 @@ public class DateUtil {
 	public static String formatService(Date date){
 		return SDFSERVICE.format(date);
 	}
+	public static Date today(){return new Date();}
+	public static String todayWeek(){return formatWeek(today());}
 }
