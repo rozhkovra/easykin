@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui.task;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.CommentHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
 
@@ -34,16 +35,12 @@ public class CommentForm extends JPanel{
 	
 	private void fill(){
 		setLayout(new GridLayout(4, 2));
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getTextLabel());
 		add(getTextField());
 		add(getSaveButton());
 		add(getCloseButton());
-	}
-	
-	private Component getEmptyLabel() {
-		return new JLabel(""); 
 	}
 
 	private JTextField getTextField(){

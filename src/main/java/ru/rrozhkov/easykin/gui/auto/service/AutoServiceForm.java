@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.Money;
@@ -42,20 +43,16 @@ public class AutoServiceForm extends JPanel{
 	
 	private void fill(){
 		setLayout(new GridLayout(5,2)); 		
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getNameLabel()); 
 		add(getNameField()); 
 		add(getPriceLabel()); 
 		add(getPriceField()); 
 		add(getDateLabel()); 
 		add(getDateField());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCloseButton());
-	}
-	
-	private Component getEmptyLabel() {
-		return new JLabel(""); 
 	}
 
 	private JTextField getNameField(){

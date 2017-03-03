@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.water.hot.HotWaterCalc;
 
 public class HotWaterPanel extends Panel{ 
@@ -30,7 +31,7 @@ public class HotWaterPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(7,2));
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCalcTypeLabel());
 		add(getItogoLabel()); 
 		add(getPrevMesureLabel()); 

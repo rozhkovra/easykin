@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui.payment;
 
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 import ru.rrozhkov.easykin.util.DateUtil;
@@ -37,8 +38,8 @@ public class PaymentForm extends JPanel{
 	
 	private void fill(){
 		setLayout(new GridLayout(6,2)); 		
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCommentLabel()); 
 		add(getCommentField()); 
 		add(getAmountLabel()); 
@@ -47,12 +48,8 @@ public class PaymentForm extends JPanel{
 		add(getDateField());
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCloseButton());
-	}
-	
-	private Component getEmptyLabel() {
-		return new JLabel(""); 
 	}
 
 	private JTextField getCommentField(){

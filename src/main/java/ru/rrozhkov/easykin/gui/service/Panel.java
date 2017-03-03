@@ -56,9 +56,7 @@ public abstract class Panel extends JPanel implements DocumentListener {
 		}
 		return itogoLabel;
 	}
-	public JLabel getEmptyLabel(){
-		return new JLabel("");
-	}
+
 	public JLabel getCalcTypeLabel(){
 		return new JLabel(String.valueOf(calc.getType()));
 	}

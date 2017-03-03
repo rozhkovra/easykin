@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui.person;
 
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.util.DateUtil;
 
@@ -32,8 +33,8 @@ public class PersonForm extends JPanel{
 	
 	private void fill(){
 		setLayout(new GridLayout(7, 2));
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getSurnameLabel());
 		add(getSurnameField());
 		add(getNameLabel());
@@ -42,12 +43,8 @@ public class PersonForm extends JPanel{
 		add(getSecondNameField());
 		add(getBirthDateLabel());
 		add(getBirthDateField());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCloseButton());
-	}
-	
-	private Component getEmptyLabel() {
-		return new JLabel(""); 
 	}
 
 	private JTextField getSurnameField(){

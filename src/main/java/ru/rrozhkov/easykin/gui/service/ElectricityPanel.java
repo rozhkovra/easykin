@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.electricity.ElectricityCalc;
 
 public class ElectricityPanel extends Panel{
@@ -30,10 +31,10 @@ public class ElectricityPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(8, 2));
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCalcTypeLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
@@ -42,7 +43,7 @@ public class ElectricityPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getItogoLabel()); 
 		refresh();
 	}

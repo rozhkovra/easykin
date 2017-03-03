@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.fin.util.FormatUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.def.DefaultCalc;
 
@@ -21,13 +22,13 @@ public class DefaultPanel extends Panel {
 	
 	private void fill(){
 		setLayout(new GridLayout(5,2));
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCalcTypeLabel());
 		add(getEmptyLabel());
 		add(getSumLabel()); 
 		add(getSumField());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getItogoLabel()); 
 		refresh();
 	}

@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ru.rrozhkov.easykin.gui.service.util.CalcUtil;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.service.calc.impl.gaz.GazCalc;
 
 public class GazPanel extends Panel{ 
@@ -27,17 +28,17 @@ public class GazPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(7, 2));
-		add(getEmptyLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getCalcTypeLabel());
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
 		add(getCurrentMesureField()); 
 		add(getRateLabel()); 
 		add(getRateField()); 
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		add(getItogoLabel()); 
 		refresh();
 	}

@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui.task;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;
@@ -45,12 +46,12 @@ public class TaskForm extends JPanel{
 	
 	private void fill(){
 		setLayout(new GridLayout(7,2));
-		add(getEmptyLabel());
+		add(GuiUtil.getEmptyLabel());
 		if(!task.getStatus().isClose()){
 			if(task.getId()!=-1){
 				add(getDoneButton());
 			}else
-				add(getEmptyLabel());
+				add(GuiUtil.getEmptyLabel());
 		}else{
 			add(getCloseDateLabel());
 		}
@@ -65,16 +66,12 @@ public class TaskForm extends JPanel{
 		if(!task.getStatus().isClose()){
 			add(getSaveButton());
 		}else
-			add(getEmptyLabel());
+			add(GuiUtil.getEmptyLabel());
 		add(getCloseButton());
 	}
 	
 	private Component getCloseDateLabel() {
  		return new JLabel(DateUtil.format(task.getCloseDate()));
-	}
-
-	private Component getEmptyLabel() {
-		return new JLabel(""); 
 	}
 
 	private JTextField getNameField(){

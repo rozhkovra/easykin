@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.gui.task;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
-import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.FormFactory;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
@@ -15,7 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class TaskEditor extends JPanel implements IGUIEditor{
 	private ITask task;
