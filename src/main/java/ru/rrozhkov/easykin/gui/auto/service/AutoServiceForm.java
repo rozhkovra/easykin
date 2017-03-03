@@ -1,24 +1,17 @@
 package ru.rrozhkov.easykin.gui.auto.service;
 
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
-import ru.rrozhkov.easykin.model.fin.Money;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.util.DateUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class AutoServiceForm extends JPanel{
 	private static final long serialVersionUID = 1L;

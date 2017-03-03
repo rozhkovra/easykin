@@ -4,10 +4,7 @@ import ru.rrozhkov.lib.db.IDBManager;
 import ru.rrozhkov.lib.db.impl.DBManager;
 
 public class EasyKinDBManager extends DBManager{
-	private String connectPath = "jdbc:hsqldb:hsql://localhost/easykin";
-	private String user = "SA";
-	private String pass = "";
-    
+
     private EasyKinDBManager(){    	
     }
     
@@ -20,16 +17,16 @@ public class EasyKinDBManager extends DBManager{
 
 	@Override
 	protected String getConnectPath() {
-		return connectPath;
+		return "jdbc:hsqldb:hsql://localhost/easykin";
 	}
 
 	@Override
 	protected String getUser() {
-		return user;
+		return "SA";
 	}
 
 	@Override
 	protected String getPass() {
-		return pass;
+		return "";
 	}    
 }

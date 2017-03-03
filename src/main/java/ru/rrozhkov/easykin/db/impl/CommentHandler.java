@@ -1,14 +1,12 @@
 package ru.rrozhkov.easykin.db.impl;
 
+import ru.rrozhkov.easykin.model.task.IComment;
+import ru.rrozhkov.easykin.model.task.impl.convert.CommentMapConverter;
+import ru.rrozhkov.easykin.model.task.impl.convert.DBCommentConverter;
+
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Map;
-
-import ru.rrozhkov.easykin.model.task.IComment;
-import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.impl.convert.CommentMapConverter;
-import ru.rrozhkov.easykin.model.task.impl.convert.DBCommentConverter;
-import ru.rrozhkov.easykin.model.task.impl.convert.TaskMapConverter;
 
 public class CommentHandler {
 	private static String TABLENAME = "COMMENT";
