@@ -24,4 +24,9 @@ public class HSQLDBServer extends Thread {
     public void shutdown() {
         this.hsqlServer.stop();
     }
+
+    public static void main(String[] args){
+        final HSQLDBServer dbServer = new HSQLDBServer("easykin", "file:data/easykin");
+        dbServer.hsqlServer.start();
+    }
 }
