@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.task;
 
+import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
@@ -8,6 +9,7 @@ import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
+import ru.rrozhkov.easykin.service.impl.TaskService;
 import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
@@ -151,9 +153,9 @@ public class TaskForm extends JPanel{
 	            	if(!validateTask())
 	            		return;
 	            	try{
-	            		if(task.getId()==-1)
-		            		TaskHandler.insert(task);
-	            		else
+	            		if(task.getId()==-1) {
+							TaskService.create(AuthManager.getAuthPerson().getId(),task);
+						}else
 	            			TaskHandler.update(task);
 	            	}catch(Exception ex){
 	            		ex.printStackTrace();

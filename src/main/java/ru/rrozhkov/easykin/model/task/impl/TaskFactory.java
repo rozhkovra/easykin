@@ -4,10 +4,7 @@ import java.util.Date;
 
 import ru.rrozhkov.easykin.model.category.Category;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.task.IComment;
-import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Priority;
-import ru.rrozhkov.easykin.model.task.Status;
+import ru.rrozhkov.easykin.model.task.*;
 
 public class TaskFactory{
 	public static ITask createTask(int id, String name, Date createDate, Date plannedDate,
@@ -32,5 +29,7 @@ public class TaskFactory{
 	public static IComment newComment(int taskId) {
 		return new Comment(-1, "", new Date(), taskId);
 	}
-
+	public static ITask2Person createT2P(int id, int personId, int taskId) {
+		return new Task2Person(id, personId, taskId);
+	}
 }
