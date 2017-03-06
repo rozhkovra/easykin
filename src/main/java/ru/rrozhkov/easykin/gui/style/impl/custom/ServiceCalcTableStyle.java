@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import ru.rrozhkov.easykin.gui.color.ColorManager;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
@@ -77,16 +78,16 @@ public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 		        setHorizontalAlignment(getColumnAlignment()[column]);
 		        ServiceCalc serviceCalc = ((List<ServiceCalc>)data).get(row); 
 		        if(serviceCalc.isPaid()){
-    				c.setBackground(Color.GREEN);
+    				c.setBackground(ColorManager.done());
     				c.setFont(c.getFont().deriveFont(Font.BOLD,15));
     				return c;
     			}else
-    				c.setBackground(Color.YELLOW);
+    				c.setBackground(ColorManager.open());
 		        for(ICalculation calc : serviceCalc.calcs()){
 		        	CalculationType type = column2caclType.get(column);
 		        	if(type!= null && calc.isPaid() && type.equals(calc.getType())){
 		        		c.setFont(c.getFont().deriveFont(Font.BOLD,15));
-		        		c.setBackground(Color.GREEN);
+		        		c.setBackground(ColorManager.done());
 		        	}
 		        }
 		        return c;

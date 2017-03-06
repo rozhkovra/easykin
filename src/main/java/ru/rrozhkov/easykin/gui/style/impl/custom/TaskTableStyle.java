@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import ru.rrozhkov.easykin.gui.color.ColorManager;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
@@ -54,17 +55,17 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		        ITask task = (ITask) ((List)data).get(row);		        		
 		        if(Status.CLOSE.equals(task.getStatus())){
 		        	if(task.getCloseDate().getTime()>task.getPlanDate().getTime())
-		        		c.setBackground(Color.GRAY);
+		        		c.setBackground(ColorManager.expired());
 		        	else
-		        		c.setBackground(Color.GREEN);		        
+		        		c.setBackground(ColorManager.done());
 		        }else{
 	        		c.setBackground(Color.WHITE);
 		        	if(Priority.IMPOTANT_FAST.equals(task.getPriority())
 		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority())){
-		        		c.setBackground(Color.YELLOW);
+		        		c.setBackground(ColorManager.open());
 		        		if(new Date().getTime()>task.getPlanDate().getTime()
 		        				&& column==5)
-		        			c.setBackground(Color.GRAY);
+		        			c.setBackground(ColorManager.expired());
 		        	}
 		        }
 		        if (Priority.IMPOTANT_FAST.equals(task.getPriority())){
