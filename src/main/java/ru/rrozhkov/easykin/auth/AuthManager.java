@@ -9,14 +9,27 @@ import ru.rrozhkov.easykin.util.DateUtil;
  * Created by rrozhkov on 3/6/2017.
  */
 public class AuthManager {
-    protected IPerson authorizedPerson;
+    protected IPerson signedPerson;
 
-    public AuthManager(IPerson authorizedPerson) {
-        this.authorizedPerson = authorizedPerson;
+    public AuthManager() {
     }
 
-    public IPerson authPerson(){
-        return authorizedPerson;
+    public IPerson signedPerson(){
+        return signedPerson;
+    }
+
+    public boolean signIn(String user, String pass){
+        //todo add authorize person by user/pass pair
+        this.signedPerson = getAuthPerson();
+        return isSignedIn();
+    }
+
+    public void signOut(){
+        this.signedPerson = null;
+    }
+
+    public boolean isSignedIn(){
+        return this.signedPerson != null;
     }
 
     public static IPerson getAuthPerson(){
