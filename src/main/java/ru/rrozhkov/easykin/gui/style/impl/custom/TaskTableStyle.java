@@ -1,21 +1,17 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import ru.rrozhkov.easykin.gui.color.ColorManager;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class TaskTableStyle extends TableStyle<ITask>  {
 	public int[] getColumnAlignment() {
@@ -59,7 +55,7 @@ public class TaskTableStyle extends TableStyle<ITask>  {
 		        	else
 		        		c.setBackground(ColorManager.done());
 		        }else{
-	        		c.setBackground(Color.WHITE);
+	        		c.setBackground(ColorManager.simple());
 		        	if(Priority.IMPOTANT_FAST.equals(task.getPriority())
 		        			|| Priority.IMPOTANT_NOFAST.equals(task.getPriority())){
 		        		c.setBackground(ColorManager.open());

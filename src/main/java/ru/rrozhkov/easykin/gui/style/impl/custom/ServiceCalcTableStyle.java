@@ -1,22 +1,18 @@
 package ru.rrozhkov.easykin.gui.style.impl.custom;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import ru.rrozhkov.easykin.gui.color.ColorManager;
 import ru.rrozhkov.easykin.gui.style.impl.TableStyle;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ServiceCalcTableStyle extends TableStyle<ServiceCalc>  {
 	private static final Map<Integer, CalculationType> column2caclType = new HashMap<Integer, CalculationType>(){

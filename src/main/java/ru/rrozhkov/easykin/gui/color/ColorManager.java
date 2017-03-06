@@ -15,6 +15,9 @@ public class ColorManager {
     private static Color gray(){
         return new Color(192, 192, 192);
     }
+    private static Color white(){
+        return new Color(255, 255, 255);
+    }
     public static Color done(){
         return green();
     }
@@ -23,5 +26,8 @@ public class ColorManager {
     }
     public static Color expired(){
         return gray();
+    }
+    public static Color simple(){
+        return white();
     }
 }
