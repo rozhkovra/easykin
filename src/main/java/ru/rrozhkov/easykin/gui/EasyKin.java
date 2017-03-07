@@ -13,9 +13,9 @@ public class EasyKin
     public static void main( String[] args ) {
         final HSQLDBServer dbServer = new HSQLDBServer("easykin", "file:data/easykin");
         dbServer.start();
-        final AuthManager authManager = new AuthManager();
-        if(!authManager.signIn("","")) {
-            System.out.println("Username or password is incorrect.");
+        final AuthManager authManager = AuthManager.auth();
+        if (!authManager.isSignedIn()) {
+            dbServer.shutdown();
             System.exit(0);
         }
         final MasterDataContext context = new MasterDataContext();
@@ -30,7 +30,7 @@ public class EasyKin
                         System.exit(0);
                     }
                 });
-            }   
+            }
         });
     }
 }

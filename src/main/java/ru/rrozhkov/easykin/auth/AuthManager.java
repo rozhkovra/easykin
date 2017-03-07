@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.auth;
 
+import ru.rrozhkov.easykin.gui.auth.AuthWindow;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.person.Sex;
 import ru.rrozhkov.easykin.model.person.impl.PersonFactory;
@@ -11,7 +12,7 @@ import ru.rrozhkov.easykin.util.DateUtil;
 public class AuthManager {
     protected IPerson signedPerson;
 
-    public AuthManager() {
+    protected AuthManager() {
     }
 
     public IPerson signedPerson(){
@@ -33,6 +34,19 @@ public class AuthManager {
     }
 
     public static IPerson getAuthPerson(){
-        return PersonFactory.create(1,"??????", "?????", "?????????????", DateUtil.parse("29.08.1985"), Sex.MALE);
+        return PersonFactory.create(1,"Рожков", "Роман", "Александрович", DateUtil.parse("29.08.1985"), Sex.MALE);
+    }
+
+    public static AuthManager auth(){
+        AuthManager authManager = new AuthManager();
+        final AuthWindow window = new AuthWindow(authManager);
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                window.setVisible(true);
+            }
+        });
+        while(!window.isFinished()){
+        }
+        return authManager;
     }
 }
