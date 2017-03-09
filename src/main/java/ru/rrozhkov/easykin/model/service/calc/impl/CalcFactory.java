@@ -1,9 +1,11 @@
 package ru.rrozhkov.easykin.model.service.calc.impl;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
 import ru.rrozhkov.easykin.model.fin.Money;
+import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.ICalculation;
 import ru.rrozhkov.easykin.model.service.calc.impl.def.DefaultCalc;
@@ -11,6 +13,9 @@ import ru.rrozhkov.easykin.model.service.calc.impl.electricity.ElectricityCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.gaz.GazCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.water.WaterCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.water.hot.HotWaterCalc;
+import ru.rrozhkov.easykin.util.DateUtil;
+
+import static ru.rrozhkov.easykin.model.service.calc.CalculationType.*;
 
 public class CalcFactory {
 	public static ICalculation createWaterCalc(int coldPrevMesure, int coldCurrentMesure
@@ -44,5 +49,20 @@ public class CalcFactory {
 
 	public static ICalculation createServiceCalc(Date date, Collection<ICalculation> beans) {
 		return new ServiceCalc(date, beans);
+	}
+	public static ICalculation createEmptyServiceCalc() {
+		return createServiceCalc(DateUtil.parse("01.01.2017"),
+				Arrays.asList(
+						createDefaultCalc(WATER, MoneyFactory.create(0.00), false)
+						, createDefaultCalc(HOTWATER, MoneyFactory.create(0.00), false)
+						, createElectricityCalc(0, 0, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
+						, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), false)
+						, createDefaultCalc(HEATING, MoneyFactory.create(0.00), false)
+						, createDefaultCalc(REPAIR, MoneyFactory.create(0.00), false)
+						, createDefaultCalc(ANTENNA, MoneyFactory.create(0.00), false)
+						, createDefaultCalc(INTERCOM, MoneyFactory.create(40.00), false)
+						, createDefaultCalc(HOUSE, MoneyFactory.create(0.00), false)
+				)
+		);
 	}
 }
