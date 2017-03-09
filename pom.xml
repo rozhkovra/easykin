@@ -20,10 +20,78 @@
                             <mainClass>ru.rrozhkov.easykin.gui.EasyKin</mainClass>
                         </manifest>
                     </archive>
+			<finalName>easykin-full-${version}</finalName>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+<profiles>
+<profile>
+	<id>easykin-gui</id>
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>ru.rrozhkov.easykin.gui.EasyKin</mainClass>
+                        </manifest>
+                    </archive>
+			<includes>
+				<include>ru/rrozhkov/easykin/gui/**</include>
+				<include>icon/**</include>
+				<include>data/**</include>
+			</includes>
+			<finalName>easykin-gui-${version}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    	</build>
+</profile>
+<profile>
+	<id>easykin</id>
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+			<includes>
+				<include>ru/rrozhkov/easykin/auth/**</include>
+				<include>ru/rrozhkov/easykin/context/**</include>
+				<include>ru/rrozhkov/easykin/data/**</include>
+				<include>ru/rrozhkov/easykin/db/**</include>
+				<include>ru/rrozhkov/easykin/model/**</include>
+				<include>ru/rrozhkov/easykin/service/**</include>
+				<include>ru/rrozhkov/easykin/util/**</include>
+			</includes>
+			<finalName>easykin-${version}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    	</build>
+</profile>
+<profile>
+	<id>easykin-ws</id>
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+			<includes>
+				<include>ru/rrozhkov/easykin/ws/**</include>
+			</includes>
+			<finalName>easykin-ws-${version}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    	</build>
+</profile>
+</profiles>
 <dependencies>
     <dependency>
       <groupId>junit</groupId>
