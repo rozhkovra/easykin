@@ -66,11 +66,20 @@ public class AuthForm extends JPanel{
 			okButton = new JButton("Ок");
 			okButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+					if(!validate()) {
+						JOptionPane.showMessageDialog((JFrame)parent, "Username or password can't be empty!!!");
+						return;
+					}
 					authManager.signIn(getUsernameField().getText().toString(),getPasswordField().getText().toString());
 					if(!authManager.isSignedIn()) {
 						System.out.println("Логин/пароль не верны.");
 					}
 					parent.closeEditor();
+				}
+
+				private boolean validate(){
+					return !getUsernameField().getText().toString().isEmpty()
+							&& !getPasswordField().getText().toString().isEmpty();
 				}
 	        });
 	    }
