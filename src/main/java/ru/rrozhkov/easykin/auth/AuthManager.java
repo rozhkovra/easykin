@@ -15,6 +15,9 @@ public class AuthManager {
     }
 
     public static AuthManager instance(){
+        if(authManager==null){
+            authManager = new AuthManager();
+        }
         return authManager;
     }
 
