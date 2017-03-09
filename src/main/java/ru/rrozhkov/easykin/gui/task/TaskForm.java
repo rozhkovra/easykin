@@ -153,8 +153,9 @@ public class TaskForm extends JPanel{
 	            	if(!validateTask())
 	            		return;
 	            	try{
+						AuthManager authManager = AuthManager.instance();
 	            		if(task.getId()==-1) {
-							TaskService.create(AuthManager.getAuthPerson().getId(),task);
+							TaskService.create(authManager.signedPerson().getId(),task);
 						}else
 	            			TaskHandler.update(task);
 	            	}catch(Exception ex){
@@ -165,7 +166,7 @@ public class TaskForm extends JPanel{
 	            }
 
 				private boolean validateTask() {
-					return !"".equals(task.getName());
+					return !"".equals(task.getName()) && AuthManager.instance()!=null;
 				}           
 	        });
 	    }

@@ -1,18 +1,21 @@
 package ru.rrozhkov.easykin.auth;
 
+import ru.rrozhkov.easykin.db.impl.AuthHandler;
 import ru.rrozhkov.easykin.gui.auth.AuthWindow;
 import ru.rrozhkov.easykin.model.person.IPerson;
-import ru.rrozhkov.easykin.model.person.Sex;
-import ru.rrozhkov.easykin.model.person.impl.PersonFactory;
-import ru.rrozhkov.easykin.util.DateUtil;
 
 /**
  * Created by rrozhkov on 3/6/2017.
  */
 public class AuthManager {
+    static AuthManager authManager = new AuthManager();
     protected IPerson signedPerson;
 
     protected AuthManager() {
+    }
+
+    public static AuthManager instance(){
+        return authManager;
     }
 
     public IPerson signedPerson(){
@@ -20,8 +23,11 @@ public class AuthManager {
     }
 
     public boolean signIn(String user, String pass){
-        //todo add authorize person by user/pass pair
-        this.signedPerson = getAuthPerson();
+        try {
+            this.signedPerson = AuthHandler.auth(user, pass);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return isSignedIn();
     }
 
@@ -33,12 +39,7 @@ public class AuthManager {
         return this.signedPerson != null;
     }
 
-    public static IPerson getAuthPerson(){
-        return PersonFactory.create(1,"Рожков", "Роман", "Александрович", DateUtil.parse("29.08.1985"), Sex.MALE);
-    }
-
     public static AuthManager auth(){
-        AuthManager authManager = new AuthManager();
         final AuthWindow window = new AuthWindow(authManager);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

@@ -72,9 +72,9 @@ public class AuthForm extends JPanel{
 					}
 					authManager.signIn(getUsernameField().getText().toString(),getPasswordField().getText().toString());
 					if(!authManager.isSignedIn()) {
-						System.out.println("Логин/пароль не верны.");
-					}
-					parent.closeEditor();
+						JOptionPane.showMessageDialog((JFrame) parent, "Username or password incorrect!!!");
+					}else
+						parent.closeEditor();
 				}
 
 				private boolean validate(){
