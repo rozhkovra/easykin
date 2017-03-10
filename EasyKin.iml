@@ -39,5 +39,14 @@
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.7.8" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: ru.rrozhkov.lib:rrozhkov-lib:1.3-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/RRozhkovLib-1.3-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
