@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.model.doc.impl;
 import static ru.rrozhkov.easykin.model.doc.DocType.INN;
 
 import java.io.File;
+import java.util.Date;
 
 import ru.rrozhkov.easykin.model.person.IPerson;
 
@@ -16,5 +17,13 @@ public class INN extends Doc {
 
 	public String getNumber() {
 		return number;
+	}
+
+	public String getSeries() {
+		return "";
+	}
+
+	public Date getDate() {
+		return new Date();
 	}
 }

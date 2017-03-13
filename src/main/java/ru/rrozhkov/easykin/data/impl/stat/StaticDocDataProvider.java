@@ -23,6 +23,11 @@ public class StaticDocDataProvider extends CollectionDataProvider<IDoc> {
                         , "УВД Ленинского АО г.Омска"
                         , DateUtil.parse("30.09.2005")
                         , null
+                ),
+                DocFactory.createSnils(
+                        PersonFactory.create(1,"Рожков","Роман","Александрович", DateUtil.parse("29.08.1985"), Sex.MALE)
+                        , "118-182-094 48"
+                        , null
                 ))));
     }
 }

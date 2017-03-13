@@ -29,6 +29,10 @@ public class Passport extends Doc {
 		return series;
 	}
 
+	public Date getDate() {
+		return issueDate;
+	}
+
 	public String getOrg() {
 		return org;
 	}

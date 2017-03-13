@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceEditor;
 import ru.rrozhkov.easykin.gui.auto.service.AutoServiceForm;
+import ru.rrozhkov.easykin.gui.doc.DocForm;
 import ru.rrozhkov.easykin.gui.payment.PaymentForm;
 import ru.rrozhkov.easykin.gui.person.PersonForm;
 import ru.rrozhkov.easykin.gui.service.ServiceCalcForm;
@@ -11,6 +12,7 @@ import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.gui.task.TaskForm;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.doc.IDoc;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
@@ -63,6 +65,12 @@ public class FormFactory {
 		return new CommentForm(context, parent, id);
 	}
 
+	private static JPanel createDocForm(MasterDataContext context, IGUIEditor parent, Object obj) {
+		if(obj!=null && obj instanceof IDoc)
+			return new DocForm(parent,(IDoc)obj);
+		return new JPanel();
+	}
+
 	public static JPanel getFormPanel(MasterDataContext context, IGUIEditor parent, ICategory category, Object obj) {
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
@@ -77,7 +85,7 @@ public class FormFactory {
 		}else if(category.getId()==6){
 			return createPaymentForm(context, parent, obj);
 		}else if(category.getId()==7){
-			return new JPanel();
+			return createDocForm(context, parent, obj);
 		}else if(category.getId()==8){
 			return createTaskEditor(context, parent, obj);
 		}else if(category.getId()==9){
