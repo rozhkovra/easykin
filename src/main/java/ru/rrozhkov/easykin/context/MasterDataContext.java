@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.context;
 
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
+import ru.rrozhkov.easykin.data.impl.stat.StaticDocDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
 import ru.rrozhkov.easykin.db.impl.CategoryHandler;
@@ -41,6 +42,7 @@ public class MasterDataContext {
 	private Collection<IPayment> payments;
 	private Collection<IService> services;
 	private Collection<ServiceCalc> calcServices;
+	private Collection<IDoc> docs;
 	private ICar car;
 	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
 
@@ -65,6 +67,7 @@ public class MasterDataContext {
 			this.services = autoProvider.getData();
 			this.calcServices = new StaticServiceCalcDataProvider().getData();
 			this.payments = new PaymentDataProvider(this).getData();
+			this.docs = new StaticDocDataProvider().getData();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -87,7 +90,7 @@ public class MasterDataContext {
 			}else if(category.getId()==6){
 				categoryData.put(category.getId(), factPayments());
 			}else if(category.getId()==7){
-				categoryData.put(category.getId(), CollectionUtil.<IDoc>create());
+				categoryData.put(category.getId(), docs());
 			}else if(category.getId()==8){
 				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.work()));
 			}else if(category.getId()==9){
@@ -97,7 +100,11 @@ public class MasterDataContext {
 			}
 		}
 	}
-	
+
+	public Collection docs() {
+		return docs;
+	}
+
 	public Collection dataForCategory(int categoryId){
 		return categoryData.get(Integer.valueOf(categoryId));
 	}

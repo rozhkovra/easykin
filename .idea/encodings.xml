@@ -2,9 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/auth/AuthManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/data/impl/stat/StaticDocDataProvider.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/EasyKin.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/EasyKinWindow.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/auth/AuthWindow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/DocTableStyle.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/task/TaskEditor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/model/doc/DocType.java" charset="UTF-8" />
   </component>
 </project>

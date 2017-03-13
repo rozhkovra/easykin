@@ -7,15 +7,11 @@ import javax.swing.JPanel;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.auto.AutoPanel;
 import ru.rrozhkov.easykin.gui.auto.CarForm;
-import ru.rrozhkov.easykin.gui.style.impl.custom.CommentStyle;
-import ru.rrozhkov.easykin.gui.style.impl.custom.FamilyStyle;
-import ru.rrozhkov.easykin.gui.style.impl.custom.PaymentStyle;
-import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceCalcStyle;
-import ru.rrozhkov.easykin.gui.style.impl.custom.ServiceStyle;
-import ru.rrozhkov.easykin.gui.style.impl.custom.TaskStyle;
+import ru.rrozhkov.easykin.gui.style.impl.custom.*;
 import ru.rrozhkov.easykin.gui.task.TaskEditor;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.category.ICategory;
+import ru.rrozhkov.easykin.model.doc.IDoc;
 import ru.rrozhkov.easykin.model.family.IKinPerson;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.task.IComment;
@@ -49,8 +45,8 @@ public class PanelFactory {
 	public static JPanel createServicePanel(EasyKinWindow parent, MasterDataContext context){
 		return new TablePanel(parent, new Table(context.calcs(), new ServiceCalcStyle()));
 	}
-	private static JPanel createDocPanel() {
-		return new JPanel();
+	private static JPanel createDocPanel(EasyKinWindow parent, Collection<IDoc> collection) {
+		return new TablePanel(parent, new Table(collection, new DocStyle()));
 	}
 	public static JPanel createCarPanel(MasterDataContext context) {
 		return new CarForm(context.car());
@@ -75,7 +71,7 @@ public class PanelFactory {
 		}else if(category.getId()==6){
 			return createPaymentPanel(parent, context.dataForCategory(category.getId()));
 		}else if(category.getId()==7){
-			return createDocPanel();
+			return createDocPanel(parent, context.docs());
 		}else if(category.getId()==8){
 			return createWorkPanel(parent, context.dataForCategory(category.getId()));
 		}else if(category.getId()==9){
