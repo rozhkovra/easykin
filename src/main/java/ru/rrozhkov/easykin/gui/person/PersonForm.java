@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.person;
 
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.person.IPerson;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PersonForm extends JPanel{
+public class PersonForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField surnameField;
 	private JTextField nameField;
@@ -20,18 +21,16 @@ public class PersonForm extends JPanel{
 	private JLabel nameLabel;
 	private JLabel secondNameLabel;
 	private JLabel birthDateLabel;
-	private JButton closeButton;
 
 	private IPerson person;
-	private IGUIEditor parent;
 
 	public PersonForm(IGUIEditor parent, IPerson person) {
-		this.parent = parent;
+		super(parent);
 		this.person = person;
 		fill();
 	}
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(7, 2));
 		add(GuiUtil.getEmptyLabel());
 		add(GuiUtil.getEmptyLabel());
@@ -44,7 +43,7 @@ public class PersonForm extends JPanel{
 		add(getBirthDateLabel());
 		add(getBirthDateField());
 		add(GuiUtil.getEmptyLabel());
-		add(getCloseButton());
+		add(getCancelButton());
 	}
 
 	private JTextField getSurnameField(){
@@ -105,17 +104,5 @@ public class PersonForm extends JPanel{
 		if(birthDateLabel == null)
 			birthDateLabel = new JLabel("Дата рождения");
 		return birthDateLabel;
-	}
-
-	private Component getCloseButton() {
-	    if(closeButton==null){
-	    	closeButton = new JButton("Закрыть");
-	    	closeButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	parent.closeEditor();
-	            }
-	        });
-	    }
-		return closeButton;
 	}
 }

@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.auto.service;
 
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.auto.service.IService;
@@ -9,11 +10,9 @@ import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Date;
 
-public class AutoServiceForm extends JPanel{
+public class AutoServiceForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 	private JTextField priceField;
@@ -21,12 +20,10 @@ public class AutoServiceForm extends JPanel{
 	private JLabel nameLabel;
 	private JLabel priceLabel;
 	private JLabel dateLabel;
-	private JButton closeButton;
 	private IService service;
-	private IGUIEditor parent;
 	public AutoServiceForm(IGUIEditor parent, IService service) {
+		super(parent);
 		this.service = service;
-		this.parent = parent;
 		fill();
 	}
 	
@@ -34,7 +31,7 @@ public class AutoServiceForm extends JPanel{
 		this(parent, ServiceFactory.createService("", MoneyFactory.create(), new Date()));
 	}
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(5,2)); 		
 		add(GuiUtil.getEmptyLabel());
 		add(GuiUtil.getEmptyLabel());
@@ -45,7 +42,7 @@ public class AutoServiceForm extends JPanel{
 		add(getDateLabel()); 
 		add(getDateField());
 		add(GuiUtil.getEmptyLabel());
-		add(getCloseButton());
+		add(getCancelButton());
 	}
 
 	private JTextField getNameField(){
@@ -88,17 +85,5 @@ public class AutoServiceForm extends JPanel{
 		if(dateLabel == null)
 			dateLabel = new JLabel("Дата"); 
 		return dateLabel;
-	}
-	
-	private Component getCloseButton() {
-	    if(closeButton==null){
-	    	closeButton = new JButton("Закрыть");
-	    	closeButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	parent.closeEditor();
-	            }           
-	        });
-	    }
-		return closeButton;
 	}
 }

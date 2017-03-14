@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.payment;
 
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
@@ -11,7 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PaymentForm extends JPanel{
+public class PaymentForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField commentField;
 	private JTextField amountField;
@@ -21,13 +22,12 @@ public class PaymentForm extends JPanel{
 	private JLabel dateLabel;
 	private JButton closeButton;
 	private IPayment payment;
-	private IGUIEditor parent;
 	private JComboBox categoryComboBox;
 	private JLabel categoryLabel;
 	
 	public PaymentForm(IGUIEditor parent, IPayment payment) {
+		super(parent);
 		this.payment = payment;
-		this.parent = parent;
 		fill();
 	}
 
@@ -36,7 +36,7 @@ public class PaymentForm extends JPanel{
 	}
 
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(6,2)); 		
 		add(GuiUtil.getEmptyLabel());
 		add(GuiUtil.getEmptyLabel());
@@ -49,7 +49,7 @@ public class PaymentForm extends JPanel{
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
 		add(GuiUtil.getEmptyLabel());
-		add(getCloseButton());
+		add(getCancelButton());
 	}
 
 	private JTextField getCommentField(){
@@ -113,17 +113,5 @@ public class PaymentForm extends JPanel{
 		if(categoryLabel == null)
 			categoryLabel = new JLabel("Категория"); 
 		return categoryLabel;
-	}
-
-	private Component getCloseButton() {
-	    if(closeButton==null){
-	    	closeButton = new JButton("Закрыть");
-	    	closeButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	parent.closeEditor();
-	            }           
-	        });
-	    }
-		return closeButton;
 	}
 }

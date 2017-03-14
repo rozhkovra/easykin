@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.doc;
 
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.doc.IDoc;
@@ -7,10 +8,8 @@ import ru.rrozhkov.easykin.util.DateUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class DocForm extends JPanel{
+public class DocForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField typeField;
 	private JTextField numberField;
@@ -20,18 +19,15 @@ public class DocForm extends JPanel{
 	private JLabel numberLabel;
 	private JLabel seriesLabel;
 	private JLabel dateLabel;
-	private JButton closeButton;
-
 	private IDoc doc;
-	private IGUIEditor parent;
 
 	public DocForm(IGUIEditor parent, IDoc doc) {
-		this.parent = parent;
+		super(parent);
 		this.doc = doc;
 		fill();
 	}
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(7, 2));
 		add(GuiUtil.getEmptyLabel());
 		add(GuiUtil.getEmptyLabel());
@@ -44,7 +40,7 @@ public class DocForm extends JPanel{
 		add(getDateLabel());
 		add(getDateField());
 		add(GuiUtil.getEmptyLabel());
-		add(getCloseButton());
+		add(getCancelButton());
 	}
 
 	private JTextField getTypeField(){
@@ -105,17 +101,5 @@ public class DocForm extends JPanel{
 		if(dateLabel == null)
 			dateLabel = new JLabel("Дата");
 		return dateLabel;
-	}
-
-	private Component getCloseButton() {
-	    if(closeButton==null){
-	    	closeButton = new JButton("Закрыть");
-	    	closeButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	parent.closeEditor();
-	            }
-	        });
-	    }
-		return closeButton;
 	}
 }

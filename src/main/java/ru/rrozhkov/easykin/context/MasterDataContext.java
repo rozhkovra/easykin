@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.context;
 
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
-import ru.rrozhkov.easykin.data.impl.stat.StaticDocDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
 import ru.rrozhkov.easykin.db.impl.CategoryHandler;
@@ -67,7 +66,7 @@ public class MasterDataContext {
 			this.services = autoProvider.getData();
 			this.calcServices = new StaticServiceCalcDataProvider().getData();
 			this.payments = new PaymentDataProvider(this).getData();
-			this.docs = new StaticDocDataProvider().getData();
+			this.docs = CollectionUtil.create();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

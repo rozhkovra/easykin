@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui.task;
 import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
@@ -17,7 +18,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TaskForm extends JPanel{
+public class TaskForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 	private JTextField planDateField;
@@ -27,12 +28,9 @@ public class TaskForm extends JPanel{
 	private JLabel planDateLabel;
 	private JLabel priorityLabel;
 	private JLabel categoryLabel;
-	private JButton saveButton;
-	private JButton closeButton;
 	private JButton doneButton;
 	
 	private ITask task;
-	private IGUIEditor parent;
 	private MasterDataContext context;
 	
 	public TaskForm(MasterDataContext context, IGUIEditor parent) {
@@ -40,13 +38,13 @@ public class TaskForm extends JPanel{
 	}
 
 	public TaskForm(MasterDataContext context, IGUIEditor parent, ITask task) {
+		super(parent);
 		this.context = context;
-		this.parent = parent;
 		this.task = task;
 		fill();
 	}
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(7,2));
 		add(GuiUtil.getEmptyLabel());
 		if(!task.getStatus().isClose()){
@@ -66,10 +64,10 @@ public class TaskForm extends JPanel{
 		add(getCategoryLabel()); 
 		add(getCategoryComboBox()); 
 		if(!task.getStatus().isClose()){
-			add(getSaveButton());
+			add(getOkButton());
 		}else
 			add(GuiUtil.getEmptyLabel());
-		add(getCloseButton());
+		add(getCancelButton());
 	}
 	
 	private Component getCloseDateLabel() {
@@ -143,52 +141,11 @@ public class TaskForm extends JPanel{
 			categoryLabel = new JLabel("Категория"); 
 		return categoryLabel;
 	}
-	
-	public JButton getSaveButton(){
-	    if(saveButton==null){
-	    	saveButton = new JButton("Сохранить");
-	    	saveButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	update();
-	            	if(!validateTask())
-	            		return;
-	            	try{
-						AuthManager authManager = AuthManager.instance();
-	            		if(task.getId()==-1) {
-							TaskService.create(authManager.signedPerson().getId(),task);
-						}else
-	            			TaskHandler.update(task);
-	            	}catch(Exception ex){
-	            		ex.printStackTrace();
-	            	}
-	        		context.init();
-	            	parent.refresh();
-	            }
 
-				private boolean validateTask() {
-					return !"".equals(task.getName()) && AuthManager.instance()!=null;
-				}           
-	        });
-	    }
-		return saveButton;
-	}
-	
 	protected void update() {
 		task = TaskFactory.createTask(task.getId(), getNameField().getText(), task.getCreateDate()
 				, DateUtil.parse(getPlanDateField().getText()), priorityComboBox.getSelectedIndex()+1
 				, categoryComboBox.getSelectedIndex()+1, "", null, Status.status(Status.OPEN));
-	}
-
-	private Component getCloseButton() {
-	    if(closeButton==null){
-	    	closeButton = new JButton("Закрыть");
-	    	closeButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-					parent.closeEditor();
-	            }
-	        });
-	    }
-		return closeButton;
 	}
 
 	private Component getDoneButton() {
@@ -214,5 +171,26 @@ public class TaskForm extends JPanel{
 	        });
 	    }
 		return doneButton;
+	}
+
+	protected void ok() {
+		update();
+		if(!validateData())
+			return;
+		try{
+			AuthManager authManager = AuthManager.instance();
+			if(task.getId()==-1) {
+				TaskService.create(authManager.signedPerson().getId(), task);
+			}else
+				TaskHandler.update(task);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		context.init();
+		parent.refresh();
+	}
+
+	protected boolean validateData() {
+		return !"".equals(task.getName()) && AuthManager.instance()!=null;
 	}
 }

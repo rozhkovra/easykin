@@ -1,31 +1,27 @@
 package ru.rrozhkov.easykin.gui.auth;
 
 import ru.rrozhkov.easykin.auth.AuthManager;
+import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class AuthForm extends JPanel{
+public class AuthForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JTextField passwordField;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
-	private JButton okButton;
-	private JButton cancelButton;
 	private AuthManager authManager;
-	private IGUIEditor parent;
 
-	public AuthForm(IGUIEditor parent, AuthManager authManager) {
+	public AuthForm(final IGUIEditor parent, AuthManager authManager) {
+		super(parent);
 		this.authManager = authManager;
-		this.parent = parent;
 		fill();
 	}
 	
-	private void fill(){
+	protected void fill(){
 		setLayout(new GridLayout(3, 2));
 		add(getUsernameLabel());
 		add(getUsernameField());
@@ -38,6 +34,7 @@ public class AuthForm extends JPanel{
 	private JTextField getUsernameField(){
 		if(usernameField == null){
 			usernameField = new JTextField(250);
+			usernameField.addKeyListener(keyListener());
 		}
 		return usernameField;
 	}
@@ -45,6 +42,7 @@ public class AuthForm extends JPanel{
 	private JTextField getPasswordField(){
 		if(passwordField == null){
 			passwordField = new JTextField(10);
+			passwordField.addKeyListener(keyListener());
 		}
 		return passwordField;
 	}
@@ -61,40 +59,20 @@ public class AuthForm extends JPanel{
 		return passwordLabel;
 	}
 
-	public JButton getOkButton(){
-	    if(okButton==null){
-			okButton = new JButton("Ок");
-			okButton.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-					if(!validate()) {
-						JOptionPane.showMessageDialog((JFrame)parent, "Username or password can't be empty!!!");
-						return;
-					}
-					authManager.signIn(getUsernameField().getText().toString(),getPasswordField().getText().toString());
-					if(!authManager.isSignedIn()) {
-						JOptionPane.showMessageDialog((JFrame) parent, "Username or password incorrect!!!");
-					}else
-						parent.closeEditor();
-				}
-
-				private boolean validate(){
-					return !getUsernameField().getText().toString().isEmpty()
-							&& !getPasswordField().getText().toString().isEmpty();
-				}
-	        });
-	    }
-		return okButton;
+	protected void ok(){
+		if (!validateData()) {
+			JOptionPane.showMessageDialog((JFrame) parent, "Username or password can't be empty!!!");
+			return;
+		}
+		authManager.signIn(getUsernameField().getText().toString(), getPasswordField().getText().toString());
+		if (!authManager.isSignedIn()) {
+			JOptionPane.showMessageDialog((JFrame) parent, "Username or password incorrect!!!");
+		} else
+			parent.closeEditor();
 	}
-	
-	private Component getCancelButton() {
-	    if(cancelButton==null){
-			cancelButton = new JButton("Закрыть");
-			cancelButton.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-					parent.closeEditor();
-	            }
-	        });
-	    }
-		return cancelButton;
+
+	protected boolean validateData(){
+		return !getUsernameField().getText().toString().isEmpty()
+				&& !getPasswordField().getText().toString().isEmpty();
 	}
 }
