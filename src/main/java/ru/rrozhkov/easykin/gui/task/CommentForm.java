@@ -14,7 +14,7 @@ import java.awt.*;
 public class CommentForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	private JLabel textLabel;
+	private Component textLabel;
 	private IComment comment;
 	private MasterDataContext context;
 
@@ -41,15 +41,14 @@ public class CommentForm extends Form {
 
 	private JTextField getTextField(){
 		if(textField == null){
-			textField = new JTextField(250);
-			textField.setText(comment.getText());
+			textField = (JTextField)GuiUtil.getEditableField(250,comment.getText());
 		}
 		return textField;
 	}
 
-	private JLabel getTextLabel(){
+	private Component getTextLabel(){
 		if(textLabel == null)
-			textLabel = new JLabel("Текст");
+			textLabel = GuiUtil.label("Текст");
 		return textLabel;
 	}
 

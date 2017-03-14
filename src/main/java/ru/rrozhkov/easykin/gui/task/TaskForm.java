@@ -24,11 +24,11 @@ public class TaskForm extends Form {
 	private JTextField planDateField;
 	private JComboBox priorityComboBox;
 	private JComboBox categoryComboBox;
-	private JLabel nameLabel;
-	private JLabel planDateLabel;
-	private JLabel priorityLabel;
-	private JLabel categoryLabel;
-	private JButton doneButton;
+	private Component nameLabel;
+	private Component planDateLabel;
+	private Component priorityLabel;
+	private Component categoryLabel;
+	private Component doneButton;
 	
 	private ITask task;
 	private MasterDataContext context;
@@ -76,8 +76,7 @@ public class TaskForm extends Form {
 
 	private JTextField getNameField(){
 		if(nameField == null){
-			nameField = new JTextField(250);
-			nameField.setText(task.getName());
+			nameField = (JTextField) GuiUtil.getEditableField(250,task.getName());
 			if(task.getStatus().isClose())
 				nameField.setEditable(false);
 		}
@@ -86,8 +85,7 @@ public class TaskForm extends Form {
 
 	private JTextField getPlanDateField(){
 		if(planDateField == null){
-			planDateField = new JTextField(10);
-			planDateField.setText(DateUtil.format(task.getPlanDate()));
+			planDateField = (JTextField) GuiUtil.getEditableField(10,DateUtil.format(task.getPlanDate()));
 			if(task.getStatus().isClose())
 				planDateField.setEditable(false);
 		}
@@ -118,27 +116,27 @@ public class TaskForm extends Form {
 		return new ArrayCategoryConverter().convert(context.categories());
 	}
 
-	private JLabel getNameLabel(){
+	private Component getNameLabel(){
 		if(nameLabel == null)
-			nameLabel = new JLabel("Описание"); 
+			nameLabel = GuiUtil.label("Описание");
 		return nameLabel;
 	}
 	
-	private JLabel getPlanDateLabel(){
+	private Component getPlanDateLabel(){
 		if(planDateLabel == null)
-			planDateLabel = new JLabel("Плановая дата"); 
+			planDateLabel = GuiUtil.label("Плановая дата");
 		return planDateLabel;
 	}
 
-	private JLabel getPriorityLabel(){
+	private Component getPriorityLabel(){
 		if(priorityLabel == null)
-			priorityLabel = new JLabel("Приоритет"); 
+			priorityLabel = GuiUtil.label("Приоритет");
 		return priorityLabel;
 	}
 
-	private JLabel getCategoryLabel(){
+	private Component getCategoryLabel(){
 		if(categoryLabel == null)
-			categoryLabel = new JLabel("Категория"); 
+			categoryLabel = GuiUtil.label("Категория");
 		return categoryLabel;
 	}
 
@@ -150,25 +148,24 @@ public class TaskForm extends Form {
 
 	private Component getDoneButton() {
 	    if(doneButton==null){
-	    	doneButton = new JButton("Выполнить");
-	    	doneButton.addActionListener(new ActionListener() {           
-	            public void actionPerformed(ActionEvent e) {
-	            	update();
-	            	if(!validateTask())
-	            		return;
-	            	try{
-	            		TaskHandler.close(task);
-	            	}catch(Exception ex){
-	            		ex.printStackTrace();
-	            	}
-	        		context.init();
-	            	parent.refresh();
-	            }
+	    	doneButton = GuiUtil.button("Выполнить",new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					update();
+					if(!validateTask())
+						return;
+					try{
+						TaskHandler.close(task);
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					context.init();
+					parent.refresh();
+				}
 
 				private boolean validateTask() {
 					return !"".equals(task.getName());
-				}                      
-	        });
+				}
+			});
 	    }
 		return doneButton;
 	}

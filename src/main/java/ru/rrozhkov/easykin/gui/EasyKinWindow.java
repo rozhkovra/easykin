@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.image.ImageManager;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.gui.util.ImageUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
 
@@ -96,8 +97,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         menuButtons.setLayout(new BoxLayout(menuButtons, BoxLayout.X_AXIS));
 
         ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, ImageManager.plus());
-        JButton plusButton = new JButton(plusIcon);
-        plusButton.addActionListener(new ActionListener() {
+        Component plusButton = GuiUtil.button(plusIcon, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 add();
             }
@@ -105,8 +105,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         menuButtons.add(plusButton);
 
         ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, ImageManager.refresh());
-        JButton refreshButton = new JButton(refreshIcon);
-        refreshButton.addActionListener(new ActionListener() {
+        Component refreshButton = GuiUtil.button(refreshIcon,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refresh();
             }

@@ -13,14 +13,14 @@ import java.awt.event.ActionListener;
 
 public class PersonForm extends Form {
 	private static final long serialVersionUID = 1L;
-	private JTextField surnameField;
-	private JTextField nameField;
-	private JTextField secondNameField;
-	private JTextField birthDateField;
-	private JLabel surnameLabel;
-	private JLabel nameLabel;
-	private JLabel secondNameLabel;
-	private JLabel birthDateLabel;
+	private Component surnameField;
+	private Component nameField;
+	private Component secondNameField;
+	private Component birthDateField;
+	private Component surnameLabel;
+	private Component nameLabel;
+	private Component secondNameLabel;
+	private Component birthDateLabel;
 
 	private IPerson person;
 
@@ -46,63 +46,55 @@ public class PersonForm extends Form {
 		add(getCancelButton());
 	}
 
-	private JTextField getSurnameField(){
+	private Component getSurnameField(){
 		if(surnameField == null){
-			surnameField = new JTextField(250);
-			surnameField.setText(person.getSurname());
-			surnameField.setEditable(false);
+			surnameField = GuiUtil.getReadOnlyField(50,person.getSurname());
 		}
 		return surnameField;
 	}
 
-	private JTextField getNameField(){
+	private Component getNameField(){
 		if(nameField == null){
-			nameField = new JTextField(250);
-			nameField.setText(person.getName());
-			nameField.setEditable(false);
+			nameField = GuiUtil.getReadOnlyField(50,person.getName());
 		}
 		return nameField;
 	}
 
-	private JTextField getSecondNameField(){
+	private Component getSecondNameField(){
 		if(secondNameField == null){
-			secondNameField = new JTextField(250);
-			secondNameField.setText(person.getSecondName());
-			secondNameField.setEditable(false);
+			secondNameField = GuiUtil.getReadOnlyField(50,person.getSecondName());
 		}
 		return secondNameField;
 	}
 
-	private JTextField getBirthDateField(){
+	private Component getBirthDateField(){
 		if(birthDateField == null){
-			birthDateField = new JTextField(10);
-			birthDateField.setText(DateUtil.format(person.getBirthDate()));
-			birthDateField.setEditable(false);
+			birthDateField = GuiUtil.getReadOnlyField(10,DateUtil.format(person.getBirthDate()));
 		}
 		return birthDateField;
 	}
 
-	private JLabel getSurnameLabel(){
+	private Component getSurnameLabel(){
 		if(surnameLabel == null)
-			surnameLabel = new JLabel("Фамилия");
+			surnameLabel = GuiUtil.label("Фамилия");
 		return surnameLabel;
 	}
 
-	private JLabel getNameLabel(){
+	private Component getNameLabel(){
 		if(nameLabel == null)
-			nameLabel = new JLabel("Имя");
+			nameLabel = GuiUtil.label("Имя");
 		return nameLabel;
 	}
 
-	private JLabel getSecondNameLabel(){
+	private Component getSecondNameLabel(){
 		if(secondNameLabel == null)
-			secondNameLabel = new JLabel("Отчество");
+			secondNameLabel = GuiUtil.label("Отчество");
 		return secondNameLabel;
 	}
 
-	private JLabel getBirthDateLabel(){
+	private Component getBirthDateLabel(){
 		if(birthDateLabel == null)
-			birthDateLabel = new JLabel("Дата рождения");
+			birthDateLabel = GuiUtil.label("Дата рождения");
 		return birthDateLabel;
 	}
 }

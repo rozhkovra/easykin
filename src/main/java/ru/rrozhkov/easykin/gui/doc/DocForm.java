@@ -6,19 +6,18 @@ import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.doc.IDoc;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class DocForm extends Form {
 	private static final long serialVersionUID = 1L;
-	private JTextField typeField;
-	private JTextField numberField;
-	private JTextField seriesField;
-	private JTextField dateField;
-	private JLabel typeLabel;
-	private JLabel numberLabel;
-	private JLabel seriesLabel;
-	private JLabel dateLabel;
+	private Component typeField;
+	private Component numberField;
+	private Component seriesField;
+	private Component dateField;
+	private Component typeLabel;
+	private Component numberLabel;
+	private Component seriesLabel;
+	private Component dateLabel;
 	private IDoc doc;
 
 	public DocForm(IGUIEditor parent, IDoc doc) {
@@ -43,63 +42,55 @@ public class DocForm extends Form {
 		add(getCancelButton());
 	}
 
-	private JTextField getTypeField(){
+	private Component getTypeField(){
 		if(typeField == null){
-			typeField = new JTextField(250);
-			typeField.setText(doc.getDocType().toString());
-			typeField.setEditable(false);
+			typeField = GuiUtil.getReadOnlyField(50,doc.getDocType().toString());
 		}
 		return typeField;
 	}
 
-	private JTextField getNumberField(){
+	private Component getNumberField(){
 		if(numberField == null){
-			numberField = new JTextField(250);
-			numberField.setText(doc.getNumber());
-			numberField.setEditable(false);
+			numberField = GuiUtil.getReadOnlyField(50,doc.getNumber());
 		}
 		return numberField;
 	}
 
-	private JTextField getSeriesField(){
+	private Component getSeriesField(){
 		if(seriesField == null){
-			seriesField = new JTextField(250);
-			seriesField.setText(doc.getSeries());
-			seriesField.setEditable(false);
+			seriesField = GuiUtil.getReadOnlyField(50,doc.getSeries());
 		}
 		return seriesField;
 	}
 
-	private JTextField getDateField(){
+	private Component getDateField(){
 		if(dateField == null){
-			dateField = new JTextField(10);
-			dateField.setText(DateUtil.format(doc.getDate()));
-			dateField.setEditable(false);
+			dateField = GuiUtil.getReadOnlyField(10,DateUtil.format(doc.getDate()));
 		}
 		return dateField;
 	}
 
-	private JLabel getTypeLabel(){
+	private Component getTypeLabel(){
 		if(typeLabel == null)
-			typeLabel = new JLabel("Тип");
+			typeLabel = GuiUtil.label("Тип");
 		return typeLabel;
 	}
 
-	private JLabel getNumberLabel(){
+	private Component getNumberLabel(){
 		if(numberLabel == null)
-			numberLabel = new JLabel("Номер");
+			numberLabel = GuiUtil.label("Номер");
 		return numberLabel;
 	}
 
-	private JLabel getSeriesLabel(){
+	private Component getSeriesLabel(){
 		if(seriesLabel == null)
-			seriesLabel = new JLabel("Серия");
+			seriesLabel = GuiUtil.label("Серия");
 		return seriesLabel;
 	}
 
-	private JLabel getDateLabel(){
+	private Component getDateLabel(){
 		if(dateLabel == null)
-			dateLabel = new JLabel("Дата");
+			dateLabel = GuiUtil.label("Дата");
 		return dateLabel;
 	}
 }

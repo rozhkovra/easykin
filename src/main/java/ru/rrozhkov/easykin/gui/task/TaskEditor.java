@@ -5,6 +5,7 @@ import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.FormFactory;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.PanelFactory;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.task.IComment;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.impl.TaskBuilder;
@@ -19,7 +20,7 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 	private ITask task;
 	private MasterDataContext context;
 	private EasyKinWindow parent;
-	private JButton addButton;
+	private Component addButton;
 
 	public TaskEditor(MasterDataContext context, EasyKinWindow parent, ITask task) {
 		super();
@@ -76,10 +77,9 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		}
 	}
 
-	private JButton getAddButton(){
+	private Component getAddButton(){
 		if(addButton==null){
-			addButton = new JButton("Добавить");
-			addButton.addActionListener(new ActionListener() {
+			addButton = GuiUtil.button("Добавить", new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					add();
 				}

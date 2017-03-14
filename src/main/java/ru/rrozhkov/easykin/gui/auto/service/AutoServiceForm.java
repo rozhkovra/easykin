@@ -8,18 +8,17 @@ import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
 public class AutoServiceForm extends Form {
 	private static final long serialVersionUID = 1L;
-	private JTextField nameField;
-	private JTextField priceField;
-	private JTextField dateField;
-	private JLabel nameLabel;
-	private JLabel priceLabel;
-	private JLabel dateLabel;
+	private Component nameField;
+	private Component priceField;
+	private Component dateField;
+	private Component nameLabel;
+	private Component priceLabel;
+	private Component dateLabel;
 	private IService service;
 	public AutoServiceForm(IGUIEditor parent, IService service) {
 		super(parent);
@@ -45,45 +44,43 @@ public class AutoServiceForm extends Form {
 		add(getCancelButton());
 	}
 
-	private JTextField getNameField(){
+	private Component getNameField(){
 		if(nameField == null){
-			nameField = new JTextField(50);
-			nameField.setText(service.getName());
+			nameField = GuiUtil.getReadOnlyField(50,service.getName());
+
 		}
 		return nameField;
 	}
 
-	private JTextField getPriceField(){
+	private Component getPriceField(){
 		if(priceField == null){
-			priceField = new JTextField(10);
-			priceField.setText(service.getPrice().toString());
+			priceField = GuiUtil.getReadOnlyField(10, service.getPrice().toString());
 		}
 		return priceField;
 	}
 	
-	private JTextField getDateField(){
+	private Component getDateField(){
 		if(dateField == null){
-			dateField = new JTextField(10);
-			dateField.setText(DateUtil.format(service.getDate()));
+			dateField = GuiUtil.getReadOnlyField(10, DateUtil.format(service.getDate()));
 		}
 		return dateField;
 	}
 	
-	private JLabel getNameLabel(){
+	private Component getNameLabel(){
 		if(nameLabel == null)
-			nameLabel = new JLabel("Описание"); 
+			nameLabel = GuiUtil.label("Описание");
 		return nameLabel;
 	}
 	
-	private JLabel getPriceLabel(){
+	private Component getPriceLabel(){
 		if(priceLabel == null)
-			priceLabel = new JLabel("Цена"); 
+			priceLabel = GuiUtil.label("Цена");
 		return priceLabel;
 	}
 	
-	private JLabel getDateLabel(){
+	private Component getDateLabel(){
 		if(dateLabel == null)
-			dateLabel = new JLabel("Дата"); 
+			dateLabel = GuiUtil.label("Дата");
 		return dateLabel;
 	}
 }

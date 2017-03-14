@@ -1,5 +1,7 @@
 package ru.rrozhkov.easykin.gui;
 
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +13,8 @@ import java.awt.event.KeyListener;
  * Created by rrozhkov on 3/14/2017.
  */
 public abstract class Form extends JPanel {
-    private JButton okButton;
-    private JButton cancelButton;
+    private Component okButton;
+    private Component cancelButton;
     protected IGUIEditor parent;
 
     public Form(IGUIEditor parent) {
@@ -48,10 +50,9 @@ public abstract class Form extends JPanel {
 
     protected boolean validateData(){return true;};
 
-    protected JButton getOkButton(){
+    protected Component getOkButton(){
         if(okButton==null){
-            okButton = new JButton("Ок");
-            okButton.addActionListener(new ActionListener() {
+            okButton = GuiUtil.button("Ок",new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     ok();
                 }
@@ -62,8 +63,7 @@ public abstract class Form extends JPanel {
 
     protected Component getCancelButton() {
         if(cancelButton==null){
-            cancelButton = new JButton("Закрыть");
-            cancelButton.addActionListener(new ActionListener() {
+            cancelButton = GuiUtil.button("Закрыть",new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     cancel();
                 }

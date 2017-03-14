@@ -4,26 +4,21 @@ import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
-import ru.rrozhkov.easykin.model.fin.payment.PaymentCategory;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PaymentForm extends Form {
 	private static final long serialVersionUID = 1L;
-	private JTextField commentField;
-	private JTextField amountField;
-	private JTextField dateField;
-	private JLabel nameLabel;
-	private JLabel priceLabel;
-	private JLabel dateLabel;
-	private JButton closeButton;
+	private Component commentField;
+	private Component amountField;
+	private Component dateField;
+	private Component nameLabel;
+	private Component priceLabel;
+	private Component dateLabel;
 	private IPayment payment;
-	private JComboBox categoryComboBox;
-	private JLabel categoryLabel;
+	private Component categoryField;
+	private Component categoryLabel;
 	
 	public PaymentForm(IGUIEditor parent, IPayment payment) {
 		super(parent);
@@ -47,71 +42,60 @@ public class PaymentForm extends Form {
 		add(getDateLabel()); 
 		add(getDateField());
 		add(getCategoryLabel()); 
-		add(getCategoryComboBox()); 
+		add(getCategoryField());
 		add(GuiUtil.getEmptyLabel());
 		add(getCancelButton());
 	}
 
-	private JTextField getCommentField(){
+	private Component getCommentField(){
 		if(commentField == null){
-			commentField = new JTextField(50);
-			commentField.setText(payment.getComment());
+			commentField = GuiUtil.getReadOnlyField(50,payment.getComment());
 		}
 		return commentField;
 	}
 
-	private JTextField getAmountField(){
+	private Component getAmountField(){
 		if(amountField == null){
-			amountField = new JTextField(10);
-			amountField.setText(payment.getAmount().toString());
+			amountField = GuiUtil.getReadOnlyField(10,payment.getAmount().toString());
 		}
 		return amountField;
 	}
 	
-	private JTextField getDateField(){
+	private Component getDateField(){
 		if(dateField == null){
-			dateField = new JTextField(10);
-			dateField.setText(DateUtil.format(payment.getDate()));
+			dateField = GuiUtil.getReadOnlyField(10, DateUtil.format(payment.getDate()));
 		}
 		return dateField;
 	}
 	
-	private JComboBox getCategoryComboBox(){
-		if(categoryComboBox == null){
-			categoryComboBox = new JComboBox(new PaymentCategory[]{
-					PaymentCategory.AUTO,
-					PaymentCategory.AUTODETAIL,
-					PaymentCategory.AUTOREPAIR,
-					PaymentCategory.SERVICE,
-					PaymentCategory.TASK
-					}
-			);
-			categoryComboBox.setSelectedItem(payment.getCategory());
+	private Component getCategoryField(){
+		if(categoryField == null){
+			categoryField = GuiUtil.getReadOnlyField(50, payment.getCategory().toString());
 		}
-		return categoryComboBox;
+		return categoryField;
 	}
 	
-	private JLabel getCommentLabel(){
+	private Component getCommentLabel(){
 		if(nameLabel == null)
-			nameLabel = new JLabel("Описание"); 
+			nameLabel = GuiUtil.label("Описание");
 		return nameLabel;
 	}
 	
-	private JLabel getAmountLabel(){
+	private Component getAmountLabel(){
 		if(priceLabel == null)
-			priceLabel = new JLabel("Цена"); 
+			priceLabel = GuiUtil.label("Цена");
 		return priceLabel;
 	}
 	
-	private JLabel getDateLabel(){
+	private Component getDateLabel(){
 		if(dateLabel == null)
-			dateLabel = new JLabel("Дата"); 
+			dateLabel = GuiUtil.label("Дата");
 		return dateLabel;
 	}
 	
-	private JLabel getCategoryLabel(){
+	private Component getCategoryLabel(){
 		if(categoryLabel == null)
-			categoryLabel = new JLabel("Категория"); 
+			categoryLabel = GuiUtil.label("Категория");
 		return categoryLabel;
 	}
 }

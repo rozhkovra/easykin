@@ -1,26 +1,23 @@
 package ru.rrozhkov.easykin.gui.auto;
 
-import java.awt.Component;
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.auto.ICar;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class CarForm extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTextField brendField = null;
-	private JTextField modelField = null;
-	private JTextField bodyField = null;
-	private JTextField yearField = null;
-	private JTextField volumeField = null;
-	private JLabel brendLabel = null;
-	private JLabel modelLabel = null;
-	private JLabel bodyLabel = null;
-	private JLabel yearLabel = null;
-	private JLabel volumeLabel = null;
+	private Component brendField = null;
+	private Component modelField = null;
+	private Component bodyField = null;
+	private Component yearField = null;
+	private Component volumeField = null;
+	private Component brendLabel = null;
+	private Component modelLabel = null;
+	private Component bodyLabel = null;
+	private Component yearLabel = null;
+	private Component volumeLabel = null;
 	private ICar car;
 	public CarForm(ICar car) {
 		this.car = car;
@@ -39,78 +36,68 @@ public class CarForm extends JPanel {
 		add(getVolumeField()); 
 	}
 	
-	private JTextField getVolumeField() {
+	private Component getVolumeField() {
 		if(volumeField == null){
-			volumeField = new JTextField(10);
-			volumeField.setText(String.valueOf(car.getVolume()));
-			volumeField.setEditable(false);
+			volumeField = GuiUtil.getReadOnlyField(10,String.valueOf(car.getVolume()));
 		}
 		return volumeField;
 	}
 
 	private Component getVolumeLabel() {
 		if(volumeLabel == null)
-			volumeLabel = new JLabel("Объем"); 
+			volumeLabel = GuiUtil.label("Объем");
 		return volumeLabel;
 	}
 
-	private JTextField getYearField() {
+	private Component getYearField() {
 		if(yearField == null){
-			yearField = new JTextField(10);
-			yearField.setText(String.valueOf(car.getYear()));
-			yearField.setEditable(false);
+			yearField = GuiUtil.getReadOnlyField(10,String.valueOf(car.getYear()));
 		}
 		return yearField;
 	}
 
 	private Component getYearLabel() {		
 		if(yearLabel == null)
-			yearLabel = new JLabel("Год"); 
+			yearLabel = GuiUtil.label("Год");
 		return yearLabel;
 	}
 
-	public JTextField getBredField(){
+	public Component getBredField(){
 		if(brendField == null){
-			brendField = new JTextField(10);
-			brendField.setText(car.getBrend().toString());
-			brendField.setEditable(false);
+			brendField = GuiUtil.getReadOnlyField(10,car.getBrend().toString());
 		}
 		return brendField;
 	}
 
-	public JTextField getModelField(){
+	public Component getModelField(){
 		if(modelField == null){
-			modelField = new JTextField(10);
-			modelField.setText(car.getModel().toString());
-			modelField.setEditable(false);
+			modelField = GuiUtil.getReadOnlyField(10,car.getModel().toString());
 		}
 		return modelField;
 	}
 	
-	public JTextField getBodyField(){
+	public Component getBodyField(){
 		if(bodyField == null){
-			bodyField = new JTextField(10);
-			bodyField.setText(car.getBody().toString());
-			bodyField.setEditable(false);
+			bodyField = GuiUtil.getReadOnlyField(10,car.getBody().toString());
 		}
 		return bodyField;
 	}
 	
-	public JLabel getBrendLabel(){
+	public Component getBrendLabel(){
 		if(brendLabel == null)
-			brendLabel = new JLabel("Марка"); 
+			brendLabel = GuiUtil.label("Марка");
 		return brendLabel;
 	}
 	
-	public JLabel getModelLabel(){
+	public Component getModelLabel(){
 		if(modelLabel == null)
-			modelLabel = new JLabel("Модель"); 
+			modelLabel = GuiUtil.label("Модель");
 		return modelLabel;
 	}
 	
-	public JLabel getBodyLabel(){
+	public Component getBodyLabel(){
 		if(bodyLabel == null)
-			bodyLabel = new JLabel("Кузов"); 
+			bodyLabel = GuiUtil.label("Кузов");
 		return bodyLabel;
 	}
 }

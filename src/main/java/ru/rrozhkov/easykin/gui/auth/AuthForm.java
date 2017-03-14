@@ -3,6 +3,7 @@ package ru.rrozhkov.easykin.gui.auth;
 import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.GuiUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +12,8 @@ public class AuthForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JTextField passwordField;
-	private JLabel usernameLabel;
-	private JLabel passwordLabel;
+	private Component usernameLabel;
+	private Component passwordLabel;
 	private AuthManager authManager;
 
 	public AuthForm(final IGUIEditor parent, AuthManager authManager) {
@@ -33,7 +34,7 @@ public class AuthForm extends Form {
 	
 	private JTextField getUsernameField(){
 		if(usernameField == null){
-			usernameField = new JTextField(250);
+			usernameField = new JTextField(50);
 			usernameField.addKeyListener(keyListener());
 		}
 		return usernameField;
@@ -41,21 +42,21 @@ public class AuthForm extends Form {
 
 	private JTextField getPasswordField(){
 		if(passwordField == null){
-			passwordField = new JTextField(10);
+			passwordField = new JTextField(50);
 			passwordField.addKeyListener(keyListener());
 		}
 		return passwordField;
 	}
 	
-	private JLabel getUsernameLabel(){
+	private Component getUsernameLabel(){
 		if(usernameLabel == null)
-			usernameLabel = new JLabel("Пользователь");
+			usernameLabel = GuiUtil.label("Пользователь");
 		return usernameLabel;
 	}
 	
-	private JLabel getPasswordLabel(){
+	private Component getPasswordLabel(){
 		if(passwordLabel == null)
-			passwordLabel = new JLabel("Пароль");
+			passwordLabel = GuiUtil.label("Пароль");
 		return passwordLabel;
 	}
 
