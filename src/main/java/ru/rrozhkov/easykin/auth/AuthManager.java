@@ -11,35 +11,11 @@ public class AuthManager {
     static AuthManager authManager = new AuthManager();
     protected IPerson signedPerson;
 
-    protected AuthManager() {
-    }
-
     public static AuthManager instance(){
         if(authManager==null){
             authManager = new AuthManager();
         }
         return authManager;
-    }
-
-    public IPerson signedPerson(){
-        return signedPerson;
-    }
-
-    public boolean signIn(String user, String pass){
-        try {
-            this.signedPerson = AuthHandler.auth(user, pass);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return isSignedIn();
-    }
-
-    public void signOut(){
-        this.signedPerson = null;
-    }
-
-    public boolean isSignedIn(){
-        return this.signedPerson != null;
     }
 
     public static AuthManager auth(){
@@ -52,5 +28,28 @@ public class AuthManager {
         while(!window.isFinished()){
         }
         return authManager;
+    }
+
+    protected AuthManager() {
+    }
+
+    public IPerson signedPerson(){
+        return signedPerson;
+    }
+
+    public void signIn(String user, String pass){
+        try {
+            this.signedPerson = AuthHandler.auth(user, pass);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void signOut(){
+        this.signedPerson = null;
+    }
+
+    public boolean isSignedIn(){
+        return this.signedPerson != null;
     }
 }

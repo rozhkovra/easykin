@@ -14,7 +14,8 @@ public class EasyKinAuthService {
     @WebMethod
     public int auth(String user, String pass) {
         AuthManager authManager = AuthManager.instance();
-        if(authManager.signIn(user, pass))
+        authManager.signIn(user, pass);
+        if(authManager.isSignedIn())
             return 1;
         return -1;
     }
