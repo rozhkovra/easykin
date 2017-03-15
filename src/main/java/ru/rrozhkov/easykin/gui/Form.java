@@ -44,9 +44,9 @@ public abstract class Form extends JPanel {
     }
     protected void cancel(){
         parent.closeEditor();
-    };
+    }
 
-    protected void ok(){};
+    protected void ok(){}
 
     protected boolean validateData(){return true;};
 
