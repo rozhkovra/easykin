@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui.service;
 
+import ru.rrozhkov.easykin.gui.image.ImageManager;
 import ru.rrozhkov.easykin.model.service.calc.impl.CalcFactory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
@@ -10,7 +11,8 @@ public class ServiceWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	public ServiceWindow(JPanel panel) throws HeadlessException {
-		super();
+		super("Коммунальные услуги");
+		setIconImage(ImageManager.logo(this.getClass()));
 		setContentPane(panel);
     	setExtendedState(ServiceWindow.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  

@@ -80,10 +80,12 @@
                     </archive>
 			<includes>
 				<include>ru/rrozhkov/easykin/gui/service/**</include>
+				<include>ru/rrozhkov/easykin/gui/image/**</include>
 				<include>ru/rrozhkov/easykin/gui/util/**</include>
 				<include>ru/rrozhkov/easykin/model/service/**</include>
 				<include>ru/rrozhkov/easykin/model/fin/**</include>
 				<include>ru/rrozhkov/easykin/util/**</include>
+				<include>icon/**</include>
 			</includes>
 			<finalName>easykin-service-${version}</finalName>
                 </configuration>

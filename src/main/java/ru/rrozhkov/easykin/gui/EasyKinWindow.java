@@ -22,7 +22,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 
 	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
 		super(ContextUtil.title());
-        setIconImage(ImageManager.logo());
+        setIconImage(ImageManager.logo(this.getClass()));
 		this.context = context;
         fill();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -96,7 +96,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JPanel menuButtons = new JPanel();
         menuButtons.setLayout(new BoxLayout(menuButtons, BoxLayout.X_AXIS));
 
-        ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, ImageManager.plus());
+        ImageIcon plusIcon = ImageUtil.scaleImage(70, 70, ImageManager.plus(this.getClass()));
         Component plusButton = GuiUtil.button(plusIcon, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 add();
@@ -104,7 +104,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         });
         menuButtons.add(plusButton);
 
-        ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, ImageManager.refresh());
+        ImageIcon refreshIcon = ImageUtil.scaleImage(70, 70, ImageManager.refresh(getClass()));
         Component refreshButton = GuiUtil.button(refreshIcon,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refresh();
