@@ -31,10 +31,10 @@ public class ElectricityPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(8, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getCalcTypeLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
@@ -43,7 +43,7 @@ public class ElectricityPanel extends Panel{
 		add(getRateField()); 
 		add(getOdnLabel()); 
 		add(getOdnField());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getItogoLabel()); 
 		refresh();
 	}

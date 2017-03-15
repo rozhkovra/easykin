@@ -28,17 +28,17 @@ public class GazPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(7, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getCalcTypeLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getPrevMesureLabel()); 
 		add(getPrevMesureField()); 
 		add(getCurrentMesureLabel()); 
 		add(getCurrentMesureField()); 
 		add(getRateLabel()); 
 		add(getRateField()); 
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getItogoLabel()); 
 		refresh();
 	}

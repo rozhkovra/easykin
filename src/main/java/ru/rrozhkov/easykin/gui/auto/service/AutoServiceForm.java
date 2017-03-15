@@ -32,21 +32,21 @@ public class AutoServiceForm extends Form {
 	
 	protected void fill(){
 		setLayout(new GridLayout(5,2)); 		
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getNameLabel()); 
 		add(getNameField()); 
 		add(getPriceLabel()); 
 		add(getPriceField()); 
 		add(getDateLabel()); 
 		add(getDateField());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getCancelButton());
 	}
 
 	private Component getNameField(){
 		if(nameField == null){
-			nameField = GuiUtil.getReadOnlyField(50,service.getName());
+			nameField = GuiUtil.fieldReadOnly(50, service.getName());
 
 		}
 		return nameField;
@@ -54,14 +54,14 @@ public class AutoServiceForm extends Form {
 
 	private Component getPriceField(){
 		if(priceField == null){
-			priceField = GuiUtil.getReadOnlyField(10, service.getPrice().toString());
+			priceField = GuiUtil.fieldReadOnly(10, service.getPrice().toString());
 		}
 		return priceField;
 	}
 	
 	private Component getDateField(){
 		if(dateField == null){
-			dateField = GuiUtil.getReadOnlyField(10, DateUtil.format(service.getDate()));
+			dateField = GuiUtil.fieldReadOnly(10, DateUtil.format(service.getDate()));
 		}
 		return dateField;
 	}

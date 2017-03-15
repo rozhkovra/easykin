@@ -31,7 +31,7 @@ public class HotWaterPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(7,2));
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getCalcTypeLabel());
 		add(getItogoLabel()); 
 		add(getPrevMesureLabel()); 

@@ -6,10 +6,7 @@ import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.util.DateUtil;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PersonForm extends Form {
 	private static final long serialVersionUID = 1L;
@@ -32,8 +29,8 @@ public class PersonForm extends Form {
 	
 	protected void fill(){
 		setLayout(new GridLayout(7, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getSurnameLabel());
 		add(getSurnameField());
 		add(getNameLabel());
@@ -42,34 +39,34 @@ public class PersonForm extends Form {
 		add(getSecondNameField());
 		add(getBirthDateLabel());
 		add(getBirthDateField());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getCancelButton());
 	}
 
 	private Component getSurnameField(){
 		if(surnameField == null){
-			surnameField = GuiUtil.getReadOnlyField(50,person.getSurname());
+			surnameField = GuiUtil.fieldReadOnly(50, person.getSurname());
 		}
 		return surnameField;
 	}
 
 	private Component getNameField(){
 		if(nameField == null){
-			nameField = GuiUtil.getReadOnlyField(50,person.getName());
+			nameField = GuiUtil.fieldReadOnly(50, person.getName());
 		}
 		return nameField;
 	}
 
 	private Component getSecondNameField(){
 		if(secondNameField == null){
-			secondNameField = GuiUtil.getReadOnlyField(50,person.getSecondName());
+			secondNameField = GuiUtil.fieldReadOnly(50, person.getSecondName());
 		}
 		return secondNameField;
 	}
 
 	private Component getBirthDateField(){
 		if(birthDateField == null){
-			birthDateField = GuiUtil.getReadOnlyField(10,DateUtil.format(person.getBirthDate()));
+			birthDateField = GuiUtil.fieldReadOnly(10, DateUtil.format(person.getBirthDate()));
 		}
 		return birthDateField;
 	}

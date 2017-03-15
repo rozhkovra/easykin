@@ -46,12 +46,12 @@ public class TaskForm extends Form {
 	
 	protected void fill(){
 		setLayout(new GridLayout(7,2));
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		if(!task.getStatus().isClose()){
 			if(task.getId()!=-1){
 				add(getDoneButton());
 			}else
-				add(GuiUtil.getEmptyLabel());
+				add(GuiUtil.labelEmpty());
 		}else{
 			add(getCloseDateLabel());
 		}
@@ -66,7 +66,7 @@ public class TaskForm extends Form {
 		if(!task.getStatus().isClose()){
 			add(getOkButton());
 		}else
-			add(GuiUtil.getEmptyLabel());
+			add(GuiUtil.labelEmpty());
 		add(getCancelButton());
 	}
 	
@@ -76,7 +76,7 @@ public class TaskForm extends Form {
 
 	private JTextField getNameField(){
 		if(nameField == null){
-			nameField = (JTextField) GuiUtil.getEditableField(250,task.getName());
+			nameField = (JTextField) GuiUtil.fieldEditable(250, task.getName());
 			if(task.getStatus().isClose())
 				nameField.setEditable(false);
 		}
@@ -85,7 +85,7 @@ public class TaskForm extends Form {
 
 	private JTextField getPlanDateField(){
 		if(planDateField == null){
-			planDateField = (JTextField) GuiUtil.getEditableField(10,DateUtil.format(task.getPlanDate()));
+			planDateField = (JTextField) GuiUtil.fieldEditable(10, DateUtil.format(task.getPlanDate()));
 			if(task.getStatus().isClose())
 				planDateField.setEditable(false);
 		}

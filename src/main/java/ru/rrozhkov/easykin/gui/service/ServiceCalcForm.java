@@ -20,8 +20,8 @@ public class ServiceCalcForm extends Panel {
         	add(PanelFactory.getPanel(this, bean));
         }
 		refresh();
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getItogoLabel());
 	}
 

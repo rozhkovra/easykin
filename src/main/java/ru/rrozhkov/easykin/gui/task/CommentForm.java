@@ -31,8 +31,8 @@ public class CommentForm extends Form {
 	
 	protected void fill(){
 		setLayout(new GridLayout(4, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getTextLabel());
 		add(getTextField());
 		add(getOkButton());
@@ -41,7 +41,7 @@ public class CommentForm extends Form {
 
 	private JTextField getTextField(){
 		if(textField == null){
-			textField = (JTextField)GuiUtil.getEditableField(250,comment.getText());
+			textField = (JTextField)GuiUtil.fieldEditable(250, comment.getText());
 		}
 		return textField;
 	}

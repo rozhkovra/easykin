@@ -28,8 +28,8 @@ public class DocForm extends Form {
 	
 	protected void fill(){
 		setLayout(new GridLayout(7, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getTypeLabel());
 		add(getTypeField());
 		add(getNumberLabel());
@@ -38,34 +38,34 @@ public class DocForm extends Form {
 		add(getSeriesField());
 		add(getDateLabel());
 		add(getDateField());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getCancelButton());
 	}
 
 	private Component getTypeField(){
 		if(typeField == null){
-			typeField = GuiUtil.getReadOnlyField(50,doc.getDocType().toString());
+			typeField = GuiUtil.fieldReadOnly(50, doc.getDocType().toString());
 		}
 		return typeField;
 	}
 
 	private Component getNumberField(){
 		if(numberField == null){
-			numberField = GuiUtil.getReadOnlyField(50,doc.getNumber());
+			numberField = GuiUtil.fieldReadOnly(50, doc.getNumber());
 		}
 		return numberField;
 	}
 
 	private Component getSeriesField(){
 		if(seriesField == null){
-			seriesField = GuiUtil.getReadOnlyField(50,doc.getSeries());
+			seriesField = GuiUtil.fieldReadOnly(50, doc.getSeries());
 		}
 		return seriesField;
 	}
 
 	private Component getDateField(){
 		if(dateField == null){
-			dateField = GuiUtil.getReadOnlyField(10,DateUtil.format(doc.getDate()));
+			dateField = GuiUtil.fieldReadOnly(10, DateUtil.format(doc.getDate()));
 		}
 		return dateField;
 	}

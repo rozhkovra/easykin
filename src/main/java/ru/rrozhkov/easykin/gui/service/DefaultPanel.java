@@ -22,13 +22,13 @@ public class DefaultPanel extends Panel {
 	
 	private void fill(){
 		setLayout(new GridLayout(5,2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getCalcTypeLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getSumLabel()); 
 		add(getSumField());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
 		add(getItogoLabel()); 
 		refresh();
 	}

@@ -41,8 +41,8 @@ public class WaterPanel extends Panel{
 
 	private void fill() {
 		setLayout(new GridLayout(10, 2));
-		add(GuiUtil.getEmptyLabel());
-		add(GuiUtil.getEmptyLabel());
+		add(GuiUtil.labelEmpty());
+		add(GuiUtil.labelEmpty());
 		add(getCalcTypeLabel());
 		add(getItogoLabel()); 
 		add(getColdPrevMesureLabel()); 

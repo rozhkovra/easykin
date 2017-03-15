@@ -38,7 +38,7 @@ public class CarForm extends JPanel {
 	
 	private Component getVolumeField() {
 		if(volumeField == null){
-			volumeField = GuiUtil.getReadOnlyField(10,String.valueOf(car.getVolume()));
+			volumeField = GuiUtil.fieldReadOnly(10, String.valueOf(car.getVolume()));
 		}
 		return volumeField;
 	}
@@ -51,7 +51,7 @@ public class CarForm extends JPanel {
 
 	private Component getYearField() {
 		if(yearField == null){
-			yearField = GuiUtil.getReadOnlyField(10,String.valueOf(car.getYear()));
+			yearField = GuiUtil.fieldReadOnly(10, String.valueOf(car.getYear()));
 		}
 		return yearField;
 	}
@@ -64,21 +64,21 @@ public class CarForm extends JPanel {
 
 	public Component getBredField(){
 		if(brendField == null){
-			brendField = GuiUtil.getReadOnlyField(10,car.getBrend().toString());
+			brendField = GuiUtil.fieldReadOnly(10, car.getBrend().toString());
 		}
 		return brendField;
 	}
 
 	public Component getModelField(){
 		if(modelField == null){
-			modelField = GuiUtil.getReadOnlyField(10,car.getModel().toString());
+			modelField = GuiUtil.fieldReadOnly(10, car.getModel().toString());
 		}
 		return modelField;
 	}
 	
 	public Component getBodyField(){
 		if(bodyField == null){
-			bodyField = GuiUtil.getReadOnlyField(10,car.getBody().toString());
+			bodyField = GuiUtil.fieldReadOnly(10, car.getBody().toString());
 		}
 		return bodyField;
 	}
