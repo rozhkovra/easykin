@@ -11,7 +11,7 @@ import java.awt.*;
 public class AuthForm extends Form {
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	private Component usernameLabel;
 	private Component passwordLabel;
 	private AuthManager authManager;
@@ -40,9 +40,9 @@ public class AuthForm extends Form {
 		return usernameField;
 	}
 
-	private JTextField getPasswordField(){
+	private JPasswordField getPasswordField(){
 		if(passwordField == null){
-			passwordField = new JTextField(50);
+			passwordField = (JPasswordField) GuiUtil.password();
 			passwordField.addKeyListener(keyListener());
 		}
 		return passwordField;

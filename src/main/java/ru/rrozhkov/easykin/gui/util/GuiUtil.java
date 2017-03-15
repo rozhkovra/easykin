@@ -40,4 +40,7 @@ public class GuiUtil {
         button.addActionListener(listener);
         return button;
     }
+    public static Component password(){
+        return new JPasswordField();
+    }
 }
