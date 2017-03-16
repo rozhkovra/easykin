@@ -27,6 +27,8 @@ public class AuthManager {
         });
         while(!window.isFinished()){
         }
+        window.setVisible(false);
+        window.dispose();
         return authManager;
     }
 

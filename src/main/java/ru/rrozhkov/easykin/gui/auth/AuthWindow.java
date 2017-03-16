@@ -13,6 +13,7 @@ public class AuthWindow extends JFrame implements IGUIEditor {
     private boolean finished = false;
     public AuthWindow(AuthManager authManager) throws HeadlessException {
         setTitle("Авторизация");
+        getContentPane().removeAll();
         getContentPane().add(new AuthForm(this, authManager));
         setSize(400,150);
     }

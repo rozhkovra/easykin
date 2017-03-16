@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
+import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.image.ImageManager;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
@@ -131,9 +132,17 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }
         });
 
+        JMenuItem loginItem = new JMenuItem("Сменить пользователя");
+        loginItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EasyKin.start();
+            }
+        });
+
         JMenu fileMenu = new JMenu("Меню");
         fileMenu.add(addItem);
         fileMenu.add(refreshItem);
+        fileMenu.add(loginItem);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(fileMenu);
