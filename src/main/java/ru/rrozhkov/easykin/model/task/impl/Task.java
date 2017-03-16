@@ -79,8 +79,19 @@ public class Task implements ITask, Comparable<ITask>{
 		return val;
 	}
 
-
 	public Collection<IComment> comments() {
 		return comments;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Task task = (Task)obj;
+		return id==task.getId()
+				&& name.equals(task.getName())
+				&& createDate.equals(task.getCreateDate())
+				&& planDate.equals(task.getPlanDate())
+				&& priority.equals(task.getPriority())
+				&& category.equals(task.getCategory())
+				&& status.equals(task.getStatus());
 	}
 }
