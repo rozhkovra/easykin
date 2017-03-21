@@ -18,6 +18,7 @@ public class CommentTableStyle extends TableStyle<IComment> {
 	    super.setColumnStyles(table);
 	    table.getColumnModel().getColumn(0).setMinWidth(50);
 	    table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setMinWidth(400);
 	    table.getColumnModel().getColumn(2).setMinWidth(100);
 	    table.getColumnModel().getColumn(2).setMaxWidth(100);
 	}
