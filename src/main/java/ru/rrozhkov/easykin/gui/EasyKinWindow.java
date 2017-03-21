@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
-import ru.rrozhkov.easykin.auth.AuthManager;
-import ru.rrozhkov.easykin.context.MasterDataContext;
+import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.gui.image.ImageManager;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
@@ -19,9 +18,9 @@ import static ru.rrozhkov.easykin.gui.PanelFactory.createPanel;
 public class EasyKinWindow extends JFrame implements IGUIEditor{
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane tabbedPane;
-	private MasterDataContext context;
+	private EasyKinContext context;
 
-	public EasyKinWindow(MasterDataContext context) throws HeadlessException {
+	public EasyKinWindow(EasyKinContext context) throws HeadlessException {
 		super(ContextUtil.title());
         setIconImage(ImageManager.logo(this.getClass()));
 		this.context = context;
@@ -41,10 +40,10 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
  	public void edit(int index){
         closeEditor();
 
-		ICategory currentCategory = ContextUtil.getCurrentCategory(context, getTabbedPane(false));
-        Object obj = context.getObjByIndex(currentCategory, index);
+		ICategory currentCategory = ContextUtil.getCurrentCategory(context.masterData(), getTabbedPane(false));
+        Object obj = context.masterData().getObjByIndex(currentCategory, index);
         JPanel content = new JPanel(new BorderLayout());
-        JPanel formPanel = FormFactory.getFormPanel(context, this, currentCategory, obj);
+        JPanel formPanel = FormFactory.getFormPanel(context.masterData(), this, currentCategory, obj);
         content.add(formPanel,BorderLayout.NORTH);
         Container main = (Container)getContentPane().getComponent(1);
         main.setLayout(new GridLayout(1, 2));
@@ -52,6 +51,20 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         main.add(content);
         main.validate();
 	}
+
+    public void filter(){
+        closeEditor();
+
+        ICategory currentCategory = ContextUtil.getCurrentCategory(context.masterData(), getTabbedPane(false));
+        JPanel content = new JPanel(new BorderLayout());
+        JPanel formPanel = FilterFormFactory.getFilterFormPanel(context, this, currentCategory);
+        content.add(formPanel,BorderLayout.NORTH);
+        Container main = (Container)getContentPane().getComponent(1);
+        main.setLayout(new GridLayout(1, 2));
+        main.add(main.getComponent(0));
+        main.add(content);
+        main.validate();
+    }
 
     public void add() {
         edit(-1);
@@ -79,8 +92,8 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         }
         if(reload){
             tabbedPane.removeAll();
-            for(ICategory category : context.categories()) {
-                tabbedPane.addTab(category.getName(), createPanel(this, context, category));
+            for(ICategory category : context.masterData().categories()) {
+                tabbedPane.addTab(category.getName(), createPanel(this, context.masterData(), category));
             }
         }
         return tabbedPane;
@@ -112,6 +125,15 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }
         });
         menuButtons.add(refreshButton);
+
+        ImageIcon filterIcon = ImageUtil.scaleImage(70, 70, ImageManager.filter(getClass()));
+        Component filterButton = GuiUtil.button(filterIcon,new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                filter();
+            }
+        });
+        menuButtons.add(filterButton);
+
         return menuButtons;
     }
 
@@ -132,6 +154,14 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }
         });
 
+        JMenuItem filterItem = new JMenuItem("Фильтр");
+        filterItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+        filterItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                filter();
+            }
+        });
+
         JMenuItem loginItem = new JMenuItem("Сменить пользователя");
         loginItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -142,6 +172,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JMenu fileMenu = new JMenu("Меню");
         fileMenu.add(addItem);
         fileMenu.add(refreshItem);
+        fileMenu.add(filterItem);
         fileMenu.add(loginItem);
 
         JMenuBar menuBar = new JMenuBar();

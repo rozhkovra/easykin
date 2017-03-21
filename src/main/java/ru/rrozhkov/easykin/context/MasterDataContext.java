@@ -32,7 +32,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MasterDataContext {
+public class MasterDataContext implements IContext{
 	private IPerson person;
 	private Collection<ICategory> categories;
 	private Collection<ITask> tasks;

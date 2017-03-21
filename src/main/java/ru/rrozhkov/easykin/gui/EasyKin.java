@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui;
 
 import ru.rrozhkov.easykin.auth.AuthManager;
+import ru.rrozhkov.easykin.context.EasyKinContext;
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.db.impl.HSQLDBServer;
 
@@ -23,7 +24,8 @@ public class EasyKin
             dbServer.shutdown();
             System.exit(0);
         }
-        final MasterDataContext context = new MasterDataContext(authManager.signedPerson());
+//        final MasterDataContext context = new MasterDataContext(authManager.signedPerson());
+        final EasyKinContext context = new EasyKinContext();
         context.init();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
