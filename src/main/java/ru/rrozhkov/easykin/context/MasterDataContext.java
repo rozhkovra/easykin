@@ -25,6 +25,7 @@ import ru.rrozhkov.easykin.model.task.impl.TaskBuilder;
 import ru.rrozhkov.easykin.model.task.impl.filter.TaskFilterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.SingleCollectionDataProvider;
+import ru.rrozhkov.lib.filter.IFilter;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
 
 import java.sql.SQLException;
@@ -44,6 +45,7 @@ public class MasterDataContext implements IContext{
 	private Collection<IDoc> docs;
 	private ICar car;
 	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
+	private Collection<IFilter> filters = CollectionUtil.create();
 
 	public MasterDataContext() {
 	}
@@ -118,7 +120,7 @@ public class MasterDataContext implements IContext{
 	}
 
 	public Collection<ITask> tasks() {
-		return tasks;
+		return FilterUtil.filter(tasks,filters);
 	}
 	
 	public Priority[] priorities(){
@@ -170,5 +172,9 @@ public class MasterDataContext implements IContext{
 
 	public Collection<ServiceCalc> calcs() {
 		return calcServices;
+	}
+
+	public void filter(Collection<IFilter> filters){
+		this.filters = filters;
 	}
 }
