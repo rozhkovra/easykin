@@ -45,7 +45,7 @@ public class MasterDataContext implements IContext{
 	private Collection<IDoc> docs;
 	private ICar car;
 	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
-	private Collection<IFilter> filters = CollectionUtil.create();
+	private Map<Integer, Collection<IFilter>> filters = CollectionUtil.map();
 
 	public MasterDataContext() {
 	}
@@ -78,26 +78,27 @@ public class MasterDataContext implements IContext{
 	private void initCategoryData() {
 		categoryData.clear();
 		for(ICategory category : categories){
-			if(category.getId()==1){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.home()));
-			}else if(category.getId()==2){
-				categoryData.put(category.getId(), kids());
-			}else if(category.getId()==3){
-				categoryData.put(category.getId(), kinPersons());
-			}else if(category.getId()==4){
-				categoryData.put(category.getId(), services());
-			}else if(category.getId()==5){
-				categoryData.put(category.getId(), finance());
-			}else if(category.getId()==6){
-				categoryData.put(category.getId(), factPayments());
-			}else if(category.getId()==7){
-				categoryData.put(category.getId(), docs());
-			}else if(category.getId()==8){
-				categoryData.put(category.getId(), FilterUtil.filter(tasks(), TaskFilterFactory.work()));
-			}else if(category.getId()==9){
-				categoryData.put(category.getId(), tasks());
-			}else if(category.getId()==10){
-				categoryData.put(category.getId(), calcs());
+			Integer categoryId = category.getId();
+			if(categoryId==1){
+				categoryData.put(categoryId, FilterUtil.filter(tasks(), TaskFilterFactory.home()));
+			}else if(categoryId==2){
+				categoryData.put(categoryId, kids());
+			}else if(categoryId==3){
+				categoryData.put(categoryId, kinPersons());
+			}else if(categoryId==4){
+				categoryData.put(categoryId, services());
+			}else if(categoryId==5){
+				categoryData.put(categoryId, finance());
+			}else if(categoryId==6){
+				categoryData.put(categoryId, factPayments());
+			}else if(categoryId==7){
+				categoryData.put(categoryId, docs());
+			}else if(categoryId==8){
+				categoryData.put(categoryId, FilterUtil.filter(FilterUtil.filter(tasks(), TaskFilterFactory.work()), filters.get(categoryId)));
+			}else if(categoryId==9){
+				categoryData.put(categoryId, FilterUtil.filter(tasks(), filters.get(categoryId)));
+			}else if(categoryId==10){
+				categoryData.put(categoryId, calcs());
 			}
 		}
 	}
@@ -120,7 +121,7 @@ public class MasterDataContext implements IContext{
 	}
 
 	public Collection<ITask> tasks() {
-		return FilterUtil.filter(tasks,filters);
+		return tasks;
 	}
 	
 	public Priority[] priorities(){
@@ -174,7 +175,7 @@ public class MasterDataContext implements IContext{
 		return calcServices;
 	}
 
-	public void filter(Collection<IFilter> filters){
-		this.filters = filters;
+	public void filter(ICategory category,Collection<IFilter> filters){
+		this.filters.put(category.getId(), filters);
 	}
 }

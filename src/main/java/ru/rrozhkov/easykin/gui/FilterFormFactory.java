@@ -12,12 +12,12 @@ import javax.swing.*;
  */
 public class FilterFormFactory {
 
-    public static JPanel task(IContext context, IGUIEditor parent) {
-        return new TaskFilter(context, parent);
+    public static JPanel task(IContext context, IGUIEditor parent, ICategory category) {
+        return new TaskFilter(context, parent, category);
     }
     public static JPanel getFilterFormPanel(IContext context, IGUIEditor parent, ICategory category) {
         if(category.getId()==1){
-            return task(context, parent);
+            return task(context, parent, category);
         }else if(category.getId()==2){
             return person(context, parent);
         }else if(category.getId()==3){
@@ -31,9 +31,9 @@ public class FilterFormFactory {
         }else if(category.getId()==7){
             return doc(context, parent);
         }else if(category.getId()==8){
-            return task(context, parent);
+            return task(context, parent, category);
         }else if(category.getId()==9){
-            return task(context, parent);
+            return task(context, parent, category);
         }else if(category.getId()==10){
             return serviceCalc(context, parent);
         }
