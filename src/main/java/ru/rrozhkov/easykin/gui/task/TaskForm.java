@@ -8,6 +8,7 @@ import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.category.convert.ArrayCategoryConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
+import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.TaskFactory;
 import ru.rrozhkov.easykin.service.impl.TaskService;
@@ -95,7 +96,7 @@ public class TaskForm extends Form {
 	private JComboBox getPriorityComboBox(){
 		if(priorityComboBox == null){
 			priorityComboBox = new JComboBox(context.priorities());
-			priorityComboBox.setSelectedItem(task.getPriority().toString());
+			priorityComboBox.setSelectedIndex(Priority.priority(task.getPriority())-1);
 			if(task.getStatus().isClose())
 				priorityComboBox.setEditable(false);
 		}
