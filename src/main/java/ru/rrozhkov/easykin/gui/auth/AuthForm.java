@@ -30,6 +30,7 @@ public class AuthForm extends Form {
 		add(getPasswordField());
 		add(getOkButton());
 		add(getCancelButton());
+		getUsernameField().requestFocus();
 	}
 	
 	private JTextField getUsernameField(){
