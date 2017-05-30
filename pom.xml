@@ -176,7 +176,7 @@
     <artifactId>rrozhkov-lib</artifactId>
     <version>1.4-SNAPSHOT</version>
     <scope>system</scope>
-    <systemPath>${project.basedir}/lib/RRozhkovLib-1.4-SNAPSHOT.jar</systemPath>
+    <systemPath>${project.basedir}/lib/RRozhkovLib-1.5-SNAPSHOT.jar</systemPath>
 </dependency>
   </dependencies>
 </project>
