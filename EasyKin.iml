@@ -42,7 +42,7 @@
     <orderEntry type="module-library">
       <library name="Maven: ru.rrozhkov.lib:rrozhkov-lib:1.4-SNAPSHOT">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/RRozhkovLib-1.4-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/RRozhkovLib-1.5-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
