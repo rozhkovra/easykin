@@ -13,6 +13,8 @@ public class Person implements IPerson {
 	private String secondName;
 	private Date birthDate;
 	private Sex sex;
+	private String username;
+	private String password;
 	
 	public Person(int id, String surname, String name, String secondName, Date birthDate, Sex sex) {
 		this.id = id;
@@ -21,6 +23,17 @@ public class Person implements IPerson {
 		this.secondName = secondName;
 		this.birthDate = birthDate;
 		this.sex = sex;
+	}
+
+	public Person(int id, String surname, String name, String secondName, Date birthDate, Sex sex, String username, String password) {
+		this.id = id;
+		this.surname = surname;
+		this.name = name;
+		this.secondName = secondName;
+		this.birthDate = birthDate;
+		this.sex = sex;
+		this.username = username;
+		this.password = password;
 	}
 
 	public String getSurname() {
@@ -41,6 +54,14 @@ public class Person implements IPerson {
 
 	public Sex getSex() {
 		return sex;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	@Override

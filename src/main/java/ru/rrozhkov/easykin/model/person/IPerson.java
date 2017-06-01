@@ -9,4 +9,6 @@ public interface IPerson{
 	String getSecondName();
 	Date getBirthDate();
 	Sex getSex();
+	String getUsername();
+	String getPassword();
 }
