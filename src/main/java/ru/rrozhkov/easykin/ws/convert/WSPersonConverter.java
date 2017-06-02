@@ -14,6 +14,8 @@ public class WSPersonConverter implements IConverter<IPerson, PersonBean> {
 		bean.setSecondName(person.getSecondName());
 		bean.setBirthDate(person.getBirthDate());
 		bean.setSex(person.getSex());
+		bean.setUsername(person.getUsername());
+		bean.setPassword(person.getPassword());
 		return bean;
 	}
 	
