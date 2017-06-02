@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.model.service.calc.impl.convert;
 
 import java.util.Collection;
-import java.util.Date;
 
 import ru.rrozhkov.easykin.model.fin.payment.IPayment;
 import ru.rrozhkov.easykin.model.fin.payment.impl.PaymentFactory;

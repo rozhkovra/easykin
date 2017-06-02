@@ -1,7 +1,6 @@
 package ru.rrozhkov.easykin.gui;
 
 import ru.rrozhkov.easykin.context.IContext;
-import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.gui.task.TaskFilter;
 import ru.rrozhkov.easykin.model.category.ICategory;
 

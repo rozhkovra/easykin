@@ -2,10 +2,6 @@ package ru.rrozhkov.easykin.ws.bean;
 
 import java.util.Date;
 
-import ru.rrozhkov.easykin.model.category.Category;
-import ru.rrozhkov.easykin.model.task.Priority;
-import ru.rrozhkov.easykin.model.task.Status;
-
 public class TaskBean{
 	
 	protected String name;

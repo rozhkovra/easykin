@@ -9,6 +9,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/service/ServiceWindow.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/style/impl/custom/DocTableStyle.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/gui/task/TaskEditor.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/ru/rrozhkov/easykin/model/doc/DocType.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../EasyKinModel/src/main/java/ru/rrozhkov/easykin/model/doc/DocType.java" charset="UTF-8" />
   </component>
 </project>

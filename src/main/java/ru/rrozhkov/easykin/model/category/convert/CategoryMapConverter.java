@@ -1,10 +1,6 @@
 package ru.rrozhkov.easykin.model.category.convert;
 
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.model.task.Priority;
-import ru.rrozhkov.easykin.model.task.Status;
-import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.convert.IConverter;
 
 import java.util.HashMap;

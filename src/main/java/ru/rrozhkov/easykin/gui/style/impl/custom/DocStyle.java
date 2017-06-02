@@ -4,7 +4,6 @@ import ru.rrozhkov.easykin.gui.style.ICollectionConverter;
 import ru.rrozhkov.easykin.gui.style.IStyle;
 import ru.rrozhkov.easykin.gui.style.ITableStyle;
 import ru.rrozhkov.easykin.model.doc.IDoc;
-import ru.rrozhkov.easykin.model.person.IPerson;
 
 public class DocStyle implements IStyle<IDoc> {
 

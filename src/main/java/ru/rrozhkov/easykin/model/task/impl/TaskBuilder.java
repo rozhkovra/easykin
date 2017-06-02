@@ -1,9 +1,5 @@
 package ru.rrozhkov.easykin.model.task.impl;
 
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Date;
-
 import ru.rrozhkov.easykin.db.impl.CommentHandler;
 import ru.rrozhkov.easykin.db.impl.TaskHandler;
 import ru.rrozhkov.easykin.model.task.IComment;
@@ -11,6 +7,10 @@ import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.comment.impl.filter.CommentFilterFactory;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.filter.util.FilterUtil;
+
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Date;
 
 public class TaskBuilder {
 	@Deprecated
