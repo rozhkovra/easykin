@@ -6,7 +6,7 @@ import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.auto.service.IService;
 import ru.rrozhkov.easykin.model.auto.service.impl.ServiceFactory;
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
 
 import java.awt.*;
 import java.util.Date;

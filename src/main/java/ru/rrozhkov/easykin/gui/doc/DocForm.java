@@ -4,7 +4,8 @@ import ru.rrozhkov.easykin.gui.Form;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
 import ru.rrozhkov.easykin.model.doc.IDoc;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
+
 
 import java.awt.*;
 

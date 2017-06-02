@@ -4,7 +4,7 @@ import javax.swing.JTabbedPane;
 
 import ru.rrozhkov.easykin.context.MasterDataContext;
 import ru.rrozhkov.easykin.model.category.ICategory;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
 
 public class ContextUtil {
 	public static ICategory getCurrentCategory(MasterDataContext context, JTabbedPane tabs){

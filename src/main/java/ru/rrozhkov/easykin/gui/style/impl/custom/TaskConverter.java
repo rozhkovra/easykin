@@ -5,7 +5,7 @@ import java.util.List;
 
 import ru.rrozhkov.easykin.gui.style.impl.CollectionConverter;
 import ru.rrozhkov.easykin.model.task.ITask;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
 
 public class TaskConverter extends CollectionConverter<ITask>{
 	public TaskConverter(int colSize) {

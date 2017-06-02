@@ -2,7 +2,7 @@ package ru.rrozhkov.easykin.gui.style.impl.custom;
 
 import ru.rrozhkov.easykin.gui.style.impl.CollectionConverter;
 import ru.rrozhkov.easykin.model.auto.service.IService;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
 
 public class ServiceConverter extends CollectionConverter<IService> {
 	public ServiceConverter(int colSize) {

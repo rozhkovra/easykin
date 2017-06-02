@@ -2,9 +2,9 @@ package ru.rrozhkov.easykin.data.impl.stat;
 
 import ru.rrozhkov.easykin.model.fin.MoneyFactory;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
-import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.data.impl.CollectionDataProvider;
+import ru.rrozhkov.lib.util.DateUtil;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -6,8 +6,8 @@ import java.util.Map;
 import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Priority;
 import ru.rrozhkov.easykin.model.task.Status;
-import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.convert.IConverter;
+import ru.rrozhkov.lib.util.DateUtil;
 
 public class TaskMapConverter implements IConverter<ITask, Map<String, Object>> {
 

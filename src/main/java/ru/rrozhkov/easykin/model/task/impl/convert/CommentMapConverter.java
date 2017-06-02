@@ -1,8 +1,8 @@
 package ru.rrozhkov.easykin.model.task.impl.convert;
 
 import ru.rrozhkov.easykin.model.task.IComment;
-import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.convert.IConverter;
+import ru.rrozhkov.lib.util.DateUtil;
 
 import java.util.HashMap;
 import java.util.Map;

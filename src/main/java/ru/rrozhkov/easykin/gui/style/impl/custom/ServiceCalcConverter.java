@@ -5,7 +5,8 @@ import ru.rrozhkov.easykin.gui.style.impl.CollectionConverter;
 import ru.rrozhkov.easykin.model.service.calc.CalculationType;
 import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 import ru.rrozhkov.easykin.model.service.calc.impl.util.ServiceCalcUtil;
-import ru.rrozhkov.easykin.util.DateUtil;
+import ru.rrozhkov.lib.util.DateUtil;
+
 
 public class ServiceCalcConverter extends CollectionConverter<ServiceCalc> {
 	public ServiceCalcConverter(int colSize) {

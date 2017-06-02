@@ -9,8 +9,8 @@ import ru.rrozhkov.easykin.model.task.ITask;
 import ru.rrozhkov.easykin.model.task.Status;
 import ru.rrozhkov.easykin.model.task.impl.convert.DBTaskConverter;
 import ru.rrozhkov.easykin.model.task.impl.convert.TaskMapConverter;
-import ru.rrozhkov.easykin.util.DateUtil;
 import ru.rrozhkov.lib.collection.CollectionUtil;
+import ru.rrozhkov.lib.util.DateUtil;
 
 public class TaskHandler {
 	private static String TABLENAME = "TASK";
@@ -35,7 +35,7 @@ public class TaskHandler {
 	public static String update = "UPDATE "+TABLENAME+" SET NAME='#name#', PLANDATE='#plandate#', PRIORITYID=#priorityid#,"
 			+" CATEGORYID=#categoryid# WHERE ID=#id#";
 	
-	public static String close = "UPDATE "+TABLENAME+" SET CLOSEDATE='"+DateUtil.formatSql(new Date())+"',"
+	public static String close = "UPDATE "+TABLENAME+" SET CLOSEDATE='"+ DateUtil.formatSql(new Date())+"',"
 			+ " STATUSID="+Status.status(Status.CLOSE)+" WHERE ID=#id#";
 
 
