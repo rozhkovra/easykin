@@ -5,7 +5,7 @@
   <artifactId>easykin</artifactId>
   <packaging>jar</packaging>
   <version>4.0.0-SNAPSHOT</version>
-  <name>EasyKin</name>
+  <name>easykin</name>
   <url>http://maven.apache.org</url>
 
 <profiles>
