@@ -45,7 +45,8 @@ public class MasterDataContext implements IContext{
 	private Collection<IDoc> docs;
 	private ICar car;
 	private Map<Integer, Collection> categoryData = new HashMap<Integer, Collection>();
-	private Map<Integer, Collection<IFilter>> filters = CollectionUtil.map();
+	private Collection<IFilter> filters = CollectionUtil.create();
+	private ICategory currentCategory;
 
 	public MasterDataContext() {
 	}
@@ -75,12 +76,20 @@ public class MasterDataContext implements IContext{
 		initCategoryData();
 	}
 
+	public void chooseCategory(ICategory category) {
+		this.currentCategory = category;
+	}
+
+	public ICategory currentCategory(){
+		return this.currentCategory;
+	}
+
 	private void initCategoryData() {
 		categoryData.clear();
 		for(ICategory category : categories){
 			Integer categoryId = category.getId();
 			if(categoryId==1){
-				categoryData.put(categoryId, FilterUtil.filter(tasks(), TaskFilterFactory.home()));
+				categoryData.put(categoryId, FilterUtil.filter(FilterUtil.filter(tasks(), TaskFilterFactory.home()), filters));
 			}else if(categoryId==2){
 				categoryData.put(categoryId, kids());
 			}else if(categoryId==3){
@@ -94,9 +103,9 @@ public class MasterDataContext implements IContext{
 			}else if(categoryId==7){
 				categoryData.put(categoryId, docs());
 			}else if(categoryId==8){
-				categoryData.put(categoryId, FilterUtil.filter(FilterUtil.filter(tasks(), TaskFilterFactory.work()), filters.get(categoryId)));
+				categoryData.put(categoryId, FilterUtil.filter(FilterUtil.filter(tasks(), TaskFilterFactory.work()), filters));
 			}else if(categoryId==9){
-				categoryData.put(categoryId, FilterUtil.filter(tasks(), filters.get(categoryId)));
+				categoryData.put(categoryId, FilterUtil.filter(tasks(), filters));
 			}else if(categoryId==10){
 				categoryData.put(categoryId, calcs());
 			}
@@ -111,8 +120,8 @@ public class MasterDataContext implements IContext{
 		return categoryData.get(Integer.valueOf(categoryId));
 	}
 	
-	public Object getObjByIndex(ICategory category, int index){
-		return CollectionUtil.<ICategory>get(categoryData.get(category.getId()),index);
+	public Object getObjByIndex(int index){
+		return CollectionUtil.<ICategory>get(categoryData.get(currentCategory().getId()),index);
 	}
 
 
@@ -175,7 +184,8 @@ public class MasterDataContext implements IContext{
 		return calcServices;
 	}
 
-	public void filter(ICategory category,Collection<IFilter> filters){
-		this.filters.put(category.getId(), filters);
+	public void filter(Collection<IFilter> filters){
+		this.filters.clear();
+		this.filters.addAll(filters);
 	}
 }

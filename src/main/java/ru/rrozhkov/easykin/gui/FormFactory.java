@@ -71,7 +71,8 @@ public class FormFactory {
 		return new JPanel();
 	}
 
-	public static JPanel getFormPanel(MasterDataContext context, IGUIEditor parent, ICategory category, Object obj) {
+	public static JPanel getFormPanel(MasterDataContext context, IGUIEditor parent, Object obj) {
+		ICategory category = context.currentCategory();
 		if(category.getId()==1){
 			return createTaskEditor(context, parent,obj);
 		}else if(category.getId()==2){

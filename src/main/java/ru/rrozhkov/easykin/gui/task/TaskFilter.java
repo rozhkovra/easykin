@@ -24,12 +24,10 @@ public class TaskFilter extends Form {
 	private Component priorityLabel;
 	private Component statusLabel;
 	private IContext context;
-	private ICategory category;
 
-	public TaskFilter(IContext context, IGUIEditor parent, ICategory category){
+	public TaskFilter(IContext context, IGUIEditor parent){
 		super(parent);
 		this.context = context;
-		this.category = category;
 		fill();
 	}
 	
@@ -86,7 +84,7 @@ public class TaskFilter extends Form {
 				filters.add(new StatusFilter(Status.status(statusComboBox.getSelectedIndex())));
 			if(priorityComboBox.getSelectedIndex()!=0)
 				filters.add(new PriorityFilter(Priority.priority(priorityComboBox.getSelectedIndex())));
-			easyKinContext.masterData().filter(category, filters);
+			easyKinContext.masterData().filter(filters);
 		}
 		parent.refresh();
 		parent.closeEditor();

@@ -8,6 +8,8 @@ import ru.rrozhkov.easykin.gui.util.ImageUtil;
 import ru.rrozhkov.easykin.model.category.ICategory;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,10 +42,9 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
  	public void edit(int index){
         closeEditor();
 
-		ICategory currentCategory = ContextUtil.getCurrentCategory(context.masterData(), getTabbedPane(false));
-        Object obj = context.masterData().getObjByIndex(currentCategory, index);
+        Object obj = context.masterData().getObjByIndex(index);
         JPanel content = new JPanel(new BorderLayout());
-        JPanel formPanel = FormFactory.getFormPanel(context.masterData(), this, currentCategory, obj);
+        JPanel formPanel = FormFactory.getFormPanel(context.masterData(), this, obj);
         content.add(formPanel,BorderLayout.NORTH);
         Container main = (Container)getContentPane().getComponent(1);
         main.setLayout(new GridLayout(1, 2));
@@ -55,9 +56,8 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
     public void filter(){
         closeEditor();
 
-        ICategory currentCategory = ContextUtil.getCurrentCategory(context.masterData(), getTabbedPane(false));
         JPanel content = new JPanel(new BorderLayout());
-        JPanel formPanel = FilterFormFactory.getFilterFormPanel(context, this, currentCategory);
+        JPanel formPanel = FilterFormFactory.getFilterFormPanel(context, this);
         content.add(formPanel,BorderLayout.NORTH);
         Container main = (Container)getContentPane().getComponent(1);
         main.setLayout(new GridLayout(1, 2));
@@ -89,6 +89,11 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
      private JTabbedPane getTabbedPane(boolean reload){
         if(tabbedPane==null){
             tabbedPane = new JTabbedPane();
+            tabbedPane.addChangeListener(new ChangeListener() {
+                public void stateChanged(ChangeEvent e) {
+                    context.masterData().chooseCategory(ContextUtil.getCurrentCategory(context.masterData(), getTabbedPane(false)));
+                }
+            });
         }
         if(reload){
             tabbedPane.removeAll();
