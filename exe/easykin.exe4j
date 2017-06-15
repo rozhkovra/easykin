@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="4.6" transformSequenceNumber="1">
-  <directoryPresets config="F:/temp/EasyKin/EasyKin/lib" />
-  <application name="EasyKin" distributionSourceDir="D:/easykin/EasyKin/exe">
+  <directoryPresets config="F:/temp/EasyKin/easykin/lib" />
+  <application name="EasyKin" distributionSourceDir="F:/temp/EasyKin/easykin/exe">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
@@ -24,8 +24,9 @@
     </searchSequence>
     <classPath>
       <archive location="../lib/hsqldb.jar" failOnError="false" />
-      <archive location="../lib/RRozhkovLib-1.4-SNAPSHOT.jar" failOnError="false" />
-      <archive location="../lib/EasyKin-3.3.1-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin-4.0.1-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin.lib-4.0.1-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin.model-4.0.1-SNAPSHOT.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
