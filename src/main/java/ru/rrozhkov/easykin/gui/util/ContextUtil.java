@@ -17,6 +17,18 @@ public class ContextUtil {
 		}
 		return null;
 	}
+	public static int getCurrentTab(MasterDataContext context, JTabbedPane tabs){
+		ICategory category = context.currentCategory();
+		if(category==null)
+			return -1;
+		String categoryName = category.getName();
+		for(int i = 0; i < tabs.getTabCount();i++){
+			if(categoryName.equals(tabs.getTitleAt(i)))
+				return i;
+		}
+		return -1;
+	}
+
 	public static String title(){
 		return "EasyKin, " + DateUtil.todayWeek();
 	}

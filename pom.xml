@@ -4,7 +4,7 @@
   <groupId>ru.rrozhkov.easykin</groupId>
   <artifactId>easykin</artifactId>
   <packaging>jar</packaging>
-  <version>4.0.3-SNAPSHOT</version>
+  <version>4.0.4-SNAPSHOT</version>
   <name>easykin</name>
   <url>http://maven.apache.org</url>
 
@@ -174,16 +174,16 @@
 <dependency>
     <groupId>ru.rrozhkov.lib</groupId>
     <artifactId>easykin.lib</artifactId>
-    <version>4.0.3-SNAPSHOT</version>
+    <version>4.0.4-SNAPSHOT</version>
     <scope>system</scope>
-    <systemPath>${project.basedir}/lib/easykin.lib-4.0.3-SNAPSHOT.jar</systemPath>
+    <systemPath>${project.basedir}/lib/easykin.lib-4.0.4-SNAPSHOT.jar</systemPath>
 </dependency>
     <dependency>
         <groupId>ru.rrozhkov.easykin.model</groupId>
         <artifactId>easykin.model</artifactId>
-        <version>4.0.3-SNAPSHOT</version>
+        <version>4.0.4-SNAPSHOT</version>
         <scope>system</scope>
-        <systemPath>${project.basedir}/lib/easykin.model-4.0.3-SNAPSHOT.jar</systemPath>
+        <systemPath>${project.basedir}/lib/easykin.model-4.0.4-SNAPSHOT.jar</systemPath>
     </dependency>
   </dependencies>
 </project>
