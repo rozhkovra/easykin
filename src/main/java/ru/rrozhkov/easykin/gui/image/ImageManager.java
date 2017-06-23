@@ -23,4 +23,7 @@ public class ImageManager {
     public static ImageIcon filter(Class clazz) {
         return ImageUtil.imageIconByPath(clazz, "/icon/filter.png");
     }
+    public static ImageIcon dump(Class clazz) {
+        return ImageUtil.imageIconByPath(clazz, "/icon/dump.png");
+    }
 }

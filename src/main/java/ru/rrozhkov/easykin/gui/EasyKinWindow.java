@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui;
 
 import ru.rrozhkov.easykin.context.EasyKinContext;
+import ru.rrozhkov.easykin.db.impl.DumpManager;
 import ru.rrozhkov.easykin.gui.image.ImageManager;
 import ru.rrozhkov.easykin.gui.util.ContextUtil;
 import ru.rrozhkov.easykin.gui.util.GuiUtil;
@@ -141,6 +142,14 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }
         });
         menuButtons.add(filterButton);
+
+        ImageIcon dumpIcon = ImageUtil.scaleImage(70, 70, ImageManager.dump(getClass()));
+        Component dumpButton = GuiUtil.button(dumpIcon,new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                DumpManager.dump(context.masterData());
+            }
+        });
+        menuButtons.add(dumpButton);
 
         return menuButtons;
     }
