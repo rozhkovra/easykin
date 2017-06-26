@@ -7,8 +7,7 @@ import ru.rrozhkov.easykin.model.category.convert.CategoryInsertConverter;
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.person.impl.convert.PersonInsertConverter;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 
 /**
  * Created by rrozhkov on 6/23/2017.
@@ -29,7 +28,7 @@ public class DumpManager {
     public static void writeDump(String s){
         File sdcard = new File(STORAGE);
         File dumpFile = new File(sdcard, FilesSettings.EASYKIN_DUMP);
-        FileOutputStream outputStream;
+        Writer out = null;
 
         try {
             if(!dumpFile.exists()) {
@@ -37,11 +36,19 @@ public class DumpManager {
                 dumpFile.createNewFile();
             }
 
-            outputStream = new FileOutputStream(dumpFile);
-            outputStream.write(s.getBytes());
-            outputStream.close();
+            out = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(dumpFile), "UTF-8"));
+            out.write(s);
+
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                if (out != null)
+                    out.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
