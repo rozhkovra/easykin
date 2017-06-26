@@ -8,8 +8,8 @@ import ru.rrozhkov.lib.convert.IConverter;
  */
 public class PersonInsertConverter implements IConverter<IPerson, String>{
     public String convert(IPerson iPerson) {
-        return "INSERT INTO person (id, surname, name, secondname, sex, username, password"
-                +"VALUES("+iPerson.getId()
+        return "INSERT INTO person (id, surname, name, secondname, sex, username, password)"
+                +" VALUES("+iPerson.getId()
                 +", '"+iPerson.getSurname()+"'"
                 +", '"+iPerson.getName()+"'"
                 +", '"+iPerson.getSecondName()+"'"
