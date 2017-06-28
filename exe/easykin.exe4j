@@ -24,9 +24,9 @@
     </searchSequence>
     <classPath>
       <archive location="../lib/hsqldb.jar" failOnError="false" />
-      <archive location="../lib/easykin.lib-4.0.4-SNAPSHOT.jar" failOnError="false" />
-      <archive location="../lib/easykin.model-4.0.4-SNAPSHOT.jar" failOnError="false" />
-      <archive location="../lib/easykin-4.0.4-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin.lib-5.0.0-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin.model-5.0.0-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../lib/easykin-5.0.0-SNAPSHOT.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>

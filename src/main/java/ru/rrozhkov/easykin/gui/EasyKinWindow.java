@@ -149,7 +149,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
                 DumpManager.dump(context.masterData());
             }
         });
-        menuButtons.add(dumpButton);
+//        menuButtons.add(dumpButton);
 
         return menuButtons;
     }
@@ -186,14 +186,36 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
             }
         });
 
+        JMenuItem exitItem = new JMenuItem("Выход");
+        exitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EasyKin.close();
+            }
+        });
+
+        JMenuItem dumpItem = new JMenuItem("Выгрузить данные");
+        dumpItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                DumpManager.dump(context.masterData());
+            }
+        });
+
         JMenu fileMenu = new JMenu("Меню");
-        fileMenu.add(addItem);
-        fileMenu.add(refreshItem);
-        fileMenu.add(filterItem);
         fileMenu.add(loginItem);
+        fileMenu.add(exitItem);
+
+        JMenu docMenu = new JMenu("Документы");
+        docMenu.add(addItem);
+        docMenu.add(refreshItem);
+        docMenu.add(filterItem);
+
+        JMenu serviceMenu = new JMenu("Сервис");
+        serviceMenu.add(dumpItem);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(fileMenu);
+        menuBar.add(docMenu);
+        menuBar.add(serviceMenu);
         setJMenuBar(menuBar);
     }
 }

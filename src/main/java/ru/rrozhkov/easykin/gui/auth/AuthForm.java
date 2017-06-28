@@ -71,7 +71,7 @@ public class AuthForm extends Form {
 		}
 		AuthManager.instance().signIn(getUsernameField().getText().toString(), getPasswordField().getText().toString());
 		if (!AuthManager.instance().isSignedIn()) {
-			JOptionPane.showMessageDialog((JFrame) parent, "Username or password incorrect!!!");
+			JOptionPane.showMessageDialog((Component) parent, "Username or password incorrect!!!");
 		} else
 			parent.closeEditor(IGUIEditor.CODE_OK);
 	}
