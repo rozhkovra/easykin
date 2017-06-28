@@ -2,3 +2,5 @@
 EasyKin Auto
 EasyKin Service
 EasyKin Fin
+EasyKin Family
+EasyKin Message
