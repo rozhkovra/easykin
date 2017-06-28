@@ -41,7 +41,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
     }
 
  	public void edit(int index){
-        closeEditor();
+        closeEditor(IGUIEditor.CODE_CANCEL);
 
         Object obj = context.masterData().getObjByIndex(index);
         JPanel content = new JPanel(new BorderLayout());
@@ -55,7 +55,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
 	}
 
     public void filter(){
-        closeEditor();
+        closeEditor(IGUIEditor.CODE_OK);
 
         JPanel content = new JPanel(new BorderLayout());
         JPanel formPanel = FilterFormFactory.getFilterFormPanel(context, this);
@@ -71,7 +71,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         edit(-1);
     }
 
-    public void closeEditor() {
+    public void closeEditor(int code) {
         Container main = (Container)getContentPane().getComponent(1);
         if(main.getComponentCount()>1){
             Component form = main.getComponent(1);
@@ -182,7 +182,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         JMenuItem loginItem = new JMenuItem("Сменить пользователя");
         loginItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EasyKin.start();
+                EasyKin.restart();
             }
         });
 

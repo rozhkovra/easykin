@@ -61,7 +61,7 @@ public class TaskEditor extends JPanel implements IGUIEditor{
 		edit(-1);
 	}
 
-	public void closeEditor() {
+	public void closeEditor(int code) {
 		if(getComponentCount()<4)
 			return;
 		Component form = getComponent(3);

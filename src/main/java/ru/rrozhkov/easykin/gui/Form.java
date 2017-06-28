@@ -43,7 +43,7 @@ public abstract class Form extends JPanel {
         };
     }
     protected void cancel(){
-        parent.closeEditor();
+        parent.closeEditor(IGUIEditor.CODE_CANCEL);
     }
 
     protected void ok(){}

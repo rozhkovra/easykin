@@ -14,11 +14,10 @@ public class AuthForm extends Form {
 	private JPasswordField passwordField;
 	private Component usernameLabel;
 	private Component passwordLabel;
-	private AuthManager authManager;
 
-	public AuthForm(final IGUIEditor parent, AuthManager authManager) {
+	public AuthForm(final IGUIEditor parent) {
 		super(parent);
-		this.authManager = authManager;
+
 		fill();
 	}
 	
@@ -30,7 +29,7 @@ public class AuthForm extends Form {
 		add(getPasswordField());
 		add(getOkButton());
 		add(getCancelButton());
-		getUsernameField().requestFocus();
+		getPasswordField().requestFocus();
 	}
 	
 	private JTextField getUsernameField(){
@@ -62,15 +61,19 @@ public class AuthForm extends Form {
 	}
 
 	protected void ok(){
-		if (!validateData()) {
-			JOptionPane.showMessageDialog((JFrame) parent, "Username or password can't be empty!!!");
+		if (!AuthValidator.validateAuthForm(getUsernameField(), getPasswordField())) {
+			JOptionPane.showMessageDialog((Component)parent, "Username or password can't be empty!!!");
 			return;
 		}
-		authManager.signIn(getUsernameField().getText().toString(), getPasswordField().getText().toString());
-		if (!authManager.isSignedIn()) {
+		if (AuthValidator.validateSignedUsername(getUsernameField().getText())) {
+			JOptionPane.showMessageDialog((Component)parent, "Username is already signed in!!!");
+			return;
+		}
+		AuthManager.instance().signIn(getUsernameField().getText().toString(), getPasswordField().getText().toString());
+		if (!AuthManager.instance().isSignedIn()) {
 			JOptionPane.showMessageDialog((JFrame) parent, "Username or password incorrect!!!");
 		} else
-			parent.closeEditor();
+			parent.closeEditor(IGUIEditor.CODE_OK);
 	}
 
 	protected boolean validateData(){

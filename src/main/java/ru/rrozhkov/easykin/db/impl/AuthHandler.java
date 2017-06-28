@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.db.impl;
 
 import ru.rrozhkov.easykin.model.person.IPerson;
-import ru.rrozhkov.easykin.model.person.impl.convert.DBPersonConverter;
+import ru.rrozhkov.easykin.model.person.impl.convert.AuthDBPersonConverter;
 import ru.rrozhkov.lib.collection.CollectionUtil;
 import ru.rrozhkov.lib.crypt.Encrypter;
 
@@ -16,7 +16,7 @@ public class AuthHandler {
     public static IPerson auth(String username, String password) throws SQLException {
         Collection<IPerson> persons = EasyKinDBManager.instance().select(
                 select.replace("#username#",username).replace("#password#", Encrypter.encrypt(password))
-                , new DBPersonConverter());
+                , new AuthDBPersonConverter());
         if(persons.isEmpty() || persons.size()>1)
             return null;
         return CollectionUtil.get(persons,0);

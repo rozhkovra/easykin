@@ -1,5 +1,6 @@
 package ru.rrozhkov.easykin.context;
 
+import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.data.impl.PaymentDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceCalcDataProvider;
 import ru.rrozhkov.easykin.data.impl.stat.StaticServiceHistoryDataProvider;
@@ -34,7 +35,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MasterDataContext implements IContext{
-	private IPerson person;
 	private Collection<ICategory> categories;
 	private Collection<ITask> tasks;
 	private Collection<IPerson> persons;
@@ -50,12 +50,9 @@ public class MasterDataContext implements IContext{
 
 	public MasterDataContext() {
 	}
-
-	public MasterDataContext(IPerson person) {
-		this.person = person;
-	}
 	
 	public void init(){
+		IPerson person = AuthManager.instance().signedPerson();
 		try{
 			SingleCollectionDataProvider<IService, ICar> autoProvider = new StaticServiceHistoryDataProvider();
 			this.categories = CategoryHandler.select();

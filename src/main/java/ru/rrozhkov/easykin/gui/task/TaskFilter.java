@@ -87,6 +87,6 @@ public class TaskFilter extends Form {
 			easyKinContext.masterData().filter(filters);
 		}
 		parent.refresh();
-		parent.closeEditor();
+		parent.closeEditor(IGUIEditor.CODE_OK);
 	}
 }

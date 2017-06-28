@@ -19,16 +19,11 @@ public class AuthManager {
     }
 
     public static AuthManager auth(){
-        final AuthWindow window = new AuthWindow(authManager);
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                window.setVisible(true);
-            }
-        });
+        final AuthWindow window = new AuthWindow();
+        window.start();
         while(!window.isFinished()){
         }
-        window.setVisible(false);
-        window.dispose();
+        window.finish();
         return authManager;
     }
 
