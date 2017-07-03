@@ -1,7 +1,7 @@
 ﻿EasyKin Task
 EasyKin Auto
 EasyKin Service
-EasyKin Fin
+EasyKin Finance
 EasyKin Family
 EasyKin Message
 
