@@ -9,6 +9,7 @@ import ru.rrozhkov.easykin.gui.auth.AuthDialog;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 
 public class EasyKin 
 {
@@ -16,6 +17,7 @@ public class EasyKin
     static JFrame easyKinWindow;
 
     public static void main( String[] args ) {
+        Locale.setDefault(new Locale("en"));
         dbServer.start();
         final AuthManager authManager = AuthManager.auth();
         if (!authManager.isSignedIn()) {

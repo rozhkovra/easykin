@@ -6,6 +6,7 @@ import ru.rrozhkov.easykin.model.service.calc.impl.ServiceCalc;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
 
 public class ServiceWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,7 @@ public class ServiceWindow extends JFrame{
 	}
 
 	public static void main(String[] args){
+		Locale.setDefault(new Locale("en"));
 		ServiceCalc calc = (ServiceCalc) CalcFactory.createEmptyServiceCalc();
 
 		final Panel panel = PanelFactory.getPanel(null, calc);
