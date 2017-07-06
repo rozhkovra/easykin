@@ -45,12 +45,12 @@ public class StaticServiceCalcDataProvider extends CollectionDataProvider<Servic
 					)
 				,(ServiceCalc)createServiceCalc(DateUtil.parse("28.02.2017"),
 						Arrays.asList(
-								createDefaultCalc(WATER, MoneyFactory.create(251.34), false)
+								createDefaultCalc(WATER, MoneyFactory.create(251.34), true)
 								, createDefaultCalc(HOTWATER, MoneyFactory.create(1008.42), true)
-								, createElectricityCalc(15539, 15632, MoneyFactory.create(3.56), MoneyFactory.create(0.0), false)
-								, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), false)
+								, createElectricityCalc(15539, 15632, MoneyFactory.create(3.56), MoneyFactory.create(0.0), true)
+								, createGazCalc(0.0, 0.0, MoneyFactory.create(80.06), true)
 								, createDefaultCalc(HEATING, MoneyFactory.create(1520.62), true)
-								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), false)
+								, createDefaultCalc(REPAIR, MoneyFactory.create(341.03), true)
 								, createDefaultCalc(ANTENNA, MoneyFactory.create(72.00), false)
 								, createDefaultCalc(INTERCOM, MoneyFactory.create(30.00), false)
 								, createDefaultCalc(HOUSE, MoneyFactory.create(1477.12), true)
