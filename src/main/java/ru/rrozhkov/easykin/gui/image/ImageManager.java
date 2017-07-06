@@ -1,6 +1,5 @@
 package ru.rrozhkov.easykin.gui.image;
 
-import ru.rrozhkov.easykin.gui.EasyKinWindow;
 import ru.rrozhkov.easykin.gui.util.ImageUtil;
 
 import javax.swing.*;
@@ -25,5 +24,8 @@ public class ImageManager {
     }
     public static ImageIcon dump(Class clazz) {
         return ImageUtil.imageIconByPath(clazz, "/icon/dump.png");
+    }
+    public static Image service(Class clazz){
+        return ImageUtil.imageByPath(clazz, "/icon/service.png");
     }
 }

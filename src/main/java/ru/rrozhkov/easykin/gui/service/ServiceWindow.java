@@ -13,7 +13,7 @@ public class ServiceWindow extends JFrame{
 
 	public ServiceWindow(JPanel panel) throws HeadlessException {
 		super("Коммунальные услуги");
-		setIconImage(ImageManager.logo(this.getClass()));
+		setIconImage(ImageManager.service(this.getClass()));
 		setContentPane(panel);
     	setExtendedState(ServiceWindow.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
