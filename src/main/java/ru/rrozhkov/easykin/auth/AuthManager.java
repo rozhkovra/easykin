@@ -1,8 +1,11 @@
 package ru.rrozhkov.easykin.auth;
 
 import ru.rrozhkov.easykin.db.impl.AuthHandler;
+import ru.rrozhkov.easykin.gui.auth.AuthDialog;
 import ru.rrozhkov.easykin.gui.auth.AuthWindow;
 import ru.rrozhkov.easykin.model.person.IPerson;
+
+import javax.swing.*;
 
 /**
  * Created by rrozhkov on 3/6/2017.
@@ -25,6 +28,12 @@ public class AuthManager {
         }
         window.finish();
         return authManager;
+    }
+
+    public static int authDialog(JFrame parent){
+        AuthDialog dialog = new AuthDialog(parent, true);
+        dialog.start();
+        return dialog.code();
     }
 
     protected AuthManager() {

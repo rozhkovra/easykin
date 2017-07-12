@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import ru.rrozhkov.easykin.model.person.IPerson;
 import ru.rrozhkov.easykin.model.person.impl.convert.AuthDBPersonConverter;
-import ru.rrozhkov.easykin.model.person.impl.convert.DBPersonConverter;
 
 public class PersonHandler {
 	public static String select = "select * from PERSON";

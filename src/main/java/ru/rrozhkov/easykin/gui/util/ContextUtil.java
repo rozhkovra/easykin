@@ -32,4 +32,7 @@ public class ContextUtil {
 	public static String title(){
 		return "EasyKin, " + DateUtil.todayWeek();
 	}
+	public static String authTitle() {
+		return "Авторизация";
+	}
 }

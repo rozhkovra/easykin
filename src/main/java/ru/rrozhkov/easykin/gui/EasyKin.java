@@ -44,9 +44,7 @@ public class EasyKin
     }
 
     public static void restart(){
-        AuthDialog dialog = new AuthDialog(easyKinWindow, true);
-        dialog.start();
-        if(IGUIEditor.CODE_OK==dialog.code())
+        if(AuthManager.authDialog(easyKinWindow)==IGUIEditor.CODE_OK)
             start();
     }
 

@@ -1,7 +1,7 @@
 package ru.rrozhkov.easykin.gui.auth;
 
-import ru.rrozhkov.easykin.auth.AuthManager;
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.ContextUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.*;
 public class AuthWindow extends JFrame implements IGUIEditor {
     private boolean finished = false;
     public AuthWindow() throws HeadlessException {
-        setTitle("Авторизация");
+        setTitle(ContextUtil.authTitle());
         setSize(400, 150);
         getContentPane().removeAll();
         getContentPane().add(new AuthForm(this));

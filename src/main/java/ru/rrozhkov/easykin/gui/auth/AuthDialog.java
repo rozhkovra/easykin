@@ -1,6 +1,7 @@
 package ru.rrozhkov.easykin.gui.auth;
 
 import ru.rrozhkov.easykin.gui.IGUIEditor;
+import ru.rrozhkov.easykin.gui.util.ContextUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ public class AuthDialog extends JDialog implements IGUIEditor {
     private int code = 0;
     public AuthDialog(Frame owner, boolean modal) {
         super(owner, modal);
-        setTitle("Авторизация");
+        setTitle(ContextUtil.authTitle());
         setSize(400, 150);
         getContentPane().removeAll();
         getContentPane().add(new AuthForm(this));
