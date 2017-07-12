@@ -31,6 +31,7 @@ public class EasyKinWindow extends JFrame implements IGUIEditor{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setVisible(true);
+        setMinimumSize(new Dimension(800,600));
 	}
 
     private void fill() {
