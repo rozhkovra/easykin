@@ -10,9 +10,10 @@ import java.util.Locale;
 
 public class ServiceWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
+	public static final String WINDOW_TITLE = "Калькулятор - Коммунальные услуги";
 
 	public ServiceWindow(JPanel panel) throws HeadlessException {
-		super("Коммунальные услуги");
+		super(WINDOW_TITLE);
 		setIconImage(ImageManager.service(this.getClass()));
 		setContentPane(panel);
     	setExtendedState(ServiceWindow.MAXIMIZED_BOTH);
