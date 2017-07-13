@@ -35,4 +35,7 @@ public class ContextUtil {
 	public static String authTitle() {
 		return "Авторизация";
 	}
+	public static String serviceTitle() {
+		return "EasyKin Калькулятор - Коммунальные услуги";
+	}
 }
