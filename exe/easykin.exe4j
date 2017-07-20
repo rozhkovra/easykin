@@ -6,7 +6,7 @@
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
   </application>
-  <executable name="EasyKin-5.0.2" type="2" iconSet="true" iconFile="F:/temp/EasyKin/easykin/icon/logo.ico" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" amd64="false">
+  <executable name="EasyKin-5.0.3" type="2" iconSet="true" iconFile="F:/temp/EasyKin/easykin/icon/logo.ico" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" amd64="false">
     <messageSet />
     <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" companyName="" productVersion="" />
   </executable>
@@ -24,9 +24,9 @@
     </searchSequence>
     <classPath>
       <archive location="../lib/hsqldb.jar" failOnError="false" />
-      <archive location="../lib/easykin.lib-5.0.2.jar" failOnError="false" />
-      <archive location="../lib/easykin.model-5.0.2.jar" failOnError="false" />
-      <archive location="../lib/easykin-5.0.2.jar" failOnError="false" />
+      <archive location="../lib/easykin.lib-5.0.3.jar" failOnError="false" />
+      <archive location="../lib/easykin.model-5.0.3.jar" failOnError="false" />
+      <archive location="../lib/easykin-5.0.3.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
